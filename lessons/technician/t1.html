@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>T1 &middot; Commission's Rules &mdash; HAM OPS</title>
+  <meta name="description" content="Technician subelement T1: FCC Part 97 basics — purpose, frequency privileges, licensing, prohibited transmissions, control operators, and station identification." />
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header id="site-header" class="site-header" data-root="../../"></header>
+
+    <main id="main">
+      <div class="container">
+        <p class="hero-kicker" style="margin-top:2rem;">// technician &middot; subelement T1</p>
+        <h1>Commission's Rules</h1>
+        <p class="text-dim" style="max-width:68ch;">
+          Every right-of-way privilege you get on the air &mdash; which frequencies, which modes,
+          how much power &mdash; comes from one document: <strong>FCC Part 97</strong>
+          (Title 47 of the Code of Federal Regulations, Part 97). T1 is the FCC-rules subelement:
+          who's in charge, what you're licensed to do, and what you're explicitly not. A citation
+          like <code>&sect;97.1</code> below means "Part 97, Section 1" &mdash; you can look up the
+          full text of any of them at
+          <a href="https://www.law.cornell.edu/cfr/text/47/97.1" target="_blank" rel="noopener">law.cornell.edu/cfr</a>.
+        </p>
+        <nav class="lesson-jump" aria-label="Jump to group">
+          <a href="#t1a">T1A Purpose &amp; terms</a>
+          <a href="#t1b">T1B Frequency privileges</a>
+          <a href="#t1c">T1C Licensing</a>
+          <a href="#t1d">T1D Authorized/prohibited</a>
+          <a href="#t1e">T1E Control operator</a>
+          <a href="#t1f">T1F Identification</a>
+        </nav>
+
+        <!-- ============ T1A ============ -->
+        <section class="lesson-section" id="t1a">
+          <p class="lesson-lead">T1A</p>
+          <h2>Purpose, authority &amp; basic terms</h2>
+          <p>
+            The rules start by saying why the Amateur Radio Service exists at all. Under
+            <a class="term" href="../../glossary.html#part-97">&sect;97.1</a>, its basis and purpose is:
+          </p>
+          <ol>
+            <li>Recognizing ham radio's value to the public as a voluntary, noncommercial service &mdash; particularly for emergency communications</li>
+            <li>Continuing amateurs' proven ability to advance the radio art</li>
+            <li>Encouraging skill in both the technical <em>and</em> communication phases of the art</li>
+            <li>Expanding the pool of trained operators, technicians, and electronics experts</li>
+            <li>Continuing amateurs' unique ability to build international goodwill</li>
+          </ol>
+          <p>
+            None of that is enforced informally &mdash; the <a class="term" href="../../glossary.html#fcc">FCC</a>
+            regulates and enforces Part 97 in the United States, full stop; the ARRL is an
+            advocacy and membership organization, not a regulator. One consequence of "voluntary
+            noncommercial service" that trips people up immediately: causing willful or malicious
+            interference to other stations is flatly prohibited (&sect;97.101(d)), regardless of who's
+            "right" about a frequency.
+          </p>
+          <p>
+            A few terms get defined precisely here because later rules depend on them:
+          </p>
+          <ul>
+            <li>
+              A <dfn id="def-space-station">space station</dfn> is an amateur station located
+              <strong>more than 50&nbsp;km above Earth's surface</strong> (&sect;97.3(a)(41)) &mdash;
+              that's the definition the satellite-operation questions in T8 build on.
+            </li>
+            <li>
+              A <dfn id="def-beacon">beacon</dfn> is an automatically controlled station transmitting
+              one-way for propagation observation. On HF, beacons are confined to specific slices of
+              the Technician bands &mdash; on 10 meters, that's 28.200&ndash;28.300&nbsp;MHz (&sect;97.203(d)).
+            </li>
+            <li>
+              A <a class="term" href="../../glossary.html#frequency-coordinator">Frequency Coordinator</a>
+              is a volunteer &mdash; not an FCC office &mdash; selected by amateurs in a local or regional
+              area who recommends repeater and auxiliary station channels, to keep nearby repeaters
+              from stepping on each other (&sect;97.3(a)(22)).
+            </li>
+            <li>
+              <a class="term" href="../../glossary.html#races">RACES</a> (Radio Amateur Civil Emergency
+              Service) stations need something beyond the operator license: certification of current
+              enrollment by a civil defense organization (&sect;97.407(a)).
+            </li>
+          </ul>
+          <p>
+            Two more everyday mechanics: phonetic alphabets ("Alpha Bravo Charlie&hellip;") are
+            <strong>encouraged, not required</strong>, when using phone emissions (&sect;97.119(b)(2)) &mdash;
+            we'll come back to why in T1F. And since the FCC stopped mailing paper licenses, your
+            proof of license isn't a certificate or an email &mdash; it's that your grant
+            <strong>appears in the FCC's ULS database</strong> (&sect;97.7), with notification arriving
+            by email with a link to your grant (&sect;97.23).
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You pass your exam and get a Certificate of Successful Completion of Examination (CSCE)
+            on the spot. Are you licensed yet? Not quite &mdash; the CSCE proves you passed, but your
+            actual operating authority doesn't exist until the grant is processed and shows up in
+            the FCC's license database (ULS), usually within a few business days. This exact
+            mechanic comes back in T1C.
+          </div>
+          <details class="exam-refs" data-group="T1A" data-exam="technician">
+            <summary>Covers T1A01&ndash;T1A11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T1B ============ -->
+        <section class="lesson-section" id="t1b">
+          <p class="lesson-lead">T1B</p>
+          <h2>Frequency privileges</h2>
+          <p>
+            Part 97 grants specific frequency ranges to each license class in &sect;97.301, and
+            specifies what modes are allowed where in &sect;97.305. Some of those bands are
+            <strong>secondary</strong> allocations &mdash; the amateur service shares them with another
+            radio service that has priority. In a secondary segment, hams must avoid interfering
+            with the primary users and must accept interference from them; there's no "first come,
+            first served" (&sect;97.303).
+          </p>
+          <p>
+            Technician gets essentially the full amateur privileges at 50&nbsp;MHz and above, plus
+            one narrow slice of HF:
+          </p>
+          <div class="grid grid-2" style="margin:1rem 0;">
+            <div class="panel">
+              <div class="panel-header"><span>HF</span></div>
+              <p class="text-dim" style="margin:0;">10 meters: <strong>28.000&ndash;28.500&nbsp;MHz</strong> only (&sect;97.301(e)). No privileges on 80/40/20/15 meters.</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span>VHF / UHF / SHF</span></div>
+              <p class="text-dim" style="margin:0;">Same bands as General/Extra, from 6&nbsp;meters up (table below).</p>
+            </div>
+          </div>
+
+          <h3>The 10-meter slice, up close</h3>
+          <p>
+            Within that 0.5&nbsp;MHz, the mode changes partway through. Drag the cursor below (or
+            click the ruler, or focus it and use the arrow keys) to see what's authorized at a
+            given frequency:
+          </p>
+          <div id="t1b-explorer"></div>
+          <p class="text-dim" style="margin-top:0.75rem; max-width:70ch;">
+            <a class="term" href="../../glossary.html#cw">CW</a> is the exception to all of this: a
+            station may transmit CW on <em>any</em> frequency authorized to the control operator
+            (&sect;97.305(a)) &mdash; so Morse code works across the whole 28.000&ndash;28.500&nbsp;MHz
+            slice, not just the data/RTTY portion. Power in Technician's HF segments is capped at
+            <strong>200&nbsp;W PEP</strong> (&sect;97.313) &mdash; lower than the 1500&nbsp;W PEP ceiling
+            that applies above 30&nbsp;MHz (&sect;97.313(b), with some specific segment exceptions).
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You want to make an SSB voice contact at 28.400&nbsp;MHz running 250&nbsp;W PEP. Legal?
+            Check the mode first: 28.400&nbsp;MHz falls in the 28.300&ndash;28.500&nbsp;MHz phone/image
+            segment, so SSB voice is allowed there. Now check power: Technician's HF segments are
+            capped at 200&nbsp;W PEP, and 250&nbsp;W exceeds that &mdash; so as-described, it's not
+            legal. Turn the power down to 200&nbsp;W or less and you're clear.
+          </div>
+
+          <h3>VHF / UHF / SHF allocations</h3>
+          <p class="text-dim">Full privileges (mode restrictions noted where the pool tests them):</p>
+          <div style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; min-width:32rem;">
+              <thead>
+                <tr style="text-align:left; font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-faint);">
+                  <th style="padding:0.4em 0.8em 0.4em 0;">Band</th>
+                  <th style="padding:0.4em 0.8em;">Frequencies (US)</th>
+                  <th style="padding:0.4em 0;">Notes</th>
+                </tr>
+              </thead>
+              <tbody class="readout" style="font-size:0.88rem;">
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">6 m</td><td style="padding:0.5em 0.8em;">50&ndash;54 MHz</td><td style="padding:0.5em 0; font-family:var(--font-sans); color:var(--text-dim);">50.0&ndash;50.1 MHz is CW-only</td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">2 m</td><td style="padding:0.5em 0.8em;">144&ndash;148 MHz</td><td style="padding:0.5em 0; font-family:var(--font-sans); color:var(--text-dim);">144.0&ndash;144.1 MHz is CW-only</td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">1.25 m</td><td style="padding:0.5em 0.8em;">222&ndash;225 MHz</td><td style="padding:0.5em 0;"></td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">70 cm</td><td style="padding:0.5em 0.8em;">420&ndash;450 MHz</td><td style="padding:0.5em 0;"></td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">23 cm</td><td style="padding:0.5em 0.8em;">1240&ndash;1300 MHz</td><td style="padding:0.5em 0;"></td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">5 cm</td><td style="padding:0.5em 0.8em;">5650&ndash;5925 MHz</td><td style="padding:0.5em 0; font-family:var(--font-sans); color:var(--text-dim);">microwave</td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">3 cm</td><td style="padding:0.5em 0.8em;">10.0&ndash;10.5 GHz</td><td style="padding:0.5em 0; font-family:var(--font-sans); color:var(--text-dim);">microwave</td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">1.2 cm</td><td style="padding:0.5em 0.8em;">24.00&ndash;24.25 GHz</td><td style="padding:0.5em 0; font-family:var(--font-sans); color:var(--text-dim);">microwave</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-dim" style="margin-top:0.75rem;">
+            A couple of related mechanics worth knowing: SSB phone is available in at least some
+            segment of every one of these bands above 50&nbsp;MHz (&sect;97.305(c)); digital modes like
+            FT8 are authorized on 10, 6, <em>and</em> 2 meters for Technician; and any
+            Technician-or-higher licensee can contact the International Space Station on VHF
+            (&sect;97.301, &sect;97.207(c)) &mdash; no special NASA approval needed. Finally, never set your
+            transmit frequency right at a band edge: modulation sidebands can spill past the edge,
+            your display might have calibration error, and your transmitter can drift &mdash; any one
+            of those can put you outside the band without you noticing (&sect;97.101(a), &sect;97.301(a-e)).
+          </p>
+          <details class="exam-refs" data-group="T1B" data-exam="technician">
+            <summary>Covers T1B01&ndash;T1B12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T1C ============ -->
+        <section class="lesson-section" id="t1c">
+          <p class="lesson-lead">T1C</p>
+          <h2>Licensing</h2>
+          <p>
+            The FCC currently issues new licenses for three classes: <strong>Technician, General,
+            and Amateur Extra</strong> (&sect;97.9(a), &sect;97.17(a)). Novice and Advanced still exist as
+            grandfathered classes for people who already hold them, but you can't newly earn one.
+          </p>
+          <p>
+            Call signs come in two flavors. A <strong>sequential</strong> call sign is assigned
+            automatically from the next available slot for your license class and region. A
+            <a class="term" href="../../glossary.html#vanity-call-sign">vanity</a> call sign is one you
+            request specifically &mdash; and unlike some other countries' systems, <strong>any</strong>
+            licensed amateur may apply for a vanity call sign (&sect;97.19), not just upper-class
+            licensees.
+          </p>
+          <p>
+            A license, once granted, runs on a fixed clock:
+          </p>
+          <div class="timeline" role="img" aria-label="License term timeline: granted at year zero, renewal window opens 90 days before the 10-year expiration, then a 2-year grace period with no operating privileges, ending in cancellation if not renewed.">
+            <div class="timeline-track">
+              <div class="seg" style="left:0%; width:97.5%; background:var(--success); opacity:0.35;"></div>
+              <div class="seg" style="left:97.5%; width:2.5%;"></div>
+              <div class="seg" style="left:100%; width:0%;"></div>
+            </div>
+            <div class="timeline-point" style="left:0%;"></div>
+            <div class="timeline-label" style="left:0%;">Granted<br>(10&#8209;yr term starts)</div>
+            <div class="timeline-point" style="left:97.5%;"></div>
+            <div class="timeline-label" style="left:97.5%;">Renewal window opens<br>(90 days out)</div>
+            <div class="timeline-point" style="left:100%;"></div>
+            <div class="timeline-label" style="left:100%;">Expires &rarr; 2&#8209;yr grace period<br>(no operating privileges)</div>
+          </div>
+          <p class="text-dim" style="max-width:70ch;">
+            The normal license term is <strong>ten years</strong> (&sect;97.25). You can request
+            renewal up to <strong>90 days before</strong> expiration (&sect;97.21, &sect;1.949). If it lapses
+            anyway, there's a <strong>two-year grace period</strong> to renew without retaking the
+            exam &mdash; but you may <strong>not transmit</strong> during the grace period until the
+            renewal is actually granted (&sect;97.21(a)(b)). And the FCC needs to be able to reach you:
+            if it can't (e.g., a dead email on file), your operator license can be suspended or your
+            station license revoked (&sect;97.23).
+          </p>
+          <p>
+            One more timing question that trips people up: once you <em>pass</em> the exam, when can
+            you legally transmit? Not immediately on receiving your CSCE, and not when something
+            arrives in the mail &mdash; only once your grant actually appears in the FCC's license
+            database (&sect;97.5a). Same mechanic as T1A's proof-of-license point, just from the other
+            direction.
+          </p>
+          <p class="text-dim">
+            A narrower note on scope: FCC-licensed amateurs may operate from a US-documented vessel
+            in international waters with the master's permission (&sect;97.5(a)(2), &sect;97.11(a)), and
+            international communications are limited to matters "incidental to the purposes of the
+            Amateur Radio Service and remarks of a personal character" (&sect;97.117) &mdash; not
+            business, not broadcasting. That restriction is the seed of all of T1D.
+          </p>
+          <details class="exam-refs" data-group="T1C" data-exam="technician">
+            <summary>Covers T1C01&ndash;T1C11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T1D ============ -->
+        <section class="lesson-section" id="t1d">
+          <p class="lesson-lead">T1D</p>
+          <h2>Authorized &amp; prohibited transmissions</h2>
+          <p>
+            Go back to T1A's basis and purpose: noncommercial, personal-character, technical/emergency/
+            goodwill. Everything in T1D is that principle turning into hard bans &mdash; with a handful
+            of narrow, specific carve-outs:
+          </p>
+          <ul>
+            <li>
+              <strong>Broadcasting</strong> &mdash; one-way transmissions meant for the general public
+              &mdash; is banned outright (&sect;97.3(a)(10) defines it, &sect;97.113(b)/&sect;97.111(b) ban it).
+            </li>
+            <li>
+              Communications with a country whose government has told the
+              <a class="term" href="../../glossary.html#itu">ITU</a> it objects are prohibited
+              (&sect;97.111(a)(1)) &mdash; not an ARRL or IARU list, an ITU one.
+            </li>
+            <li>Indecent or obscene language is prohibited, no exceptions (&sect;97.113(a)(4)).</li>
+            <li>
+              Getting paid to operate a station is generally prohibited &mdash; except specific
+              carve-outs, like when the communication is part of classroom instruction at an
+              educational institution (&sect;97.113(a)(3)(iii)).
+            </li>
+            <li>
+              You can mention your own radio gear is for sale &mdash; but not as a regular business,
+              and only for equipment that's actually your own property (&sect;97.113(a)(3)(ii)).
+            </li>
+            <li>
+              Music is banned <strong>except</strong> when incidental to an authorized retransmission
+              of manned spacecraft communications (&sect;97.113(a)(4)/(c)) &mdash; a narrow exception, not
+              a general one.
+            </li>
+            <li>
+              Messages encoded to hide their meaning are banned <strong>except</strong> for control
+              commands sent to space stations or model craft (&sect;97.211(b), &sect;97.215(b), &sect;97.113(a)(4)).
+            </li>
+            <li>
+              Supporting broadcasting, program production, or news gathering is allowed only when
+              directly related to immediate safety of life or protection of property, and no other
+              means is available (&sect;97.113(5)(b)).
+            </li>
+          </ul>
+          <p class="text-dim">
+            An <dfn id="def-auxiliary">auxiliary station</dfn> is a specific, allowed kind of
+            one-way link &mdash; for example, a link between a remote repeater receiver and the main
+            repeater transmitter (&sect;97.113(d), &sect;97.201(e)). And on-the-air test transmissions are
+            fine, but you still have to identify the transmitting station while you do it (&sect;97.119(a)).
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            Can you play a song over a local repeater to test your audio levels? No &mdash; music is
+            banned except for the narrow manned-spacecraft-retransmission case, which this isn't.
+            Use your own voice or a standard test pattern instead, and remember to identify while
+            you do it.
+          </div>
+          <details class="exam-refs" data-group="T1D" data-exam="technician">
+            <summary>Covers T1D01&ndash;T1D12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T1E ============ -->
+        <section class="lesson-section" id="t1e">
+          <p class="lesson-lead">T1E</p>
+          <h2>Control operator</h2>
+          <p>
+            A station may <strong>never</strong> transmit without a control operator (&sect;97.7(a)) &mdash;
+            even a fully automatic repeater has one, it's just not sitting at the microphone. Four
+            definitions carry the whole group:
+          </p>
+          <ul>
+            <li>
+              A <a class="term" href="../../glossary.html#control-operator">control operator</a> is the
+              amateur <strong>designated by the station licensee</strong> to be responsible for that
+              station's transmissions and rule compliance (&sect;97.3(a)(13)). The licensee does the
+              designating (&sect;97.103(b)).
+            </li>
+            <li>
+              The <a class="term" href="../../glossary.html#control-point">control point</a> is
+              wherever the control operator function is actually performed &mdash; not the antenna,
+              not necessarily the transmitter (&sect;97.3(a)(14)).
+            </li>
+            <li>
+              <dfn id="def-automatic-control">Automatic control</dfn> means no one is actively at the
+              control point &mdash; a repeater is the textbook example (&sect;97.3(a)(6), &sect;97.205(d)).
+            </li>
+            <li>
+              <dfn id="def-remote-control">Remote control</dfn> means the control operator isn't at
+              the station but operates it via a control link &mdash; operating over the internet is
+              the textbook example (&sect;97.3(a)(39)). Any station may be remotely controlled, not
+              just certain types (&sect;97.109(c)).
+            </li>
+          </ul>
+          <p>
+            Here's the part with real consequences: <strong>the control operator's license class
+            determines the station's transmitting privileges</strong> at that moment &mdash; not the
+            station licensee's class, not the radio's capabilities, not whoever else happens to be
+            in the room (&sect;97.103(b)). And when the control operator isn't the licensee, both of
+            them share responsibility for proper operation (&sect;97.103(a)).
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            A club's station is licensed with an Amateur Extra Class trustee, but tonight a
+            Technician-class member is at the radio, designated as control operator for the
+            session. What can they do? Technician privileges only &mdash; the trustee's license class
+            is irrelevant to what's legal right now, because the rules key off whoever the control
+            operator actually is. (Consistent with this: outside of an emergency, a Technician can
+            never be the control operator of a station transmitting in an Amateur-Extra-only band
+            segment, no matter who else is on the license &mdash; &sect;97.301.)
+          </div>
+          <details class="exam-refs" data-group="T1E" data-exam="technician">
+            <summary>Covers T1E01&ndash;T1E11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T1F ============ -->
+        <section class="lesson-section" id="t1f">
+          <p class="lesson-lead">T1F</p>
+          <h2>Station identification, repeaters &amp; third parties</h2>
+          <p>
+            The identification rule is one number: identify with your FCC-assigned call sign
+            <strong>at least every 10 minutes during a contact, and at the end</strong> (&sect;97.119(a)).
+            That applies even if you're using a tactical call like "Race Headquarters" on the
+            air &mdash; the tactical call doesn't replace your FCC call sign, it just supplements it.
+          </p>
+          <div class="timeline" role="img" aria-label="A 23-minute contact: identify at the start (0 minutes), again at the 10-minute mark, again at 20 minutes, and finally at the end at 23 minutes.">
+            <div class="timeline-track"><div class="seg" style="left:0%; width:100%; opacity:0.25;"></div></div>
+            <div class="timeline-point" style="left:0%;"></div>
+            <div class="timeline-label" style="left:0%;">ID<br>0:00 start</div>
+            <div class="timeline-point" style="left:43%;"></div>
+            <div class="timeline-label" style="left:43%;">ID<br>10:00</div>
+            <div class="timeline-point" style="left:87%;"></div>
+            <div class="timeline-label" style="left:87%;">ID<br>20:00</div>
+            <div class="timeline-point" style="left:100%;"></div>
+            <div class="timeline-label" style="left:100%;">ID<br>23:00 end</div>
+          </div>
+          <p class="text-dim" style="max-width:70ch;">
+            Phone identification must be in <strong>English</strong> (&sect;97.119(b)(2)) &mdash; and you
+            may send your call sign using CW <em>or</em> phone even on a phone transmission
+            (&sect;97.119(b)(2)). This is also where the phonetic alphabet from T1A pays off: it's
+            encouraged specifically because clear phone identification matters. Self-assigned
+            portable/mobile indicators are flexible &mdash; "stroke," "slant," and "slash" (as in
+            "KL7CC stroke W3") are all acceptable ways to say the same thing (&sect;97.119(c)).
+          </p>
+          <p>
+            A <a class="term" href="../../glossary.html#repeater">repeater</a> simultaneously
+            retransmits another station's signal on a different channel (&sect;97.3(a)(40)). If a
+            repeater inadvertently retransmits something that violates the rules, accountability
+            falls on the <strong>originating station's control operator</strong>, not the repeater's
+            (&sect;97.205(g)) &mdash; repeaters aren't liable for what passes through them, but that also
+            means the burden is on every user to self-police.
+          </p>
+          <p>
+            <a class="term" href="../../glossary.html#third-party">Third-party communications</a> are
+            messages a control operator sends to another station's control operator on behalf of
+            someone else (&sect;97.3(a)(47)). With a foreign station, that's only allowed if the two
+            countries have a third-party agreement (&sect;97.115(a)(2)) &mdash; and if an unlicensed
+            person speaks over the air to that foreign station, the licensed control operator still
+            has to do the actual station identification.
+          </p>
+          <p class="text-dim">
+            Two closing mechanics: the station licensee must make the station and its records
+            available <strong>any time an FCC representative asks</strong> &mdash; no advance written
+            notice required (&sect;97.103(c)). And a club station license needs the club to have at
+            least <strong>four members</strong> (&sect;97.5(b)(2)).
+          </p>
+          <details class="exam-refs" data-group="T1F" data-exam="technician">
+            <summary>Covers T1F01&ndash;T1F11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <div class="panel panel-corners" style="margin-top:1rem; margin-bottom:3rem;">
+          <div class="panel-header"><span>Practice T1</span></div>
+          <div class="cluster">
+            <a class="btn btn-primary" href="../../flashcards.html?exam=technician&subelement=T1">T1 flashcards</a>
+            <a class="btn" href="../../quiz.html?exam=technician&subelement=T1">T1 practice quiz</a>
+            <a class="btn" href="../../technician.html">&larr; back to Technician subelements</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer" class="site-footer" data-root="../../"></footer>
+  </div>
+
+  <script src="../../js/nav.js"></script>
+  <script src="../../js/data.js"></script>
+  <script src="../../js/storage.js"></script>
+  <script src="../../js/lesson.js"></script>
+  <script src="../../js/band-explorer.js"></script>
+  <script>
+    HamBandExplorer.init(document.getElementById("t1b-explorer"), {
+      minKHz: 28000, maxKHz: 28500, stepKHz: 5,
+      unit: "MHz",
+      title: "Technician 10-meter privileges (28.000–28.500 MHz)",
+      segments: [
+        { fromKHz: 28000, toKHz: 28300, className: "mode-data", label: "Data / RTTY (+ CW)", detail: "Data and RTTY authorized here (§97.305); CW is also legal, since CW is allowed anywhere the control operator is authorized to transmit (§97.305(a))." },
+        { fromKHz: 28300, toKHz: 28500, className: "mode-phone", label: "Phone / image (+ CW)", detail: "Phone (voice, e.g. SSB) and image modes are authorized here (§97.301(e), §97.305) — this is Technician's only HF phone privilege. CW remains legal too." }
+      ]
+    });
+    document.addEventListener("DOMContentLoaded", () => HamLesson.wireDetails(document));
+  </script>
+</body>
+</html>

@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Glossary &mdash; HAM OPS</title>
+  <meta name="description" content="Terms and abbreviations introduced across the Technician and General lessons." />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -15,11 +16,114 @@
       <div class="container">
         <p class="hero-kicker" style="margin-top:2rem;">// reference</p>
         <h1>Glossary</h1>
-        <p class="notice">
-          <strong>Under construction.</strong> Terms and abbreviations will be added here as
-          lesson content is built, each introduced before its first use in a lesson and
-          cross-linked back to the relevant subelement.
+        <p class="text-dim" style="max-width:60ch;">
+          Every term here is linked from the lesson that first introduces it. This list grows as
+          more subelements are built &mdash; currently covers Technician T1.
         </p>
+        <div class="field" style="max-width:24rem;">
+          <label for="glossary-search">Filter</label>
+          <input type="search" id="glossary-search" placeholder="Search terms&hellip;" />
+        </div>
+
+        <dl id="glossary-list" class="stack" style="margin-top:1.5rem;">
+
+          <div class="glossary-entry" data-term="automatic control">
+            <dt id="automatic-control" class="card-title">Automatic control</dt>
+            <dd class="text-dim">Control of a station with no control operator actively present at the control point &mdash; a repeater is the standard example. <span class="badge badge-muted">T1E</span></dd>
+          </div>
+
+          <div class="glossary-entry" data-term="auxiliary station">
+            <dt id="auxiliary-station-g" class="card-title">Auxiliary station</dt>
+            <dd class="text-dim">A station used for a specific link auxiliary to a primary function &mdash; e.g. one-way linking a remote repeater receiver to the main repeater transmitter. <span class="badge badge-muted">T1D</span></dd>
+          </div>
+
+          <div class="glossary-entry" data-term="beacon">
+            <dt id="beacon-g" class="card-title">Beacon</dt>
+            <dd class="text-dim">An automatically controlled station that transmits one-way, typically to let others observe propagation conditions. Confined to specific sub-bands on HF (e.g. 28.200&ndash;28.300&nbsp;MHz on 10 meters). <span class="badge badge-muted">T1A</span></dd>
+          </div>
+
+          <div class="glossary-entry" data-term="control operator">
+            <dt id="control-operator" class="card-title">Control operator</dt>
+            <dd class="text-dim">The amateur designated by a station licensee to be responsible for that station's transmissions and compliance with FCC rules. The control operator's license class &mdash; not the station licensee's &mdash; determines what the station may do at that moment. <span class="badge badge-muted">T1E</span></dd>
+          </div>
+
+          <div class="glossary-entry" data-term="control point">
+            <dt id="control-point" class="card-title">Control point</dt>
+            <dd class="text-dim">The location at which the control operator function is actually performed &mdash; not necessarily where the transmitter or antenna is. <span class="badge badge-muted">T1E</span></dd>
+          </div>
+
+          <div class="glossary-entry" data-term="csce certificate of successful completion of examination">
+            <dt id="csce" class="card-title">CSCE (Certificate of Successful Completion of Examination)</dt>
+            <dd class="text-dim">Proof you passed a VE exam element. It is not itself a license grant &mdash; you can't transmit until your grant appears in the FCC's license database. <span class="badge badge-muted">T1A</span></dd>
+          </div>
+
+          <div class="glossary-entry" data-term="cw continuous wave morse code">
+            <dt id="cw" class="card-title">CW</dt>
+            <dd class="text-dim">Continuous Wave &mdash; international Morse code telegraphy. Legal on any frequency authorized to the control operator, regardless of other mode restrictions on that segment (&sect;97.305(a)). <span class="badge badge-muted">T1B</span></dd>
+          </div>
+
+          <div class="glossary-entry" data-term="fcc federal communications commission">
+            <dt id="fcc" class="card-title">FCC</dt>
+            <dd class="text-dim">Federal Communications Commission &mdash; the US government agency that regulates and enforces the rules for the Amateur Radio Service (Part 97). <span class="badge badge-muted">T1A</span></dd>
+          </div>
+
+          <div class="glossary-entry" data-term="frequency coordinator">
+            <dt id="frequency-coordinator" class="card-title">Frequency Coordinator</dt>
+            <dd class="text-dim">A volunteer &mdash; not an FCC office &mdash; selected by amateur operators in a local or regional area, who recommends transmit/receive channels for repeater and auxiliary stations to help prevent interference between nearby repeaters. <span class="badge badge-muted">T1A</span></dd>
+          </div>
+
+          <div class="glossary-entry" data-term="itu international telecommunication union">
+            <dt id="itu" class="card-title">ITU</dt>
+            <dd class="text-dim">International Telecommunication Union &mdash; the UN agency that coordinates international radio spectrum use. Communications are prohibited with any country whose government has notified the ITU that it objects to them. <span class="badge badge-muted">T1D</span></dd>
+          </div>
+
+          <div class="glossary-entry" data-term="part 97">
+            <dt id="part-97" class="card-title">Part 97</dt>
+            <dd class="text-dim">Title 47 of the Code of Federal Regulations, Part 97 &mdash; the FCC's rules for the Amateur Radio Service. Every &sect;-citation in these lessons refers to a section of Part 97. <span class="badge badge-muted">T1A</span></dd>
+          </div>
+
+          <div class="glossary-entry" data-term="pep peak envelope power">
+            <dt id="pep" class="card-title">PEP</dt>
+            <dd class="text-dim">Peak Envelope Power &mdash; the standard used for amateur transmitter power limits in Part 97 (e.g. 200&nbsp;W PEP for Technician HF privileges). <span class="badge badge-muted">T1B</span></dd>
+          </div>
+
+          <div class="glossary-entry" data-term="races radio amateur civil emergency service">
+            <dt id="races" class="card-title">RACES</dt>
+            <dd class="text-dim">Radio Amateur Civil Emergency Service &mdash; a civil-defense-related mode of amateur operation. Its control operators need certification of current enrollment by a civil defense organization, on top of their FCC amateur license. <span class="badge badge-muted">T1A</span></dd>
+          </div>
+
+          <div class="glossary-entry" data-term="remote control">
+            <dt id="remote-control" class="card-title">Remote control</dt>
+            <dd class="text-dim">Control of a station by a control operator who is not at the station but operates it via a control link &mdash; operating over the internet is the standard example. Any station may be remotely controlled. <span class="badge badge-muted">T1E</span></dd>
+          </div>
+
+          <div class="glossary-entry" data-term="repeater">
+            <dt id="repeater" class="card-title">Repeater</dt>
+            <dd class="text-dim">A station that simultaneously retransmits the signal of another station on a different channel. If a repeater inadvertently retransmits a rule-violating communication, the <em>originating</em> station's control operator is accountable, not the repeater's. <span class="badge badge-muted">T1F</span></dd>
+          </div>
+
+          <div class="glossary-entry" data-term="space station">
+            <dt id="space-station-g" class="card-title">Space station</dt>
+            <dd class="text-dim">An amateur station located more than 50&nbsp;km above Earth's surface. <span class="badge badge-muted">T1A</span></dd>
+          </div>
+
+          <div class="glossary-entry" data-term="third party communications">
+            <dt id="third-party" class="card-title">Third-party communications</dt>
+            <dd class="text-dim">A message a control operator sends to another station's control operator on behalf of a third person. Permitted with foreign stations only where a third-party agreement exists between the two countries. <span class="badge badge-muted">T1F</span></dd>
+          </div>
+
+          <div class="glossary-entry" data-term="uls universal licensing system">
+            <dt id="uls" class="card-title">ULS</dt>
+            <dd class="text-dim">The FCC's Universal Licensing System &mdash; the official database of license grants. Your license takes effect once it appears here, not when a document arrives in the mail. <span class="badge badge-muted">T1A</span></dd>
+          </div>
+
+          <div class="glossary-entry" data-term="vanity call sign">
+            <dt id="vanity-call-sign" class="card-title">Vanity call sign</dt>
+            <dd class="text-dim">A call sign requested by the applicant rather than assigned automatically in sequence. Any licensed amateur may apply for one. <span class="badge badge-muted">T1C</span></dd>
+          </div>
+
+        </dl>
+        <p id="no-results" class="text-faint" style="display:none;">No terms match that search.</p>
       </div>
     </main>
 
@@ -27,5 +131,20 @@
   </div>
 
   <script src="js/nav.js"></script>
+  <script>
+    const searchInput = document.getElementById("glossary-search");
+    const entries = Array.from(document.querySelectorAll(".glossary-entry"));
+    const noResults = document.getElementById("no-results");
+    searchInput.addEventListener("input", () => {
+      const q = searchInput.value.trim().toLowerCase();
+      let visible = 0;
+      entries.forEach((el) => {
+        const match = el.dataset.term.includes(q);
+        el.style.display = match ? "" : "none";
+        if (match) visible++;
+      });
+      noResults.style.display = visible === 0 ? "block" : "none";
+    });
+  </script>
 </body>
 </html>

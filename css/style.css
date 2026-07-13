@@ -339,6 +339,12 @@ main { flex: 1; padding-block: 2rem 4rem; }
 .btn[disabled] { opacity: 0.4; cursor: not-allowed; }
 .btn[disabled]:hover { background: var(--bg-panel-raised); box-shadow: none; }
 
+/* ---- band explorer ---- */
+
+.band-segment.mode-phone, .swatch.mode-phone { background: rgba(255, 176, 0, 0.32); border: 1px solid rgba(255, 176, 0, 0.5); }
+.band-segment.mode-data, .swatch.mode-data { background: rgba(74, 222, 128, 0.2); border: 1px solid rgba(74, 222, 128, 0.45); }
+#be-cursor:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
 /* ---- grids / cards ---- */
 
 .grid {
@@ -397,6 +403,129 @@ a.card:hover, a.card:focus-visible {
 .meter-row { display: flex; align-items: center; gap: 0.75rem; }
 .meter-row .meter { flex: 1; }
 .meter-row .readout { font-size: 0.8rem; min-width: 3.4em; text-align: right; }
+
+/* ---- lesson content ---- */
+
+.lesson-section {
+  padding-block: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.lesson-section:last-of-type { border-bottom: none; }
+.lesson-lead {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 0.4rem;
+}
+.lesson-section h2 { font-size: 1.5rem; margin-bottom: 0.9rem; }
+.lesson-section h3 { font-size: 1.05rem; margin: 1.4rem 0 0.5rem; color: var(--text); }
+.lesson-section p { max-width: 70ch; }
+.example-box {
+  border-left: 3px solid var(--amber);
+  background: var(--bg-panel);
+  padding: 1rem 1.25rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin: 1rem 0;
+  max-width: 70ch;
+}
+.example-box .example-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+dfn {
+  font-style: normal;
+  border-bottom: 1px dotted var(--border-bright);
+  cursor: help;
+}
+a.term { color: var(--text); text-decoration: none; border-bottom: 1px dotted var(--amber); }
+a.term:hover { color: var(--amber); }
+
+details.exam-refs {
+  margin-top: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+}
+details.exam-refs summary {
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+details.exam-refs summary:hover { color: var(--amber); }
+details.exam-refs[open] summary { color: var(--amber); margin-bottom: 0.75rem; }
+
+.lesson-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0 0;
+}
+.lesson-jump a {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  padding: 0.3em 0.6em;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  text-decoration: none;
+  color: var(--text-dim);
+}
+.lesson-jump a:hover { border-color: var(--border-bright); color: var(--amber); }
+
+/* ---- timeline ---- */
+
+.timeline {
+  position: relative;
+  height: 4.5rem;
+  margin: 1.5rem 0;
+  max-width: 46rem;
+}
+.timeline-track {
+  position: absolute;
+  top: 1.4rem;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--border);
+}
+.timeline-track .seg {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: var(--amber);
+  opacity: 0.5;
+}
+.timeline-point {
+  position: absolute;
+  top: 1.1rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 8px var(--amber-glow);
+  transform: translateX(-50%);
+}
+.timeline-label {
+  position: absolute;
+  top: 1.9rem;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  white-space: nowrap;
+  text-align: center;
+}
 
 /* ---- hero ---- */
 

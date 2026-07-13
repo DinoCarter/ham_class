@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Quiz &mdash; HAM OPS</title>
+  <meta name="description" content="Practice quizzes per subelement, or a full 35-question exam simulation matching the real VE exam format." />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -15,12 +16,30 @@
       <div class="container">
         <p class="hero-kicker" style="margin-top:2rem;">// exam simulation</p>
         <h1>Quiz</h1>
-        <p class="notice">
-          <strong>Under construction.</strong> Full quiz mode will simulate the real exam format:
-          35 random questions drawn in the FCC-specified proportions per subelement, 26 correct
-          (74%) to pass, per 47&nbsp;CFR&nbsp;97.503. Per-subelement quick quizzes will also be
-          available once lesson content exists for them.
-        </p>
+
+        <div id="picker" class="panel panel-corners" style="max-width:36rem;">
+          <div class="field">
+            <label for="exam-select">Exam</label>
+            <select id="exam-select">
+              <option value="technician">Technician (Element 2)</option>
+              <option value="general">General (Element 3)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="mode-select">Mode</label>
+            <select id="mode-select">
+              <option value="full">Full exam simulation &mdash; 35 questions, one per group, 26 to pass</option>
+              <option value="practice">Subelement practice &mdash; untimed, all questions in one subelement</option>
+            </select>
+          </div>
+          <div class="field" id="subelement-field" style="display:none;">
+            <label for="subelement-select">Subelement</label>
+            <select id="subelement-select"></select>
+          </div>
+          <button class="btn btn-primary" type="button" id="start-btn">Start quiz</button>
+        </div>
+
+        <div id="session" style="max-width:36rem; display:none;"></div>
       </div>
     </main>
 
@@ -30,5 +49,63 @@
   <script src="js/nav.js"></script>
   <script src="js/data.js"></script>
   <script src="js/storage.js"></script>
+  <script src="js/quiz.js"></script>
+  <script>
+    (async function () {
+      const params = new URLSearchParams(location.search);
+      const examSelect = document.getElementById("exam-select");
+      const modeSelect = document.getElementById("mode-select");
+      const subField = document.getElementById("subelement-field");
+      const subSelect = document.getElementById("subelement-select");
+      const picker = document.getElementById("picker");
+      const session = document.getElementById("session");
+
+      async function populateSubelements() {
+        const outline = await HamData.getOutline(examSelect.value);
+        subSelect.innerHTML = outline.map((s) => `<option value="${s.id}">${s.id} &mdash; ${s.title}</option>`).join("");
+      }
+
+      function syncModeVisibility() {
+        subField.style.display = modeSelect.value === "practice" ? "block" : "none";
+      }
+
+      examSelect.addEventListener("change", populateSubelements);
+      modeSelect.addEventListener("change", syncModeVisibility);
+      await populateSubelements();
+      syncModeVisibility();
+
+      if (params.get("exam")) examSelect.value = params.get("exam");
+      await populateSubelements();
+      if (params.get("subelement")) {
+        modeSelect.value = "practice";
+        subSelect.value = params.get("subelement");
+        syncModeVisibility();
+      }
+
+      async function startQuiz() {
+        const examKey = examSelect.value;
+        const isFullExam = modeSelect.value === "full";
+        const all = await HamData.getQuestions(examKey);
+        const subelementId = isFullExam ? "" : subSelect.value;
+        const questions = isFullExam ? all : all.filter((q) => q.subelement === subelementId);
+
+        picker.style.display = "none";
+        session.style.display = "block";
+        HamQuiz.init(session, { examKey, subelementId, questions, root: "", isFullExam });
+        session.focus();
+      }
+
+      session.addEventListener("ham:back-to-picker", () => {
+        session.style.display = "none";
+        picker.style.display = "block";
+      });
+
+      document.getElementById("start-btn").addEventListener("click", startQuiz);
+
+      if (params.get("exam") && params.get("subelement")) {
+        startQuiz();
+      }
+    })();
+  </script>
 </body>
 </html>

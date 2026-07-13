@@ -2,7 +2,7 @@
 
 Multi-session build log. Read this first in any new session before continuing work.
 
-## Status: Phase 1 (Foundation) — complete, pending your review
+## Status: Phase 2 (T1 template) — complete, pending your review
 
 Deployed and live at https://dinocarter.github.io/ham_class/ (GitHub Pages,
 deploy-from-`main` — enabled by user).
@@ -71,15 +71,61 @@ deploy-from-`main` — enabled by user).
   `ham-course-progress-v1`).
 - Pages built: `index.html` (home), `technician.html` + `general.html` (live
   subelement listings pulled from the parsed JSON, with progress meters wired to
-  localStorage), `flashcards.html` + `quiz.html` (placeholder — explicitly marked
-  "under construction," per user direction not worth building out further until
-  the real interactive pattern is established in Phase 2), `dashboard.html`
-  (fully functional now — per-subelement accuracy meters + quiz history table,
-  reads live from localStorage), `glossary.html` (placeholder).
+  localStorage), `dashboard.html` (per-subelement accuracy meters + quiz history
+  table, reads live from localStorage).
 - `technician.html` / `general.html` link each subelement card to
-  `lessons/{exam}/{id}.html` — **these lesson pages don't exist yet** and will
-  404 until Phase 2+ builds them. Per user: no need for placeholder stub pages,
-  the site will be built out before real use.
+  `lessons/{exam}/{id}.html` — only `lessons/technician/t1.html` exists so far
+  (built in Phase 2); the other 19 will 404 until later phases build them out.
+  Per user: no need for placeholder stub pages.
+
+## Phase 2 — T1 template (this checkpoint)
+
+Built Technician subelement **T1 (Commission's Rules)** completely end-to-end as
+the pattern for every other subelement. Review this before Phase 3 replicates it
+19 more times.
+
+**`lessons/technician/t1.html`** — full lesson content for all 6 groups
+(T1A–T1F, 68 questions). Every regulatory claim is either a pool-verified
+Q&A fact (already cross-checked in Phase 1) or a directly-quoted/verified 47 CFR
+citation looked up this session (97.1 basis-and-purpose full text, the
+28.0–28.3/28.3–28.5 MHz 10m mode split from 97.301(e)/97.305, the CW-anywhere
+rule in 97.305(a)) — nothing paraphrased from memory. Each group section has a
+plain-language explanation, a worked example, and a collapsible "covers
+T1_01–T1_NN" block that renders the actual pool questions live from
+`data/technician.json` (via `js/lesson.js`) rather than being hand-retyped, so
+lesson prose can never drift from the verified data.
+
+**Interactive element**: a keyboard-and-pointer operable frequency explorer
+(`js/band-explorer.js`) over Technician's 28.000–28.500 MHz slice, showing the
+data/RTTY vs. phone/image split live as you move the cursor. Built as a generic
+reusable component (`HamBandExplorer.init(el, {minKHz, maxKHz, segments, ...})`)
+so later "clickable band plan" needs (T9, General HF privileges) can reuse it
+rather than rebuilding.
+
+**Flashcard and quiz engines** (`js/flashcards.js`, `js/quiz.js`) — built
+generic/data-driven rather than T1-specific, since the mechanics don't depend on
+subelement: pick an exam + subelement (or "all") on `flashcards.html` /
+`quiz.html`, or deep-link with `?exam=technician&subelement=T1` (used by T1's
+"Practice" links). Flashcards self-grade and record to `HamStorage`; quiz mode
+has two variants — subelement practice (all questions, untap timed) and **full
+exam simulation** (35 questions, exactly one drawn per group — verified this
+matches how VE exams are actually constructed: 35 groups total across each
+pool's outline, confirmed in Phase 1 — not an approximated/even split across
+subelements). Full-exam results are scored against the verified 26/35 (74%)
+threshold and logged to quiz history on the dashboard.
+
+**Glossary**: `glossary.html` now has 19 real terms introduced in T1 (Part 97,
+control operator, control point, repeater, third-party communications, CW,
+RACES, etc.), each linked from its first use in the lesson, with a client-side
+filter box. Grows as later subelements are built.
+
+**Not yet exercised end-to-end by a real automated click-through**: headless
+Chrome CLI screenshots confirmed the lesson page, band explorer, and
+flashcards/quiz auto-start (via query params) all render correctly with real
+data. Full interactive flows (flipping every card, completing a full quiz,
+checking the results screen) were verified by code review rather than scripted
+browser automation — no Playwright/Puppeteer/chromium-cli available in this
+environment. Worth a manual click-through pass in a real browser.
 
 ## Open items / flagged for your attention
 
@@ -93,18 +139,16 @@ deploy-from-`main` — enabled by user).
 
 ## Nothing currently flagged as factually unverified
 
-Everything shipped so far (all 832 questions, both outlines, all 4 diagrams, the
-26/35 pass threshold cited on `technician.html`/`general.html`/`quiz.html`) has
-been checked against a primary source (the pool PDFs themselves, or 47 CFR
-97.503 via Cornell's Legal Information Institute mirror of the eCFR). Lesson
-"why" content (physics/regulatory background beyond the pool) hasn't been
-written yet — that starts in Phase 2 and will carry its own citations.
+Everything shipped so far — all 832 questions, both outlines, all 4 diagrams,
+the 26/35 pass threshold, the T1 lesson's regulatory claims (47 CFR 97.1,
+97.301(e), 97.303, 97.305(a)/(c), and every other citation in T1) — has been
+checked against a primary source: either the pool PDFs directly, or 47 CFR via
+Cornell's Legal Information Institute mirror of the eCFR. No invented or
+approximated numbers.
 
-## What's next — Phase 2
+## What's next — Phase 3
 
-Build Technician subelement **T1 (Commission's Rules)** completely end-to-end as
-the template/pattern for every other subelement: full lesson content, worked
-examples/analogies, at least one interactive/animated element, linked quiz
-questions, flashcards. This is a checkpoint — depth/tone/interactivity get
-reviewed here before replicating the pattern 19 more times across T2–T0 and
-G1–G0.
+Build out the remaining Technician subelements, **T2–T0**, using the T1
+pattern (assuming you're happy with T1's depth/tone/interactivity after
+reviewing it). Checkpoint roughly every 3–4 subelements rather than all at
+once, per the original build plan.

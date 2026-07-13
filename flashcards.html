@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Flashcards &mdash; HAM OPS</title>
+  <meta name="description" content="Drill any Technician or General subelement with self-graded flashcards." />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -15,13 +16,25 @@
       <div class="container">
         <p class="hero-kicker" style="margin-top:2rem;">// study mode</p>
         <h1>Flashcards</h1>
-        <p class="notice">
-          <strong>Under construction.</strong> Flashcard mode will let you drill any subelement
-          (or the full pool) question-side first, self-grade, and feed results into your
-          per-subelement dashboard stats. It's being built alongside the first full lesson
-          template (Technician T1) so the pattern is right before it's repeated across every
-          subelement.
-        </p>
+
+        <div id="picker" class="panel panel-corners" style="max-width:36rem;">
+          <div class="field">
+            <label for="exam-select">Exam</label>
+            <select id="exam-select">
+              <option value="technician">Technician (Element 2)</option>
+              <option value="general">General (Element 3)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="subelement-select">Subelement</label>
+            <select id="subelement-select">
+              <option value="">All subelements</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" type="button" id="start-btn">Start deck</button>
+        </div>
+
+        <div id="session" style="max-width:36rem; display:none;"></div>
       </div>
     </main>
 
@@ -31,5 +44,51 @@
   <script src="js/nav.js"></script>
   <script src="js/data.js"></script>
   <script src="js/storage.js"></script>
+  <script src="js/flashcards.js"></script>
+  <script>
+    (async function () {
+      const params = new URLSearchParams(location.search);
+      const examSelect = document.getElementById("exam-select");
+      const subSelect = document.getElementById("subelement-select");
+      const picker = document.getElementById("picker");
+      const session = document.getElementById("session");
+
+      async function populateSubelements() {
+        const outline = await HamData.getOutline(examSelect.value);
+        subSelect.innerHTML = `<option value="">All subelements</option>` +
+          outline.map((s) => `<option value="${s.id}">${s.id} &mdash; ${s.title}</option>`).join("");
+      }
+
+      examSelect.addEventListener("change", populateSubelements);
+      await populateSubelements();
+
+      if (params.get("exam")) examSelect.value = params.get("exam");
+      await populateSubelements();
+      if (params.get("subelement")) subSelect.value = params.get("subelement");
+
+      async function startDeck() {
+        const examKey = examSelect.value;
+        const subelementId = subSelect.value;
+        const all = await HamData.getQuestions(examKey);
+        const questions = subelementId ? all.filter((q) => q.subelement === subelementId) : all;
+
+        picker.style.display = "none";
+        session.style.display = "block";
+        HamFlashcards.init(session, { examKey, subelementId, questions, root: "" });
+        session.focus();
+      }
+
+      session.addEventListener("ham:back-to-picker", () => {
+        session.style.display = "none";
+        picker.style.display = "block";
+      });
+
+      document.getElementById("start-btn").addEventListener("click", startDeck);
+
+      if (params.get("exam") && params.get("subelement")) {
+        startDeck();
+      }
+    })();
+  </script>
 </body>
 </html>
