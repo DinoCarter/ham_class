@@ -1,0 +1,222 @@
+[
+  {
+    "id": "G1",
+    "title": "COMMISSION’S RULES",
+    "examQuestions": 5,
+    "groupCount": 5,
+    "groups": [
+      {
+        "id": "G1A",
+        "description": "– General class control operator frequency privileges; primary and secondary allocations"
+      },
+      {
+        "id": "G1B",
+        "description": "– Antenna structure limitations; good engineering and good amateur practice; beacon operation;"
+      },
+      {
+        "id": "G1C",
+        "description": "– Transmitter power regulations; data emission standards; 60-meter operation requirements"
+      },
+      {
+        "id": "G1D",
+        "description": "– Volunteer Examiners and Volunteer Examiner Coordinators; temporary identification; element credit;"
+      },
+      {
+        "id": "G1E",
+        "description": "– Control categories; repeater regulations; third-party rules; ITU regions; automatically controlled digital"
+      }
+    ]
+  },
+  {
+    "id": "G2",
+    "title": "OPERATING PROCEDURES",
+    "examQuestions": 5,
+    "groupCount": 5,
+    "groups": [
+      {
+        "id": "G2A",
+        "description": "– Phone operating procedures: USB/LSB conventions, breaking into a contact, transmitter setup for voice"
+      },
+      {
+        "id": "G2B",
+        "description": "– Operating effectively; band plans; drills and emergencies; RACES operation"
+      },
+      {
+        "id": "G2C",
+        "description": "– CW operating procedures and procedural signals; Q signals; full break-in"
+      },
+      {
+        "id": "G2D",
+        "description": "– Volunteer Monitor Program; HF operations"
+      },
+      {
+        "id": "G2E",
+        "description": "– Digital mode operating procedures"
+      }
+    ]
+  },
+  {
+    "id": "G3",
+    "title": "RADIO WAVE PROPAGATION",
+    "examQuestions": 3,
+    "groupCount": 3,
+    "groups": [
+      {
+        "id": "G3A",
+        "description": "– Sunspots and solar radiation; geomagnetic field and stability indices"
+      },
+      {
+        "id": "G3B",
+        "description": "– Maximum Usable Frequency; Lowest Usable Frequency; short path and long path propagation;"
+      },
+      {
+        "id": "G3C",
+        "description": "– Ionospheric regions; critical angle and frequency; HF scatter; near vertical incidence skywave (NVIS)"
+      }
+    ]
+  },
+  {
+    "id": "G4",
+    "title": "AMATEUR RADIO PRACTICES",
+    "examQuestions": 5,
+    "groupCount": 5,
+    "groups": [
+      {
+        "id": "G4A",
+        "description": "– Station configuration and operation"
+      },
+      {
+        "id": "G4B",
+        "description": "– Tests and test equipment"
+      },
+      {
+        "id": "G4C",
+        "description": "– Interference to consumer electronics; grounding and bonding"
+      },
+      {
+        "id": "G4D",
+        "description": "– Speech processors; S meters; sideband operation near band edges"
+      },
+      {
+        "id": "G4E",
+        "description": "– Mobile and portable HF stations; alternative energy source operation"
+      }
+    ]
+  },
+  {
+    "id": "G5",
+    "title": "ELECTRICAL PRINCIPLES",
+    "examQuestions": 3,
+    "groupCount": 3,
+    "groups": [
+      {
+        "id": "G5A",
+        "description": "– Reactance; inductance; capacitance; impedance; impedance transformation; resonance"
+      },
+      {
+        "id": "G5B",
+        "description": "– The decibel; current and voltage dividers; electrical power calculations; sine wave root-mean-square"
+      },
+      {
+        "id": "G5C",
+        "description": "– Resistors, capacitors, and inductors in series and parallel; transformers"
+      }
+    ]
+  },
+  {
+    "id": "G6",
+    "title": "CIRCUIT COMPONENTS",
+    "examQuestions": 2,
+    "groupCount": 2,
+    "groups": [
+      {
+        "id": "G6A",
+        "description": "– Resistors; capacitors; inductors; rectifiers; solid-state diodes and transistors; vacuum tubes; batteries"
+      },
+      {
+        "id": "G6B",
+        "description": "– Analog and digital integrated circuits (ICs); microwave ICs (MMICs); display devices; RF connectors; ferrite"
+      }
+    ]
+  },
+  {
+    "id": "G7",
+    "title": "PRACTICAL CIRCUITS",
+    "examQuestions": 3,
+    "groupCount": 3,
+    "groups": [
+      {
+        "id": "G7A",
+        "description": "– Power supplies; schematic symbols"
+      },
+      {
+        "id": "G7B",
+        "description": "– Digital circuits; amplifiers and oscillators"
+      },
+      {
+        "id": "G7C",
+        "description": "– Transceiver design; filters; oscillators; digital signal processing (DSP)"
+      }
+    ]
+  },
+  {
+    "id": "G8",
+    "title": "SIGNALS AND EMISSIONS",
+    "examQuestions": 3,
+    "groupCount": 3,
+    "groups": [
+      {
+        "id": "G8A",
+        "description": "– Carriers and modulation: AM, FM, and single sideband; modulation envelope; digital modulation;"
+      },
+      {
+        "id": "G8B",
+        "description": "– Frequency changing; bandwidths of various modes; deviation; intermodulation"
+      },
+      {
+        "id": "G8C",
+        "description": "– Digital emission modes"
+      }
+    ]
+  },
+  {
+    "id": "G9",
+    "title": "ANTENNAS AND FEED LINES",
+    "examQuestions": 4,
+    "groupCount": 4,
+    "groups": [
+      {
+        "id": "G9A",
+        "description": "– Feed lines: characteristic impedance and attenuation; standing wave ratio (SWR) calculation,"
+      },
+      {
+        "id": "G9B",
+        "description": "– Basic dipole and monopole antennas"
+      },
+      {
+        "id": "G9C",
+        "description": "– Directional antennas"
+      },
+      {
+        "id": "G9D",
+        "description": "– Specialized antenna types and applications"
+      }
+    ]
+  },
+  {
+    "id": "G0",
+    "title": "ELECTRICAL AND RF SAFETY",
+    "examQuestions": 2,
+    "groupCount": 2,
+    "groups": [
+      {
+        "id": "G0A",
+        "description": "– RF safety principles, rules, and guidelines; routine station evaluation"
+      },
+      {
+        "id": "G0B",
+        "description": "– Station safety: electrical shock, grounding, fusing, interlocks, and wiring; antenna and tower safety"
+      }
+    ]
+  }
+]

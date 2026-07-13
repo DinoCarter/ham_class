@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>General (Element 3) &mdash; HAM OPS</title>
+  <meta name="description" content="Subelements G1–G0 of the 2023–2027 General class question pool, organized for study." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header id="site-header" class="site-header" data-root=""></header>
+
+    <main id="main">
+      <div class="container">
+        <p class="hero-kicker" style="margin-top:2rem;">// element 3</p>
+        <h1>General Class</h1>
+        <p class="text-dim" style="max-width:62ch;">
+          35 questions on the real exam, 26 correct to pass (74%, per 47&nbsp;CFR&nbsp;97.503).
+          Requires an unexpired Technician license or CSCE. The list below is pulled live from the
+          parsed 2023&ndash;2027 pool (6th Errata, Feb 2026).
+        </p>
+
+        <div id="subelement-list" class="grid grid-2" style="margin-top:1.5rem;" aria-live="polite">
+          <p class="text-faint">Loading subelements&hellip;</p>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer" class="site-footer" data-root=""></footer>
+  </div>
+
+  <script src="js/nav.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script>
+    (async function () {
+      const mount = document.getElementById("subelement-list");
+      try {
+        const [outline, questions] = await Promise.all([
+          HamData.getOutline("general"),
+          HamData.getQuestions("general"),
+        ]);
+        const counts = {};
+        questions.forEach((q) => { counts[q.subelement] = (counts[q.subelement] || 0) + 1; });
+
+        mount.innerHTML = outline.map((s) => {
+          const stats = HamStorage.getSubelementStats("general", s.id);
+          const pct = stats.accuracy == null ? null : Math.round(stats.accuracy * 100);
+          return `
+            <a class="card" href="lessons/general/${s.id.toLowerCase()}.html">
+              <div class="cluster" style="justify-content:space-between;">
+                <span class="badge">${s.id}</span>
+                <span class="card-meta readout">${counts[s.id] || 0} Q &middot; ${s.groups.length} groups</span>
+              </div>
+              <div class="card-title">${s.title}</div>
+              <div class="card-desc">${s.groups.map((g) => g.id).join(", ")}</div>
+              <div class="meter-row" style="margin-top:0.4rem;">
+                <div class="meter"${pct != null ? ` style="--pct:${pct}%"` : ""}><span></span></div>
+                <span class="readout text-faint">${pct == null ? "&mdash;" : pct + "%"}</span>
+              </div>
+            </a>
+          `;
+        }).join("");
+      } catch (err) {
+        mount.innerHTML = `<p class="text-dim">Couldn't load question data (${err.message}). If you opened this file directly from disk, run a local server instead &mdash; see the README.</p>`;
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard &mdash; HAM OPS</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header id="site-header" class="site-header" data-root=""></header>
+
+    <main id="main">
+      <div class="container">
+        <p class="hero-kicker" style="margin-top:2rem;">// telemetry</p>
+        <h1>Progress dashboard</h1>
+        <p class="text-dim" style="max-width:62ch;">
+          Pulled from this browser's local storage. Nothing is sent anywhere, and nothing here
+          exists until you've worked flashcards or quizzes for a subelement.
+        </p>
+
+        <div class="section-label">Technician &mdash; Element 2</div>
+        <div id="tech-stats" class="grid grid-2"></div>
+
+        <div class="section-label">General &mdash; Element 3</div>
+        <div id="gen-stats" class="grid grid-2"></div>
+
+        <div class="section-label">Quiz history</div>
+        <div id="quiz-history" class="panel panel-corners"></div>
+
+        <p style="margin-top:2rem;">
+          <button class="btn" id="reset-btn" type="button">Reset all progress</button>
+        </p>
+      </div>
+    </main>
+
+    <footer id="site-footer" class="site-footer" data-root=""></footer>
+  </div>
+
+  <script src="js/nav.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script>
+    async function renderExamStats(examKey, mountId) {
+      const mount = document.getElementById(mountId);
+      const outline = await HamData.getOutline(examKey);
+      mount.innerHTML = outline.map((s) => {
+        const stats = HamStorage.getSubelementStats(examKey, s.id);
+        const pct = stats.accuracy == null ? null : Math.round(stats.accuracy * 100);
+        const meterClass = pct != null && pct >= 74 ? "meter meter-success" : "meter";
+        return `
+          <div class="card">
+            <div class="cluster" style="justify-content:space-between;">
+              <span class="badge badge-muted">${s.id}</span>
+              <span class="card-meta">${s.title}</span>
+            </div>
+            <div class="meter-row">
+              <div class="${meterClass}"${pct != null ? ` style="--pct:${pct}%"` : ""}><span></span></div>
+              <span class="readout">${pct == null ? "no data" : pct + "%"}</span>
+            </div>
+            <div class="card-meta">${stats.seenCount} question${stats.seenCount === 1 ? "" : "s"} seen</div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderQuizHistory() {
+      const mount = document.getElementById("quiz-history");
+      const history = HamStorage.getQuizHistory();
+      if (history.length === 0) {
+        mount.innerHTML = `<p class="text-faint mt-0">No quiz attempts recorded yet.</p>`;
+        return;
+      }
+      mount.innerHTML = `
+        <table style="width:100%; border-collapse:collapse;">
+          <thead>
+            <tr style="text-align:left; font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-faint);">
+              <th style="padding:0.4em 0.6em 0.4em 0;">Date</th>
+              <th style="padding:0.4em 0.6em;">Exam</th>
+              <th style="padding:0.4em 0.6em;">Score</th>
+              <th style="padding:0.4em 0.6em;">Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${history.slice().reverse().map((h) => `
+              <tr style="border-top:1px solid var(--border);">
+                <td style="padding:0.5em 0.6em 0.5em 0;">${new Date(h.timestamp).toLocaleDateString()}</td>
+                <td style="padding:0.5em 0.6em; text-transform:capitalize;">${h.exam}</td>
+                <td style="padding:0.5em 0.6em;" class="readout">${h.correctCount}/${h.totalCount} (${Math.round(h.scorePct)}%)</td>
+                <td style="padding:0.5em 0.6em;">
+                  <span class="badge ${h.scorePct >= 74 ? "badge-success" : "badge-alert"}">${h.scorePct >= 74 ? "PASS" : "FAIL"}</span>
+                </td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      `;
+    }
+
+    document.getElementById("reset-btn").addEventListener("click", () => {
+      if (confirm("Reset all locally stored progress? This can't be undone.")) {
+        HamStorage.resetAll();
+        location.reload();
+      }
+    });
+
+    renderExamStats("technician", "tech-stats");
+    renderExamStats("general", "gen-stats");
+    renderQuizHistory();
+  </script>
+</body>
+</html>
