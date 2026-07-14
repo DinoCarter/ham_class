@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>G2 &middot; Operating Procedures &mdash; HAM OPS</title>
+  <meta name="description" content="General subelement G2: HF phone conventions (USB/LSB and why), breaking into a contact, band-plan etiquette and RACES, CW procedural/Q signals and full break-in, the Volunteer Monitor Program, and digital mode operating procedure." />
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header id="site-header" class="site-header" data-root="../../"></header>
+
+    <main id="main">
+      <div class="container">
+        <p class="hero-kicker" style="margin-top:2rem;">// general &middot; subelement G2</p>
+        <h1>Operating Procedures</h1>
+        <p class="text-dim" style="max-width:68ch;">
+          G1 was the law that comes with your new HF privileges. G2 is what you actually do with
+          them: which sideband to use and why it isn't arbitrary, how to break into a contact
+          without stepping on anyone, the etiquette that keeps a crowded HF band usable, the CW
+          shorthand that predates voice operating by decades, who's watching for rule violations,
+          and how the newer digital modes expect you to behave. Technician's T2 covered VHF/UHF
+          etiquette; G2 is the HF-specific layer on top of it.
+        </p>
+        <nav class="lesson-jump" aria-label="Jump to group">
+          <a href="#g2a">G2A Phone &amp; sidebands</a>
+          <a href="#g2b">G2B Effective operating</a>
+          <a href="#g2c">G2C CW &amp; Q signals</a>
+          <a href="#g2d">G2D Monitoring &amp; HF ops</a>
+          <a href="#g2e">G2E Digital procedure</a>
+        </nav>
+
+        <!-- ============ G2A ============ -->
+        <section class="lesson-section" id="g2a">
+          <p class="lesson-lead">G2A</p>
+          <h2>Phone operating: sidebands, breaking in &amp; voice setup</h2>
+          <p>
+            Technician's <a class="term" href="../../glossary.html#ssb">SSB</a> entry already
+            explained the mechanics: single sideband strips a full AM signal down to one sideband
+            and drops the carrier, saving bandwidth and transmitter power for the same intelligible
+            audio. What Technician didn't need to cover is that SSB comes in two mirror-image
+            flavors &mdash; <strong>upper sideband (USB)</strong> and <strong>lower sideband
+            (LSB)</strong> &mdash; and which one you use is governed by a band-by-band convention,
+            not a technical requirement. Get it backwards and the other station's radio can often
+            still partially decode you (garbled, shifted-pitch audio), which is exactly the
+            symptom that gives away a sideband mismatch.
+          </p>
+          <p>The convention splits cleanly at 14&nbsp;MHz:</p>
+          <div style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; min-width:26rem;">
+              <thead>
+                <tr style="text-align:left; font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-faint);">
+                  <th style="padding:0.4em 0.8em 0.4em 0;">Band(s)</th>
+                  <th style="padding:0.4em 0;">Sideband</th>
+                </tr>
+              </thead>
+              <tbody class="readout" style="font-size:0.9rem;">
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">160, 75/80, 40 meters</td><td style="padding:0.5em 0;">LSB</td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">20, 17, 15, 12, 10 meters (14&nbsp;MHz and up)</td><td style="padding:0.5em 0;">USB</td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">Every VHF/UHF SSB band</td><td style="padding:0.5em 0;">USB</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Why lower sideband specifically below 14&nbsp;MHz? Not efficiency, not legality, not
+            compatibility with an AM detector &mdash; the honest answer the exam pool gives is that
+            it's <strong>commonly accepted amateur practice</strong>. The split traces back to
+            early SSB adoption decades ago and simply stuck as convention; every modern transceiver
+            just bakes the table above in as a default per band so you never have to think about
+            it. It's worth knowing anyway, because if you ever manually override your radio's
+            sideband selection, this is the table to check against.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You're setting up a 20-meter phone contact and a 75-meter phone contact back to back.
+            Your radio should be in USB for the 20-meter contact (14&nbsp;MHz and up) and LSB for
+            the 75-meter one &mdash; the exact opposite settings, on two bands you might work minutes
+            apart. Most radios switch this automatically based on the dial frequency, but it's the
+            reason a manually-forced wrong sideband is a classic troubleshooting culprit when a
+            contact suddenly sounds unintelligible.
+          </div>
+          <p>
+            <strong>Breaking into a contact</strong> that's already underway between two other
+            stations follows a different rule than calling CQ cold. The recommended way: during a
+            natural pause, say your call sign <strong>once</strong>. Not "QRZ" repeated, not
+            "Breaker breaker" (that's CB radio convention, not amateur practice), and not a CQ
+            aimed at either station &mdash; a single, clean call sign is enough to signal you're
+            waiting, and it's brief enough not to compound the interruption if your timing was
+            slightly off.
+          </p>
+          <p>
+            Two mechanical facts about voice transmitter setup round out this group. VOX (voice-operated
+            switch) and PTT (push-to-talk) both get you on the air, but they solve different
+            problems: PTT requires you to physically hold a button down while talking, while
+            <a class="term" href="../../glossary.html#vox">VOX</a> switches the transceiver to
+            transmit automatically whenever it hears your voice, which is what makes hands-free
+            operation possible in the first place &mdash; useful if your hands are busy with a
+            logbook, a mic-adjacent task, or a mobility limitation. And on an SSB transceiver,
+            <a class="term" href="../../glossary.html#alc">ALC (Automatic Level Control)</a> is the
+            circuit protecting your transmitted audio from distortion when you talk too loudly; the
+            control you actually adjust to keep ALC happy is your transmit audio or microphone
+            gain, not power output or antenna tuning.
+          </p>
+          <p>
+            Finally, <a class="term" href="../../glossary.html#dx">"CQ DX"</a> from a station inside
+            the contiguous 48 states carries an implicit scope: it means the caller is specifically
+            listening for any station <em>outside</em> the lower 48 &mdash; Alaska, Hawaii, or
+            another country all qualify. Answering a CQ DX call from inside the lower 48 states
+            (when you're also inside the lower 48) isn't following the convention the caller
+            intended.
+          </p>
+          <details class="exam-refs" data-group="G2A" data-exam="general">
+            <summary>Covers G2A01&ndash;G2A12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G2B ============ -->
+        <section class="lesson-section" id="g2b">
+          <p class="lesson-lead">G2B</p>
+          <h2>Operating effectively: band plans, courtesy &amp; RACES</h2>
+          <p>
+            One rule anchors frequency access on HF, and it echoes the priority rule Technician's
+            T2C established for VHF nets: except during genuine emergencies, <strong>no amateur
+            station has priority access to any frequency</strong> (&sect;97.101(b),(c)). Not nets, not
+            an ongoing QSO, not a contest &mdash; nobody "owns" a frequency simply by having used it
+            first. If propagation shifts mid-contact and another station starts sharing your
+            frequency, the expected practice is exactly the T2B pattern already familiar from
+            Technician: negotiate a mutually acceptable resolution with the other station, not
+            invoke a priority claim that doesn't exist.
+          </p>
+          <p>
+            If a station in actual distress breaks into your contact, the first thing to do is
+            <strong>acknowledge them and determine what assistance is needed</strong> &mdash; not
+            immediately go silent, not cut power, not escalate to a coordinator before you even know
+            what's wrong. Figuring out the need comes before anything else.
+          </p>
+          <p>
+            Before calling CQ on an apparently clear frequency, confirm it's actually clear: on CW,
+            send "QRL?" followed by your call sign; on phone, ask if the frequency is in use,
+            followed by your call sign. This is the HF-appropriate version of the courtesy Technician
+            learned as the reverse-function check on a repeater input &mdash; here there's no
+            repeater to check against, so you ask directly. Once you're transmitting, minimum
+            separation from adjacent signals matters too: roughly <strong>150&ndash;500&nbsp;Hz</strong>
+            between CW signals, and roughly <strong>2&ndash;3&nbsp;kHz</strong> between SSB signals
+            &mdash; SSB needs more room because a voice signal occupies far more bandwidth than a CW
+            carrier's narrow shift.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You tune across the 40-meter CW band looking for a place to call CQ and find a signal
+            every 300&ndash;400&nbsp;Hz or so. Since the minimum CW separation is roughly
+            150&ndash;500&nbsp;Hz, squeezing in right next to one of those signals would cause
+            interference &mdash; you need to find an actually clear gap, not just the nearest quiet
+            -sounding spot.
+          </div>
+          <p>
+            Beyond the hard rule in &sect;97.101, a <strong>band plan</strong> is the same voluntary,
+            amateur-coordinated layer Technician's T2A introduced &mdash; nothing in it is
+            individually FCC-enforceable, but following it is commonly accepted practice and the
+            standard the pool expects. One specific HF/6-meter example worth knowing by number: the
+            <strong>50.1&ndash;50.125&nbsp;MHz</strong> segment is voluntarily reserved, for stations
+            transmitting within the 48 contiguous states, for contacts with stations <em>outside</em>
+            the 48 contiguous states &mdash; a DX-only window, by convention rather than regulation.
+          </p>
+          <p>
+            Good net-management practice adds one more item beyond what T2C already covered:
+            keeping a <strong>backup frequency</strong> in case interference or poor propagation
+            disrupts the primary one, so the net has somewhere to go without falling apart.
+          </p>
+          <p>
+            <a class="term" href="../../glossary.html#races">RACES</a> reappears here with two
+            specific operational details Technician's T1/T2C didn't need. First: a RACES control
+            operator, even one assisting relief operations during an actual disaster, must still be
+            a person holding an FCC-issued amateur operator license (&sect;97.407(a)) &mdash; a
+            government official alone, without an amateur license, cannot serve as control operator
+            just because the traffic is disaster-related. Second: RACES training drills and tests
+            may be conducted routinely, without special authorization, for <strong>no more than 1
+            hour per week</strong> (&sect;97.407(d)(4)) &mdash; a cap meant to keep "practice" traffic
+            from crowding out real operating on RACES-designated frequencies.
+          </p>
+          <details class="exam-refs" data-group="G2B" data-exam="general">
+            <summary>Covers G2B01&ndash;G2B11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G2C ============ -->
+        <section class="lesson-section" id="g2c">
+          <p class="lesson-lead">G2C</p>
+          <h2>CW operating procedures, Q signals &amp; full break-in</h2>
+          <p>
+            Technician's <a class="term" href="../../glossary.html#q-signal">Q signal</a> entry
+            covered the concept: three-letter Morse-era shorthand, all starting with Q, standing in
+            for common phrases so operators don't have to spell out full sentences letter by
+            letter. G2C adds the specific Q signals and CW procedural conventions the General pool
+            actually tests:
+          </p>
+          <div class="grid grid-2" style="margin:1rem 0;">
+            <div class="panel">
+              <div class="panel-header"><span>QRL?</span></div>
+              <p class="text-dim" style="margin:0;">"Are you busy?" / "Is this frequency in use?" &mdash; the question you send before calling CQ on an apparently clear CW frequency.</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span>QRS?</span></div>
+              <p class="text-dim" style="margin:0;">A request to slow down. If a station sends you "QRS?", the correct response is to send more slowly.</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span>QRN</span></div>
+              <p class="text-dim" style="margin:0;">"I am troubled by static" &mdash; a report about atmospheric noise, not a request to change anything about the other station's sending.</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span>QRV</span></div>
+              <p class="text-dim" style="margin:0;">"I am ready to receive" &mdash; an announcement of readiness, similar in spirit to a repeater's "listening" from T2A but in Q-signal form.</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span>QSL</span></div>
+              <p class="text-dim" style="margin:0;">"I have received and understood" &mdash; an acknowledgment of correct copy, not a claim that a contact has already been confirmed by card or log.</p>
+            </div>
+          </div>
+          <p>
+            Two non-Q procedural signals matter too: sending <strong>"KN"</strong> at the end of a
+            transmission means you're listening only for a specific station or stations &mdash; an
+            exclusive invitation, unlike a general CQ. And the prosign <strong>"AR"</strong> marks
+            the end of a formal message when using CW, distinct from other sign-off prosigns used
+            at different points in a contact.
+          </p>
+          <p>
+            Two more CW-specific mechanics: when answering someone else's CQ, send at the fastest
+            speed you're comfortable copying, but <strong>no faster than the CQ itself</strong> was
+            sent &mdash; matching or undershooting their speed, never exceeding it, so you don't
+            invite a reply faster than you can actually copy. And "<a class="term" href="../../glossary.html#zero-beat">zero
+            beat</a>" means precisely matching your transmit frequency to the frequency of a signal
+            you just received, so your reply lands exactly where the other station is listening
+            rather than slightly off to one side. One more reporting detail: adding a "C" to an RST
+            signal report means the signal sounded <strong>chirpy or unstable</strong> &mdash; a note
+            about the transmitted signal's quality, not about copy percentage or key clicks.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You're mid-QSO on CW and want to let the other station finish their thought without
+            worrying that anyone else is trying to break in. Ending your transmission with "KN"
+            tells them &mdash; and anyone else listening &mdash; that you're listening only for that
+            specific station's reply, not opening the frequency to a general call.
+          </div>
+          <p>
+            <a class="term" href="../../glossary.html#full-break-in">Full break-in (QSK)</a> is the
+            CW-specific analog of duplex-style responsiveness: the transmitting station's receiver
+            re-engages fast enough to hear the other station's signal <em>between individual code
+            characters and elements</em>, not just between whole transmissions. That's a
+            meaningfully finer grain than an operator flipping a manual send/receive switch before
+            and after each transmission (ordinary "semi" break-in) &mdash; QSK lets someone
+            interrupt you mid-word, and you'd actually hear it happen.
+          </p>
+          <details class="exam-refs" data-group="G2C" data-exam="general">
+            <summary>Covers G2C01&ndash;G2C11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G2D ============ -->
+        <section class="lesson-section" id="g2d">
+          <p class="lesson-lead">G2D</p>
+          <h2>The Volunteer Monitor Program &amp; HF operating practice</h2>
+          <p>
+            Don't confuse this with Volunteer Examiners. The
+            <a class="term" href="../../glossary.html#volunteer-monitor-program">Volunteer Monitor
+            Program</a> is a separate corps of amateur volunteers, formally enlisted specifically to
+            <strong>monitor the airwaves for rules violations</strong> &mdash; they don't administer
+            license exams, coordinate repeaters, or run emergency nets; that's VEs, Frequency
+            Coordinators, and ARES/RACES respectively. Its stated objective is to
+            <strong>encourage amateur operators to self-regulate and comply with the rules</strong>,
+            reinforcing good practice rather than functioning primarily as an enforcement arm. One
+            specific Volunteer Monitor technique worth knowing: to localize a station whose
+            continuous, unwanted carrier is holding a repeater's squelch open (denying everyone else
+            access), Volunteer Monitors in different locations compare beam headings on the
+            repeater's input frequency from their own homes &mdash; the same triangulation idea
+            behind radio direction finding, applied cooperatively across multiple fixed observers
+            instead of one mobile hunter.
+          </p>
+          <p>
+            That triangulation idea connects to a mapping tool worth knowing by name: an
+            <strong>azimuthal projection map</strong> is a map centered on one specific location
+            that shows true bearings and distances <em>from that location</em> to anywhere else on
+            it &mdash; exactly what you'd want on hand to point a directional antenna, or to plot
+            beam headings gathered from several fixed monitoring stations.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            Several Volunteer Monitors each note the compass bearing at which a troublesome
+            continuous carrier is strongest on their own directional antenna, aimed at the
+            repeater's input frequency. Plotted as lines from each monitor's home location on an
+            azimuthal map, those bearings converge roughly where the offending station is &mdash; no
+            single monitor needs to physically drive toward the signal.
+          </div>
+          <p>
+            Calling CQ for a general HF contact follows the same pattern Technician's T2A already
+            established for VHF: repeat "CQ" a few times, say "this is," then your call sign a few
+            times, then pause to actually listen before repeating. Nothing about HF changes that
+            convention.
+          </p>
+          <p>
+            <a class="term" href="../../glossary.html#short-path-long-path">Long-path</a> propagation
+            gets a concrete pointing rule: to attempt a long-path contact, aim a directional antenna
+            <strong>180&deg; from the station's short-path heading</strong> &mdash; that is, point
+            the "wrong" way around the compass on purpose, toward the great-circle route that goes
+            the long way around the globe instead of the direct way. (G3B expands on why both paths
+            can carry a signal at once.)
+          </p>
+          <p>
+            A few more HF operating habits worth internalizing: many amateurs keep a
+            <strong>station log</strong> primarily to have a record on hand if the FCC ever requests
+            information about their station's operation &mdash; not because Part 97 requires logging
+            routine domestic contacts. During an HF contest, the one hard requirement is unchanged
+            from every other kind of operating: identify your station according to normal FCC
+            regulations. And signal reports are conventionally exchanged at the very start of an HF
+            contact specifically so <strong>each station can adjust how it operates to match
+            conditions</strong> &mdash; power, speed, mode choices &mdash; rather than as a formality
+            for award programs or logging.
+          </p>
+          <p>
+            Finally, <a class="term" href="../../glossary.html#qrp">QRP</a> operation means
+            deliberately transmitting with low power &mdash; a self-imposed challenge and efficiency
+            exercise some operators pursue on HF, not a licensing category or regulatory limit.
+          </p>
+          <details class="exam-refs" data-group="G2D" data-exam="general">
+            <summary>Covers G2D01&ndash;G2D11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G2E ============ -->
+        <section class="lesson-section" id="g2e">
+          <p class="lesson-lead">G2E</p>
+          <h2>Digital mode operating procedure</h2>
+          <p>
+            This group isn't about what the digital modes <em>are</em> &mdash; Technician's T8D
+            already introduced the mode vocabulary. It's about the operating conventions specific to
+            using them well: where on the band, which sideband, how timing works, and how to
+            troubleshoot when decoding fails.
+          </p>
+          <p>
+            Start with sideband, because it splits two ways depending on the mode &mdash; a direct
+            echo of the USB/LSB convention from G2A, applied to
+            <a class="term" href="../../glossary.html#afsk">AFSK</a> (Audio Frequency-Shift Keying,
+            where digital tones are fed into an SSB transmitter's microphone input rather than
+            shifting the radio's oscillator directly):
+          </p>
+          <div class="grid grid-2" style="margin:1rem 0;">
+            <div class="panel">
+              <div class="panel-header"><span><a class="term" href="../../glossary.html#rtty">RTTY</a> via AFSK</span></div>
+              <p class="text-dim" style="margin:0;">Conventionally sent on <strong>LSB</strong> &mdash; the older convention, inherited from RTTY's history alongside voice LSB use on the lower HF bands.</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span>JT65 / JT9 / FT4 / FT8 via AFSK</span></div>
+              <p class="text-dim" style="margin:0;">Conventionally sent on <strong>USB</strong> &mdash; the newer WSJT-X-family convention, regardless of which HF band you're on.</p>
+            </div>
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You switch from working RTTY to working FT8 on the same HF band without touching your
+            radio's sideband setting. Your FT8 signal comes out garbled because your radio is still
+            in LSB (correct for RTTY) instead of USB (what FT8 expects). Two digital modes, both
+            AFSK, both routinely used on the same bands &mdash; but opposite sideband conventions.
+          </div>
+          <p>
+            RTTY specifics worth knowing: the most common frequency shift between the "mark" and
+            "space" tones on amateur HF RTTY is <strong>170&nbsp;Hz</strong>. And if you can't decode
+            an RTTY or other FSK signal even though it appears to be tuned in properly, there are
+            several independent possible causes that all produce the same symptom &mdash; the mark
+            and space frequencies could be reversed, you might have the wrong baud rate selected, or
+            you might be listening on the wrong sideband. As with the T2B repeater-access troubleshooting
+            example, one symptom doesn't tell you which cause it is; you check all three.
+          </p>
+          <p>
+            <strong>Frequency and timing discipline</strong> matter more on digital modes than on
+            phone or CW, because many of them (like FT8) are structured around precise, fixed time
+            slots rather than free-form back-and-forth. Two consequences:
+          </p>
+          <ul>
+            <li>
+              When answering a station calling CQ on FT8, good practice is to find a clear
+              frequency <em>during the alternate time slot</em> to the calling station &mdash; not on
+              the calling station's exact frequency, and not in the same time slot, which would
+              collide with their own next transmission.
+            </li>
+            <li>
+              FT8 in particular requires computer clock time accurate to within roughly
+              <strong>one second</strong>, since the software uses precise timing to know which time
+              slot it's currently in and to decode signals that arrive right at a slot boundary.
+            </li>
+          </ul>
+          <p>
+            Band segments matter too: on 20 meters, most digital mode activity clusters between
+            <strong>14.070&nbsp;MHz and 14.100&nbsp;MHz</strong>, with FT8 specifically concentrated
+            in a narrow slice around <strong>14.074&ndash;14.077&nbsp;MHz</strong> within that range.
+          </p>
+          <p>
+            Two connection-oriented digital protocols behave differently from broadcast-style modes
+            like FT8. <a class="term" href="../../glossary.html#pactor">PACTOR</a> and
+            <a class="term" href="../../glossary.html#vara">VARA</a> both establish a direct
+            connection between exactly two stations &mdash; PACTOR in particular has no mechanism for
+            a third station to "join" an existing link the way you might join an open net; you
+            simply can't. Both are commonly used to carry <a class="term" href="../../glossary.html#winlink">Winlink</a>
+            traffic over RF. When either link suffers interference from other signals, the symptoms
+            can show up several different ways at once &mdash; frequent retries or timeouts, long
+            pauses in message transmission, or outright failure to establish the connection in the
+            first place &mdash; because interference can strike any part of the protocol's handshaking.
+          </p>
+          <p>
+            To establish contact with a <a class="term" href="../../glossary.html#gateway">gateway</a>
+            station running a digital messaging system, the way in is to transmit a connect message
+            on that station's published frequency &mdash; there's no broadcast SSID to listen for or
+            email to send first; the gateway's frequency is the entry point, publicized in advance
+            the same way a repeater's frequency and offset are. A Winlink Remote Message Server is
+            simply another name for this kind of gateway station in the Winlink system specifically.
+          </p>
+          <p>
+            Last, one non-HF digital system worth knowing by name and purpose: an
+            <a class="term" href="../../glossary.html#mesh-network">AREDN</a> (Amateur Radio
+            Emergency Data Network) mesh network exists primarily to provide
+            <strong>high-speed data services during an emergency or community event</strong> &mdash;
+            built from commercial Wi-Fi hardware running amateur firmware, the way Technician's T8D
+            mesh network entry describes, but purpose-built for exactly this use case.
+          </p>
+          <details class="exam-refs" data-group="G2E" data-exam="general">
+            <summary>Covers G2E01&ndash;G2E15 (15 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <div class="panel panel-corners" style="margin-top:1rem; margin-bottom:3rem;">
+          <div class="panel-header"><span>Practice G2</span></div>
+          <div class="cluster">
+            <a class="btn btn-primary" href="../../flashcards.html?exam=general&subelement=G2">G2 flashcards</a>
+            <a class="btn" href="../../quiz.html?exam=general&subelement=G2">G2 practice quiz</a>
+            <a class="btn" href="../../general.html">&larr; back to General subelements</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer" class="site-footer" data-root="../../"></footer>
+  </div>
+
+  <script src="../../js/nav.js"></script>
+  <script src="../../js/data.js"></script>
+  <script src="../../js/storage.js"></script>
+  <script src="../../js/lesson.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => HamLesson.wireDetails(document));
+  </script>
+</body>
+</html>

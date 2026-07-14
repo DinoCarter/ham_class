@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>G4 &middot; Amateur Radio Practices &mdash; HAM OPS</title>
+  <meta name="description" content="General subelement G4: station configuration and operation, test equipment like oscilloscopes and two-tone tests, RFI to consumer electronics, grounding and bonding, speech processors, S meters, sideband near band edges, and mobile/portable HF with alternative energy." />
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header id="site-header" class="site-header" data-root="../../"></header>
+
+    <main id="main">
+      <div class="container">
+        <p class="hero-kicker" style="margin-top:2rem;">// general &middot; subelement G4</p>
+        <h1>Amateur Radio Practices</h1>
+        <p class="text-dim" style="max-width:68ch;">
+          G4 is Technician's T4 grown up for HF: the same idea of wiring a station together and
+          running its controls, but now with tube amplifiers, test gear beyond a basic SWR meter,
+          interference that reaches into your neighbor's TV, and stations that run from a battery
+          in a field instead of a wall outlet. Five groups, sixty questions, mostly concrete facts
+          about equipment you'll actually touch.
+        </p>
+        <nav class="lesson-jump" aria-label="Jump to group">
+          <a href="#g4a">G4A Station configuration</a>
+          <a href="#g4b">G4B Test equipment</a>
+          <a href="#g4c">G4C Interference &amp; grounding</a>
+          <a href="#g4d">G4D Speech processors &amp; S meters</a>
+          <a href="#g4e">G4E Mobile, portable &amp; alt energy</a>
+        </nav>
+
+        <!-- ============ G4A ============ -->
+        <section class="lesson-section" id="g4a">
+          <p class="lesson-lead">G4A</p>
+          <h2>Station configuration and operation</h2>
+          <p>
+            A modern HF transceiver front panel has a handful of controls whose whole job is
+            fighting interference and noise, each in a different, specific way. A
+            <a class="term" href="../../glossary.html#notch-filter">notch filter</a> is narrow and tunable: it carves a deep
+            dip out of the receiver passband at one exact frequency, which is exactly the tool for
+            knocking out a steady interfering carrier (a heterodyne whistle) sitting inside an
+            otherwise-clean signal, without touching anything else in the passband. A
+            <a class="term" href="../../glossary.html#noise-blanker">noise blanker</a> targets a completely different kind of
+            interference &mdash; sharp, impulsive noise like ignition pulses or power-line arcing
+            &mdash; by watching for those pulses and briefly reducing receiver gain for their
+            duration, so the pulse is muted before it reaches your ears instead of being filtered
+            by frequency at all. And a receiver's <strong>noise reduction</strong> control, when
+            pushed higher, comes with a real cost: received signals may start to sound
+            <strong>distorted</strong>, because the processing doing the reducing is working on the
+            wanted signal too, not just the noise around it.
+          </p>
+          <p>
+            One CW-specific trick uses the receiver itself rather than any dedicated filter:
+            listening on the <strong>opposite (reverse) sideband</strong> can let you reduce or
+            eliminate interference from another signal, because an interfering signal sitting close
+            to yours on one side of zero beat often lands clear of your signal when you flip which
+            sideband you're listening to. Separately, a <strong>receive attenuator</strong> solves a
+            different problem entirely: it exists to <strong>prevent receiver overload from strong
+            incoming signals</strong> by deliberately weakening everything ahead of the receiver's
+            front end, trading some sensitivity to keep a very strong nearby signal from swamping
+            the receiver stages.
+          </p>
+          <h3>Running a vacuum-tube RF power amplifier</h3>
+          <p>
+            Older and higher-power HF amplifiers still commonly use vacuum tubes, tuned by two
+            front-panel controls with two very different jobs. The <strong>TUNE</strong> control
+            adjusts the amplifier's output tank circuit to resonance at your operating frequency;
+            done correctly, the tell-tale sign is <strong>a pronounced dip in plate current</strong>
+            &mdash; at resonance the tank circuit presents its highest impedance to the tube, so the
+            tube draws the least DC current for a given amount of drive. The
+            <strong>LOAD (or COUPLING)</strong> control is adjusted differently: the correct setting
+            is whatever gives the <strong>desired power output without exceeding the maximum
+            allowable plate current</strong> &mdash; it's a power/safety trade-off, not a resonance
+            indication like TUNE.
+          </p>
+          <p>
+            <a class="term" href="../../glossary.html#alc">Automatic level control (ALC)</a> is a feedback system that watches
+            the amplifier's output and pulls back the drive automatically to
+            <strong>prevent excessive drive</strong> &mdash; it's what keeps you from overdriving an
+            amplifier into distortion or damage even if your transmitter's own output level creeps
+            up. ALC is helpful for voice, but it has to be switched off for one specific case:
+            transmitting AFSK data signals (RTTY, PSK, and similar audio-tone-based digital modes),
+            because <strong>ALC action distorts the signal</strong> &mdash; digital modes need a
+            transmitter running perfectly linear and constant, and an ALC circuit constantly tugging
+            at the drive level introduces exactly the kind of distortion those modes can't tolerate.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You bring a tube amplifier up on a new band and slowly advance the TUNE control while
+            watching the plate current meter. The current climbs, then falls, then climbs again as
+            you sweep past the correct setting &mdash; where do you stop? At the <strong>dip</strong>,
+            the low point of plate current, which is where the output tank is resonant at your
+            operating frequency. Only after that do you touch LOADING, adjusting it for the power
+            output you want without pushing plate current past its rated maximum.
+          </div>
+          <p>
+            Delaying RF output for a moment after a transmitter's keying line activates an external
+            amplifier isn't about the signal at all &mdash; it exists to
+            <strong>allow time for the amplifier to switch its antenna relay between the
+            transceiver and the amplifier's own output</strong> before RF actually arrives, so the
+            relay isn't asked to switch while power is already flowing through it. An electronic
+            <a class="term" href="../../glossary.html#keyer">keyer</a> (already met on the
+            Technician side) does an unrelated job: automatically generating correctly timed dots
+            and dashes for CW from your paddle motions.
+          </p>
+          <p>
+            The dual-<a class="term" href="../../glossary.html#vfo">VFO</a> feature found on most HF
+            transceivers has one very common, practical use: <strong>transmitting on one frequency
+            while listening on another</strong> &mdash; split operation, the standard way to work a
+            rare or high-demand station whose own transmit and receive frequencies are deliberately
+            offset to manage a pileup. Finally, an
+            <a class="term" href="../../glossary.html#antenna-tuner">antenna tuner</a>'s purpose,
+            stated precisely for the exam, is to <strong>increase power transfer from the
+            transmitter to the feed line</strong> &mdash; it does this by presenting the transmitter
+            with the impedance it wants to see, even when the antenna system itself is mismatched;
+            it does not lower the SWR out on the antenna side of the feed line, only at the
+            transmitter end.
+          </p>
+          <details class="exam-refs" data-group="G4A" data-exam="general">
+            <summary>Covers G4A01&ndash;G4A13 (13 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G4B ============ -->
+        <section class="lesson-section" id="g4b">
+          <p class="lesson-lead">G4B</p>
+          <h2>Tests and test equipment</h2>
+          <p>
+            An <a class="term" href="../../glossary.html#oscilloscope">oscilloscope</a> is the one instrument in this group
+            that shows you a signal's actual shape over time rather than a single number: it
+            contains <strong>horizontal and vertical channel amplifiers</strong> that steer an
+            electron beam (or, on a digital scope, a display trace) across the screen while a
+            voltage moves it up and down, tracing out the waveform itself. That's exactly its
+            advantage over a digital voltmeter: a voltmeter gives you one number, but an
+            oscilloscope lets you see and measure <strong>complex waveforms</strong> &mdash; their
+            shape, timing, and any distortion &mdash; not just a single reading. Concretely, that
+            makes an oscilloscope the right tool for checking a CW transmitter's
+            <strong>keying waveform</strong> (are the dots and dashes clean, or do they click and
+            splatter?), and for viewing a transmitted signal's <strong>RF envelope pattern</strong>,
+            where the vertical input is connected to the <strong>attenuated RF output of the
+            transmitter</strong> itself &mdash; a sample of the real signal, stepped down to a safe
+            level for the scope's input, not a local oscillator or an external test signal.
+          </p>
+          <p>
+            Two everyday meters get a "why" behind a design choice each. Voltmeters are built with
+            <strong>high input impedance</strong> for a specific reason: it
+            <strong>decreases the loading on the circuit being measured</strong> &mdash; a meter
+            that draws significant current of its own would change the very voltage it's trying to
+            read, so a high-impedance meter draws as little current as possible and disturbs the
+            circuit as little as possible. And comparing multimeter types: a
+            <strong>digital</strong> multimeter's main advantage over an analog one is
+            <strong>higher precision</strong> in its readings, while an <strong>analog</strong>
+            meter (the kind with a moving needle) is actually <strong>preferred when adjusting a
+            circuit for a maximum or minimum value</strong> &mdash; watching a needle sweep smoothly
+            toward a peak or a null is easier to follow in real time than watching digits jump
+            around on a digital display.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You're peaking a receiver's tuned circuit for maximum signal by ear and eye at the same
+            time &mdash; why reach for the analog multimeter instead of the digital one sitting right
+            next to it? A digital meter updates in discrete steps and can lag or jitter near a peak,
+            while an analog needle sweeps continuously, making it obvious exactly where the reading
+            stops climbing and starts falling &mdash; the point you're actually hunting for.
+          </div>
+          <p>
+            A <a class="term" href="../../glossary.html#two-tone-test">two-tone test</a> is the standard way to check a
+            single-sideband transmitter's <strong>linearity</strong> &mdash; whether its amplifying
+            stages reproduce a signal faithfully or distort it. The test signal is
+            <strong>two audio tones that aren't harmonically related</strong> to each other (not
+            simple multiples of one another); feeding those two tones into the transmitter and
+            examining the RF output on a spectrum analyzer or scope reveals whether the amplifier
+            is generating unwanted intermodulation products &mdash; new, unwanted frequencies created
+            by the tones mixing together inside a non-linear stage &mdash; which is exactly what
+            excellent linearity avoids.
+          </p>
+          <p>
+            Two RF-specific instruments round out this group, both already familiar from
+            Technician's T7C but worth restating for General's HF use. A
+            <a class="term" href="../../glossary.html#directional-wattmeter">directional
+            wattmeter</a> can determine <strong>standing wave ratio</strong>, by separately measuring
+            forward and reflected power and computing their ratio. An
+            <a class="term" href="../../glossary.html#antenna-analyzer">antenna analyzer</a> needs
+            the <strong>antenna and feed line</strong> connected to it to make an SWR measurement
+            (not a receiver or transmitter &mdash; the analyzer supplies its own low-power test
+            signal), and beyond SWR it can also measure the <strong>impedance of coaxial
+            cable</strong>. One practical caution: strong signals from nearby transmitters can
+            corrupt an antenna analyzer's readings, specifically by <strong>received power
+            interfering with the SWR measurement</strong> &mdash; the analyzer's detector can't tell
+            its own reflected test signal apart from a strong outside signal landing on the same
+            frequency.
+          </p>
+          <details class="exam-refs" data-group="G4B" data-exam="general">
+            <summary>Covers G4B01&ndash;G4B13 (13 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G4C ============ -->
+        <section class="lesson-section" id="g4c">
+          <p class="lesson-lead">G4C</p>
+          <h2>Interference to consumer electronics; grounding and bonding</h2>
+          <p>
+            This is a different flavor of interference than T7B's receiver overload: here, your
+            transmitted RF is getting <em>into</em> someone else's audio equipment, telephone, or
+            electronics and being demodulated there, not overloading your own receiver. A
+            <strong>bypass capacitor</strong> at the input of an audio circuit is a common, useful
+            fix &mdash; it gives stray RF a low-impedance path to ground while leaving the audio
+            frequencies the circuit actually cares about alone, since a
+            <a class="term" href="../../glossary.html#capacitance">capacitor's</a> opposition to AC
+            drops as frequency rises, so it looks nearly like a short circuit to RF but nearly like
+            an open circuit to audio.
+          </p>
+          <p>
+            The specific sound this interference makes tells you something about its source. From a
+            <strong>single-sideband phone</strong> transmitter, RFI getting into an audio device
+            typically comes out as <strong>distorted speech</strong> &mdash; recognizably voice-like,
+            but garbled, because the device is inadvertently demodulating your SSB envelope. From a
+            <strong>CW</strong> transmitter, it instead comes out as
+            <strong>on-and-off humming or clicking</strong>, following the rhythm of the dots and
+            dashes rather than sounding like speech at all. Separately, interference that covers a
+            <strong>wide range of frequencies</strong> at once (rather than one narrow spot) often
+            traces back to <strong>arcing at a poor electrical connection</strong> &mdash; a loose
+            connector or corroded joint sparking under load generates broadband noise, not a signal
+            confined to one frequency.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            A neighbor reports their telephone buzzes only while you're talking on SSB, and the
+            buzzing sounds like distorted speech, not a hum or click. That pattern &mdash; distorted
+            speech, keyed by your voice &mdash; points straight at SSB envelope demodulation
+            happening somewhere in their phone wiring, not a wideband arcing problem (which wouldn't
+            track your voice) or a CW rig (which would click, not talk).
+          </div>
+          <h3>Grounding, bonding, and RF hot spots</h3>
+          <p>
+            A <strong>resonant ground connection</strong> is a hazard, not a benefit: if a ground
+            wire happens to be an electrical quarter-wavelength (or some other resonant length) at
+            your operating frequency, it stops behaving like a simple path to ground and instead
+            presents <strong>high impedance</strong> at that frequency &mdash; and high impedance on
+            what's supposed to be your safety ground is exactly what produces <strong>high RF
+            voltages on the enclosures of your station equipment</strong>, which in turn is a
+            possible cause of RF burns to anyone who touches that equipment. This is also why
+            <strong>soldered joints should never be relied on in lightning protection ground
+            connections</strong>: a direct lightning strike carries enough heat to melt solder
+            outright, destroying the joint at the exact moment it's needed most &mdash; lightning
+            grounds need mechanical, not soldered, connections.
+          </p>
+          <p>
+            <a class="term" href="../../glossary.html#bonding">Bonding</a> &mdash; tying every piece
+            of station equipment together with low-impedance conductors &mdash; is the fix for two
+            related problems General adds on top of T4A's basic definition. It minimizes
+            <strong>RF "hot spots"</strong> around the station, points where stray RF voltage builds
+            up because some piece of equipment isn't at the same RF potential as everything around
+            it. And it minimizes the effects of a
+            <a class="term" href="../../glossary.html#ground-loop">ground loop</a> &mdash; an unintended closed loop formed when
+            two pieces of equipment are grounded at two different physical points, so current
+            (including stray RF and hum) can circulate through the loop instead of draining cleanly
+            to a single ground point. A classic symptom of a ground loop in your station's audio
+            wiring is other stations reporting <strong>"hum" on your transmitted signal</strong>,
+            picked up through that circulating current rather than through your actual audio path.
+          </p>
+          <p>
+            A more targeted fix applies to <a class="term" href="../../glossary.html#common-mode-current">common-mode
+            current</a> &mdash; unwanted RF current flowing in the <em>same</em> direction on both
+            conductors of a cable (rather than the intended signal current, which flows in opposite
+            directions on the two conductors) &mdash; picked up by an audio cable acting as an
+            unintentional antenna. Placing a <strong>ferrite choke</strong> on the cable adds
+            impedance specifically to that common-mode current without disturbing the wanted
+            signal, which is the standard fix for RFI riding into a station on an audio, USB, or
+            speaker cable. Finally, the reason every metal enclosure of station equipment must be
+            grounded is straightforward safety: it <strong>ensures hazardous voltages cannot appear
+            on the chassis</strong> if internal insulation fails, giving any fault current a safe
+            path to ground instead of through whoever touches the case.
+          </p>
+          <details class="exam-refs" data-group="G4C" data-exam="general">
+            <summary>Covers G4C01&ndash;G4C12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G4D ============ -->
+        <section class="lesson-section" id="g4d">
+          <p class="lesson-lead">G4D</p>
+          <h2>Speech processors, S meters &amp; sideband near band edges</h2>
+          <p>
+            A <a class="term" href="../../glossary.html#speech-processor">speech processor</a> is an audio compressor built
+            into (or added to) a transceiver, and its purpose is specific:
+            <strong>increase the apparent loudness of transmitted voice signals</strong>. It does
+            that by compressing the dynamic range of your voice &mdash; squeezing quiet and loud
+            parts closer together &mdash; which raises the signal's <strong>average power</strong>
+            without raising its peak power any further (peak power is already capped by your
+            transmitter's rating). More average power in the same peak envelope means a more
+            consistently punchy, readable signal on the receiving end, especially in noisy
+            conditions. Set it wrong, though, and you get real costs: an incorrectly adjusted speech
+            processor can cause <strong>distorted speech, excess intermodulation products, and
+            excessive background noise</strong> &mdash; all three are on the table simultaneously,
+            since over-processing amplifies everything present in the audio, wanted or not.
+          </p>
+          <h3>Reading the S meter</h3>
+          <p>
+            A <a class="term" href="../../glossary.html#s-meter">S meter</a> is a receiver's signal-strength indicator: it
+            measures <strong>received signal strength</strong>, nothing else (not carrier
+            suppression, not impedance, not your own transmitter power). Its scale is built around
+            <a class="term" href="../../glossary.html#decibel">decibels</a>: on a properly calibrated
+            meter, one full <strong>S unit</strong> of change represents roughly
+            <strong>6 dB</strong>. Since every 3 dB is a power doubling, 6 dB is two doublings back
+            to back &mdash; a factor of about <strong>4&times;</strong> in power. Readings past S9 are
+            labeled directly in dB over S9, and those add the same way: <strong>20 dB over S9</strong>
+            means the signal is <strong>100&times;</strong> more powerful than an S9 signal (10 dB
+            over S9 would be 10&times;; another 10 dB doubles that factor of ten again, to 100&times;).
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            A distant station's signal reads S8 on your meter. How much must they raise their
+            transmitter power to bring your reading up to S9? One S unit &asymp; 6 dB, and 6 dB is
+            two 3 dB (doubling) steps stacked: 2&times; then 2&times; again = <strong>about
+            4&times;</strong> the power &mdash; not 2&times;, and nowhere near the 8&times; you'd get
+            from three doublings.
+          </div>
+          <h3>Sideband and the phone-segment band edge</h3>
+          <p>
+            An SSB signal isn't centered on its displayed "carrier" frequency the way an AM or FM
+            signal is &mdash; it occupies a slice of spectrum entirely on <em>one side</em> of that
+            displayed frequency, which is exactly what "sideband" means. A <strong>lower</strong>
+            sideband (LSB) signal occupies frequencies <em>below</em> the displayed carrier
+            frequency; an <strong>upper</strong> sideband (USB) signal occupies frequencies
+            <em>above</em> it. A typical voice SSB signal is about 3 kHz wide, so a 3 kHz-wide LSB
+            signal displayed at 7.178 MHz actually occupies <strong>7.175 MHz to 7.178 MHz</strong>
+            &mdash; the full 3 kHz sits below the displayed number. The mirror image: a 3 kHz-wide
+            USB signal displayed at 14.347 MHz occupies <strong>14.347 MHz to 14.350 MHz</strong>,
+            the full 3 kHz sitting above the displayed number.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You're tuned to 7.178 MHz in LSB with a 3 kHz filter &mdash; where does your signal
+            actually sit in the band? LSB occupies the 3 kHz <em>below</em> the displayed frequency:
+            7.178&nbsp;MHz &minus; 0.003&nbsp;MHz = <strong>7.175 MHz to 7.178 MHz</strong>. Switch to
+            USB at 14.347 MHz instead, and the signal occupies the 3 kHz <em>above</em>:
+            14.347&nbsp;MHz to 14.347&nbsp;MHz + 0.003&nbsp;MHz = <strong>14.347 MHz to
+            14.350 MHz</strong>.
+          </div>
+          <p>
+            That directionality is exactly why operating near a phone segment's band edge needs
+            care, extending T1B's basic band-edge caution to General's wider HF phone privileges: on
+            <strong>LSB</strong>, since your signal extends downward, your displayed carrier
+            frequency needs to stay <strong>at least 3 kHz above</strong> the lower edge of the
+            segment, or your sideband energy spills below the edge into spectrum you're not
+            authorized to use. On <strong>USB</strong>, since your signal extends upward, your
+            displayed carrier needs to stay <strong>at least 3 kHz below</strong> the upper edge of
+            the segment for the same reason, mirrored.
+          </p>
+          <details class="exam-refs" data-group="G4D" data-exam="general">
+            <summary>Covers G4D01&ndash;G4D11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G4E ============ -->
+        <section class="lesson-section" id="g4e">
+          <p class="lesson-lead">G4E</p>
+          <h2>Mobile and portable HF stations; alternative energy</h2>
+          <p>
+            A full-size HF antenna won't fit on a vehicle, so mobile HF antennas are physically
+            shortened and then compensated for electrically. A
+            <dfn id="def-capacitance-hat">capacitance hat</dfn> &mdash; a small disc or spokes of
+            wire mounted partway up (or at the top of) a mobile whip &mdash; exists specifically to
+            <strong>electrically lengthen a physically short antenna</strong>, letting a whip that's
+            physically much shorter than a quarter wavelength still behave, electrically, closer to
+            one. A <dfn id="def-corona-ball">corona ball</dfn> serves a different purpose, mounted
+            right at the tip: it <strong>reduces RF voltage discharge from the tip of the antenna
+            while transmitting</strong>, by rounding off the sharp point where high RF voltage would
+            otherwise concentrate and arc into the air.
+          </p>
+          <p>
+            Shortening an antenna isn't free: the main disadvantage of a shortened mobile antenna
+            compared to a full-size one is that its <strong>operating bandwidth may be very
+            limited</strong> &mdash; the loading coils and other tricks used to make a short antenna
+            resonant also make it sharply peaked (high Q), so it works well over only a narrow slice
+            of the band before needing to be retuned. In fact, what most limits an HF mobile
+            installation overall isn't the DC wiring or FCC power rules &mdash; it's the
+            <strong>efficiency of the electrically short antenna</strong> itself; a physically short
+            radiator simply can't radiate as efficiently as a full-size one, no matter how well
+            everything else is set up.
+          </p>
+          <p>
+            Powering the radio safely extends T4A's mobile-installation advice directly: for a
+            100-watt HF mobile rig, the best fused power connection runs
+            <strong>directly to the battery, using heavy-gauge wire</strong> &mdash; not to the
+            alternator, and not through insulated "balanced transmission line" (a feed-line concept
+            that doesn't apply to DC power wiring at all). The vehicle's <strong>auxiliary power
+            socket</strong> (cigarette lighter outlet) is specifically discouraged for a 100-watt
+            transceiver because <strong>the socket's wiring may be inadequate for the current the
+            transceiver draws</strong> &mdash; that wiring was sized for small accessories, not a
+            radio pulling 10+ amps at full output. And once installed, an HF transceiver in a
+            vehicle can pick up receive interference from <strong>the battery charging system, the
+            fuel delivery system, and the vehicle's control computers</strong> &mdash; all three are
+            real, common noise sources in a modern vehicle, not just one of them.
+          </p>
+          <h3>Alternative energy: solar and battery stations</h3>
+          <p>
+            A solar panel is built from many individual photovoltaic cells, and those cells are
+            wired together in a <strong>series-parallel</strong> configuration: series strings to
+            build up useful voltage (since a single cell's output is small), and multiple strings in
+            parallel to build up useful current. That small single-cell output is worth knowing as a
+            round number: a fully illuminated silicon photovoltaic cell produces an open-circuit
+            voltage of only about <strong>0.5 volts DC</strong> &mdash; which is exactly why panels
+            need many cells in series to reach a useful charging voltage.
+          </p>
+          <p>
+            Two protective components matter when a solar panel is paired with a rechargeable
+            battery. A <strong>series</strong> <a class="term" href="../../glossary.html#diode">diode</a>
+            (a "blocking diode") between the panel and the battery exists to
+            <strong>prevent the battery from discharging back through the panel</strong> during
+            times of low or no illumination &mdash; without it, a dark solar panel looks to the
+            battery like just another low-resistance path to drain into overnight. And when
+            connecting a solar panel to a <strong>lithium iron phosphate (LiFePO4)</strong> battery
+            specifically, the panel must have a
+            <a class="term" href="../../glossary.html#charge-controller">charge controller</a> in the circuit &mdash; a
+            regulator that manages charging current and voltage to match what the battery chemistry
+            can safely accept, since lithium chemistries are far less tolerant of overcharging than
+            lead-acid.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You're wiring a small solar-charged battery station for portable HF operation and the
+            battery is LiFePO4. Two things belong between the panel and the battery: a series
+            blocking diode (or equivalent function inside the charge controller) so the battery
+            can't drain back through the panel at night, and a <strong>charge controller</strong>
+            matched to the LiFePO4 chemistry so the battery is never overcharged &mdash; skipping
+            either one risks either a dead battery by morning or a damaged one.
+          </div>
+          <details class="exam-refs" data-group="G4E" data-exam="general">
+            <summary>Covers G4E01&ndash;G4E11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <div class="panel panel-corners" style="margin-top:1rem; margin-bottom:3rem;">
+          <div class="panel-header"><span>Practice G4</span></div>
+          <div class="cluster">
+            <a class="btn btn-primary" href="../../flashcards.html?exam=general&subelement=G4">G4 flashcards</a>
+            <a class="btn" href="../../quiz.html?exam=general&subelement=G4">G4 practice quiz</a>
+            <a class="btn" href="../../general.html">&larr; back to General subelements</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer" class="site-footer" data-root="../../"></footer>
+  </div>
+
+  <script src="../../js/nav.js"></script>
+  <script src="../../js/data.js"></script>
+  <script src="../../js/storage.js"></script>
+  <script src="../../js/lesson.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => HamLesson.wireDetails(document));
+  </script>
+</body>
+</html>

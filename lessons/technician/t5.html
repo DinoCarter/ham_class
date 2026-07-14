@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>T5 &middot; Electrical Principles &mdash; HAM OPS</title>
+  <meta name="description" content="Technician subelement T5: electrical principles — current, voltage, and power terminology, conductors and insulators, unit conversion and decibels, capacitance/inductance/impedance, and Ohm's Law with series and parallel circuits." />
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header id="site-header" class="site-header" data-root="../../"></header>
+
+    <main id="main">
+      <div class="container">
+        <p class="hero-kicker" style="margin-top:2rem;">// technician &middot; subelement T5</p>
+        <h1>Electrical Principles</h1>
+        <p class="text-dim" style="max-width:68ch;">
+          T5 is the math-and-physics subelement: the vocabulary and formulas that describe
+          electricity itself, before any of it becomes a radio signal. Nothing here requires more
+          than arithmetic &mdash; the goal is just to make sure a formula like <code>E&nbsp;=&nbsp;I&nbsp;&times;&nbsp;R</code>
+          isn't a magic incantation, but something you could rebuild from scratch if you forgot it.
+          Every worked example below shows the actual arithmetic, step by step.
+        </p>
+        <nav class="lesson-jump" aria-label="Jump to group">
+          <a href="#t5a">T5A Current &amp; voltage</a>
+          <a href="#t5b">T5B Units &amp; decibels</a>
+          <a href="#t5c">T5C Capacitance, inductance &amp; impedance</a>
+          <a href="#t5d">T5D Ohm's Law &amp; circuits</a>
+        </nav>
+
+        <!-- ============ T5A ============ -->
+        <section class="lesson-section" id="t5a">
+          <p class="lesson-lead">T5A</p>
+          <h2>Current, voltage &amp; the vocabulary of electricity</h2>
+          <p>
+            Picture electricity as water in a pipe, because the four basic quantities map onto
+            that picture almost exactly:
+          </p>
+          <ul>
+            <li>
+              <strong>Current</strong> is the flow itself &mdash; specifically, the flow of
+              electrons through a circuit, the same way water flowing through a pipe is a flow of
+              water molecules. It's measured in <strong>amperes</strong> (amps), and the term for
+              "how many amps" is <em>current</em>, full stop &mdash; not "amperage" or "amps per
+              second."
+            </li>
+            <li>
+              <strong>Voltage</strong> is the push behind the flow &mdash; the electrical
+              equivalent of water pressure. A <em>difference</em> in voltage between two points is
+              specifically what causes electrons to flow between them, the same way water only
+              flows from a high-pressure point to a low-pressure one. Voltage is measured in
+              <strong>volts</strong>.
+            </li>
+            <li>
+              <strong>Power</strong> is the rate at which electrical energy is used or delivered
+              &mdash; how much work the flow is doing per second, comparable to how much water is
+              moving a waterwheel per second, not just how much water there is. Power is measured
+              in <strong>watts</strong>.
+            </li>
+            <li>
+              <strong>Frequency</strong> describes <a class="term" href="../../glossary.html#alternating-current">alternating current</a>
+              specifically: the number of times per second the current completes one full cycle.
+              It's measured in <strong>hertz</strong> (Hz) &mdash; one hertz is one cycle per second.
+            </li>
+          </ul>
+          <p>
+            That last term splits current into two families. <strong>Direct current (DC)</strong>
+            flows in one direction only &mdash; a battery is the everyday example. <strong>Alternating
+            current (AC)</strong> reverses direction on a regular cycle, continuously switching
+            between flowing in a positive direction and a negative direction &mdash; household mains
+            power and every RF signal your radio transmits are AC. Both kinds of current are
+            opposed by <strong>resistance</strong> equally; resistance doesn't care which way the
+            current is flowing, or whether it's DC, AC, or RF.
+          </p>
+          <p>
+            Whether current flows easily through a material at all depends on how many
+            <strong>free electrons</strong> that material has &mdash; electrons loosely enough bound
+            to their atoms that they can drift from atom to atom under a push from voltage. Metals
+            are good <a class="term" href="../../glossary.html#conductor-insulator">conductors</a>
+            specifically because they have a large supply of free electrons; materials like glass
+            have very few, which is why glass is a good <strong>insulator</strong> &mdash; it blocks
+            current flow rather than carrying it.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You're told a component "has a lot of free electrons" and asked whether it's likely a
+            conductor or an insulator. Free electrons are exactly what lets current flow &mdash; more
+            of them loose and available to drift under a voltage push means less opposition to
+            current, which is the definition of a conductor. So: conductor. (Glass, by contrast, has
+            very few free electrons available, which is why it's used as an insulator.)
+          </div>
+          <details class="exam-refs" data-group="T5A" data-exam="technician">
+            <summary>Covers T5A01&ndash;T5A11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T5B ============ -->
+        <section class="lesson-section" id="t5b">
+          <p class="lesson-lead">T5B</p>
+          <h2>Unit conversion &amp; decibels</h2>
+          <p>
+            Electronics uses one consistent set of metric prefixes to avoid writing endless zeros,
+            and the pool expects you to convert between them fluently in both directions:
+          </p>
+          <div style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; min-width:26rem;">
+              <thead>
+                <tr style="text-align:left; font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-faint);">
+                  <th style="padding:0.4em 0.8em 0.4em 0;">Prefix</th>
+                  <th style="padding:0.4em 0.8em;">Multiplier</th>
+                  <th style="padding:0.4em 0;">Example</th>
+                </tr>
+              </thead>
+              <tbody class="readout" style="font-size:0.88rem;">
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">giga (G)</td><td style="padding:0.5em 0.8em;">&times;1,000,000,000</td><td style="padding:0.5em 0;">2.425 GHz</td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">mega (M)</td><td style="padding:0.5em 0.8em;">&times;1,000,000</td><td style="padding:0.5em 0;">1500 kHz = 1.5 MHz</td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">kilo (k)</td><td style="padding:0.5em 0.8em;">&times;1,000</td><td style="padding:0.5em 0;">1 kilovolt = 1,000 volts</td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">milli (m)</td><td style="padding:0.5em 0.8em;">&divide;1,000</td><td style="padding:0.5em 0;">500 milliwatts = 0.5 watts</td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">micro (&micro;)</td><td style="padding:0.5em 0.8em;">&divide;1,000,000</td><td style="padding:0.5em 0;">1 microvolt = 0.000001 volts</td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">pico (p)</td><td style="padding:0.5em 0.8em;">&divide;1,000,000,000</td><td style="padding:0.5em 0;">1,000,000 picofarads = 1 microfarad</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin-top:0.75rem;">
+            The mechanical trick is simple: to convert from a bigger unit to a smaller one (kilo to
+            milli, say), you multiply and the number gets bigger; to go from a smaller unit to a
+            bigger one, you divide and the number gets smaller. Moving one step in the table
+            (kilo&rarr;base, or base&rarr;milli) shifts the decimal point three places; moving from
+            mega down to milli shifts it nine places.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            How many milliamperes is 1.5 amperes? "Milli" means &divide;1,000, so going the other way
+            &mdash; from the base unit to milli &mdash; means multiplying by 1,000: 1.5 &times; 1,000 =
+            1,500 milliamperes. Same logic in reverse: 3,000 milliamperes &divide; 1,000 = 3 amperes.
+          </div>
+          <p>
+            Frequency prefixes work identically. 1,500,000 hertz &divide; 1,000 = 1,500,000 hertz
+            expressed as 1,500 kHz (dividing by 1,000 to go from hertz to kilohertz); the same value
+            divided by 1,000 again is 1.5 MHz. And 28,400 kHz &divide; 1,000 = 28.400 MHz &mdash;
+            recognizable as a frequency inside Technician's 10-meter phone segment from T1B.
+          </p>
+          <h3>Decibels: measuring a ratio, not an amount</h3>
+          <p>
+            A <a class="term" href="../../glossary.html#decibel">decibel (dB)</a> doesn't measure
+            power directly &mdash; it measures the <em>ratio</em> between two power levels, on a
+            logarithmic scale, because human perception of signal strength (and the range of power
+            levels radios deal with) is itself closer to logarithmic than linear. Three reference
+            numbers cover everything the exam asks:
+          </p>
+          <ul>
+            <li><strong>+3 dB</strong> &mdash; power has <strong>doubled</strong>.</li>
+            <li><strong>&minus;3 dB</strong> &mdash; power has been <strong>cut in half</strong>.</li>
+            <li><strong>10 dB</strong> &mdash; power has changed by a factor of <strong>10&times;</strong> (up for +10 dB, down for &minus;10 dB).</li>
+          </ul>
+          <p>
+            Those three combine by simple addition, because decibels are logarithmic: a change that's
+            "double, then double again" is +3 dB + 3 dB = <strong>+6 dB</strong> for a 4&times; power
+            increase; "10&times;, then double" is 10 dB + 3 dB = <strong>13 dB</strong> for a 20&times;
+            increase.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            Power increases from 5 watts to 10 watts &mdash; what's the change in dB? 10 &divide; 5 = 2,
+            so the power exactly doubled. Doubling power is always <strong>+3 dB</strong>, regardless
+            of the starting wattage.
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            Power decreases from 12 watts to 3 watts. 12 &divide; 3 = 4, and a 4&times; decrease is
+            "cut in half, then cut in half again": &minus;3 dB + (&minus;3 dB) = <strong>&minus;6 dB</strong>.
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            Power increases from 20 watts to 200 watts. 200 &divide; 20 = 10 exactly, a straight
+            10&times; increase, so the answer is <strong>+10 dB</strong> &mdash; no need to break it
+            into doubling steps when the ratio is a clean power of ten.
+          </div>
+          <details class="exam-refs" data-group="T5B" data-exam="technician">
+            <summary>Covers T5B01&ndash;T5B13 (13 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T5C ============ -->
+        <section class="lesson-section" id="t5c">
+          <p class="lesson-lead">T5C</p>
+          <h2>Capacitance, inductance &amp; impedance</h2>
+          <p>
+            Two components store electrical energy without spending it as heat, each in a
+            different kind of field:
+          </p>
+          <div class="grid grid-2" style="margin:1rem 0;">
+            <div class="panel">
+              <div class="panel-header"><span><a class="term" href="../../glossary.html#capacitance">Capacitance</a></span></div>
+              <p class="text-dim" style="margin:0;">
+                The ability to store energy in an <strong>electric field</strong>. A capacitor is
+                typically two conductive plates separated by an insulator; apply voltage and
+                charge builds up on the plates. Capacitance is measured in <strong>farads</strong>
+                (commonly microfarads or picofarads, since a full farad is enormous for
+                small-signal circuits).
+              </p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span><a class="term" href="../../glossary.html#inductance">Inductance</a></span></div>
+              <p class="text-dim" style="margin:0;">
+                The ability to store energy in a <strong>magnetic field</strong>. An inductor is
+                typically a coil of wire; current flowing through it builds up a magnetic field
+                around the coil. Inductance is measured in <strong>henrys</strong>.
+              </p>
+            </div>
+          </div>
+          <p>
+            <a class="term" href="../../glossary.html#reactance">Reactance</a> is the opposition
+            capacitors and inductors present to <em>AC</em> current specifically &mdash; unlike plain
+            resistance, reactance depends on frequency, which is exactly why capacitors and
+            inductors are the building blocks of filters and tuning circuits (a fact you'll meet
+            again when antenna tuners come up in T9). Combine resistance and reactance together in
+            an AC circuit and you get <a class="term" href="../../glossary.html#impedance">impedance</a>
+            &mdash; the total opposition to AC current flow, measured in <strong>ohms</strong>, the
+            same unit as plain resistance. Impedance is the number that matters for any AC or RF
+            circuit; resistance alone is only the DC piece of that picture.
+          </p>
+          <p>
+            Radio frequency (RF) itself just refers to the range of alternating-current frequencies
+            that can be radiated usefully as radio waves &mdash; the frequencies your transmitter,
+            feed line, and antenna are all designed around, as opposed to, say, 60&nbsp;Hz household
+            AC. Two abbreviations from that world are worth memorizing exactly as written, since the
+            pool tests the capitalization: <strong>kHz</strong> for kilohertz and <strong>MHz</strong>
+            for megahertz.
+          </p>
+          <h3>DC power: the one formula this group actually tests numerically</h3>
+          <p>
+            In a DC circuit, power equals voltage times current:
+          </p>
+          <div class="panel panel-corners" style="margin:1rem 0; max-width:30rem;">
+            <div class="panel-header"><span>DC power formula</span></div>
+            <p class="readout" style="font-size:1.1rem; margin:0.25rem 0;">P = I &times; E</p>
+            <p class="text-faint" style="margin:0.25rem 0 0; font-size:0.8rem;">P = power (watts), I = current (amps), E = voltage (volts)</p>
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            A 12-volt DC circuit draws 2.5 amperes. How much power is that? P = I &times; E = 2.5 &times;
+            12 = <strong>30 watts</strong>.
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            13.8 volts DC (a typical mobile radio's supply) at 10 amperes: P = I &times; E = 10 &times;
+            13.8 = <strong>138 watts</strong>.
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You need to deliver 120 watts at 12 volts &mdash; how much current does that take? Rearrange
+            the formula to solve for current: I = P &divide; E = 120 &divide; 12 = <strong>10
+            amperes</strong>.
+          </div>
+          <details class="exam-refs" data-group="T5C" data-exam="technician">
+            <summary>Covers T5C01&ndash;T5C12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T5D ============ -->
+        <section class="lesson-section" id="t5d">
+          <p class="lesson-lead">T5D</p>
+          <h2>Ohm's Law &amp; series/parallel circuits</h2>
+          <p>
+            <a class="term" href="../../glossary.html#ohms-law">Ohm's Law</a> ties voltage,
+            current, and resistance together in a DC circuit. It's one relationship, but the pool
+            tests all three ways of rearranging it, so it's worth being able to solve for whichever
+            quantity you're missing:
+          </p>
+          <div class="grid grid-2" style="margin:1rem 0;">
+            <div class="panel">
+              <div class="panel-header"><span>Solve for current</span></div>
+              <p class="readout" style="margin:0;">I = E &divide; R</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span>Solve for voltage</span></div>
+              <p class="readout" style="margin:0;">E = I &times; R</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span>Solve for resistance</span></div>
+              <p class="readout" style="margin:0;">R = E &divide; I</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span>Legend</span></div>
+              <p class="text-dim" style="margin:0;">E = voltage (volts), I = current (amps), R = resistance (ohms)</p>
+            </div>
+          </div>
+          <p class="text-dim" style="max-width:70ch;">
+            A memory trick: cover up the quantity you're solving for in the triangle "E over I,
+            R" (E on top, I and R on the bottom) and whatever's left tells you whether to multiply
+            or divide &mdash; cover E and you're left with I next to R, meaning multiply (E = I
+            &times; R); cover I or R and you're left with E over the other one, meaning divide.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example &mdash; solving for resistance</span>
+            A circuit draws 3 amperes when connected to 90 volts. What's the resistance? R = E
+            &divide; I = 90 &divide; 3 = <strong>30 ohms</strong>.
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example &mdash; solving for current</span>
+            120 volts applied across 80 ohms of resistance. I = E &divide; R = 120 &divide; 80 =
+            <strong>1.5 amperes</strong>.
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example &mdash; solving for voltage</span>
+            A current of 2 amperes flows through a 10-ohm resistor. What's the voltage across it?
+            E = I &times; R = 2 &times; 10 = <strong>20 volts</strong>.
+          </div>
+          <h3>Series vs. parallel: what stays the same</h3>
+          <p>
+            The pool's series/parallel questions boil down to one fact each, and they're mirror
+            images of each other:
+          </p>
+          <ul>
+            <li>
+              In a <strong>series</strong> circuit &mdash; components chained one after another,
+              a single loop &mdash; there's only one path for electrons to take, so the
+              <strong>current is the same everywhere</strong> in the loop. Think of a single-lane
+              road: every car that passes one point passes every other point too.
+            </li>
+            <li>
+              In a <strong>parallel</strong> circuit &mdash; components each connected directly
+              across the same two points &mdash; every component sees the identical
+              <strong>voltage</strong>, because they all share the same two connection points, even
+              though the current can split up and take different amounts through each branch. Think
+              of several parallel lanes all starting and ending at the same intersections: the
+              "pressure" pushing traffic is the same on every lane, but each lane can carry a
+              different amount of traffic.
+            </li>
+          </ul>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            Two resistors are wired in parallel across a 12-volt battery. Does each resistor see 12
+            volts, or does the voltage split between them the way it would in series? Parallel means
+            both components connect across the exact same two points &mdash; so both see the full 12
+            volts. (If they were wired in series instead, it would be the current that's identical
+            through both, not the voltage.)
+          </div>
+          <details class="exam-refs" data-group="T5D" data-exam="technician">
+            <summary>Covers T5D01&ndash;T5D14 (14 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <div class="panel panel-corners" style="margin-top:1rem; margin-bottom:3rem;">
+          <div class="panel-header"><span>Practice T5</span></div>
+          <div class="cluster">
+            <a class="btn btn-primary" href="../../flashcards.html?exam=technician&subelement=T5">T5 flashcards</a>
+            <a class="btn" href="../../quiz.html?exam=technician&subelement=T5">T5 practice quiz</a>
+            <a class="btn" href="../../technician.html">&larr; back to Technician subelements</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer" class="site-footer" data-root="../../"></footer>
+  </div>
+
+  <script src="../../js/nav.js"></script>
+  <script src="../../js/data.js"></script>
+  <script src="../../js/storage.js"></script>
+  <script src="../../js/lesson.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => HamLesson.wireDetails(document));
+  </script>
+</body>
+</html>

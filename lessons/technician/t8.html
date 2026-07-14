@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>T8 &middot; Signals and Emissions &mdash; HAM OPS</title>
+  <meta name="description" content="Technician subelement T8: FM/SSB characteristics and mode bandwidths, amateur satellite operation (Doppler shift, orbits, satellite modes), operating activities like direction finding and internet linking, and non-voice/digital modes (packet, PSK, APRS)." />
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header id="site-header" class="site-header" data-root="../../"></header>
+
+    <main id="main">
+      <div class="container">
+        <p class="hero-kicker" style="margin-top:2rem;">// technician &middot; subelement T8</p>
+        <h1>Signals and Emissions</h1>
+        <p class="text-dim" style="max-width:68ch;">
+          T1B already split emissions into <a class="term" href="../../glossary.html#cw">CW</a>,
+          <a class="term" href="../../glossary.html#phone">phone</a>, and
+          <a class="term" href="../../glossary.html#image">image</a>. T8 builds on that vocabulary
+          instead of re-teaching it: how wide each mode actually is on the air (T8A), the specific
+          vocabulary of working satellites (T8B), a handful of named operating activities (T8C),
+          and the non-voice/digital modes &mdash; packet, PSK, APRS &mdash; that don't fit neatly into
+          "phone" at all (T8D).
+        </p>
+        <nav class="lesson-jump" aria-label="Jump to group">
+          <a href="#t8a">T8A FM &amp; SSB, bandwidth</a>
+          <a href="#t8b">T8B Satellite operation</a>
+          <a href="#t8c">T8C Operating activities</a>
+          <a href="#t8d">T8D Non-voice &amp; digital</a>
+        </nav>
+
+        <!-- ============ T8A ============ -->
+        <section class="lesson-section" id="t8a">
+          <p class="lesson-lead">T8A</p>
+          <h2>FM &amp; SSB characteristics, and mode bandwidth</h2>
+          <p>
+            <a class="term" href="../../glossary.html#ssb">SSB (single sideband)</a> is technically a
+            form of <strong>amplitude modulation</strong>: an AM signal actually contains a carrier
+            plus two mirror-image sidebands carrying the same information, so SSB just removes the
+            carrier and one of those redundant sidebands, transmitting only what's actually needed.
+            By convention, <strong>upper sideband (USB)</strong> is the one used for SSB voice on
+            10-meter HF, and on every VHF/UHF band &mdash; you don't need to choose, your radio
+            defaults to it. <strong>FM (or PM)</strong> is what's normally used for VHF/UHF voice
+            repeaters and for VHF packet radio; SSB, by contrast, is the voice mode of choice for
+            long-distance, weak-signal VHF/UHF contacts, because (as below) it packs into much less
+            bandwidth than FM does for the same information.
+          </p>
+          <p>
+            Bandwidth is just how much spectrum a signal actually occupies, and it varies enormously
+            by mode &mdash; mostly because of how much information per second each mode is actually
+            trying to send:
+          </p>
+          <div style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; min-width:32rem;">
+              <thead>
+                <tr style="text-align:left; font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-faint);">
+                  <th style="padding:0.4em 0.8em 0.4em 0;">Mode</th>
+                  <th style="padding:0.4em 0.8em;">Typical bandwidth</th>
+                  <th style="padding:0.4em 0;">Why</th>
+                </tr>
+              </thead>
+              <tbody class="readout" style="font-size:0.88rem;">
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">CW</td><td style="padding:0.5em 0.8em;">&asymp;150&nbsp;Hz</td><td style="padding:0.5em 0; font-family:var(--font-sans); color:var(--text-dim);">Narrowest of all &mdash; just on/off keying, no audio to carry</td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">SSB voice</td><td style="padding:0.5em 0.8em;">&asymp;3&nbsp;kHz</td><td style="padding:0.5em 0; font-family:var(--font-sans); color:var(--text-dim);">One sideband, roughly matching voice audio bandwidth</td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">FM voice (VHF repeater)</td><td style="padding:0.5em 0.8em;">10&ndash;15&nbsp;kHz</td><td style="padding:0.5em 0; font-family:var(--font-sans); color:var(--text-dim);">Deliberately spread wider &mdash; trades spectrum for noise immunity</td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">Fast-scan (NTSC) TV</td><td style="padding:0.5em 0.8em;">&asymp;6&nbsp;MHz</td><td style="padding:0.5em 0; font-family:var(--font-sans); color:var(--text-dim);">A full moving picture needs vastly more information per second</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            How many separate CW signals fit in the same slice of spectrum as a single FM voice
+            repeater signal? At roughly 150&nbsp;Hz per CW signal versus 10&ndash;15&nbsp;kHz for one
+            FM voice signal, that's on the order of <strong>60&ndash;100 CW signals</strong> in the
+            same space &mdash; and even a single 3&nbsp;kHz SSB voice signal only uses a fraction of
+            that FM slice. That's the concrete reason CW gets the special "legal anywhere" privilege
+            back in T1B, and why busy contest weekends are packed wall-to-wall with CW: it's simply
+            the most spectrum-efficient way to fit in more signals.
+          </div>
+          <p>
+            One real operational downside of FM versus SSB: on FM, if two stations transmit on the
+            same frequency at once, a receiver locks onto whichever is stronger and completely
+            suppresses the weaker one &mdash; a behavior sometimes called the
+            <dfn id="def-capture-effect">capture effect</dfn> &mdash; so <strong>only one signal can
+            be received at a time</strong> even if a weaker second station is also present. SSB,
+            being amplitude-based rather than a hard either/or, doesn't behave that way.
+          </p>
+          <details class="exam-refs" data-group="T8A" data-exam="technician">
+            <summary>Covers T8A01&ndash;T8A12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T8B ============ -->
+        <section class="lesson-section" id="t8b">
+          <p class="lesson-lead">T8B</p>
+          <h2>Amateur satellite operation</h2>
+          <p>
+            A <a class="term" href="../../glossary.html#satellite-beacon">satellite beacon</a> is a
+            transmission from the satellite itself that carries the health and status of the
+            spacecraft &mdash; not a general propagation beacon like T1A's HF ones, but telemetry
+            about the satellite. Reception of that telemetry is open to
+            <strong>anyone</strong> &mdash; there's no special authorization needed, which lines up
+            with T1D's ban on encoding messages to hide their meaning: amateur satellite telemetry
+            is meant to be public.
+          </p>
+          <p>
+            Satellite tracking software needs real orbital data to work: its inputs are the
+            <a class="term" href="../../glossary.html#keplerian-elements">Keplerian elements</a>
+            &mdash; a standard, regularly-updated set of numbers describing a satellite's orbit shape,
+            tilt, and position, published by organizations that track every object in orbit. Given
+            those, a tracking program can output everything an operator needs for a pass: a real-time
+            ground-track map, the timing/azimuth/elevation of the pass's start, peak, and end, and
+            the apparent frequency of the satellite's transmission accounting for Doppler shift.
+          </p>
+          <p>
+            <a class="term" href="../../glossary.html#doppler-shift">Doppler shift</a> is an observed
+            change in received frequency caused by relative motion between the satellite and your
+            station &mdash; the same effect as a passing siren changing pitch. As a satellite rises
+            toward you, its signal reads slightly <em>higher</em> than its nominal frequency; right
+            at the moment of closest approach (straight overhead, for a pass that goes directly over
+            you) the relative motion toward/away from you is momentarily zero, so it reads right at
+            nominal; as it recedes toward the far horizon, the signal reads slightly <em>lower</em>.
+          </p>
+          <div role="img" class="timeline" aria-label="A satellite pass: signal reads high in frequency near acquisition of signal (AOS) as the satellite approaches, crosses nominal frequency at closest approach overhead, then reads low near loss of signal (LOS) as it recedes.">
+            <div class="timeline-track"><div class="seg" style="left:0%; width:100%; opacity:0.25;"></div></div>
+            <div class="timeline-point" style="left:0%;"></div>
+            <div class="timeline-label is-start" style="left:0%;">AOS (rising)<br>reads high</div>
+            <div class="timeline-point" style="left:50%;"></div>
+            <div class="timeline-label" style="left:50%;">Closest approach<br>reads &asymp; nominal</div>
+            <div class="timeline-point" style="left:100%;"></div>
+            <div class="timeline-label is-end" style="left:100%;">LOS (setting)<br>reads low</div>
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You're listening to a low earth orbit satellite's downlink. As it clears your horizon and
+            rises (AOS), the signal sounds slightly higher-pitched than its published frequency; a
+            few minutes later, as it drops back toward the opposite horizon (LOS), it sounds slightly
+            lower. That drift is exactly why serious satellite operators re-tune every minute or so
+            during a pass instead of setting the dial once and leaving it &mdash; the Doppler shift
+            during a single pass can move the signal enough to drift out of a narrow filter.
+          </div>
+          <p>
+            A few more named vocabulary items complete the picture. <strong>Spin fading</strong>
+            &mdash; a distinct effect from Doppler shift &mdash; is caused by
+            <a class="term" href="../../glossary.html#spin-fading">rotation of the satellite and its
+            antennas</a>: as the spacecraft tumbles, its antenna pattern sweeps past Earth
+            rhythmically, so signal <em>strength</em> rises and falls even though the <em>frequency</em>
+            isn't changing.
+            <a class="term" href="../../glossary.html#leo">LEO</a> (Low Earth Orbit) describes
+            satellites with an orbital period of around 100 minutes &mdash; close enough to Earth
+            that they circle it quickly, which is also why a single pass only lasts several minutes.
+            "U/V mode" describes a satellite whose uplink is on the <strong>70-centimeter</strong>
+            band and downlink is on the <strong>2-meter</strong> band. And excessive uplink power
+            into a <a class="term" href="../../glossary.html#transponder">linear transponder</a>
+            satellite doesn't damage the bird &mdash; its real-world impact is
+            <strong>blocking access for other users</strong>, since the whole transponder is a shared
+            resource and one overly strong signal desensitizes it for everyone riding through it at
+            once. The practical way to judge your own uplink power is comparing your downlink signal
+            strength to the beacon's: if it's <strong>about the same</strong>, your power is in the
+            right range &mdash; neither too weak to be heard nor loud enough to be hogging the
+            transponder.
+          </p>
+          <details class="exam-refs" data-group="T8B" data-exam="technician">
+            <summary>Covers T8B01&ndash;T8B12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T8C ============ -->
+        <section class="lesson-section" id="t8c">
+          <p class="lesson-lead">T8C</p>
+          <h2>Operating activities</h2>
+          <p>
+            <a class="term" href="../../glossary.html#radio-direction-finding">Radio direction
+            finding (RDF)</a> uses directional antennas and signal-strength comparisons to locate a
+            transmitter &mdash; whether that's a "hidden transmitter hunt" run for fun, or tracking
+            down a genuine source of noise or intentional jamming. A directional antenna is the one
+            piece of gear that actually matters for a hunt like that.
+          </p>
+          <p>
+            <a class="term" href="../../glossary.html#contesting">Contesting</a> is the operating
+            activity built around contacting as many stations as possible in a fixed period of time.
+            Good contest practice follows directly from that goal: send only the minimum information
+            needed for identification and the contest exchange &mdash; padding a transmission with
+            extra pleasantries, or working the same station twice "just to be sure," costs everyone
+            time that could go to another contact.
+          </p>
+          <p>
+            A <a class="term" href="../../glossary.html#grid-locator">grid locator</a> is a
+            letter-number code assigned to a geographic location, exchanged constantly in VHF/UHF
+            weak-signal work, satellite operating, and contest logs as compact shorthand for "roughly
+            where I am," without reading out a full address over the air.
+          </p>
+          <p>
+            Three related systems link amateur radio to the internet, and it's worth keeping their
+            layers straight:
+          </p>
+          <div class="grid grid-2" style="margin:1rem 0;">
+            <div class="panel">
+              <div class="panel-header"><span><a class="term" href="../../glossary.html#voip">VoIP</a></span></div>
+              <p class="text-dim" style="margin:0;">The general underlying technology: delivering voice communications over the internet using digital techniques. Not amateur-specific by itself.</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span><a class="term" href="../../glossary.html#irlp">IRLP</a> &amp; <a class="term" href="../../glossary.html#echolink">EchoLink</a></span></div>
+              <p class="text-dim" style="margin:0;">Two specific amateur systems built on VoIP-style technology, each connecting repeaters/stations together over the internet.</p>
+            </div>
+          </div>
+          <p>
+            On the air, you don't type an address for either one: IRLP node access is done with
+            <strong>DTMF</strong> tones keyed in on your own radio. EchoLink is slightly different in
+            an important way &mdash; it can let a station transmit through a repeater
+            <strong>without a radio initiating the connection</strong> at all (a computer or phone app
+            can reach the system directly) &mdash; which is exactly why EchoLink requires you to
+            <strong>register your call sign and provide proof of license</strong> before you can use
+            it: there's no radio-side license check happening automatically the way there normally
+            would be. An amateur <a class="term" href="../../glossary.html#gateway">gateway</a>
+            station is the general term for a station that connects other amateur stations to the
+            internet, whichever specific system (IRLP, EchoLink, or another) it's running.
+          </p>
+          <details class="exam-refs" data-group="T8C" data-exam="technician">
+            <summary>Covers T8C01&ndash;T8C11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T8D ============ -->
+        <section class="lesson-section" id="t8d">
+          <p class="lesson-lead">T8D</p>
+          <h2>Non-voice &amp; digital communications</h2>
+          <p>
+            <a class="term" href="../../glossary.html#cw">CW</a> is, quite simply, another name for a
+            Morse code transmission &mdash; nothing more exotic than that, and worth restating plainly
+            since T8 tests it as a bare definition question. On the image side,
+            <a class="term" href="../../glossary.html#ntsc">NTSC</a> is the specific analog fast-scan
+            color TV signal standard behind the "image" mode category from T1B &mdash; it's what
+            gives fast-scan amateur TV its roughly 6&nbsp;MHz bandwidth from the T8A table, in
+            contrast to SSTV's narrow, still-image-only bandwidth.
+          </p>
+          <p>
+            <a class="term" href="../../glossary.html#packet-radio">Packet radio</a> breaks data into
+            discrete chunks, each with three things attached: a <strong>header</strong> (containing
+            the call sign of the station the data is addressed to), a <strong>checksum</strong> (lets
+            the receiving station detect whether the packet arrived corrupted), and
+            <a class="term" href="../../glossary.html#arq">ARQ</a> (automatic repeat request) &mdash;
+            if the checksum reveals an error, the receiving station requests that specific packet be
+            resent, rather than the operator having to notice and fix anything manually.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            A packet destined for KI7ABC hits a burst of noise partway through transmission that
+            corrupts a few bits. The receiving station's checksum calculation won't match what it
+            expects, so it detects the error and &mdash; via ARQ &mdash; automatically asks the
+            sending station to resend just that packet. Neither operator has to notice anything went
+            wrong; the protocol handles it.
+          </div>
+          <p>
+            <a class="term" href="../../glossary.html#psk">PSK</a> (Phase Shift Keying) is a digital
+            mode that encodes information by shifting a carrier's <em>phase</em>, rather than
+            switching it fully on and off (like CW) or changing its frequency &mdash; PSK31 is the
+            common ham example, popular for combining narrow bandwidth with solid weak-signal
+            performance. <a class="term" href="../../glossary.html#ft8">FT8</a>, first mentioned back
+            in T4A as a mode you interface to a computer over ordinary audio connections, is a digital
+            mode specifically capable of decoding signals well below what's audible by ear &mdash;
+            <strong>low signal-to-noise-ratio operation</strong> is its whole selling point.
+          </p>
+          <p>
+            <a class="term" href="../../glossary.html#aprs">APRS</a> (Automatic Packet Reporting
+            System) automatically transmits real-time information &mdash; GPS position, short text
+            messages, and weather data are all typical APRS payloads &mdash; and its signature
+            application is providing real-time tactical digital communications together with a map
+            showing where every reporting station currently is.
+          </p>
+          <p>
+            <a class="term" href="../../glossary.html#dmr">DMR</a>, already introduced back in T2B and
+            T4B for its talkgroups and code plugs, has one more specific technical trick worth
+            knowing: it <strong>time-multiplexes two separate digital voice conversations onto a
+            single 12.5&nbsp;kHz-wide repeater channel</strong> &mdash; the two conversations take
+            turns in rapid alternating time slices, sharing one channel the way two conversations
+            might share one lane by taking quick turns, rather than needing two separate channels.
+          </p>
+          <p>
+            The <strong>WSJT-X</strong> software suite (which includes FT8) supports a cluster of
+            specialized weak-signal digital activities: <strong>EME</strong>
+            (<a class="term" href="../../glossary.html#eme">Earth-Moon-Earth</a>, bouncing a signal
+            off the Moon and back), weak-signal propagation beacons, and
+            <a class="term" href="../../glossary.html#meteor-scatter">meteor scatter</a> (the same
+            brief-ionized-trail propagation mode from T3C) &mdash; all real, specialized techniques
+            for pulling contacts out of very weak signals, not separate unrelated software features.
+          </p>
+          <p>
+            Finally, an amateur radio <a class="term" href="../../glossary.html#mesh-network">mesh
+            network</a> is a data network built from <strong>commercially available Wi-Fi
+            equipment running modified firmware</strong> on amateur bands &mdash; ordinary consumer
+            hardware repurposed and reflashed specifically for ham use, not custom-built radio gear.
+          </p>
+          <details class="exam-refs" data-group="T8D" data-exam="technician">
+            <summary>Covers T8D01&ndash;T8D12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <div class="panel panel-corners" style="margin-top:1rem; margin-bottom:3rem;">
+          <div class="panel-header"><span>Practice T8</span></div>
+          <div class="cluster">
+            <a class="btn btn-primary" href="../../flashcards.html?exam=technician&subelement=T8">T8 flashcards</a>
+            <a class="btn" href="../../quiz.html?exam=technician&subelement=T8">T8 practice quiz</a>
+            <a class="btn" href="../../technician.html">&larr; back to Technician subelements</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer" class="site-footer" data-root="../../"></footer>
+  </div>
+
+  <script src="../../js/nav.js"></script>
+  <script src="../../js/data.js"></script>
+  <script src="../../js/storage.js"></script>
+  <script src="../../js/lesson.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => HamLesson.wireDetails(document));
+  </script>
+</body>
+</html>

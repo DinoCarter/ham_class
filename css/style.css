@@ -19,12 +19,12 @@
 
   --text: #ede6d9;
   --text-dim: #a89e8c;
-  --text-faint: #6f6656;
+  --text-faint: #948975;
 
   --success: #4ade80;
   --success-dim: rgba(74, 222, 128, 0.15);
-  --alert: #ef4444;
-  --alert-dim: rgba(239, 68, 68, 0.15);
+  --alert: #f37777;
+  --alert-dim: rgba(243, 119, 119, 0.15);
 
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Consolas, "Liberation Mono", monospace;
@@ -38,6 +38,7 @@
 @media (prefers-contrast: more) {
   :root {
     --text-dim: #c7bda9;
+    --text-faint: #b3a890;
     --border-bright: rgba(255, 176, 0, 0.7);
   }
 }
@@ -526,6 +527,8 @@ details.exam-refs[open] summary { color: var(--amber); margin-bottom: 0.75rem; }
   white-space: nowrap;
   text-align: center;
 }
+.timeline-label.is-start { transform: translateX(0); text-align: left; }
+.timeline-label.is-end { transform: translateX(-100%); text-align: right; }
 
 /* ---- hero ---- */
 

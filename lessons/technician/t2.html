@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>T2 &middot; Operating Procedures &mdash; HAM OPS</title>
+  <meta name="description" content="Technician subelement T2: how contacts actually happen on the air — calling procedures, repeater and simplex mechanics, CTCSS/DTMF/DMR, and public-service/emergency net operation." />
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header id="site-header" class="site-header" data-root="../../"></header>
+
+    <main id="main">
+      <div class="container">
+        <p class="hero-kicker" style="margin-top:2rem;">// technician &middot; subelement T2</p>
+        <h1>Operating Procedures</h1>
+        <p class="text-dim" style="max-width:68ch;">
+          T1 was the law. T2 is the etiquette &mdash; the actual mechanics of making a contact:
+          how to call, how to answer, how a repeater's split works, and how the public-service
+          side of the hobby (nets, emergency traffic) is organized. None of this is arbitrary
+          tradition; each convention below solves a specific, practical problem.
+        </p>
+        <nav class="lesson-jump" aria-label="Jump to group">
+          <a href="#t2a">T2A Calling &amp; band plans</a>
+          <a href="#t2b">T2B Repeaters &amp; digital</a>
+          <a href="#t2c">T2C Public service &amp; nets</a>
+        </nav>
+
+        <!-- ============ T2A ============ -->
+        <section class="lesson-section" id="t2a">
+          <p class="lesson-lead">T2A</p>
+          <h2>Calling, answering &amp; band plans</h2>
+          <p>
+            Two operating modes underlie everything in this subelement. In
+            <a class="term" href="../../glossary.html#simplex">simplex</a> operation, both stations
+            transmit and receive on the same single frequency &mdash; you hear the other station
+            exactly where you're transmitting. A repeater instead listens on one frequency and
+            retransmits on another (more on that in T2B); a station transmitting and receiving on
+            two different frequencies simultaneously like that is <strong>full duplex</strong>, not
+            simplex. Most handheld and mobile VHF/UHF operating &mdash; and every HF phone contact
+            you'll make &mdash; is simplex.
+          </p>
+          <p>
+            <strong>Calling CQ</strong> is how you ask "is anyone listening?" when you're not
+            answering someone specific. The conventional pattern: say "CQ" a few times, then
+            "this is," then your call sign, then pause and actually listen before repeating. CQ
+            itself is simply the procedural signal for <strong>calling any station</strong> &mdash;
+            it isn't an abbreviation for anything, it's just the internationally recognized "I'm
+            available, who's out there" call. If you hear someone else's CQ and want to answer,
+            the order matters: say <em>their</em> call sign first, then yours &mdash; so the station
+            you're calling knows immediately that the transmission is meant for them, before they
+            have to figure out whose voice they're hearing.
+          </p>
+          <p>
+            On a repeater, if you already know the call sign of the station you want to reach, the
+            pattern flips slightly from a cold CQ: say <em>their</em> call sign, then identify with
+            your own. And if you just want to let others know you're around and open to a contact
+            &mdash; without directing it at anyone specific &mdash; say your own call sign followed by
+            the word <strong>"listening."</strong> That's the customary way to invite a call on a
+            repeater without a full CQ.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You want to make a casual contact on a repeater and don't have anyone specific in mind.
+            You key up and say: "KJ7ABC listening." A minute later another station replies "KJ7ABC,
+            this is W1XYZ." Notice the pattern holds both directions: you announced availability
+            with your own call sign, and the responding station led with <em>your</em> call sign
+            before their own, so you'd know immediately the call was meant for you.
+          </div>
+          <p>
+            Outside of calling procedure, a <strong>band plan</strong> is a voluntary
+            gentleman's-agreement layer on top of the FCC's actual privileges (which are hard
+            legal limits from T1B) &mdash; a plan, usually coordinated by amateurs themselves, for
+            which slice of a band is customarily used for which mode or activity (say, FM simplex
+            vs. weak-signal CW vs. satellite work within the same band). Nothing in a band plan is
+            individually enforceable by the FCC the way &sect;97.301 privileges are &mdash; but ignoring
+            it is a fast way to cause interference to whoever expected that slice to be used a
+            particular way. Simplex channels specifically are called out in VHF/UHF band plans for
+            a practical reason covered next in T2B: keeping local, in-range contacts off repeaters
+            entirely.
+          </p>
+          <details class="exam-refs" data-group="T2A" data-exam="technician">
+            <summary>Covers T2A01&ndash;T2A11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T2B ============ -->
+        <section class="lesson-section" id="t2b">
+          <p class="lesson-lead">T2B</p>
+          <h2>Repeaters, tones &amp; digital systems</h2>
+          <p>
+            A repeater listens on one frequency and simultaneously retransmits on another, so two
+            stations that can't hear each other directly can both hear the repeater. The
+            <a class="term" href="../../glossary.html#repeater-offset">repeater offset</a> (or
+            "split") is simply the gap between those two frequencies. It's a fixed convention per
+            band, not something you calculate fresh each time: a common 2-meter offset is
+            <strong>&plusmn;600&nbsp;kHz</strong>, while 70 centimeters commonly uses
+            <strong>&plusmn;5&nbsp;MHz</strong>. That's why your radio just needs to know "positive
+            split" or "negative split" plus the offset convention for the band, not two arbitrary
+            frequencies. The <strong>reverse</strong> function on a VHF/UHF transceiver temporarily
+            swaps this &mdash; it lets you listen on the repeater's <em>input</em> (receive)
+            frequency instead of its output, which is useful for checking whether you can hear the
+            other station directly, without the repeater's help.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You can hear a repeater's output clearly, but nothing you transmit gets repeated back.
+            What's wrong? Several things could independently cause this: your transceiver's offset
+            might not match the repeater's split, you might be using the wrong CTCSS tone (below),
+            or the wrong DCS code. The symptom "I can hear it but can't access it" doesn't
+            pin down which one &mdash; you have to check all three.
+          </div>
+          <p>
+            Two access-tone systems gate whether a repeater (or your own squelch) opens up for a
+            signal:
+          </p>
+          <ul>
+            <li>
+              <a class="term" href="../../glossary.html#ctcss">CTCSS</a> (Continuous Tone-Coded
+              Squelch System) rides a single sub-audible tone underneath your voice audio the
+              whole time you transmit. The repeater's receiver is listening for that specific
+              tone; if it's present, the squelch opens. It's called "sub-audible" because it sits
+              below the frequency range your ear (and the repeater's audio filtering) actually
+              passes through as sound &mdash; you don't hear it, but the receiver's tone decoder
+              does.
+            </li>
+            <li>
+              <a class="term" href="../../glossary.html#dtmf">DTMF</a> (Dual-Tone Multi-Frequency)
+              is the opposite kind of signal: short bursts, not continuous, and each keypress sends
+              <em>two</em> simultaneous tones at once (the same system your phone's touch-tone
+              keypad uses). It's used for one-off commands &mdash; dialing an autopatch, or
+              controlling certain repeater/DMR functions &mdash; not for holding a squelch open.
+            </li>
+          </ul>
+          <p>
+            A few plain mechanical facts about FM audio worth knowing here: talking <em>too
+            loudly</em> into an FM transceiver's microphone &mdash; overdriving it &mdash; is what
+            causes your transmitted audio to distort or drop out on voice peaks, since the
+            deviation is being pushed past what the receiver's filters cleanly pass. And a
+            <strong>squelch</strong> circuit's whole job is to mute your receiver's audio output
+            whenever no signal is present, so you don't have to listen to constant background
+            hiss between transmissions.
+          </p>
+          <h3>Digital voice systems: DMR, D-STAR, and talkgroups</h3>
+          <p>
+            Digital repeater systems like <a class="term" href="../../glossary.html#dmr">DMR</a>
+            replace analog CTCSS/DTMF signaling with their own mechanisms. A
+            <a class="term" href="../../glossary.html#talkgroup">talkgroup</a> is how DMR organizes
+            traffic into separate logical channels sharing the same repeater hardware &mdash; think
+            of it as a filter so you only hear the conversations you actually want, even though
+            many different groups might be using the same physical repeater. You join one by
+            programming your radio with that talkgroup's specific ID or code &mdash; there's no
+            registration process with a person or a Frequency Coordinator involved. The full set
+            of talkgroups, repeaters, and access codes your radio knows about comes from its
+            <a class="term" href="../../glossary.html#code-plug">code plug</a>, a configuration file
+            you load onto the radio (often distributed by the local DMR network so everyone's
+            radio matches).
+          </p>
+          <p>
+            <a class="term" href="../../glossary.html#d-star">D-STAR</a> is a separate digital voice
+            protocol with its own quirk worth knowing: because your identification is carried
+            digitally as part of the signal itself, a D-STAR radio requires your call sign to be
+            programmed in before it will transmit at all &mdash; there's no separate voice
+            identification step layered on top the way there is on analog FM.
+          </p>
+          <p>
+            Finally, one everyday courtesy fact that predates all the digital systems: if two
+            stations transmitting on the same simplex frequency start interfering with each other,
+            there's no FCC-enforced "first come, first served" rule at play the way there is
+            between primary and secondary <em>allocations</em> in T1B &mdash; the expected practice
+            is simply that the two stations negotiate who moves.
+          </p>
+          <details class="exam-refs" data-group="T2B" data-exam="technician">
+            <summary>Covers T2B01&ndash;T2B14 (14 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T2C ============ -->
+        <section class="lesson-section" id="t2c">
+          <p class="lesson-lead">T2C</p>
+          <h2>Public service, nets &amp; emergency communications</h2>
+          <p>
+            One rule anchors this whole group: FCC Part 97 rules always apply to an amateur
+            station's operation (&sect;97.103(a)) &mdash; there's no special "emergency mode" that
+            suspends them. What emergencies <em>do</em> unlock is a narrow, specific exception
+            already previewed in T1D: a control operator may transmit outside their license class's
+            normal frequency privileges, but only in situations involving the immediate safety of
+            human life or protection of property &mdash; not merely because an organized net or
+            emergency exercise is underway.
+          </p>
+          <p>
+            Two volunteer organizations get confused with each other constantly, and the pool
+            tests the distinction directly:
+          </p>
+          <div class="grid grid-2" style="margin:1rem 0;">
+            <div class="panel">
+              <div class="panel-header"><span><a class="term" href="../../glossary.html#ares">ARES</a></span></div>
+              <p class="text-dim" style="margin:0;">Amateur Radio Emergency Service &mdash; hams who've <strong>voluntarily registered</strong> their qualifications and equipment for public-service duty. No outside certification required beyond your amateur license.</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span><a class="term" href="../../glossary.html#races">RACES</a></span></div>
+              <p class="text-dim" style="margin:0;">Radio Amateur Civil Emergency Service &mdash; an FCC Part 97 service specifically for civil defense communications during national emergencies. Its operators need <strong>certification by a civil defense agency</strong>, on top of an amateur license &mdash; the one thing ARES, MARS, and SKYWARN don't require.</p>
+            </div>
+          </div>
+          <p>
+            An organized <strong>net</strong> is a group of stations meeting on a set frequency at
+            a set time, run by a <a class="term" href="../../glossary.html#net-control-station">Net
+            Control Station</a> whose job is to call the net to order and direct who transmits
+            when &mdash; not to check anyone's license validity, and not to set the meeting time
+            itself (that's usually decided in advance by whoever organizes the net). Standard
+            net etiquette follows directly from that: unless you're reporting an actual emergency,
+            you transmit only when Net Control directs you to, not whenever you feel like jumping
+            in.
+          </p>
+          <p>
+            <strong>Traffic</strong>, in net terminology, just means formal messages being relayed
+            between stations &mdash; not a count of check-ins, not a measure of net activity. The
+            standard written form for a formal message is a
+            <a class="term" href="../../glossary.html#radiogram">radiogram</a>. Two of its fields
+            get tested directly because their names are misleading if you guess from context: the
+            <strong>preamble</strong> is the routing/tracking information at the top (not the
+            sender's email or the recipient's address), and the <strong>check</strong> is simply a
+            count of the words (or word-equivalents) in the message text &mdash; a lightweight
+            integrity check, so a station relaying the message can confirm nothing got dropped in
+            transit, the same way a checksum works on a data file.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            A message contains an unusual proper name that's easy to mishear over voice. What do
+            you do? Spell it out using a standard phonetic alphabet ("Alpha Bravo Charlie&hellip;")
+            &mdash; the same tool T1A mentioned as encouraged-not-required for routine identification
+            becomes the actual fix here, precisely because it exists to remove ambiguity in exactly
+            this kind of situation.
+          </div>
+          <p>
+            One more system worth knowing by name: <a class="term" href="../../glossary.html#winlink">Winlink</a>
+            relays messages to and from ordinary internet email addresses using amateur call
+            signs as the routing identity &mdash; useful when a station has an RF link but no direct
+            internet access.
+          </p>
+          <details class="exam-refs" data-group="T2C" data-exam="technician">
+            <summary>Covers T2C01&ndash;T2C12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <div class="panel panel-corners" style="margin-top:1rem; margin-bottom:3rem;">
+          <div class="panel-header"><span>Practice T2</span></div>
+          <div class="cluster">
+            <a class="btn btn-primary" href="../../flashcards.html?exam=technician&subelement=T2">T2 flashcards</a>
+            <a class="btn" href="../../quiz.html?exam=technician&subelement=T2">T2 practice quiz</a>
+            <a class="btn" href="../../technician.html">&larr; back to Technician subelements</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer" class="site-footer" data-root="../../"></footer>
+  </div>
+
+  <script src="../../js/nav.js"></script>
+  <script src="../../js/data.js"></script>
+  <script src="../../js/storage.js"></script>
+  <script src="../../js/lesson.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => HamLesson.wireDetails(document));
+  </script>
+</body>
+</html>

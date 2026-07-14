@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>T0 &middot; Safety &mdash; HAM OPS</title>
+  <meta name="description" content="Technician subelement T0: power circuit hazards, fuses and circuit breakers, grounding; antenna and tower climbing safety; and RF exposure — safe power levels, duty cycle, and non-ionizing radiation." />
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header id="site-header" class="site-header" data-root="../../"></header>
+
+    <main id="main">
+      <div class="container">
+        <p class="hero-kicker" style="margin-top:2rem;">// technician &middot; subelement T0</p>
+        <h1>Safety</h1>
+        <p class="text-dim" style="max-width:68ch;">
+          T0 is the last subelement, and it's the one where getting a fact wrong can actually hurt
+          you: electrical hazards in the shack (T0A), physical hazards of towers and antennas
+          (T0B), and RF exposure hazards from your own transmitter (T0C). None of this is
+          theoretical &mdash; every rule here exists because of a specific, well-understood way things
+          go wrong, and this lesson tries to say what that is, not just that "the rule says so."
+        </p>
+        <nav class="lesson-jump" aria-label="Jump to group">
+          <a href="#t0a">T0A Power circuit hazards</a>
+          <a href="#t0b">T0B Antenna &amp; tower safety</a>
+          <a href="#t0c">T0C RF exposure</a>
+        </nav>
+
+        <!-- ============ T0A ============ -->
+        <section class="lesson-section" id="t0a">
+          <p class="lesson-lead">T0A</p>
+          <h2>Power circuits and electrical hazards</h2>
+          <p>
+            Electrical current flowing through the human body is dangerous in more than one way at
+            once, which is exactly why the exam's answer to "what health hazard does it pose" is
+            "all these choices are correct": it can heat body tissue, it can disrupt the electrical
+            signals your own cells and nerves use to function, and it can cause involuntary muscle
+            contractions &mdash; which is precisely what makes it hard to let go of something that's
+            shocking you, since the muscles you'd use to let go are the ones being involuntarily
+            clenched.
+          </p>
+          <p>
+            A 12-volt storage battery might look harmless next to household AC power, but shorting
+            its terminals together (with a dropped wrench, a stray wire, anything conductive
+            bridging + to &minus;) can cause <strong>burns, fire, or an explosion</strong> &mdash; a
+            fully charged battery can deliver an enormous burst of current into a dead short, and
+            that current turns into heat fast enough to ignite nearby materials or rupture the
+            battery case. Rapidly charging or discharging an unprotected battery carries a related
+            hazard: <strong>overheating or out-gassing</strong> (venting gas, sometimes flammable or
+            corrosive, from the cells) &mdash; not "excess ripple" or "overvoltage" specifically, but
+            the more direct thermal/chemical stress of pushing current in or out faster than the
+            battery is built to handle.
+          </p>
+          <h3>Household wiring and overcurrent protection</h3>
+          <p>
+            In a standard US three-wire 120&nbsp;V AC cable, the conductor colors mean something
+            specific: <strong>black is hot</strong> (carries the voltage), white is neutral (the
+            return path), and green (or bare copper) is the equipment ground (a safety path, not a
+            current-carrying conductor in normal operation). Knowing black-is-hot matters because a
+            <a class="term" href="../../glossary.html#fuse-t0">fuse</a> or circuit breaker must be
+            installed <strong>in series with the hot conductor only</strong> &mdash; never the neutral,
+            and never in parallel with anything. Here's why that placement matters: a fuse only
+            protects what's <em>on the far side</em> of it from the source. Put a fuse in the neutral
+            instead of the hot, and the fuse could open while the hot conductor &mdash; and everything
+            wired to it &mdash; stays fully energized, which defeats the entire point.
+          </p>
+          <p>
+            A fuse's job is simple: <strong>remove power in case of an overload</strong>, by having a
+            thin element inside that melts and opens the circuit once current exceeds its rating.
+            That's also exactly why you should never replace a 5-ampere fuse with a 20-ampere one
+            just because it's what you have on hand: the wiring and components downstream were
+            designed around 5 amps of protection, and letting <strong>excessive current</strong> flow
+            before anything interrupts it can generate enough heat to <strong>cause a fire</strong>
+            &mdash; a bigger fuse doesn't blow "more safely," it just waits far longer to blow at all.
+            A <a class="term" href="../../glossary.html#circuit-breaker">circuit breaker</a> does the
+            same overcurrent job as a fuse but with a mechanical switch that trips and can be reset,
+            instead of a wire element that has to be replaced.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            A wall outlet circuit is protected by a 15-amp breaker, and you want to run a space
+            heater that draws 18 amps. Can you just swap in a 30-amp breaker so it stops tripping?
+            No &mdash; exactly like the 5-amp/20-amp fuse case, the wiring in the wall was sized for 15
+            amps of protection. A 30-amp breaker would let 18 amps (or more) flow indefinitely through
+            wiring that can't safely dissipate the heat that current generates, which is how house
+            fires start inside walls. The fix is a heater that draws less current, or a properly
+            sized dedicated circuit installed by someone qualified &mdash; not a bigger breaker.
+          </div>
+          <h3>Grounding and working safely on gear</h3>
+          <p>
+            Guarding against shock at your own station comes down to three habits working together:
+            using <strong>three-wire cords and plugs</strong> on all AC-powered equipment (so the
+            equipment chassis is grounded, not floating at some stray voltage), connecting all your
+            AC-powered station gear to a <strong>common safety ground</strong>, and making sure any
+            <strong>capacitors used for high-voltage DC are fully discharged</strong> before you work
+            inside the equipment. That last one matters even with the power off and unplugged: filter
+            capacitors inside a power supply store their charge and can hold a dangerous voltage
+            <strong>immediately after you turn a supply off</strong> &mdash; the "off" switch stops new
+            charging, it doesn't drain what's already stored.
+          </p>
+          <p>
+            External ground rods and earth connections (for a tower, a station ground, a lightning
+            system, etc.) should all be <strong>bonded together with heavy wire or conductive
+            strap</strong> &mdash; multiple separate, unbonded ground points can actually sit at
+            different voltages during a lightning strike or fault, and bonding them keeps everything
+            at the same potential instead of letting current look for a path <em>between</em> two
+            "grounds." A lightning arrester on a coaxial feed line should be installed
+            <strong>on a grounded panel near where the feed line enters the building</strong> &mdash;
+            catching a surge right at the entry point, before it has a chance to travel further inside
+            toward the equipment.
+          </p>
+          <p class="text-dim">
+            One more habit worth internalizing here: when measuring high voltages with a voltmeter,
+            make sure the <strong>meter and its leads are actually rated</strong> for the voltage
+            you're measuring. A meter or probe rated for a lower voltage than what's present can arc
+            over, fail, or expose you to that voltage at the point of failure &mdash; the meter itself
+            becomes part of the hazard if it's the wrong tool for the job.
+          </p>
+          <details class="exam-refs" data-group="T0A" data-exam="technician">
+            <summary>Covers T0A01&ndash;T0A12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T0B ============ -->
+        <section class="lesson-section" id="t0b">
+          <p class="lesson-lead">T0B</p>
+          <h2>Antenna &amp; tower safety</h2>
+          <p>
+            Tower work is unforgiving of shortcuts, and the pool's answers here read less like trivia
+            and more like a checklist someone wrote after something went wrong. Climbing an antenna
+            tower requires <strong>all</strong> of the following at once: sufficient training in safe
+            tower-climbing technique, an approved climbing harness worn at all times, and appropriate
+            tie-off to the tower at all times &mdash; and it is <strong>never</strong> safe to climb a
+            tower without a helper or observer present, full stop, regardless of the height or what
+            kind of work is being done. The reason is straightforward: if a fall or medical
+            emergency happens forty feet up with no one else around, there's no one to call for help
+            or start it themselves.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You just need to climb up 15 feet to tighten one bolt &mdash; is it okay to skip the
+            harness and observer since it's a short, simple job? No. The exam pool's answer to "under
+            what circumstances is it safe to climb without a helper or observer" is <strong>never</strong>,
+            with no exception carved out for low height or a quick job &mdash; falls don't scale down
+            in severity just because the climb was short.
+          </div>
+          <p>
+            Before you ever start climbing, look for and stay clear of any <strong>overhead
+            electrical wires</strong> &mdash; both while erecting the tower or antenna and afterward.
+            The specific safe-distance rule the pool tests is concrete: install an antenna
+            <strong>far enough away that if it ever falls, no part of it can come within 10 feet of
+            the power wires</strong>. That's not a distance from the base of the tower to the power
+            line &mdash; it's a distance calculated from the antenna's full fallen length, including
+            mast and boom, to the wires. For the same reason, avoid attaching an antenna to a utility
+            pole at all: the antenna (or its supporting hardware) could contact
+            <strong>high-voltage power lines</strong> that share that pole, with nothing else about
+            the installation making that any safer.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You're planning a 40-foot vertical antenna mast, and a power line runs 45 feet from where
+            you'd plant the base. Is that clearance enough? Picture the mast falling flat in the
+            worst-case direction: it would reach 40 feet from the base, landing 5 feet short of the
+            power line's 45-foot distance &mdash; well inside the 10-foot minimum buffer the rule
+            requires. That installation fails the safety rule; you'd need to either move the base at
+            least 50 feet from the line (40 feet of mast + 10 feet of buffer) or pick a shorter mast.
+          </div>
+          <h3>Grounding, guying &amp; crank-up towers</h3>
+          <p>
+            A proper tower ground uses <strong>separate ground rods (commonly 8 feet long) at each
+            tower leg, bonded to the tower and to each other</strong> &mdash; not a single short rod
+            near the base, and not piggybacking on a cold-water pipe. When installing the ground
+            wires themselves for lightning protection, keep connections <strong>short and
+            direct</strong>, and avoid sharp bends in the conductor &mdash; a lightning surge doesn't
+            follow a wire's bends smoothly the way ordinary current does, and a sharp bend can cause
+            the surge to jump (arc) across the bend instead of following the wire, defeating the
+            point of the ground path. Exactly which grounding setup is legally required isn't a
+            federal amateur-radio rule at all &mdash; <strong>local electrical codes</strong> establish
+            grounding requirements for a tower or antenna, not FCC Part 97.
+          </p>
+          <p>
+            Guy wires that tension a tower use a <strong>turnbuckle</strong> to adjust tension, and a
+            safety wire threaded through the turnbuckle serves one specific purpose: it prevents the
+            turnbuckle from <strong>loosening due to vibration</strong> over time (wind constantly
+            shakes a tower, and a turnbuckle can slowly back itself off without something to lock it).
+            And a <a class="term" href="../../glossary.html#crank-up-tower">crank-up tower</a> (one
+            that telescopes to full height mechanically rather than being climbed section by section)
+            carries its own specific rule: it must <strong>not be climbed unless it's fully retracted,
+            or mechanical safety locking devices have been installed</strong> on the extended
+            sections &mdash; an extended crank-up tower can telescope back down unexpectedly under load
+            if nothing is locking the sections in place.
+          </p>
+          <details class="exam-refs" data-group="T0B" data-exam="technician">
+            <summary>Covers T0B01&ndash;T0B11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T0C ============ -->
+        <section class="lesson-section" id="t0c">
+          <p class="lesson-lead">T0C</p>
+          <h2>RF exposure</h2>
+          <p>
+            Radio signals are <a class="term" href="../../glossary.html#non-ionizing-radiation">
+            non-ionizing radiation</a>, and that single fact is the foundation of this entire group.
+            <strong>Ionizing</strong> radiation (X-rays, gamma rays) carries enough energy per photon
+            to knock electrons out of atoms and break chemical bonds &mdash; which is how it can
+            damage DNA and cause cancer at the cellular level. RF energy at amateur frequencies simply
+            doesn't carry that much energy per photon; it can't do that kind of chemical damage no
+            matter how strong the signal is. The concern with RF exposure is a completely different
+            mechanism: <strong>heating</strong>. RF energy absorbed by tissue converts to heat, the
+            same way a microwave oven heats food &mdash; and that thermal effect, not any DNA-level
+            damage, is what FCC RF exposure limits are actually designed to prevent.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            Someone worries that standing near a running transmitter is like standing near an X-ray
+            machine. Is that comparison accurate? No &mdash; X-rays are ionizing radiation, energetic
+            enough to strip electrons from atoms and damage DNA directly. RF signals are non-ionizing;
+            the exam pool's own framing of this is that RF radiation "does not have sufficient energy
+            to cause chemical changes in cells and damage DNA." The real hazard mechanism for RF is
+            heating, which is why exposure limits are about power density and distance, not about a
+            radiation-sickness-style dose.
+          </div>
+          <h3>Maximum Permissible Exposure &amp; what changes it</h3>
+          <p>
+            The FCC's <a class="term" href="../../glossary.html#mpe">Maximum Permissible Exposure
+            (MPE)</a> limit isn't one flat number across all frequencies &mdash; it varies by
+            frequency because the human body doesn't absorb RF energy equally well at every
+            frequency: some frequencies couple into the body more efficiently than others, so the
+            "safe" power level has to be lower right where absorption peaks. Of the frequencies the
+            exam pool asks you to compare (3.5, 50, 440, and 1296&nbsp;MHz), <strong>50&nbsp;MHz has
+            the lowest (most restrictive) maximum permissible exposure</strong> &mdash; a consequence
+            of the human body being an unusually efficient absorber of RF energy in roughly that VHF
+            range, compared to the other three frequencies listed.
+          </p>
+          <p>
+            RF exposure at a given location also depends on more than just frequency: <strong>the
+            frequency and power level of the RF field, the distance from the antenna to the person,
+            and the antenna's radiation pattern</strong> (whether it concentrates energy in one
+            direction or spreads it more evenly) all factor in together &mdash; which is why the
+            correct exam answer to "what factors affect RF exposure" is all of the above, not any
+            single one of them alone.
+          </p>
+          <h3>Duty cycle</h3>
+          <p>
+            <a class="term" href="../../glossary.html#duty-cycle">Duty cycle</a> is defined, for RF
+            exposure purposes, as <strong>the percentage of time a transmitter is actually
+            transmitting</strong> during the exposure-averaging period &mdash; a carrier that's on
+            continuously has a 100% duty cycle; one that's on for only half of a given stretch of
+            time (say, typical SSB voice with pauses between syllables and over-to-them) has roughly
+            a 50% duty cycle. Duty cycle matters for exposure specifically because it affects the
+            <strong>average</strong> exposure to radiation over time, not the instantaneous peak
+            &mdash; a transmitter running high power for a tiny fraction of the time can still average
+            out to a lower total RF dose than a lower-power transmitter running continuously.
+          </p>
+          <p>
+            That averaging effect has a concrete, testable consequence: if duty cycle drops from
+            100% to 50%, the allowable power density for the same MPE limit <strong>increases by a
+            factor of 2</strong> &mdash; because you're now only "on" half the time, you're allowed to
+            be twice as intense while you are on and still average out to the same total exposure.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            Say your station's calculated safe power limit for a 100%-duty-cycle signal (like FM or a
+            steady digital carrier) at some antenna distance is 50 watts. If you switch to SSB voice
+            running at roughly 50% duty cycle instead, how much power can you run at that same
+            distance without exceeding the same MPE limit? Since dropping to 50% duty cycle doubles
+            the allowable power density, you can run up to <strong>100 watts</strong> &mdash; twice the
+            continuous-duty figure &mdash; and still be exposing anyone at that distance to the same
+            averaged RF energy as the 50-watt continuous signal.
+          </div>
+          <h3>Staying compliant &amp; reducing exposure</h3>
+          <p>
+            You can verify your station complies with FCC RF exposure regulations in any of several
+            acceptable ways: <strong>calculation using the method in FCC OET Bulletin 65, calculation
+            by computer modeling, or direct measurement of field strength with calibrated
+            equipment</strong> &mdash; the rules don't mandate one specific method over the others.
+            Whatever method you use, it's not a one-time check: you need to <strong>re-evaluate your
+            station whenever anything in the transmitter or antenna system changes</strong> &mdash; a
+            new antenna, a different feed line, a power increase, or a relocated element can all shift
+            your exposure levels enough to matter.
+          </p>
+          <p>
+            If a re-evaluation shows you're too close to the limit, the effective fix is to
+            <strong>relocate the antenna</strong> &mdash; moving it further from where people
+            spend time, or higher up so the RF field is weaker at ground level &mdash; not to increase
+            duty cycle, which would make exposure worse, not better. And touching an antenna during
+            an active transmission carries a real, specific hazard: an
+            <strong>RF burn to the skin</strong>, caused by RF current concentrating at the point of
+            contact and heating that spot rapidly &mdash; a distinctly different (and usually more
+            localized) injury than the electrical shock hazard from AC power circuits in T0A.
+          </p>
+          <p class="text-dim">
+            Responsibility for all of this lands in one place: the <strong>station licensee</strong>
+            is responsible for ensuring that no person is exposed to RF energy above the FCC's
+            exposure limits &mdash; not the FCC itself, not a local zoning board, and not simply
+            "anyone near an antenna" who happens to wander close. It's on you, as the person who
+            controls the transmitter and antenna, to keep exposure within limits.
+          </p>
+          <details class="exam-refs" data-group="T0C" data-exam="technician">
+            <summary>Covers T0C01&ndash;T0C13 (13 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <div class="panel panel-corners" style="margin-top:1rem; margin-bottom:3rem;">
+          <div class="panel-header"><span>Practice T0</span></div>
+          <div class="cluster">
+            <a class="btn btn-primary" href="../../flashcards.html?exam=technician&subelement=T0">T0 flashcards</a>
+            <a class="btn" href="../../quiz.html?exam=technician&subelement=T0">T0 practice quiz</a>
+            <a class="btn" href="../../technician.html">&larr; back to Technician subelements</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer" class="site-footer" data-root="../../"></footer>
+  </div>
+
+  <script src="../../js/nav.js"></script>
+  <script src="../../js/data.js"></script>
+  <script src="../../js/storage.js"></script>
+  <script src="../../js/lesson.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => HamLesson.wireDetails(document));
+  </script>
+</body>
+</html>

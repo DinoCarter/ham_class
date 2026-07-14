@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>G1 &middot; Commission's Rules &mdash; HAM OPS</title>
+  <meta name="description" content="General subelement G1: HF frequency privileges, antenna structure limitations, transmitter power and 60-meter rules, Volunteer Examiners, and control categories under FCC Part 97." />
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header id="site-header" class="site-header" data-root="../../"></header>
+
+    <main id="main">
+      <div class="container">
+        <p class="hero-kicker" style="margin-top:2rem;">// general &middot; subelement G1</p>
+        <h1>Commission's Rules</h1>
+        <p class="text-dim" style="max-width:68ch;">
+          T1 covered the shape of Part 97: who's in charge, what a control operator is, how
+          identification works. G1 is what General actually buys you inside that same rulebook &mdash;
+          real privileges on 80, 40, 20, 15, and the rest of HF, not just the 10-meter sliver
+          Technician gets. The mechanics from T1 (control operators, third-party rules, ITU
+          objections) don't disappear; they just get more consequential once you're running real
+          power on real HF bands, so this lesson builds on T1 rather than re-explaining it. Citations
+          like <code>&sect;97.301</code> point to the same Part 97 you already know from Technician.
+        </p>
+        <nav class="lesson-jump" aria-label="Jump to group">
+          <a href="#g1a">G1A Frequency privileges</a>
+          <a href="#g1b">G1B Antennas &amp; beacons</a>
+          <a href="#g1c">G1C Power &amp; 60m</a>
+          <a href="#g1d">G1D VEs &amp; licensing</a>
+          <a href="#g1e">G1E Control &amp; third-party</a>
+        </nav>
+
+        <!-- ============ G1A ============ -->
+        <section class="lesson-section" id="g1a">
+          <p class="lesson-lead">G1A</p>
+          <h2>Control operator frequency privileges; primary &amp; secondary allocations</h2>
+          <p>
+            Technician's HF privilege was one clean slice: 28.000&ndash;28.500&nbsp;MHz, nothing else.
+            General privileges span the rest of HF and MF &mdash; 160 through 10 meters, plus 60 meters
+            &mdash; but not always the <em>entire</em> band. &sect;97.301(d) draws General's actual table,
+            and the pool's whole point in G1A is teaching you where the holes are.
+          </p>
+          <p>
+            Four HF bands have a narrow slice carved out exclusively for Amateur Extra licensees:
+            <strong>80, 40, 20, and 15 meters</strong> (&sect;97.301(b)) &mdash; these are the same four
+            bands where General class licensees "cannot transmit" in part (&sect;97.301(d)). On 40
+            meters specifically, that Extra-exclusive slice is <strong>7.125&nbsp;MHz to
+            7.175&nbsp;MHz</strong> &mdash; a General-class control operator may not transmit there.
+            The general pattern repeats on all four bands: Extra gets an exclusive slice near the
+            bottom of the band's CW/data segment and another exclusive slice at the bottom of the
+            phone/image segment; General gets everything else, including <strong>the upper frequency
+            portion</strong> of the phone/image segment (not the lower) wherever the segment is
+            split. On 15 meters, that means General's phone privilege picks up starting around
+            21.275&nbsp;MHz &mdash; so <strong>21300&nbsp;kHz</strong> is squarely inside General's
+            15-meter phone allocation, while, say, transmitting phone at 21.200&nbsp;MHz would not be.
+          </p>
+          <div class="grid grid-2" style="margin:1rem 0;">
+            <div class="panel">
+              <div class="panel-header"><span>Full privileges</span></div>
+              <p class="text-dim" style="margin:0;">160, 60&#8224;, 30&#8224;&#8224;, 17, 12, and 10 meters &mdash; no Extra-exclusive carve-out on these (&sect;97.301(b) lists only 80/40/20/15 as having one).</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span>Shared with Extra</span></div>
+              <p class="text-dim" style="margin:0;">80, 40, 20, 15 meters &mdash; General gets everything except a bottom slice of CW/data and a bottom slice of phone/image, both reserved for Extra.</p>
+            </div>
+          </div>
+          <p class="text-dim" style="max-width:70ch; font-size:0.85rem;">
+            &#8224; 60 meters is channelized, not a continuous band &mdash; see G1C. &#8224;&#8224; 30 meters is
+            secondary spectrum shared with non-amateur primary users, CW/data only, no phone &mdash; also
+            covered in G1C.
+          </p>
+          <p>
+            On 10 meters, General is a huge step up from Technician: instead of being capped at
+            28.000&ndash;28.500&nbsp;MHz, a General-class control operator may use <strong>CW across the
+            entire 10-meter band</strong> (&sect;97.305(a) &mdash; same special CW privilege from T1B, it
+            rides on top of whatever mode restriction otherwise applies) and has full phone privileges
+            across the rest of the band too. The only carve-out on 10 meters is for repeaters: <strong>the
+            portion above 29.5&nbsp;MHz</strong> is set aside for repeater use (&sect;97.205(b)) &mdash; the
+            rest of the band is direct (simplex/DX) operation.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You're a fresh General licensee and want to make an SSB phone contact at 7.150&nbsp;MHz on
+            40 meters. Legal? No &mdash; 7.125&ndash;7.175&nbsp;MHz is the Extra-exclusive slice of 40
+            meters, and 7.150&nbsp;MHz falls right inside it. Move up to somewhere in General's phone
+            portion above 7.175&nbsp;MHz (or below 7.125&nbsp;MHz in the CW/data segment, using CW) and
+            you're clear.
+          </div>
+          <p class="text-dim">
+            One more mechanic revisited from T1B/T1D: when the FCC rules designate the amateur service
+            as <strong>secondary</strong> on a band, amateur
+            stations must not cause harmful interference to the primary users <em>and</em> must accept
+            interference from them (&sect;97.303) &mdash; there's no recording call signs, no
+            emergency-only exception, and no time-of-day carve-out. That's the rule 30 meters and parts
+            of 60 meters both run on.
+          </p>
+          <details class="exam-refs" data-group="G1A" data-exam="general">
+            <summary>Covers G1A01&ndash;G1A11 (10 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G1B ============ -->
+        <section class="lesson-section" id="g1b">
+          <p class="lesson-lead">G1B</p>
+          <h2>Antenna structure limitations, good engineering practice &amp; beacon operation</h2>
+          <p>
+            General-class stations tend to mean bigger antennas &mdash; taller towers, more metal in
+            the air &mdash; which is exactly why G1B exists. Two separate regulatory systems touch
+            your antenna structure, and they're easy to conflate:
+          </p>
+          <ul>
+            <li>
+              <a class="term" href="../../glossary.html#part-17">Part 17</a> is the FCC's structural
+              rulebook (height marking, lighting, FAA notification) &mdash; not Part 97. An antenna
+              structure not near a public-use airport can rise to <strong>200&nbsp;feet</strong> above
+              ground before you need to notify the FAA and register it with the FCC (&sect;97.15(a)).
+              Under 200 feet, away from an airport, none of that paperwork applies.
+            </li>
+            <li>
+              Separately, state and local governments can still regulate amateur antenna structures
+              (zoning, HOA-adjacent ordinances, setback rules) &mdash; but not without limit. Under
+              <a class="term" href="../../glossary.html#prb-1">PRB-1</a>, the FCC's 1985 policy on this,
+              local regulation must <strong>reasonably accommodate</strong> amateur communications and
+              be the <strong>minimum practical</strong> to accomplish a legitimate local purpose
+              (&sect;97.15(b)) &mdash; a town can require a permit or cap a height, but it can't write a
+              rule so restrictive it effectively shuts amateur operation down.
+            </li>
+          </ul>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            A local ordinance simply bans all amateur antenna towers over 35 feet, full stop, with no
+            variance process and no consideration of what a given ham actually needs to operate. Is
+            that enforceable as written? Not necessarily &mdash; PRB-1 requires local rules to
+            reasonably accommodate amateur communications and be the minimum practical to serve a
+            legitimate purpose. A flat, no-exceptions cap that ignores what's actually needed for
+            reasonable amateur operation is the kind of rule PRB-1 was written to push back on
+            &mdash; though it doesn't mean state/local governments have zero say (&sect;97.15(a) still
+            leaves no circumstance where FCC rules take priority "at any time and to any extent," and
+            no circumstance where local rules are barred outright either).
+          </div>
+          <h3>Beacon operation</h3>
+          <p>
+            T1A already defined a <a class="term" href="../../glossary.html#beacon-g">beacon</a> as an
+            automatically controlled station transmitting one-way. G1B fills in the operating rules:
+            a beacon's purpose, per the FCC's own definition, is <strong>observation of propagation and
+            reception</strong> (&sect;97.3(a)(9)) &mdash; not repeater identification, not general-interest
+            bulletins, just propagation science. Beacons on HF are confined to
+            <strong>28.20&ndash;28.30&nbsp;MHz</strong> (&sect;97.203(d)) &mdash; same 10-meter beacon
+            sub-band from T1A. Power is capped at <strong>100&nbsp;watts PEP output</strong>
+            (&sect;97.203(c)), and only <strong>one beacon per band from the same station location</strong>
+            is allowed (&sect;97.203(b)) &mdash; there's no National Beacon Organization coordinating
+            frequencies, and no requirement to publish the frequency anywhere.
+          </p>
+          <p>
+            A related mechanic worth knowing cold: a specific set of frequencies &mdash;
+            <strong>14.100, 18.110, 21.150, 24.930, and 28.200&nbsp;MHz</strong> &mdash; hosts a system of
+            propagation beacon stations, which is exactly why amateurs are expected to normally avoid
+            transmitting there (&sect;97.101). It's not a hard legal ban the way a phone/CW segment
+            boundary is &mdash; it's operating courtesy toward a shared propagation-monitoring resource.
+          </p>
+          <h3>One-way transmissions, revisited</h3>
+          <p>
+            T1D already established the core ban on one-way broadcasting, with narrow carve-outs. G1B
+            adds two more permitted one-way cases to that list: <strong>occasional retransmission of
+            weather and propagation forecasts from US government stations</strong> (&sect;97.113(c)), and
+            <strong>transmissions that assist someone in learning Morse code</strong> (&sect;97.111(5)(b))
+            &mdash; a practice-code broadcast is legal one-way transmission specifically because it's
+            teaching, not programming for the general public. What's still <em>not</em> permitted: regular
+            transmissions offering equipment for sale (even amateur-radio-related equipment) as a
+            standing practice &mdash; T1D's "your own gear, occasionally, not as a business" rule still
+            applies.
+          </p>
+          <p class="text-dim">
+            Two closing mechanics: procedural signals and abbreviations (things like Q signals) are
+            allowed freely, with one condition &mdash; they may be used <strong>only if they don't obscure
+            the meaning of a message</strong> (&sect;97.113(a)(4)), not restricted to an official list. And
+            for everything Part 97 doesn't spell out explicitly, <strong>the FCC</strong> &mdash; not the
+            control operator's judgment, not IEEE, not the ITU &mdash; is who determines what counts as
+            "good engineering and good amateur practice" (&sect;97.101(a)).
+          </p>
+          <details class="exam-refs" data-group="G1B" data-exam="general">
+            <summary>Covers G1B01&ndash;G1B11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G1C ============ -->
+        <section class="lesson-section" id="g1c">
+          <p class="lesson-lead">G1C</p>
+          <h2>Transmitter power, data emission standards &amp; 60-meter operation</h2>
+          <p>
+            The headline number for General: <strong>1500&nbsp;watts PEP output</strong> is the standard
+            power ceiling across most of your new HF privileges &mdash; confirmed on the 12-meter band
+            (&sect;97.313), on 28&nbsp;MHz/10 meters (&sect;97.313), and on 1.8&nbsp;MHz/160 meters
+            (&sect;97.313). That's the same 1500&nbsp;W ceiling Amateur Extra runs on those bands &mdash; General
+            doesn't get a reduced power limit just for being a lower class, with specific narrow
+            exceptions below.
+          </p>
+          <p>
+            Two exceptions to memorize, because the exam pool tests them directly against that 1500&nbsp;W
+            baseline:
+          </p>
+          <ul>
+            <li>
+              <strong>30 meters (10.140&nbsp;MHz):</strong> capped at just <strong>200&nbsp;watts PEP
+              output</strong> (&sect;97.313(c)(1)) &mdash; a direct consequence of 30 meters being secondary,
+              shared spectrum (G1A's secondary-user rule) with non-amateur primary users who need
+              protecting from a full-power amateur signal.
+            </li>
+            <li>
+              <strong>Spread spectrum:</strong> capped at <strong>10&nbsp;watts PEP output</strong>
+              (&sect;97.313(j)) &mdash; a much steeper cut, since a spread-spectrum signal's whole design
+              point is being hard to detect, and the FCC keeps that combination (stealthy + high-power) off
+              the table.
+            </li>
+          </ul>
+          <p>
+            One measurement detail the pool is precise about: the power limit is always measured as
+            <a class="term" href="../../glossary.html#pep">PEP</a> <strong>output from the
+            transmitter</strong> (&sect;97.313) &mdash; not RMS, and not measured at the antenna. Antenna
+            gain doesn't count against your power limit the way it might in some other services; what's
+            regulated is what comes out of the transmitter itself.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You want to run 1000&nbsp;W PEP on 10.140&nbsp;MHz (30 meters) to punch through some
+            interference. Legal? No &mdash; 30 meters is capped at 200&nbsp;W PEP output regardless of
+            band conditions, a much lower ceiling than the 1500&nbsp;W standard that applies just one
+            band away on 40 or 20 meters. There's no "boost for tough conditions" exception; the
+            200&nbsp;W limit exists specifically because 30 meters is secondary, shared spectrum.
+          </div>
+          <h3>New digital protocols</h3>
+          <p>
+            Before using a new, non-standard digital protocol on the air, you must
+            <strong>publicly document the technical characteristics of the protocol</strong>
+            (&sect;97.309(a)(4)) &mdash; no FCC type-certification, no experimental license, no formal
+            rule-making filing required. This traces straight back to T1D's ban on messages encoded to
+            hide their meaning: if nobody outside your own group can find out how your protocol works,
+            it's functionally the same problem as encryption, even if that wasn't the intent.
+          </p>
+          <h3>60-meter operation</h3>
+          <p>
+            60 meters isn't a continuous band the way 40 or 20 meters are &mdash; it's a small set of
+            specific channels, and the rules reflect that channelized structure. On USB voice, the
+            maximum occupied bandwidth is <strong>2.8&nbsp;kHz</strong> (&sect;97.303(h)(1)) &mdash; tight,
+            compared to a typical wider SSB signal elsewhere on HF, because 60 meters is shared with
+            other (non-amateur) services on a channelized basis and a wider signal risks spilling into
+            an adjacent channel. And there's a specific record-keeping rule that doesn't exist on any
+            other amateur band: <strong>if you use an antenna other than a dipole on 60 meters, you must
+            keep a record of that antenna's gain</strong> (&sect;97.303(i)) &mdash; because 60-meter
+            operation is governed by an effective-radiated-power ceiling relative to a dipole, and the
+            FCC needs a way to confirm a higher-gain antenna isn't pushing your effective power over
+            that ceiling.
+          </p>
+          <details class="exam-refs" data-group="G1C" data-exam="general">
+            <summary>Covers G1C01&ndash;G1C11 (8 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G1D ============ -->
+        <section class="lesson-section" id="g1d">
+          <p class="lesson-lead">G1D</p>
+          <h2>Volunteer Examiners &amp; VECs, temporary identification, element credit</h2>
+          <p>
+            Every amateur exam you've ever taken (or will take for Extra) runs through a two-layer
+            volunteer system: a <a class="term" href="../../glossary.html#vec">VEC</a> (Volunteer
+            Examiner Coordinator) is the organization the FCC authorizes to coordinate testing, and
+            individual <a class="term" href="../../glossary.html#ve">VEs</a> (Volunteer Examiners),
+            accredited by a VEC, are the licensed hams who actually administer the exam session
+            (&sect;97.509(b)(1)) &mdash; the FCC itself isn't in the room.
+          </p>
+          <p>
+            What a VE is allowed to administer is capped by their own license class: a
+            <strong>General class VE may only administer the Technician exam</strong> (&sect;97.509(b)(3)(i))
+            &mdash; General privileges don't let you proctor a General or Extra exam; that requires an
+            Amateur Extra VE. Every VE, regardless of class, must be <strong>at least 18 years
+            old</strong> (&sect;97.509(b)(2)), and a <strong>non-US-citizen</strong> VE must hold an
+            FCC-granted <strong>General class license or higher</strong> (&sect;97.509(b)(3)) &mdash;
+            there's no separate residency requirement, and no ITU-region restriction on where their home
+            citizenship has to be. Administering a <strong>Technician</strong> exam session specifically
+            requires <strong>at least three VEs of General class or higher</strong> present
+            (&sect;97.509(3)(i)(c)).
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You're a newly-minted General licensee and want to help out at a local exam session by
+            serving as one of the VEs. Can you administer the General exam to an upgrading Technician?
+            No &mdash; your General class license only qualifies you to administer the Technician
+            (Element 2) exam. Administering General or Extra exams requires an Amateur Extra class VE.
+            You can still be one of the required VEs on a Technician session, though &mdash; and you'll
+            need at least two other General-or-higher VEs alongside you, since Technician sessions need
+            three VEs minimum.
+          </div>
+          <h3>Temporary operating authority &amp; the "AG" identifier</h3>
+          <p>
+            T1A and T1C both established that a <em>brand-new</em> license doesn't take effect until the
+            grant shows up in the FCC's <a class="term" href="../../glossary.html#uls">ULS</a> database
+            &mdash; a CSCE alone doesn't let a first-time applicant transmit. An <em>upgrade</em> works
+            differently. A Technician licensee holding an unexpired
+            <a class="term" href="../../glossary.html#csce">CSCE</a> for General privileges may operate
+            on <strong>any General or Technician band segment immediately</strong> &mdash; they don't have
+            to wait for the upgrade to post in the FCC database first (&sect;97.9(b)). The catch: until
+            that upgrade actually shows up in ULS, they must identify by appending
+            <strong>"AG"</strong> after their call sign <strong>whenever operating using General class
+            frequency privileges</strong> specifically &mdash; not on every transmission, just the ones
+            using privileges their license-of-record doesn't show yet (&sect;97.119(f)(2)).
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You hold KJ7XXX as a Technician and just passed your General exam, CSCE in hand. That
+            evening you want to make an SSB contact at 7.200&nbsp;MHz (a General-only phone frequency).
+            Legal, and how do you identify? Legal &mdash; the CSCE grants you General privileges right
+            away, no ULS wait required. But because your upgrade hasn't posted yet, you must identify as
+            "KJ7XXX stroke AG" (or equivalent) while using that General-only frequency. Back down on a
+            Technician-only segment, plain "KJ7XXX" is fine &mdash; the AG suffix only applies when
+            you're actually exercising the new privileges.
+          </div>
+          <p class="text-dim" style="max-width:70ch; margin-top:-0.5rem;">
+            A CSCE's element credit is valid for <strong>365 days</strong> (&sect;97.9(b)) &mdash; long
+            enough to finish paperwork or stack another element, but it does expire.
+          </p>
+          <h3>License terms, expiration &amp; renewal</h3>
+          <p>
+            Building on T1C's ten-year term and two-year grace period: if a previously held license
+            expired and that two-year grace period has <em>also</em> passed, there's no shortcut back in
+            &mdash; the applicant must show proof of the expired license's grant <strong>and pass the
+            current Element 2 exam</strong> again from scratch (&sect;97.505) &mdash; not a letter from the
+            FCC, not just showing a copy of the old license. Separately, anyone who once held an
+            FCC-issued <strong>General, Advanced, or Amateur Extra</strong> class license that wasn't
+            revoked (even if it's now long expired) can receive <strong>partial credit</strong> for the
+            elements that license represented (&sect;97.501, &sect;97.505(a)) &mdash; a specific,
+            narrower rule than "anyone who ever held any US license."
+          </p>
+          <h3>Operating from outside the US</h3>
+          <p>
+            Two remote-control scenarios, and they run on opposite rules: operating a <strong>US</strong>
+            station by remote control from <strong>outside</strong> the country still requires the
+            control operator to hold a <strong>US operator/primary station license</strong>
+            (&sect;97.7) &mdash; no special remote-station permit layered on top, just the same license
+            you'd need domestically. But remotely controlling a station physically located in
+            <strong>another country</strong> (say, a station in South America, operated by internet link
+            from the US) is governed by <strong>only that other country's regulations</strong>, not
+            the FCC's (&sect;97.507) &mdash; you're operating under their rules, in their airspace of
+            spectrum, even though you're sitting at a US keyboard.
+          </p>
+          <details class="exam-refs" data-group="G1D" data-exam="general">
+            <summary>Covers G1D01&ndash;G1D12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G1E ============ -->
+        <section class="lesson-section" id="g1e">
+          <p class="lesson-lead">G1E</p>
+          <h2>Control categories, repeater regulations, third-party rules, ITU regions &amp; digital stations</h2>
+          <p>
+            North and South America &mdash; where every reader of this lesson is almost certainly
+            licensed &mdash; fall under <strong>ITU Region 2</strong> (&sect;97.301, ITU Radio
+            Regulations). Regions matter because the <a class="term" href="../../glossary.html#itu">ITU</a>
+            allocates spectrum slightly differently region by region; the Part 97 band tables you've been
+            studying are specifically the Region 2 allocations.
+          </p>
+          <h3>Cross-band repeaters &amp; control operator class</h3>
+          <p>
+            T1E established that the control operator's license class determines the station's
+            privileges in the moment. G1E adds a repeater-specific wrinkle: a 10-meter repeater may
+            retransmit the 2-meter signal of a station with a <strong>Technician</strong> class control
+            operator only if the <strong>10-meter repeater's own control operator holds General class or
+            higher</strong> (&sect;97.205(b)) &mdash; the repeater's privileges (not the originating
+            station's) are what govern whether that 10-meter retransmission is legal, since 10 meters'
+            phone segment is off-limits to Technician licensees entirely.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            A Technician-class ham keys up a 2-meter FM repeater that's cross-linked to retransmit on 10
+            meters. Is that legal? It depends entirely on the 10-meter repeater's own control operator:
+            legal if that control operator holds General class or higher, not legal if they're also only
+            Technician class &mdash; because the Technician originating station has no 10-meter phone
+            privileges of their own to fall back on, and it's the repeater's control operator's class
+            that has to cover the gap.
+          </div>
+          <h3>Third-party communications, extended</h3>
+          <p>
+            T1F defined third-party communications and the foreign-country agreement requirement. G1E
+            fills in the edges: a third party is disqualified from participating specifically when their
+            own amateur license has been <strong>revoked and not reinstated</strong> (&sect;97.115(b)(2))
+            &mdash; not for being a non-US citizen, and not for speaking a language other than English;
+            neither of those disqualifies anyone. When a Third-Party Agreement does exist with a foreign
+            country, the message itself is still restricted to matters relating to
+            <strong>amateur radio, remarks of a personal character, or emergency/disaster relief</strong>
+            (&sect;97.115(a)(2), &sect;97.117) &mdash; the same "incidental to the purposes of the Amateur
+            Radio Service" boundary from T1C, just spelled out for the third-party case specifically. And
+            third-party messages may be sent via <strong>remote control</strong> under exactly the same
+            circumstances they'd otherwise be permitted at all (&sect;97.115) &mdash; remote control
+            doesn't add or remove any third-party restriction on its own.
+          </p>
+          <h3>Automatically controlled digital stations</h3>
+          <p>
+            Automatically controlled digital stations sending RTTY or data emissions may communicate with
+            other automatically controlled digital stations <strong>on the 6-meter band or any shorter
+            wavelength (higher frequency) band, plus limited segments of some HF bands</strong>
+            (&sect;97.221, &sect;97.305) &mdash; not "any band segment where digital operation is
+            permitted" broadly; the automatic-to-automatic privilege is narrower than general digital
+            privileges. Reaching a digital station operating under automatic control from
+            <em>outside</em> those specific automatic-control segments requires the
+            <strong>initiating station to be under local or remote control</strong> &mdash; i.e., a human
+            control operator actually present or connected, not another fully automatic station making
+            the call (&sect;97.221).
+          </p>
+          <p class="text-dim">
+            One narrow but absolute rule: amateur stations may <strong>not</strong> communicate with
+            unlicensed Wi-Fi stations anywhere in the 2.4&nbsp;GHz band &mdash;
+            <strong>no part</strong> of that band is open for that kind of cross-service contact
+            (&sect;97.111), regardless of channel.
+          </p>
+          <p class="text-dim">
+            Finally, a catch-all worth internalizing: interference-avoidance obligations stack, they
+            don't pick one. A licensed operator must take specific steps to avoid harmful interference
+            <strong>whenever any of several conditions apply at once</strong> &mdash; operating within a
+            mile of an FCC monitoring station, using a band where the amateur service is secondary, or
+            transmitting spread spectrum emissions all separately trigger that duty (&sect;97.13(b),
+            &sect;97.303, &sect;97.311(b)).
+          </p>
+          <details class="exam-refs" data-group="G1E" data-exam="general">
+            <summary>Covers G1E01&ndash;G1E12 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <div class="panel panel-corners" style="margin-top:1rem; margin-bottom:3rem;">
+          <div class="panel-header"><span>Practice G1</span></div>
+          <div class="cluster">
+            <a class="btn btn-primary" href="../../flashcards.html?exam=general&subelement=G1">G1 flashcards</a>
+            <a class="btn" href="../../quiz.html?exam=general&subelement=G1">G1 practice quiz</a>
+            <a class="btn" href="../../general.html">&larr; back to General subelements</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer" class="site-footer" data-root="../../"></footer>
+  </div>
+
+  <script src="../../js/nav.js"></script>
+  <script src="../../js/data.js"></script>
+  <script src="../../js/storage.js"></script>
+  <script src="../../js/lesson.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => HamLesson.wireDetails(document));
+  </script>
+</body>
+</html>

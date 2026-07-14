@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>G7 &middot; Practical Circuits &mdash; HAM OPS</title>
+  <meta name="description" content="General subelement G7: power supply topology and schematic symbols, digital circuit basics plus amplifier classes and oscillators, and transceiver design &mdash; balanced modulators, filters, DDS, and software-defined radio." />
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header id="site-header" class="site-header" data-root="../../"></header>
+
+    <main id="main">
+      <div class="container">
+        <p class="hero-kicker" style="margin-top:2rem;">// general &middot; subelement G7</p>
+        <h1>Practical Circuits</h1>
+        <p class="text-dim" style="max-width:68ch;">
+          T7 asked "what block does this job." G7 opens the blocks up: how a power supply actually
+          turns wall AC into clean DC, and how to read the schematic symbols that show it (G7A);
+          basic digital logic plus the amplifier classes and oscillators that do the RF heavy
+          lifting (G7B); and how a modern transceiver is actually built &mdash; balanced modulators,
+          filters, and the software-defined techniques increasingly replacing dedicated hardware
+          stages (G7C).
+        </p>
+        <nav class="lesson-jump" aria-label="Jump to group">
+          <a href="#g7a">G7A Power supplies &amp; symbols</a>
+          <a href="#g7b">G7B Digital circuits, amps &amp; oscillators</a>
+          <a href="#g7c">G7C Transceiver design &amp; filters</a>
+        </nav>
+
+        <!-- ============ G7A ============ -->
+        <section class="lesson-section" id="g7a">
+          <p class="lesson-lead">G7A</p>
+          <h2>Power supplies &amp; schematic symbols</h2>
+          <p>
+            T6D already named a <a class="term" href="../../glossary.html#rectifier">rectifier</a>
+            (converts AC to pulsating DC) and a
+            <a class="term" href="../../glossary.html#voltage-regulator">voltage regulator</a>
+            (holds output steady). G7A strings those into a full power-supply block diagram: AC
+            input &rarr; transformer (steps the AC voltage up or down) &rarr; rectifier (converts it
+            to pulsating DC) &rarr; filter (smooths the pulses into steady DC) &rarr; regulator
+            (holds that DC output rock-steady despite load changes) &rarr; DC output. The filter
+            stage is built from <a class="term" href="../../glossary.html#capacitor">capacitors</a>
+            and <a class="term" href="../../glossary.html#inductor">inductors</a> working together
+            &mdash; the capacitor stores charge to fill in the gaps between pulses, the inductor
+            resists sudden current changes, and between them the ripple gets smoothed way down.
+          </p>
+          <p>
+            One more component sits quietly across the output: a
+            <dfn id="def-bleeder-resistor">bleeder resistor</dfn>. Its job is a safety one &mdash;
+            it discharges the filter capacitors once power is removed, so a supply that's been
+            unplugged for a minute doesn't still have a capacitor sitting there charged to a
+            dangerous voltage waiting for someone's fingers.
+          </p>
+          <h3>Rectifier types</h3>
+          <p>
+            Not every rectifier looks the same. A <strong>half-wave rectifier</strong> uses just a
+            single diode, and by definition only lets one half of the AC cycle through &mdash;
+            it converts <strong>180 degrees</strong> of each AC cycle to DC and simply throws the
+            other half away. A <strong>full-wave rectifier</strong> uses two diodes fed from a
+            <strong>center-tapped transformer</strong>, one diode handling each half of the cycle,
+            so it converts the <strong>full 360 degrees</strong> of the AC cycle to DC &mdash; nothing
+            gets thrown away. (A full-wave <em>bridge</em> rectifier reaches the same 360-degree
+            result a different way, using four diodes and no center tap at all.)
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            Feed a full-wave rectifier straight into a resistive load with no filtering yet, and
+            look at the raw output on a scope: it's a series of DC pulses at <strong>twice</strong>
+            the frequency of the AC input &mdash; ordinary household 60&nbsp;Hz mains in the US
+            produces pulses at 120&nbsp;Hz, one pulse for every half-cycle, positive and negative
+            alike. A half-wave rectifier fed the same 60&nbsp;Hz input only keeps one polarity, so
+            its unfiltered output pulses at the same 60&nbsp;Hz the AC input runs at &mdash; half as
+            often, with a gap where the discarded half-cycle used to be. That's also a big part of
+            why full-wave designs are so much more common: the filter stage downstream has less
+            work to do smoothing a signal that already has twice as many pulses per second to
+            average across.
+          </div>
+          <p>
+            A newer alternative to this whole linear approach is the
+            <dfn id="def-switchmode-power-supply">switchmode power supply</dfn>: instead of running
+            a big, heavy 60&nbsp;Hz transformer, it switches the incoming power on and off at a much
+            higher frequency &mdash; tens or hundreds of kilohertz &mdash; before transforming and
+            rectifying it. The main characteristic that sets it apart from a linear supply is exactly
+            that high-frequency operation, since it's <strong>what allows the use of smaller
+            components</strong>: a transformer that only has to handle a 100&nbsp;kHz signal can be a
+            fraction of the size and weight of one built for 60&nbsp;Hz. That's why switchmode
+            supplies dominate anywhere size and weight matter &mdash; laptop chargers, mobile radio
+            power supplies, and so on.
+          </p>
+          <div class="panel panel-corners" style="margin:1rem 0;">
+            <div class="panel-header"><span>Figure G7-1</span></div>
+            <img src="../../data/source/diagrams/G7-1.png" alt="Figure G7-1: a two-stage RF amplifier. A field effect transistor (symbol 1) forms the first stage, coupled through capacitor 10 to an NPN junction transistor (symbol 2) forming the second stage, whose output feeds a solid core transformer (symbol 6) marked OUT. A Zener diode (symbol 5) and a tapped inductor (symbol 7) also appear, along with supporting bias, bypass, and coupling components (symbols 3, 4, 8, 9, 11) distributing +DC power through the circuit." style="max-width:100%; border-radius:4px;">
+            <p class="text-dim" style="margin:0.75rem 0 0; font-size:0.9rem;">
+              A two-stage RF amplifier: an FET first stage feeds an NPN transistor second stage,
+              coupled by a capacitor, with the output taken through a transformer.
+            </p>
+          </div>
+          <p>
+            This is a real amateur exam schematic, and five of its symbols are asked about directly:
+          </p>
+          <ul>
+            <li>
+              <strong>Symbol 1</strong> is a
+              <a class="term" href="../../glossary.html#fet">field effect transistor (FET)</a>
+              &mdash; the circle with a gate lead approaching a bar, and drain/source leads coming
+              off it. It's the amplifying device of the circuit's first stage.
+            </li>
+            <li>
+              <strong>Symbol 2</strong> is an
+              <a class="term" href="../../glossary.html#transistor">NPN junction transistor</a>
+              &mdash; the circled symbol with an arrow on the emitter lead pointing <em>away</em>
+              from the base, forming the second amplifying stage.
+            </li>
+            <li>
+              <strong>Symbol 5</strong> is a <a class="term" href="../../glossary.html#zener-diode">Zener
+              diode</a> &mdash; a diode symbol with the bent "Z"-shaped bar, used here to hold a bias
+              voltage steady rather than to rectify anything.
+            </li>
+            <li>
+              <strong>Symbol 6</strong> is a <strong>solid core transformer</strong> &mdash; the
+              paired-coil symbol at the far right, labeled OUT, that couples the amplified RF out of
+              the circuit.
+            </li>
+            <li>
+              <strong>Symbol 7</strong> is a <strong>tapped inductor</strong> &mdash; a coil with an
+              extra lead branching off partway along its winding, at the bottom left of the circuit.
+            </li>
+          </ul>
+          <p class="text-dim">
+            The rest of the figure is ordinary supporting circuitry, not individually tested: symbols
+            3 and 4 are diodes in the bias network, 8 and 9 are bypass capacitors (and a bypass
+            resistor) that keep RF off the DC supply lines, 10 is the coupling capacitor passing
+            signal from the FET stage into the transistor stage, and 11 is a potentiometer used to
+            adjust the FET's gate bias.
+          </p>
+          <details class="exam-refs" data-group="G7A" data-exam="general">
+            <summary>Covers G7A01&ndash;G7A13 (13 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G7B ============ -->
+        <section class="lesson-section" id="g7b">
+          <p class="lesson-lead">G7B</p>
+          <h2>Digital circuits, amplifiers &amp; oscillators</h2>
+          <p>
+            Two topics share this group, and they aren't as related as they might look at first:
+            the basic building blocks of digital logic, and the analog amplifier/oscillator stages
+            that actually generate and boost RF.
+          </p>
+          <h3>Digital circuits</h3>
+          <p>
+            A <dfn id="def-logic-gate">logic gate</dfn> is a circuit whose output depends only on the
+            combination of high/low ("1"/"0") states at its inputs. The one the pool asks about
+            directly is the two-input <strong>AND gate</strong>: its output reads high only when
+            <strong>both</strong> inputs are high &mdash; any other combination (either input low, or
+            both low) produces a low output. A <dfn id="def-shift-register">shift register</dfn> is a
+            different kind of digital building block: a clocked array of circuits that passes data
+            along in steps, one position per clock pulse &mdash; the digital equivalent of a bucket
+            brigade, moving one bit's worth of data down the line each tick.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            How many distinct states can a 3-bit binary counter represent? Each bit is independently
+            either 0 or 1, so the count is 2&times;2&times;2&nbsp;=&nbsp;<strong>8</strong> states
+            total (binary 000 through 111). The same doubling-per-bit logic is why a 4-bit counter
+            has 16 states and an 8-bit counter has 256 &mdash; each added bit doubles how much the
+            counter can represent.
+          </div>
+          <h3>Amplifier classes</h3>
+          <p>
+            Amplifiers get sorted into classes by how much of the input cycle the amplifying device
+            actually conducts current for &mdash; and that one design choice trades off linearity
+            against efficiency:
+          </p>
+          <div class="grid grid-2" style="margin:1rem 0;">
+            <div class="panel">
+              <div class="panel-header"><span>Class A</span></div>
+              <p class="text-dim" style="margin:0;">
+                The device conducts <strong>100% of the time</strong> &mdash; the full input cycle,
+                every cycle. Most linear (cleanest reproduction of the input waveform), least
+                efficient of the common classes.
+              </p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span>Class C</span></div>
+              <p class="text-dim" style="margin:0;">
+                The device conducts for well under half the cycle. Among Class A, B, AB, and C, it's
+                the <strong>highest-efficiency</strong> design &mdash; but that efficiency comes at
+                the cost of badly distorting the input waveform.
+              </p>
+            </div>
+          </div>
+          <p>
+            That distortion is exactly why Class C matters for mode selection: it's only appropriate
+            for amplifying a modulated signal when the mode being amplified is
+            <strong>FM</strong>, since FM's information rides in the signal's frequency, not its
+            amplitude, so distorting the amplitude envelope doesn't hurt anything. SSB and AM both
+            carry their information as amplitude variations, so amplifying either one through a
+            Class C stage would mangle the very thing being transmitted &mdash; they need a
+            <dfn id="def-linear-amplifier">linear amplifier</dfn>: one whose output preserves the
+            shape of the input waveform, at whatever cost to efficiency that preservation requires.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            How is an RF power amplifier's efficiency actually measured? Divide the RF power it puts
+            out by the DC power it takes in from the supply: a stage drawing 100&nbsp;W of DC input
+            and delivering 65&nbsp;W of RF output is running at 65% efficiency &mdash; the remaining
+            35&nbsp;W didn't vanish, it became heat in the amplifying device. That's the concrete
+            number Class C's design pushes higher (sometimes 70&ndash;80%+) at the price of linearity,
+            while Class A's cleaner output typically tops out well under 50%.
+          </div>
+          <p>
+            Two more amplifier facts round the group out. Neutralizing an amplifier means adding a
+            small feedback path specifically designed to cancel unwanted internal feedback within the
+            stage &mdash; its purpose is to <dfn id="def-neutralization">eliminate self-oscillation</dfn>,
+            keeping an amplifier from turning itself into an accidental oscillator. And a sine wave
+            oscillator, at its core, is nothing more than a
+            <a class="term" href="../../glossary.html#oscillator">filter and an amplifier wired in a
+            feedback loop</a> &mdash; the filter selects one frequency to resonate at, and the
+            amplifier keeps replenishing the energy that resonance loses each cycle, keeping the
+            oscillation going indefinitely instead of dying out. Where an
+            <a class="term" href="../../glossary.html#resonant-circuit">LC oscillator</a> lands on the
+            dial is set entirely by that filter's tank circuit: the specific inductance and
+            capacitance values determine the oscillator's frequency.
+          </p>
+          <details class="exam-refs" data-group="G7B" data-exam="general">
+            <summary>Covers G7B01&ndash;G7B11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G7C ============ -->
+        <section class="lesson-section" id="g7c">
+          <p class="lesson-lead">G7C</p>
+          <h2>Transceiver design, filters &amp; DSP</h2>
+          <p>
+            G8A explains SSB conceptually as "AM with the carrier and one sideband removed." G7C is
+            the circuit that actually does that removal:
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example: building SSB</span>
+            A <dfn id="def-balanced-modulator">balanced modulator</dfn> combines an RF carrier with
+            audio and produces <strong>double-sideband RF</strong> &mdash; both sidebands present, but
+            the carrier itself cancelled out inside the circuit. That's not SSB yet; it's DSB. The
+            next stage is a <strong>filter</strong>, and its job is to select just one of those two
+            sidebands and discard the other &mdash; <em>that's</em> the step that turns double-sideband
+            output into actual single sideband. Balanced modulator, then filter: two stages, two
+            distinct jobs, and SSB only exists once both have run.
+          </div>
+          <p>
+            Receiving SSB runs a mirror-image process. A
+            <dfn id="def-product-detector">product detector</dfn> is the stage that does it: it's
+            used in an SSB receiver specifically to extract the modulated audio back out of the
+            incoming RF, the demodulation counterpart to the transmitter's balanced modulator.
+          </p>
+          <p>
+            One more transmitter-output detail: an impedance-matching transformer at a transmitter's
+            output exists to present the desired
+            <a class="term" href="../../glossary.html#characteristic-impedance">impedance</a> to both
+            the transmitter and the feed line &mdash; getting that match right is what lets the
+            transmitter deliver its full rated power into the line instead of fighting a mismatch.
+          </p>
+          <h3>Synthesis &amp; software-defined radio</h3>
+          <p>
+            A <dfn id="def-dds">direct digital synthesizer (DDS)</dfn> generates a variable output
+            frequency digitally, but with the frequency stability of a crystal oscillator &mdash; it's
+            how a modern radio's VFO can tune smoothly and continuously across a band while still
+            holding rock-solid on whatever frequency you land on, without needing a separate crystal
+            for every possible frequency.
+          </p>
+          <p>
+            A <a class="term" href="../../glossary.html#sdr">software-defined radio (SDR)</a> pushes
+            that same idea further: it does functions in software &mdash; filtering, detection, and
+            modulation among them &mdash; that older radios did in dedicated hardware stages. The
+            technique that makes this possible is <strong>I/Q modulation</strong>: SDR equipment
+            works with a pair of signals, "I" and "Q," held at a fixed <strong>90-degree</strong>
+            phase difference from each other. Having both the amplitude and phase information that
+            pair encodes is what gives an SDR its real advantage &mdash; <strong>any</strong> type of
+            modulation can be created (or decoded) purely through processing that I/Q pair, without
+            needing different dedicated hardware for AM versus FM versus SSB versus a digital mode.
+          </p>
+          <h3>Filter vocabulary</h3>
+          <p>
+            G7C also tests a specific, precise vocabulary for describing
+            <a class="term" href="../../glossary.html#filter">filters</a> &mdash; the same low-pass,
+            high-pass, band-pass, and notch (band-reject) types already at work throughout a
+            transceiver, from T7B's interference fixes to the sideband filter above:
+          </p>
+          <ul>
+            <li>
+              <strong>Insertion loss</strong> is a filter's attenuation <em>inside</em> its passband
+              &mdash; the small amount of signal a filter costs you even at frequencies it's supposed
+              to pass through cleanly.
+            </li>
+            <li>
+              <strong>Cutoff frequency</strong>, for a low-pass filter, is the frequency above which
+              output power drops below half the input power &mdash; the standard "half-power" (3&nbsp;dB)
+              point marking where the filter's rolloff really starts to bite.
+            </li>
+            <li>
+              <strong>Ultimate rejection</strong> is a filter's maximum ability to reject signals
+              <em>outside</em> its passband &mdash; how good the filter is at its actual job, at the
+              frequencies it's supposed to be blocking.
+            </li>
+            <li>
+              A band-pass filter's bandwidth is measured between its <strong>upper and lower
+              half-power points</strong> &mdash; the same half-power idea as cutoff frequency, just
+              applied at both edges of a passband that sits in the middle of the spectrum instead of
+              at one end.
+            </li>
+          </ul>
+          <p>
+            One advantage of doing filtering with <a class="term" href="../../glossary.html#dsp">digital
+            signal processing (DSP)</a> rather than analog components: a DSP filter can create a
+            far wider range of filter bandwidths and shapes than a fixed analog circuit built from a
+            specific set of physical parts &mdash; changing a DSP filter's response is a matter of
+            changing numbers in software, not swapping capacitors and inductors on a board.
+          </p>
+          <p>
+            Finally, receiver
+            <a class="term" href="../../glossary.html#sensitivity">sensitivity</a> &mdash; how weak a
+            signal a receiver can still pull out of the noise &mdash; isn't set by any single stage.
+            Input amplifier gain, demodulator stage bandwidth, and input amplifier
+            <dfn id="def-noise-figure">noise figure</dfn> (a measure of how much extra noise a stage
+            itself adds on top of the signal passing through it) all affect it together, which is
+            exactly why chasing sensitivity means looking at the whole receive chain, not just one
+            component.
+          </p>
+          <details class="exam-refs" data-group="G7C" data-exam="general">
+            <summary>Covers G7C01&ndash;G7C14 (14 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <div class="panel panel-corners" style="margin-top:1rem; margin-bottom:3rem;">
+          <div class="panel-header"><span>Practice G7</span></div>
+          <div class="cluster">
+            <a class="btn btn-primary" href="../../flashcards.html?exam=general&subelement=G7">G7 flashcards</a>
+            <a class="btn" href="../../quiz.html?exam=general&subelement=G7">G7 practice quiz</a>
+            <a class="btn" href="../../general.html">&larr; back to General subelements</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer" class="site-footer" data-root="../../"></footer>
+  </div>
+
+  <script src="../../js/nav.js"></script>
+  <script src="../../js/data.js"></script>
+  <script src="../../js/storage.js"></script>
+  <script src="../../js/lesson.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => HamLesson.wireDetails(document));
+  </script>
+</body>
+</html>

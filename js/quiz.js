@@ -42,7 +42,7 @@ const HamQuiz = (function () {
 
       mount.innerHTML = `
         <div class="meter-row" style="margin-bottom:1rem;">
-          <div class="meter"><span style="width:${pct}%"></span></div>
+          <div class="meter" role="progressbar" aria-label="Quiz progress" aria-valuemin="1" aria-valuemax="${deck.length}" aria-valuenow="${i + 1}" aria-valuetext="Question ${i + 1} of ${deck.length}"><span style="width:${pct}%"></span></div>
           <span class="readout text-faint">${i + 1} / ${deck.length}</span>
         </div>
         <div class="panel panel-corners">
@@ -78,6 +78,12 @@ const HamQuiz = (function () {
       });
       const nextBtn = mount.querySelector('[data-action="next"]');
       if (nextBtn) nextBtn.addEventListener("click", () => { i++; render(); });
+
+      // Re-rendering replaces the whole subtree, which would otherwise drop
+      // keyboard focus back to the top of the page after every answer/Next —
+      // restore it to whichever control is the logical next stop.
+      const focusTarget = chosen ? nextBtn : mount.querySelector("[data-choice]");
+      if (focusTarget) focusTarget.focus();
     }
 
     function choiceStyle(letter, correct, chosen) {
@@ -97,7 +103,7 @@ const HamQuiz = (function () {
       mount.innerHTML = `
         <div class="panel panel-corners stack" style="text-align:center;">
           <div class="hero-kicker" style="margin:0;">// session complete</div>
-          <h2 class="readout" style="margin:0; font-size:2rem;">${correctCount} / ${deck.length}</h2>
+          <h2 class="readout" tabindex="-1" style="margin:0; font-size:2rem;">${correctCount} / ${deck.length}</h2>
           <p class="text-dim">${Math.round(scorePct)}% correct${pass !== null ? ` &mdash; ${pass ? "PASS" : "below the 74% (26/35) passing threshold"}` : ""}</p>
           ${pass !== null ? `<span class="badge ${pass ? "badge-success" : "badge-alert"}" style="justify-self:center;">${pass ? "PASS" : "FAIL"}</span>` : ""}
           <div class="section-label">Review</div>
@@ -119,6 +125,11 @@ const HamQuiz = (function () {
       mount.querySelector('[data-action="picker"]').addEventListener("click", () => {
         mount.dispatchEvent(new CustomEvent("ham:back-to-picker", { bubbles: true }));
       });
+
+      // Same focus-restoration concern as render(): move focus to the results
+      // heading so keyboard/screen-reader users land somewhere meaningful
+      // instead of the page silently losing focus.
+      mount.querySelector("h2").focus();
     }
 
     render();

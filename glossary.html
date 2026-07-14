@@ -17,8 +17,8 @@
         <p class="hero-kicker" style="margin-top:2rem;">// reference</p>
         <h1>Glossary</h1>
         <p class="text-dim" style="max-width:60ch;">
-          Every term here is linked from the lesson that first introduces it. This list grows as
-          more subelements are built &mdash; currently covers Technician T1.
+          Every term here is linked from the lesson that first introduces it. Covers every
+          Technician (T1&ndash;T0) and General (G1&ndash;G0) subelement.
         </p>
         <div class="field" style="max-width:24rem;">
           <label for="glossary-search">Filter</label>
@@ -27,100 +27,930 @@
 
         <dl id="glossary-list" class="stack" style="margin-top:1.5rem;">
 
-          <div class="glossary-entry" data-term="automatic control">
+<div class="glossary-entry" data-term="a-index">
+  <dt id="a-index" class="card-title">A-index</dt>
+  <dd class="text-dim">A single daily number summarizing the long-term stability of Earth's geomagnetic field, derived by averaging a day's worth of K-index readings. Higher means a more disturbed, less settled geomagnetic field over that day. <span class="badge badge-muted">G3A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="admittance">
+  <dt id="admittance" class="card-title">Admittance</dt>
+  <dd class="text-dim">The inverse of impedance (Y = 1 &divide; Z), measured in siemens &mdash; a measure of how easily a circuit admits AC current, rather than how strongly it opposes it. <span class="badge badge-muted">G5A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="afsk audio frequency-shift keying">
+  <dt id="afsk" class="card-title">AFSK (Audio Frequency-Shift Keying)</dt>
+  <dd class="text-dim">A way of producing an FSK-style digital signal (like RTTY) by feeding audio tones into an ordinary SSB transmitter's microphone input, rather than shifting the transmitter's RF oscillator directly. Because the signal is really an audio tone riding on an SSB carrier, which sideband you select (USB or LSB) determines where those tones end up on the air &mdash; which is why AFSK RTTY conventionally uses LSB while other AFSK digital modes (FT8, PSK31, etc.) conventionally use USB. <span class="badge badge-muted">G2E</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="alc automatic level control">
+  <dt id="alc" class="card-title">ALC (Automatic Level Control)</dt>
+  <dd class="text-dim">A feedback circuit in a transmitter that automatically reduces gain when input audio is about to overdrive the final amplifier, keeping the output signal clean. On an SSB transceiver, the control you adjust to keep ALC in its proper range is transmit audio (microphone) gain &mdash; not RF power or antenna tuning. It must be switched off when transmitting AFSK data signals (RTTY, PSK, and similar), because the ALC action itself distorts those modes' constant-amplitude signal. <span class="badge badge-muted">G2A</span> <span class="badge badge-muted">G4A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="alternating current ac direct current dc">
+  <dt id="alternating-current" class="card-title">Alternating current (AC)</dt>
+  <dd class="text-dim">Current that reverses direction on a regular cycle, continuously switching between flowing positive and flowing negative &mdash; household mains power and every RF signal are AC. The number of full cycles per second is its frequency, measured in hertz. Contrast with direct current (DC), which flows in one direction only, as from a battery. <span class="badge badge-muted">T5A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="antenna analyzer">
+  <dt id="antenna-analyzer" class="card-title">Antenna analyzer</dt>
+  <dd class="text-dim">A test instrument used to determine whether an antenna is resonant at a desired operating frequency, without needing a full transmitter and SWR meter setup. <span class="badge badge-muted">T7C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="antenna gain isotropic">
+  <dt id="antenna-gain" class="card-title">Antenna gain</dt>
+  <dd class="text-dim">The increase in signal strength an antenna produces in one particular direction, compared to a reference antenna (often a theoretical isotropic radiator that radiates equally in all directions). Gain doesn't create extra power &mdash; it redistributes the same transmitter power to favor one direction over others, the way a flashlight reflector concentrates a bulb's existing light rather than adding to it. <span class="badge badge-muted">T9A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="antenna tuner antenna coupler">
+  <dt id="antenna-tuner" class="card-title">Antenna tuner (antenna coupler)</dt>
+  <dd class="text-dim">A device, using adjustable inductors and capacitors, whose major function is matching the antenna system's impedance to the transceiver's output impedance so the transmitter operates efficiently. It does not change the antenna's actual radiating behavior or reduce loss already occurring in the feed line before it. <span class="badge badge-muted">T9B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="aprs automatic packet reporting system">
+  <dt id="aprs" class="card-title">APRS</dt>
+  <dd class="text-dim">Automatic Packet Reporting System &mdash; a packet-radio-based system for automatically transmitting real-time information such as GPS position, short text messages, and weather data. Its signature application is real-time tactical digital communications paired with a map showing the locations of reporting stations. <span class="badge badge-muted">T8D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="ares amateur radio emergency service">
+            <dt id="ares" class="card-title">ARES</dt>
+            <dd class="text-dim">Amateur Radio Emergency Service &mdash; a group of licensed amateurs who have voluntarily registered their qualifications and equipment for communications duty in the public service. Unlike RACES, ARES doesn't require civil-defense agency certification. <span class="badge badge-muted">T2C</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="arq automatic repeat request">
+  <dt id="arq" class="card-title">ARQ</dt>
+  <dd class="text-dim">Automatic Repeat reQuest &mdash; an error-correction method in which the receiving station detects a transmission error (typically via a checksum) and automatically requests that the sender retransmit just that portion, without the operator needing to notice or intervene. <span class="badge badge-muted">T8D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="auroral backscatter">
+            <dt id="auroral-backscatter" class="card-title">Auroral backscatter</dt>
+            <dd class="text-dim">A VHF/UHF propagation mode where signals reflect off ionization in the aurora rather than travelling a direct path. The turbulent, shifting curtain of ionization gives received signals a characteristic distorted, raspy sound. <span class="badge badge-muted">T3C</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="automatic control">
             <dt id="automatic-control" class="card-title">Automatic control</dt>
             <dd class="text-dim">Control of a station with no control operator actively present at the control point &mdash; a repeater is the standard example. <span class="badge badge-muted">T1E</span></dd>
           </div>
 
-          <div class="glossary-entry" data-term="auxiliary station">
+<div class="glossary-entry" data-term="auxiliary station">
             <dt id="auxiliary-station-g" class="card-title">Auxiliary station</dt>
             <dd class="text-dim">A station used for a specific link auxiliary to a primary function &mdash; e.g. one-way linking a remote repeater receiver to the main repeater transmitter. <span class="badge badge-muted">T1D</span></dd>
           </div>
 
-          <div class="glossary-entry" data-term="beacon">
+<div class="glossary-entry" data-term="beacon">
             <dt id="beacon-g" class="card-title">Beacon</dt>
             <dd class="text-dim">An automatically controlled station that transmits one-way, typically to let others observe propagation conditions. Confined to specific sub-bands on HF (e.g. 28.200&ndash;28.300&nbsp;MHz on 10 meters). <span class="badge badge-muted">T1A</span></dd>
           </div>
 
-          <div class="glossary-entry" data-term="control operator">
+<div class="glossary-entry" data-term="beam antenna yagi directional antenna">
+  <dt id="beam-antenna" class="card-title">Beam antenna</dt>
+  <dd class="text-dim">A directional antenna &mdash; one using multiple elements to concentrate radiated signal more strongly in one direction, at the cost of radiating less in others. The Yagi is the classic amateur example, and offers the greatest gain among common amateur antenna types. <span class="badge badge-muted">T9A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="bonding rf bonding grounding">
+            <dt id="bonding" class="card-title">Bonding (RF)</dt>
+            <dd class="text-dim">Connecting the metal parts of a station (chassis, tower, ground rods) together with low-impedance conductors so they sit at the same RF potential, reducing stray RF and shock/fire hazards. Flat copper strap is preferred over round wire because its greater surface area gives lower impedance at RF. <span class="badge badge-muted">T4A</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="capacitance capacitor farad">
+  <dt id="capacitance" class="card-title">Capacitance</dt>
+  <dd class="text-dim">The ability to store energy in an electric field, measured in farads (commonly microfarads or picofarads in practice). A capacitor &mdash; typically two conductive plates separated by an insulator &mdash; is the component built specifically to have capacitance. <span class="badge badge-muted">T5C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="capacitor">
+  <dt id="capacitor" class="card-title">Capacitor</dt>
+  <dd class="text-dim">A component that stores energy in an electric field. Physically, two conductive surfaces (plates) separated by an insulator (the dielectric) — no direct electrical path between the plates. <span class="badge badge-muted">T6A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="characteristic impedance">
+  <dt id="characteristic-impedance" class="card-title">Characteristic impedance</dt>
+  <dd class="text-dim">A transmission line's intrinsic impedance, set by its physical construction &mdash; conductor spacing and radius for an open parallel-conductor line, or conductor and dielectric geometry for coax &mdash; rather than by whatever load is connected at its far end. Matching a line's characteristic impedance to the antenna's feed point impedance is what prevents standing waves. Amateur coax is almost always 50 ohms; parallel-conductor &quot;window line&quot; is commonly around 450 ohms. <span class="badge badge-muted">G9A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="charge controller solar">
+  <dt id="charge-controller" class="card-title">Charge controller</dt>
+  <dd class="text-dim">A regulator placed between a charging source (typically a solar panel) and a rechargeable battery that manages charging current and voltage to match what the battery chemistry can safely accept. Required when charging a lithium iron phosphate (LiFePO4) battery from a solar panel, since lithium chemistries tolerate overcharging far worse than lead-acid. <span class="badge badge-muted">G4E</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="circuit breaker">
+  <dt id="circuit-breaker" class="card-title">Circuit breaker</dt>
+  <dd class="text-dim">A resettable, mechanical alternative to a fuse — a switch that trips open on overcurrent instead of a wire element that melts and must be replaced. Like a fuse, it belongs in series with the hot conductor only. <span class="badge badge-muted">T0A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="coaxial cable coax rg-58 rg-213 hardline">
+  <dt id="coaxial-cable" class="card-title">Coaxial cable</dt>
+  <dd class="text-dim">The most common amateur feed line: a center conductor, insulation, a braided or foil shield, and an outer jacket, almost always 50 ohms characteristic impedance in amateur use. It's popular mainly because it's easy to route and needs few special installation considerations. Loss increases with frequency, and varies by cable type &mdash; e.g. RG-213 has less loss than RG-58 at a given frequency, and air-insulated hardline has the least loss of the common types. <span class="badge badge-muted">T9B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="code plug dmr">
+            <dt id="code-plug" class="card-title">Code plug</dt>
+            <dd class="text-dim">The configuration file loaded onto a DMR (or similar digital) radio that defines which repeaters, talkgroups, and channels it can access. Distributing an updated code plug is how a digital repeater group rolls out new channels to all its members at once. <span class="badge badge-muted">T4B</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="common-mode current">
+  <dt id="common-mode-current" class="card-title">Common-mode current</dt>
+  <dd class="text-dim">Unwanted RF current flowing in the same direction on both conductors of a cable, as opposed to the intended signal current, which flows in opposite directions on the two conductors. An audio, USB, or speaker cable carrying common-mode current acts as an unintentional antenna, picking up or radiating RFI; a ferrite choke placed on the cable adds impedance to this current specifically without disturbing the wanted signal. <span class="badge badge-muted">G4C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="conductor insulator free electrons">
+  <dt id="conductor-insulator" class="card-title">Conductor / insulator</dt>
+  <dd class="text-dim">A conductor (e.g. most metals) has many free electrons loosely enough bound to drift from atom to atom under a voltage push, so current flows through it easily. An insulator (e.g. glass) has very few free electrons, so it blocks current flow instead. <span class="badge badge-muted">T5A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="contesting">
+  <dt id="contesting" class="card-title">Contesting</dt>
+  <dd class="text-dim">An operating activity built around contacting as many stations as possible during a specified period. Good practice is to send only the minimum information needed for identification and the contest exchange, since padding a transmission costs everyone time that could go to another contact. <span class="badge badge-muted">T8C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="control operator">
             <dt id="control-operator" class="card-title">Control operator</dt>
             <dd class="text-dim">The amateur designated by a station licensee to be responsible for that station's transmissions and compliance with FCC rules. The control operator's license class &mdash; not the station licensee's &mdash; determines what the station may do at that moment. <span class="badge badge-muted">T1E</span></dd>
           </div>
 
-          <div class="glossary-entry" data-term="control point">
+<div class="glossary-entry" data-term="control point">
             <dt id="control-point" class="card-title">Control point</dt>
             <dd class="text-dim">The location at which the control operator function is actually performed &mdash; not necessarily where the transmitter or antenna is. <span class="badge badge-muted">T1E</span></dd>
           </div>
 
-          <div class="glossary-entry" data-term="csce certificate of successful completion of examination">
+<div class="glossary-entry" data-term="coronal mass ejection cme">
+  <dt id="coronal-mass-ejection" class="card-title">Coronal mass ejection (CME)</dt>
+  <dd class="text-dim">A large eruption of charged particles (plasma) thrown out from the Sun's corona. Unlike a solar flare's radiation (8 minutes to reach Earth), a CME's physical particles travel much slower, taking roughly 15 hours to several days to arrive &mdash; and when they do, they're what typically triggers a geomagnetic storm. <span class="badge badge-muted">G3A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="crank-up tower">
+  <dt id="crank-up-tower" class="card-title">Crank-up tower</dt>
+  <dd class="text-dim">A tower that telescopes to full height mechanically rather than being climbed section by section. It must not be climbed unless it is fully retracted, or unless mechanical safety locking devices have been installed on the extended sections. <span class="badge badge-muted">T0B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="critical angle">
+  <dt id="critical-angle" class="card-title">Critical angle</dt>
+  <dd class="text-dim">For a radio wave at a given frequency, the highest takeoff angle (measured up from the horizon) that will still be refracted back to Earth by the ionosphere under current conditions; aim any steeper (closer to straight up) at that frequency and the signal escapes into space. NVIS deliberately works with very high takeoff angles at frequencies low enough that the critical angle for those frequencies is still close to 90&deg;. <span class="badge badge-muted">G3C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="critical frequency">
+  <dt id="critical-frequency" class="card-title">Critical frequency</dt>
+  <dd class="text-dim">For a radio wave sent straight up (or at some other specific incidence angle) into the ionosphere, the critical frequency is the highest frequency that still gets refracted back down to Earth at that angle; go any higher and the wave punches through into space instead. It's the same underlying refraction limit as the MUF, just defined for one fixed angle rather than for a specific two-point path. <span class="badge badge-muted">G3C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="csce certificate of successful completion of examination">
             <dt id="csce" class="card-title">CSCE (Certificate of Successful Completion of Examination)</dt>
             <dd class="text-dim">Proof you passed a VE exam element. It is not itself a license grant &mdash; you can't transmit until your grant appears in the FCC's license database. <span class="badge badge-muted">T1A</span></dd>
           </div>
 
-          <div class="glossary-entry" data-term="cw continuous wave morse code">
-            <dt id="cw" class="card-title">CW</dt>
-            <dd class="text-dim">Continuous Wave &mdash; international Morse code telegraphy. Legal on any frequency authorized to the control operator, regardless of other mode restrictions on that segment (&sect;97.305(a)). <span class="badge badge-muted">T1B</span></dd>
+<div class="glossary-entry" data-term="ctcss continuous tone-coded squelch system">
+            <dt id="ctcss" class="card-title">CTCSS</dt>
+            <dd class="text-dim">Continuous Tone-Coded Squelch System &mdash; a sub-audible tone transmitted along with your voice audio that a repeater (or receiver) uses to decide whether to open its squelch. It rides beneath the audio passband so it doesn't interfere with the voice, and it's inaudible on receive because the receiver filters it back out. <span class="badge badge-muted">T2B</span></dd>
           </div>
 
-          <div class="glossary-entry" data-term="fcc federal communications commission">
+<div class="glossary-entry" data-term="cw continuous wave morse code">
+            <dt id="cw" class="card-title">CW</dt>
+            <dd class="text-dim">Continuous Wave &mdash; international Morse code telegraphy. The operator keys the transmitter's carrier fully on and off in short pulses ("dits") and long pulses ("dahs") that spell out letters and numbers; nothing about the carrier varies except whether it's on or off. The name refers to the carrier itself being a steady, unbroken sine wave &mdash; unlike the damped, decaying pulses old spark-gap transmitters produced &mdash; with the message carried entirely by the on/off timing. Because it conveys information with such a narrow slice of spectrum, CW is legal on any frequency authorized to the control operator, regardless of other mode restrictions on that segment (&sect;97.305(a)). <span class="badge badge-muted">T1B</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="d-star digital voice protocol">
+            <dt id="d-star" class="card-title">D-STAR</dt>
+            <dd class="text-dim">A digital voice/data protocol for amateur radio. Because a D-STAR signal itself carries your identification digitally, the radio must have your call sign programmed into it before it will transmit &mdash; there's no separate manual identification step. <span class="badge badge-muted">T4B</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="decibel db">
+  <dt id="decibel" class="card-title">Decibel (dB)</dt>
+  <dd class="text-dim">A logarithmic unit expressing the <em>ratio</em> between two power levels, not an absolute amount of power. Three reference values cover most amateur-radio math: +3 dB is a doubling of power, &minus;3 dB is a halving, and 10 dB is a 10&times; change. Because decibels are logarithmic, combined changes add: doubling twice (4&times; power) is +3 dB + 3 dB = +6 dB. <span class="badge badge-muted">T5B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="diode anode cathode led light-emitting diode">
+  <dt id="diode" class="card-title">Diode</dt>
+  <dd class="text-dim">A semiconductor component that allows current to flow in only one direction (forward bias) while blocking it in the other (reverse bias). Its two leads are named anode and cathode; the cathode is often marked on the package with a stripe. A light-emitting diode (LED) is a diode built to emit light specifically when forward current flows through it. <span class="badge badge-muted">T6B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="directional wattmeter">
+  <dt id="directional-wattmeter" class="card-title">Directional wattmeter</dt>
+  <dd class="text-dim">An instrument used to determine SWR by separately measuring forward power and reflected power in a feed line and computing the ratio between them. <span class="badge badge-muted">T7C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="dmr digital mobile radio">
+            <dt id="dmr" class="card-title">DMR</dt>
+            <dd class="text-dim">Digital Mobile Radio &mdash; a digital voice protocol that uses talkgroups and a repeater access code called a color code, and requires a code plug to configure which repeaters and groups a radio can reach. DMR also time-multiplexes two independent voice channels onto a single 12.5 kHz repeater channel (TDMA) &mdash; two conversations can share one repeater's frequency pair at once, each using alternating time slots. <span class="badge badge-muted">T2B</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="doppler shift">
+  <dt id="doppler-shift" class="card-title">Doppler shift</dt>
+  <dd class="text-dim">An observed change in a received signal's frequency caused by relative motion between transmitter and receiver &mdash; the same effect as a passing siren changing pitch. On a satellite pass, a signal reads slightly higher than nominal as the satellite approaches, crosses nominal at closest approach, and reads slightly lower as it recedes. <span class="badge badge-muted">T8B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="dsp digital signal processing">
+  <dt id="dsp" class="card-title">DSP (Digital Signal Processing)</dt>
+  <dd class="text-dim">Processing a radio or audio signal as a stream of numbers in software, rather than with dedicated analog components. A DSP filter can produce a much wider range of bandwidths and shapes than a fixed analog circuit, since changing its response is a matter of changing numbers rather than swapping physical parts. <span class="badge badge-muted">G7C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="dtmf dual-tone multi-frequency touch tone">
+            <dt id="dtmf" class="card-title">DTMF</dt>
+            <dd class="text-dim">Dual-Tone Multi-Frequency &mdash; the same two-tone-per-keypress signaling used by telephone touch-tone dialing, generated by combining two simultaneous audio tones per digit. Used for functions like autopatch dialing or accessing certain repeater/DMR features &mdash; distinct from the single sub-audible tone CTCSS uses for squelch. <span class="badge badge-muted">T2B</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="dummy load">
+  <dt id="dummy-load" class="card-title">Dummy load</dt>
+  <dd class="text-dim">A 50-ohm non-inductive resistor mounted on a heat sink, connected in place of an antenna so test transmissions are absorbed as heat instead of radiated over the air. <span class="badge badge-muted">T7C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="duty cycle">
+  <dt id="duty-cycle" class="card-title">Duty cycle</dt>
+  <dd class="text-dim">The percentage of time a transmitter is actually transmitting during an RF-exposure averaging period. It matters for RF safety because it affects average, not peak, exposure — dropping from a 100% to a 50% duty cycle doubles the allowable power density for the same exposure limit. <span class="badge badge-muted">T0C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="dx distant station">
+  <dt id="dx" class="card-title">DX</dt>
+  <dd class="text-dim">Ham shorthand for a distant station &mdash; historically any foreign/overseas contact, though usage varies by context (e.g. "CQ DX" from a station in the contiguous 48 states conventionally means "I'm listening for any station outside the lower 48," not literally only overseas stations). <span class="badge badge-muted">G2A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="echolink">
+  <dt id="echolink" class="card-title">EchoLink</dt>
+  <dd class="text-dim">A system that links amateur stations and repeaters over the internet. Unlike systems that require a radio to initiate the connection, EchoLink can let a computer or phone app reach a repeater directly &mdash; which is why it requires registering your call sign and providing proof of license before use, since there's no radio-side license check happening automatically. <span class="badge badge-muted">T8C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="eme earth-moon-earth moonbounce">
+  <dt id="eme" class="card-title">EME (Earth-Moon-Earth)</dt>
+  <dd class="text-dim">A propagation technique that bounces a signal off the Moon and back to reach stations far beyond normal VHF/UHF range. One of the specialized weak-signal activities supported by the WSJT-X software suite. <span class="badge badge-muted">T8D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="exam element element 2 element 3 element 4 element credit">
+  <dt id="exam-element" class="card-title">Exam element</dt>
+  <dd class="text-dim">The FCC's numbering for license exam content: Element 2 is the Technician written exam, Element 3 is General, Element 4 is Amateur Extra. Passing one is recorded as "element credit," which a valid CSCE carries forward even if the full license upgrade isn't completed in one sitting. <span class="badge badge-muted">G1D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="fcc federal communications commission">
             <dt id="fcc" class="card-title">FCC</dt>
             <dd class="text-dim">Federal Communications Commission &mdash; the US government agency that regulates and enforces the rules for the Amateur Radio Service (Part 97). <span class="badge badge-muted">T1A</span></dd>
           </div>
 
-          <div class="glossary-entry" data-term="frequency coordinator">
+<div class="glossary-entry" data-term="feed line">
+  <dt id="feed-line" class="card-title">Feed line</dt>
+  <dd class="text-dim">The cable connecting a radio to its antenna, carrying RF energy between them in both directions (transmit and receive). No feed line is perfectly lossless; how much energy it loses along the way depends on the feed line type, its length, the frequency in use, and how well matched the antenna is (SWR). <span class="badge badge-muted">T9B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="ferrite ferrite core ferrite bead">
+  <dt id="ferrite" class="card-title">Ferrite</dt>
+  <dd class="text-dim">A ceramic magnetic material used as the core of RF inductors, toroids, and clip-on chokes. Its performance at a given frequency is set by its composition (or "mix") of materials &mdash; not by its physical size or the ratio of the core's dimensions. A ferrite core or bead clamped around a cable adds impedance that specifically opposes common-mode current (current flowing the same direction on both the inside and outside of a shield, instead of cancelling as it should) without disturbing the differential signal flowing normally down the cable. <span class="badge badge-muted">G6A</span> <span class="badge badge-muted">G6B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="fet field-effect transistor gate drain source">
+  <dt id="fet" class="card-title">FET (Field-Effect Transistor)</dt>
+  <dd class="text-dim">A transistor type with electrodes named gate, drain, and source, controlled by a voltage applied to its gate rather than a control current (contrast with a bipolar junction transistor's base current). <span class="badge badge-muted">T6B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="filter low-pass high-pass band-pass notch band-reject insertion loss cutoff frequency ultimate rejection">
+  <dt id="filter" class="card-title">Filter</dt>
+  <dd class="text-dim">A circuit &mdash; analog or digital &mdash; that passes some frequencies while attenuating others. Common types include low-pass, high-pass, band-pass, and band-reject (notch) filters. Insertion loss is a filter's attenuation inside its own passband; cutoff frequency is the point where output power drops below half the input power (the half-power point, marking a low-pass filter's rolloff); ultimate rejection is a filter's maximum ability to reject signals outside its passband. <span class="badge badge-muted">G7C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="frequency coordinator">
             <dt id="frequency-coordinator" class="card-title">Frequency Coordinator</dt>
             <dd class="text-dim">A volunteer &mdash; not an FCC office &mdash; selected by amateur operators in a local or regional area, who recommends transmit/receive channels for repeater and auxiliary stations to help prevent interference between nearby repeaters. <span class="badge badge-muted">T1A</span></dd>
           </div>
 
-          <div class="glossary-entry" data-term="itu international telecommunication union">
+<div class="glossary-entry" data-term="front-to-back ratio">
+  <dt id="front-to-back-ratio" class="card-title">Front-to-back ratio</dt>
+  <dd class="text-dim">A directional antenna's power radiated in its main lobe (the direction of maximum radiated field strength) compared to the power radiated in the exact opposite direction. A higher front-to-back ratio means better rejection of signals, and interference, arriving from behind the antenna. <span class="badge badge-muted">G9C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="ft8">
+  <dt id="ft8" class="card-title">FT8</dt>
+  <dd class="text-dim">A digital mode, part of the WSJT-X software suite, specifically capable of decoding signals well below what's audible by ear &mdash; low signal-to-noise-ratio operation is its defining feature. <span class="badge badge-muted">T8D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="full break-in qsk">
+  <dt id="full-break-in" class="card-title">Full break-in (QSK)</dt>
+  <dd class="text-dim">A CW operating mode where the transmitter switches to receive automatically in the gaps between individual code characters and elements &mdash; fast enough that you can hear another station interrupt you mid-character, without touching a manual send/receive switch. Ordinary ("semi") break-in only switches between transmissions, not within one. <span class="badge badge-muted">G2C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="fundamental overload receiver overload">
+  <dt id="fundamental-overload" class="card-title">Fundamental overload</dt>
+  <dd class="text-dim">Interference that happens at someone else's receiver: a strong, nearby, otherwise-legal signal overwhelms that receiver's front end, which can't reject a strong signal outside its intended band, so it "hears" the interference even though it isn't tuned to that frequency. The fix belongs at the affected receiver (e.g., a filter on its antenna input), not at the transmitting station. <span class="badge badge-muted">T7B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="fuse">
+  <dt id="fuse-t0" class="card-title">Fuse</dt>
+  <dd class="text-dim">A component with a thin element that melts and opens a circuit once current exceeds its rating, removing power in an overload. Must be installed in series with the hot conductor only, never the neutral. Replacing it with a higher-rated fuse removes that protection and can cause a fire. <span class="badge badge-muted">T0A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="gain power gain amplifier gain">
+  <dt id="gain" class="card-title">Gain</dt>
+  <dd class="text-dim">How much larger an amplifier's output is than its input, expressible as a ratio of output-to-input voltage, current, or power — all three are valid descriptions of the same amplified signal. <span class="badge badge-muted">T6B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="gateway internet gateway">
+  <dt id="gateway" class="card-title">Gateway</dt>
+  <dd class="text-dim">An amateur radio station that connects other amateur stations to the internet, regardless of which specific linking system (IRLP, EchoLink, or another) it runs. <span class="badge badge-muted">T8C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="geomagnetic storm">
+  <dt id="geomagnetic-storm" class="card-title">Geomagnetic storm</dt>
+  <dd class="text-dim">A temporary disturbance in Earth's geomagnetic field, usually triggered by a burst of charged particles from the Sun (a coronal mass ejection or a coronal hole's solar wind stream) arriving at Earth. It can degrade HF propagation at high latitudes, while at the same time strengthening the aurora enough to reflect VHF signals. <span class="badge badge-muted">G3A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="gfci ground fault circuit interrupter">
+  <dt id="gfci" class="card-title">GFCI (Ground Fault Circuit Interrupter)</dt>
+  <dd class="text-dim">An outlet or breaker that compares the current flowing out on the hot conductor against the current returning on the neutral, and trips when it detects current leaking from a hot conductor directly to ground instead (through a person or a fault) &mdash; a different hazard than the plain overcurrent a standard fuse or breaker responds to. <span class="badge badge-muted">G0B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="grid locator maidenhead">
+  <dt id="grid-locator" class="card-title">Grid locator</dt>
+  <dd class="text-dim">A letter-number code assigned to a geographic location, exchanged as compact shorthand for approximate position in VHF/UHF weak-signal work, satellite operating, and contest logging. <span class="badge badge-muted">T8C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="ground loop">
+  <dt id="ground-loop" class="card-title">Ground loop</dt>
+  <dd class="text-dim">An unintended closed loop formed when two pieces of equipment are grounded at two different physical points, letting current (including stray RF and hum) circulate through the loop instead of draining cleanly to one ground point. A classic symptom is other stations reporting "hum" on your transmitted signal. Minimized by bonding equipment enclosures together rather than grounding each one separately. <span class="badge badge-muted">G4C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="harmonic">
+  <dt id="harmonic" class="card-title">Harmonic</dt>
+  <dd class="text-dim">An unwanted transmitter output at an exact integer multiple of the operating frequency (e.g., 2x, 3x). The most common specific type of spurious emission, and a frequent cause of radio-frequency interference. <span class="badge badge-muted">T7B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="hf scatter">
+  <dt id="hf-scatter" class="card-title">HF scatter</dt>
+  <dd class="text-dim">Weak signal energy that leaks into a transmitter's skip zone by scattering off irregularities in the ionosphere and off the Earth's surface, rather than through a single clean refraction. Because it arrives by several slightly different scattered paths at once, it typically sounds weak and has a distinctive fluttering, distorted quality &mdash; a multipath-like signature, but caused by scattering rather than by multiple clean reflected paths. <span class="badge badge-muted">G3C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="hotspot digital mode hotspot">
+            <dt id="hotspot" class="card-title">Hotspot</dt>
+            <dd class="text-dim">A small personal device that bridges a nearby transceiver to a digital voice or data network (typically over the internet), letting a low-power handheld reach a DMR/D-STAR/Fusion talkgroup or reflector without a full-size repeater in range. <span class="badge badge-muted">T4A</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="image slow-scan television sstv facsimile">
+            <dt id="image" class="card-title">Image</dt>
+            <dd class="text-dim">The mode category for transmitting pictures rather than voice or text. Slow-scan television (SSTV), fast-scan amateur television, and facsimile are all "image" emissions. Many HF band segments are shared between phone and image (a "phone/image" segment permits either). <span class="badge badge-muted">T1B</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="impedance">
+  <dt id="impedance" class="card-title">Impedance</dt>
+  <dd class="text-dim">The total opposition an AC or RF circuit presents to current flow &mdash; resistance and reactance combined &mdash; measured in ohms. Impedance is the number that matters for matching a transmitter, feed line, and antenna to each other; plain resistance alone only describes the DC piece of that picture. <span class="badge badge-muted">T5C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="inductance inductor henry">
+  <dt id="inductance" class="card-title">Inductance</dt>
+  <dd class="text-dim">The ability to store energy in a magnetic field, measured in henrys. An inductor &mdash; typically a coil of wire &mdash; is the component built specifically to have inductance; current flowing through the coil builds up the magnetic field. <span class="badge badge-muted">T5C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="inductor">
+  <dt id="inductor" class="card-title">Inductor</dt>
+  <dd class="text-dim">A component that stores energy in a magnetic field, typically built as a coil of wire. Combined with a capacitor, it forms a resonant (tuned) circuit. <span class="badge badge-muted">T6A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="integrated circuit ic">
+  <dt id="integrated-circuit" class="card-title">Integrated circuit (IC)</dt>
+  <dd class="text-dim">A device that combines several semiconductors and other components into a single package. <span class="badge badge-muted">T6D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="intermediate frequency if local oscillator image response">
+  <dt id="intermediate-frequency" class="card-title">Intermediate frequency (IF)</dt>
+  <dd class="text-dim">The fixed frequency a receiver's mixer converts an incoming signal to, chosen so the receiver's filters and demodulator can be optimized for one known frequency rather than every frequency the receiver tunes across. The mixer input that's varied or tuned to perform that conversion is the local oscillator (LO). An image response is interference from an unwanted signal at twice the IF away from the desired one, since the mixer can't distinguish it from the wanted signal once both land on the same IF. <span class="badge badge-muted">G8B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="intermodulation intermod">
+  <dt id="intermodulation" class="card-title">Intermodulation</dt>
+  <dd class="text-dim">Interference created when two or more signals mix together inside a nonlinear stage (an overloaded receiver front end or amplifier), producing new phantom frequencies that nobody actually transmitted. <span class="badge badge-muted">T7B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="ionosphere d region e region f region skip">
+            <dt id="ionosphere" class="card-title">Ionosphere</dt>
+            <dd class="text-dim">A region of the upper atmosphere, roughly 50&ndash;600&nbsp;km up, ionized by solar radiation into layers (D, E, F) that can reflect HF radio waves back to Earth &mdash; this is what makes long-distance HF skip possible. VHF and UHF signals are generally too high in frequency to be reflected this way, which is why they're usually not propagated by the ionosphere under normal conditions. <span class="badge badge-muted">T3A</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="irlp internet radio linking project">
+  <dt id="irlp" class="card-title">IRLP</dt>
+  <dd class="text-dim">Internet Radio Linking Project &mdash; a technique for connecting amateur radio systems, such as repeaters, together over the internet. Over-the-air node access is done using DTMF tones keyed in on the radio. <span class="badge badge-muted">T8C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="itu international telecommunication union">
             <dt id="itu" class="card-title">ITU</dt>
             <dd class="text-dim">International Telecommunication Union &mdash; the UN agency that coordinates international radio spectrum use. Communications are prohibited with any country whose government has notified the ITU that it objects to them. <span class="badge badge-muted">T1D</span></dd>
           </div>
 
-          <div class="glossary-entry" data-term="part 97">
+<div class="glossary-entry" data-term="k-index">
+  <dt id="k-index" class="card-title">K-index</dt>
+  <dd class="text-dim">A number describing the short-term (updated every few hours) stability of Earth's geomagnetic field at a given observatory &mdash; higher means more disturbed. Compare A-index, its longer-term counterpart. <span class="badge badge-muted">G3A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="keplerian elements">
+  <dt id="keplerian-elements" class="card-title">Keplerian elements</dt>
+  <dd class="text-dim">A standard, regularly-updated set of numbers describing a satellite's orbit (shape, tilt, position), published by organizations that track orbiting objects. Satellite tracking programs use them as their core input to predict pass timing and Doppler shift. <span class="badge badge-muted">T8B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="keyer electronic keyer">
+            <dt id="keyer" class="card-title">Keyer</dt>
+            <dd class="text-dim">An electronic device that assists in manually sending Morse code &mdash; typically converting the operator's paddle motions into correctly timed dits and dahs, rather than requiring a straight key tapped by hand for every element. <span class="badge badge-muted">T4A</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="knife-edge diffraction">
+            <dt id="knife-edge-diffraction" class="card-title">Knife-edge diffraction</dt>
+            <dd class="text-dim">The bending of radio waves around the sharp edge of an obstruction (a ridge line, a building edge), which can let a signal reach a receiver that has no direct line of sight to the transmitter. <span class="badge badge-muted">T3C</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="leo low earth orbit">
+  <dt id="leo" class="card-title">LEO (Low Earth Orbit)</dt>
+  <dd class="text-dim">An orbit close enough to Earth that a satellite circles it quickly &mdash; a period of around 100 minutes is typical &mdash; which is also why a single overhead pass only lasts several minutes. <span class="badge badge-muted">T8B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="log-periodic antenna">
+  <dt id="log-periodic-antenna" class="card-title">Log-periodic antenna</dt>
+  <dd class="text-dim">A directional antenna whose element lengths and spacing vary logarithmically along its boom, rather than being tuned around one resonant frequency the way a Yagi's driven element is. That design gives it a wide operating bandwidth, at the cost of lower gain per element than a comparable Yagi. <span class="badge badge-muted">G9D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="luf lowest usable frequency">
+  <dt id="luf" class="card-title">LUF (Lowest Usable Frequency)</dt>
+  <dd class="text-dim">The lowest frequency still practically usable for a given HF path between two specific points, below which the signal is absorbed (mainly by the D region) before it can reach its destination with usable strength. Together with the MUF, it defines a usable frequency window for that path; when the LUF for a path rises above that path's MUF, the window closes entirely and ordinary skywave propagation isn't possible on any frequency for that path. <span class="badge badge-muted">G3B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="mesh network amateur radio mesh">
+  <dt id="mesh-network" class="card-title">Mesh network</dt>
+  <dd class="text-dim">An amateur-radio data network built using commercially available Wi-Fi equipment running modified (ham-specific) firmware on amateur bands, rather than custom-built radio gear. <span class="badge badge-muted">T8D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="meteor scatter">
+            <dt id="meteor-scatter" class="card-title">Meteor scatter</dt>
+            <dd class="text-dim">A propagation mode that bounces VHF signals off the brief ionized trail a meteor leaves as it burns up in the atmosphere. The trail lasts only a fraction of a second to a few seconds, so contacts use short, high-speed transmissions timed to that window; 6 meters is the band best suited to it among the Technician bands. <span class="badge badge-muted">T3C</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="mixer rf mixer">
+  <dt id="mixer" class="card-title">Mixer</dt>
+  <dd class="text-dim">A circuit that converts a signal from one frequency to another: fed two signals, it outputs their sum and difference frequencies. Receivers use this to shift an incoming signal down to a frequency their filters and demodulator are built for. <span class="badge badge-muted">T7A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="mmic monolithic microwave integrated circuit">
+  <dt id="mmic" class="card-title">MMIC</dt>
+  <dd class="text-dim">Monolithic Microwave Integrated Circuit &mdash; an integrated circuit built to amplify or otherwise process signals at microwave frequencies, fabricated as a single chip rather than assembled from discrete parts. <span class="badge badge-muted">G6B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="modulation">
+  <dt id="modulation" class="card-title">Modulation</dt>
+  <dd class="text-dim">The process of combining speech (or other information) with an RF carrier signal so the carrier can transport it. Different modes vary <em>what part</em> of the carrier they vary to encode that information &mdash; amplitude (AM/SSB), frequency or phase (FM/PM), or on/off timing (CW). <span class="badge badge-muted">T7A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="mosfet metal-oxide-semiconductor field-effect transistor">
+  <dt id="mosfet" class="card-title">MOSFET</dt>
+  <dd class="text-dim">Metal-Oxide-Semiconductor Field-Effect Transistor &mdash; a FET whose gate is separated from the conducting channel by a thin layer of insulation, rather than by a reverse-biased junction (as in a JFET). That insulated gate draws essentially no current at all, which is the defining trait the exam pool tests. <span class="badge badge-muted">G6A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="mpe maximum permissible exposure">
+  <dt id="mpe" class="card-title">MPE (Maximum Permissible Exposure)</dt>
+  <dd class="text-dim">The FCC's limit on RF exposure. It varies by frequency because the human body absorbs RF energy more efficiently at some frequencies (notably around 50 MHz) than at others. <span class="badge badge-muted">T0C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="muf maximum usable frequency">
+  <dt id="muf" class="card-title">MUF (Maximum Usable Frequency)</dt>
+  <dd class="text-dim">The highest frequency that will still refract back to Earth off the ionosphere for a given path between two specific points, at a given time. Frequencies above the MUF pass through the ionosphere into space instead of returning to Earth. MUF depends on path distance/location, time of day and season, and current solar/ionospheric conditions &mdash; it's not a fixed number, it's a prediction that changes constantly. <span class="badge badge-muted">G3B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="multipath">
+            <dt id="multipath" class="card-title">Multipath</dt>
+            <dd class="text-dim">When a signal reaches a receiver by more than one path at once (direct plus one or more reflections), the copies arrive slightly out of phase and can reinforce or cancel each other. This is why VHF signal strength can swing wildly when an antenna moves only a few feet, why mobile signals "flutter" (picket fencing), and why data modes see higher error rates in a multipath-heavy environment. <span class="badge badge-muted">T3A</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="mutual inductance">
+  <dt id="mutual-inductance" class="card-title">Mutual inductance</dt>
+  <dd class="text-dim">One coil's changing magnetic field inducing a voltage in a separate, nearby coil &mdash; the mechanism by which a transformer's primary winding induces a voltage in its secondary winding. Distinct from plain inductance, which is a coil inducing a voltage in itself. <span class="badge badge-muted">G5C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="nec national electrical code">
+  <dt id="nec" class="card-title">NEC (National Electrical Code)</dt>
+  <dd class="text-dim">The National Electrical Code &mdash; the standard covering electrical safety in wiring installations (wire sizing, overcurrent protection, and similar), including at an amateur station. It's a separate document from FCC Part 97, which governs the radio operation, not the household wiring behind it. <span class="badge badge-muted">G0B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="net control station">
+            <dt id="net-control-station" class="card-title">Net Control Station</dt>
+            <dd class="text-dim">The station that calls an organized net (a scheduled group of stations meeting on a frequency) to order and directs the flow of communications between the other stations checking in. <span class="badge badge-muted">T2C</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="noise blanker">
+  <dt id="noise-blanker" class="card-title">Noise blanker</dt>
+  <dd class="text-dim">A receiver circuit that watches for sharp, impulsive noise (ignition pulses, power-line arcing) and briefly reduces receiver gain for the duration of each pulse, muting it before it reaches the audio output. Works by timing, not by frequency &mdash; unlike a notch filter, which removes a steady interferer at one fixed frequency. <span class="badge badge-muted">G4A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="non-ionizing radiation ionizing radiation">
+  <dt id="non-ionizing-radiation" class="card-title">Non-ionizing radiation</dt>
+  <dd class="text-dim">Radiation, like RF signals, that doesn't carry enough energy per photon to knock electrons off atoms or damage DNA — unlike ionizing radiation (X-rays, gamma rays). The hazard mechanism behind RF exposure limits is tissue heating, not cellular or genetic damage. <span class="badge badge-muted">T0C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="notch filter">
+  <dt id="notch-filter" class="card-title">Notch filter</dt>
+  <dd class="text-dim">A narrow, tunable receiver filter that carves a deep dip out of the passband at one specific frequency, used to knock out a single steady interfering carrier (a heterodyne whistle) without affecting the rest of the received signal. Distinct from a noise blanker, which targets impulse noise rather than a steady carrier. <span class="badge badge-muted">G4A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="ntsc">
+  <dt id="ntsc" class="card-title">NTSC</dt>
+  <dd class="text-dim">The analog fast-scan color television signal standard used for amateur fast-scan TV &mdash; the specific technical format behind the "image" mode category's fast-scan side, distinct from SSTV's narrow, still-image-only bandwidth. <span class="badge badge-muted">T8D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="nvis near vertical incidence skywave">
+  <dt id="nvis" class="card-title">NVIS (Near Vertical Incidence Skywave)</dt>
+  <dd class="text-dim">A short-distance MF/HF propagation technique that deliberately radiates at very high angles (close to straight up), so the signal comes back down close to the transmitter instead of skipping hundreds of miles away &mdash; useful for reliable regional coverage (e.g. emergency communications across a county or small state) in terrain where ground wave and normal low-angle skip both leave gaps. A horizontal dipole placed low &mdash; roughly 1/10 to 1/4 wavelength above ground &mdash; on 40 meters is a common, effective NVIS antenna for daytime regional work. <span class="badge badge-muted">G3C</span> <span class="badge badge-muted">G9D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="ohms law">
+  <dt id="ohms-law" class="card-title">Ohm's Law</dt>
+  <dd class="text-dim">The fixed relationship between voltage (E), current (I), and resistance (R) in a DC circuit: E = I &times; R. Rearranged, I = E &divide; R and R = E &divide; I &mdash; the same relationship, solved for whichever quantity is unknown. <span class="badge badge-muted">T5D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="oscillator">
+  <dt id="oscillator" class="card-title">Oscillator</dt>
+  <dd class="text-dim">A circuit that generates a signal at one specific frequency &mdash; the reference tone other stages are built from or compared against. A Variable Frequency Oscillator (VFO) is the specific oscillator that sets a transceiver's actual operating frequency. <span class="badge badge-muted">T7A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="oscilloscope scope">
+  <dt id="oscilloscope" class="card-title">Oscilloscope</dt>
+  <dd class="text-dim">A test instrument containing horizontal and vertical channel amplifiers that trace a signal's actual waveform &mdash; its shape over time &mdash; on a display, rather than reducing it to a single number the way a voltmeter does. Used to check a CW transmitter's keying waveform or, with the vertical input fed from the transmitter's attenuated RF output, to view a transmitted signal's RF envelope pattern. <span class="badge badge-muted">G4B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="overdrive">
+  <dt id="overdrive" class="card-title">Overdrive</dt>
+  <dd class="text-dim">Interference or distortion caused at your own transmitter: feeding a stage more audio or drive than it can handle cleanly (too much microphone gain is the classic case) makes it distort and splatter outside its intended bandwidth. Distinct from fundamental overload, which happens at someone else's receiver. <span class="badge badge-muted">T7B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="packet radio">
+  <dt id="packet-radio" class="card-title">Packet radio</dt>
+  <dd class="text-dim">A digital mode that breaks data into discrete packets, each carrying a header (destination call sign), a checksum (for error detection), and using ARQ (automatic repeat request) to have corrupted packets resent automatically. <span class="badge badge-muted">T8D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="pactor">
+  <dt id="pactor" class="card-title">PACTOR</dt>
+  <dd class="text-dim">A digital protocol used mainly for HF email/message relay (including Winlink), built around a connection between exactly two stations at a time &mdash; there's no way for a third station to "join" an established PACTOR link the way you might join an open net. <span class="badge badge-muted">G2E</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="part 17 antenna structure registration faa">
+  <dt id="part-17" class="card-title">Part 17</dt>
+  <dd class="text-dim">The FCC rules governing antenna structures in general &mdash; height marking, lighting, and required notification to the FAA plus registration with the FCC &mdash; distinct from Part 97, which governs amateur radio operation itself. An antenna structure not near a public-use airport can rise to 200 feet above ground before Part 17's FAA-notification and FCC-registration requirements kick in. <span class="badge badge-muted">G1B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="part 97">
             <dt id="part-97" class="card-title">Part 97</dt>
             <dd class="text-dim">Title 47 of the Code of Federal Regulations, Part 97 &mdash; the FCC's rules for the Amateur Radio Service. Every &sect;-citation in these lessons refers to a section of Part 97. <span class="badge badge-muted">T1A</span></dd>
           </div>
 
-          <div class="glossary-entry" data-term="pep peak envelope power">
+<div class="glossary-entry" data-term="pep peak envelope power">
             <dt id="pep" class="card-title">PEP</dt>
             <dd class="text-dim">Peak Envelope Power &mdash; the standard used for amateur transmitter power limits in Part 97 (e.g. 200&nbsp;W PEP for Technician HF privileges). <span class="badge badge-muted">T1B</span></dd>
           </div>
 
-          <div class="glossary-entry" data-term="races radio amateur civil emergency service">
+<div class="glossary-entry" data-term="phone voice ssb am fm">
+            <dt id="phone" class="card-title">Phone</dt>
+            <dd class="text-dim">The mode category for voice transmissions &mdash; SSB (single sideband), AM, and FM are all "phone" emissions. The name is literal: if you're talking, like on a telephone, it's phone. Part 97 groups every voice mode together when it allocates a "phone" segment of a band; which specific voice mode you use inside that segment is your choice, not the rule's concern. <span class="badge badge-muted">T1B</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="picket fencing">
+            <dt id="picket-fencing" class="card-title">Picket fencing</dt>
+            <dd class="text-dim">The rapid, fluttering on/off distortion heard on a mobile FM signal, caused by fast-changing multipath as the moving vehicle's antenna sweeps through alternating zones of reinforcement and cancellation. <span class="badge badge-muted">T3A</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="polarization vertical horizontal cross-polarization">
+            <dt id="polarization" class="card-title">Polarization</dt>
+            <dd class="text-dim">The orientation of a radio wave's electric field relative to the ground &mdash; vertical, horizontal, or (for satellite/ionospheric signals) circular/elliptical. Transmitting and receiving antennas normally need matching polarization for the strongest signal; a mismatch (cross-polarization) reduces received signal strength. <span class="badge badge-muted">T3A</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="potentiometer">
+  <dt id="potentiometer" class="card-title">Potentiometer</dt>
+  <dd class="text-dim">A resistor with a movable third contact (a "wiper") that lets its resistance be adjusted by turning a knob or sliding a lever — the standard part behind an adjustable volume control. <span class="badge badge-muted">T6A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="power supply interlock">
+  <dt id="power-supply-interlock" class="card-title">Power supply interlock</dt>
+  <dd class="text-dim">A safety switch built into an equipment cabinet, wired so that removing the cover automatically disconnects power inside &mdash; ensuring dangerous voltages (like the high-voltage DC stored in a supply's filter capacitors) are removed before anyone can reach the exposed circuitry. <span class="badge badge-muted">G0B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="prb-1">
+  <dt id="prb-1" class="card-title">PRB-1</dt>
+  <dd class="text-dim">The FCC's 1985 policy statement on state and local regulation of amateur antenna structures. It requires that such regulations reasonably accommodate amateur communications and be the minimum practical to accomplish a legitimate local purpose &mdash; local governments can still regulate antennas (height, setback, appearance), but not so restrictively that they effectively prevent amateur operation. <span class="badge badge-muted">G1B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="psk phase shift keying">
+  <dt id="psk" class="card-title">PSK</dt>
+  <dd class="text-dim">Phase Shift Keying &mdash; a digital mode that encodes information by shifting a carrier's phase, rather than switching it fully on and off (like CW) or changing its frequency. PSK31 is the common ham example, popular for narrow bandwidth combined with solid weak-signal performance. <span class="badge badge-muted">T8D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="ptt push-to-talk">
+  <dt id="ptt" class="card-title">PTT</dt>
+  <dd class="text-dim">Push-To-Talk &mdash; a transceiver input that switches it from receive to transmit when grounded, which is the actual electrical mechanism behind pressing a microphone's transmit button. <span class="badge badge-muted">T7A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="q signal qrm qsy">
+            <dt id="q-signal" class="card-title">Q signal</dt>
+            <dd class="text-dim">A set of three-letter shorthand codes, all starting with Q, that stand in for common phrases regardless of the language or mode in use &mdash; for example QRM ("I am receiving interference") and QSY ("change frequency"). Originally developed for Morse/telegraphy, where spelling out a full phrase letter by letter is slow. <span class="badge badge-muted">T2B</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="qrp low power operation">
+  <dt id="qrp" class="card-title">QRP</dt>
+  <dd class="text-dim">Operating with deliberately low transmitter power (conventionally 5 W or less on CW, though the pool just tests the concept: QRP means low-power transmit operation). A challenge/efficiency pursuit within the hobby, not a regulatory category. <span class="badge badge-muted">G2D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="races radio amateur civil emergency service">
             <dt id="races" class="card-title">RACES</dt>
             <dd class="text-dim">Radio Amateur Civil Emergency Service &mdash; a civil-defense-related mode of amateur operation. Its control operators need certification of current enrollment by a civil defense organization, on top of their FCC amateur license. <span class="badge badge-muted">T1A</span></dd>
           </div>
 
-          <div class="glossary-entry" data-term="remote control">
+<div class="glossary-entry" data-term="radio direction finding rdf">
+  <dt id="radio-direction-finding" class="card-title">Radio direction finding (RDF)</dt>
+  <dd class="text-dim">Using directional antennas and signal-strength comparisons to locate a transmitter &mdash; whether for a hidden transmitter hunt run for fun, or tracking down a genuine source of interference or jamming. <span class="badge badge-muted">T8C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="radio horizon">
+            <dt id="radio-horizon" class="card-title">Radio horizon</dt>
+            <dd class="text-dim">The maximum line-of-sight range at which a station could theoretically be heard over curved terrain, accounting for antenna height. For VHF/UHF it extends slightly beyond the visual horizon, because the atmosphere refracts (bends) radio waves a small amount around the curve of the Earth. <span class="badge badge-muted">T3C</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="radiogram preamble check national traffic system">
+            <dt id="radiogram" class="card-title">Radiogram</dt>
+            <dd class="text-dim">The standard written form used to relay a formal traffic message through the National Traffic System. Its preamble carries the routing information needed to track the message as it's relayed, and its "check" field records the number of words (or word-equivalents) in the message text, so a relaying station can confirm nothing was dropped. <span class="badge badge-muted">T2C</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="reactance">
+  <dt id="reactance" class="card-title">Reactance</dt>
+  <dd class="text-dim">The opposition capacitors and inductors present to AC current specifically. Unlike plain resistance, reactance depends on frequency &mdash; which is why capacitors and inductors are the basic building blocks of filters and impedance-matching (tuning) circuits. <span class="badge badge-muted">T5C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="rectifier">
+  <dt id="rectifier" class="card-title">Rectifier</dt>
+  <dd class="text-dim">A device or circuit, typically built from one or more diodes, that changes alternating current into a varying direct-current signal. It doesn't smooth the output by itself — a filter capacitor downstream does that. <span class="badge badge-muted">T6D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="relay">
+  <dt id="relay" class="card-title">Relay</dt>
+  <dd class="text-dim">An electrically-controlled switch: a small control current energizes a coil, which mechanically opens or closes a separate set of contacts, letting a weak signal switch a much higher-power circuit. <span class="badge badge-muted">T6D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="remote control">
             <dt id="remote-control" class="card-title">Remote control</dt>
             <dd class="text-dim">Control of a station by a control operator who is not at the station but operates it via a control link &mdash; operating over the internet is the standard example. Any station may be remotely controlled. <span class="badge badge-muted">T1E</span></dd>
           </div>
 
-          <div class="glossary-entry" data-term="repeater">
+<div class="glossary-entry" data-term="repeater">
             <dt id="repeater" class="card-title">Repeater</dt>
             <dd class="text-dim">A station that simultaneously retransmits the signal of another station on a different channel. If a repeater inadvertently retransmits a rule-violating communication, the <em>originating</em> station's control operator is accountable, not the repeater's. <span class="badge badge-muted">T1F</span></dd>
           </div>
 
-          <div class="glossary-entry" data-term="space station">
+<div class="glossary-entry" data-term="repeater offset split">
+            <dt id="repeater-offset" class="card-title">Repeater offset</dt>
+            <dd class="text-dim">The difference between a repeater's transmit and receive frequencies (also called the "split"). A common offset is a fixed convention per band &mdash; for example &plusmn;600&nbsp;kHz on 2 meters and &plusmn;5&nbsp;MHz on 70 centimeters &mdash; so your radio can usually just be told "positive" or "negative" split rather than the exact frequencies. <span class="badge badge-muted">T2A</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="resistor">
+  <dt id="resistor" class="card-title">Resistor</dt>
+  <dd class="text-dim">A component that opposes the flow of current in a DC circuit, converting some of the electrical energy passing through it into heat. A potentiometer is a resistor with an adjustable third contact. <span class="badge badge-muted">T6A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="resonant circuit tuned circuit">
+  <dt id="resonant-circuit" class="card-title">Resonant (tuned) circuit</dt>
+  <dd class="text-dim">An inductor and a capacitor wired together, in series or parallel, that responds much more strongly at one particular frequency than at others — the basis of antenna tuners and filters. <span class="badge badge-muted">T6D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="rf connector bnc type n sma pl-259 uhf connector rca phono">
+  <dt id="rf-connector" class="card-title">RF connector types</dt>
+  <dd class="text-dim">Different connectors suit different frequency ranges: BNC is a quick-disconnect bayonet connector good for low SWR up to roughly 4 GHz; Type N is a moisture-resistant threaded connector rated up to roughly 10 GHz; SMA is a small threaded connector for signals up to several GHz, common on handhelds and test gear; PL-259 (the "UHF connector," despite the name) is the common large threaded connector for HF/VHF gear; RCA phono connectors are typically used for low-frequency or DC signal connections, like accessory jacks, rather than RF transmission runs. <span class="badge badge-muted">G6B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="preamplifier rf preamp">
+  <dt id="rf-preamplifier" class="card-title">RF preamplifier</dt>
+  <dd class="text-dim">A circuit added ahead of a receiver's other stages to boost a weak incoming signal before anything else touches it. <span class="badge badge-muted">T7A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="rit clarifier receiver incremental tuning">
+            <dt id="rit" class="card-title">RIT / Clarifier</dt>
+            <dd class="text-dim">Receiver Incremental Tuning &mdash; a control that shifts your receive frequency slightly without moving your transmit frequency, used to correct for a station whose signal (or your own oscillator) is a little off from where you're calling. Useful if a station replying to your CQ sounds slightly too high- or low-pitched on SSB. <span class="badge badge-muted">T4B</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="rms root mean square">
+  <dt id="rms" class="card-title">RMS (root-mean-square)</dt>
+  <dd class="text-dim">The specific AC voltage or current value that produces the same power dissipation in a resistor as a DC value of the same number would &mdash; the definition that lets AC power be calculated with the same formulas used for DC. For a sine wave, RMS = peak &times; 0.707, and peak = RMS &times; 1.414 (both from &radic;2), with peak-to-peak equal to double the peak. <span class="badge badge-muted">G5B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="rtty radioteletype">
+  <dt id="rtty" class="card-title">RTTY (Radioteletype)</dt>
+  <dd class="text-dim">A digital text mode that predates computers-as-we-know-them, encoding characters as a frequency-shift-keyed (FSK) signal switching between two tones/frequencies called "mark" and "space." The most common shift on amateur HF is 170&nbsp;Hz between mark and space. <span class="badge badge-muted">G2E</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="s meter s-meter signal strength">
+  <dt id="s-meter" class="card-title">S meter</dt>
+  <dd class="text-dim">A receiver's signal-strength indicator, measuring received signal strength only (not carrier suppression, impedance, or transmitter power). On a properly calibrated meter, one S unit represents roughly 6 dB &mdash; about a 4&times; change in power. Readings above S9 are given directly in dB over S9 (e.g. 20 dB over S9 is about 100&times; the power of an S9 signal). <span class="badge badge-muted">G4D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="satellite beacon telemetry">
+  <dt id="satellite-beacon" class="card-title">Satellite beacon</dt>
+  <dd class="text-dim">A transmission from a satellite carrying its health and status (telemetry) &mdash; distinct from an HF propagation beacon, though both are automatic one-way status transmissions. Open to reception by anyone. <span class="badge badge-muted">T8B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="schematic circuit diagram">
+  <dt id="schematic" class="card-title">Schematic</dt>
+  <dd class="text-dim">An electrical diagram that represents components using standard symbols. It accurately shows how components are connected to each other — not wire lengths or the physical appearance of the parts. <span class="badge badge-muted">T6C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="sdr software-defined radio iq modulation">
+  <dt id="sdr" class="card-title">SDR (Software-Defined Radio)</dt>
+  <dd class="text-dim">A radio that performs functions such as filtering, detection, and modulation in software rather than in dedicated hardware stages. SDR equipment typically works with a pair of signals, &quot;I&quot; and &quot;Q,&quot; held at a fixed 90-degree phase difference from each other; processing that I/Q pair lets any type of modulation be created or decoded purely through software, without separate dedicated hardware for each mode. <span class="badge badge-muted">G7C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="selectivity">
+  <dt id="selectivity" class="card-title">Selectivity</dt>
+  <dd class="text-dim">A receiver's ability to discriminate between multiple signals &mdash; how well it rejects a strong station sitting right next to the one being received. Distinct from sensitivity. <span class="badge badge-muted">T7A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="sensitivity">
+  <dt id="sensitivity" class="card-title">Sensitivity</dt>
+  <dd class="text-dim">A receiver's ability to detect the presence of a signal at all &mdash; how weak a signal it can pull out of the noise floor. Distinct from selectivity. <span class="badge badge-muted">T7A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="short path long path propagation">
+  <dt id="short-path-long-path" class="card-title">Short path / long path</dt>
+  <dd class="text-dim">Between any two points on Earth there are two great-circle paths a skywave signal can travel: the short way around (short path) and the long way around, roughly 180&deg; in the opposite compass direction (long path). Both can carry a signal simultaneously if propagation supports it; because the long path covers far more distance at the same speed, a signal arriving by both paths at once can produce a slightly delayed echo of itself. <span class="badge badge-muted">G3B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="simplex">
+            <dt id="simplex" class="card-title">Simplex</dt>
+            <dd class="text-dim">Operation where a station transmits and receives on the same single frequency, as opposed to a repeater's split transmit/receive pair. VHF/UHF band plans set aside dedicated simplex channels so nearby stations can talk directly without tying up a repeater. <span class="badge badge-muted">T2A</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="skip zone">
+  <dt id="skip-zone" class="card-title">Skip zone</dt>
+  <dd class="text-dim">The gap between where local ground-wave coverage fades out and where the first ionospheric skip hop lands &mdash; a ring-shaped region that normally hears neither the ground wave nor the sky wave from a given transmitter. Scatter propagation and NVIS are two different ways signals can still show up inside a skip zone that would otherwise be silent. <span class="badge badge-muted">G3C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="solar flux index sfi">
+  <dt id="solar-flux-index" class="card-title">Solar flux index (SFI)</dt>
+  <dd class="text-dim">A measured, instrument-based number (unlike the sunspot number, which is a visual count): specifically, the intensity of solar radio energy at a wavelength of 10.7&nbsp;cm. It's used alongside the sunspot number as a more direct, less subjective indicator of how ionizing the Sun's output currently is. <span class="badge badge-muted">G3A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="space station">
             <dt id="space-station-g" class="card-title">Space station</dt>
             <dd class="text-dim">An amateur station located more than 50&nbsp;km above Earth's surface. <span class="badge badge-muted">T1A</span></dd>
           </div>
 
-          <div class="glossary-entry" data-term="third party communications">
+<div class="glossary-entry" data-term="speech processor">
+  <dt id="speech-processor" class="card-title">Speech processor</dt>
+  <dd class="text-dim">An audio compressor built into or added to a transceiver, whose purpose is to increase the apparent loudness of transmitted voice by increasing its average power (without raising the already-capped peak power). Set incorrectly, it can cause distorted speech, excess intermodulation products, and excessive background noise, all at once. <span class="badge badge-muted">G4D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="spin fading">
+  <dt id="spin-fading" class="card-title">Spin fading</dt>
+  <dd class="text-dim">Fading of a satellite signal caused by rotation of the satellite and its antennas &mdash; as the spacecraft tumbles, its antenna pattern sweeps past Earth rhythmically, so received signal strength rises and falls even though frequency isn't changing. Distinct from Doppler shift. <span class="badge badge-muted">T8B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="sporadic e">
+            <dt id="sporadic-e" class="card-title">Sporadic E</dt>
+            <dd class="text-dim">A propagation mode where dense, patchy clouds of ionization in the E layer (much lower than the F layer) briefly reflect signals well above the frequencies the F layer normally handles. It's the propagation mode most often responsible for occasional strong, unexpected long-distance openings on 10, 6, and 2 meters. <span class="badge badge-muted">T3C</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="spread spectrum">
+  <dt id="spread-spectrum" class="card-title">Spread spectrum</dt>
+  <dd class="text-dim">A transmission technique that spreads a signal's energy across a wide bandwidth instead of concentrating it in one narrow slice. Amateur spread-spectrum transmissions are capped at 10 watts PEP output, far below the 1500-watt PEP ceiling that applies to most other amateur modes. <span class="badge badge-muted">G1E</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="spurious emission">
+  <dt id="spurious-emission" class="card-title">Spurious emission</dt>
+  <dd class="text-dim">Any unwanted transmitter output outside the intended signal's frequency. Harmonics (exact integer multiples of the operating frequency) are the most common specific example. <span class="badge badge-muted">T7B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="ssb single sideband">
+  <dt id="ssb" class="card-title">SSB</dt>
+  <dd class="text-dim">Single Sideband &mdash; technically a form of amplitude modulation. A full AM signal contains a carrier plus two mirror-image sidebands carrying the same information; SSB removes the carrier and one redundant sideband, transmitting only what's needed. By convention, upper sideband (USB) is used on 10-meter HF and on every VHF/UHF band. <span class="badge badge-muted">T8A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="sudden ionospheric disturbance sid">
+  <dt id="sudden-ionospheric-disturbance" class="card-title">Sudden ionospheric disturbance (SID)</dt>
+  <dd class="text-dim">A rapid disruption of daytime ionospheric propagation caused by a burst of X-ray and ultraviolet radiation from a solar flare, which reaches Earth in about 8 minutes (the light-travel time from the Sun) and over-ionizes the D region. It disrupts lower HF frequencies more severely than higher ones, since the D region's absorption effect is already strongest at the low end of HF. <span class="badge badge-muted">G3A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="sunspot number">
+  <dt id="sunspot-number" class="card-title">Sunspot number</dt>
+  <dd class="text-dim">A daily count of visible sunspots (dark, magnetically active regions on the Sun's surface), tracked because more sunspots correlates with more solar ultraviolet radiation, which in turn ionizes the upper atmosphere more strongly. A higher sunspot number generally means a greater probability of good HF propagation at higher frequencies. It rises and falls on an roughly 11-year solar cycle. <span class="badge badge-muted">G3A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="swr standing wave ratio">
+            <dt id="swr" class="card-title">SWR</dt>
+            <dd class="text-dim">Standing Wave Ratio &mdash; a measure of how well a transmitter's output is matched to the load it's driving (usually the antenna, through the feed line). A perfect match reads 1:1; higher SWR means more of the transmitted power is reflected back toward the transmitter instead of radiated. <span class="badge badge-muted">T4A</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="talkgroup">
+            <dt id="talkgroup" class="card-title">Talkgroup</dt>
+            <dd class="text-dim">An identifier used on digital systems like DMR to organize traffic into separate logical channels that share the same repeater or network, so listeners who only want one group's traffic aren't bothered by everyone else using the same infrastructure. <span class="badge badge-muted">T2B</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="third party communications">
             <dt id="third-party" class="card-title">Third-party communications</dt>
             <dd class="text-dim">A message a control operator sends to another station's control operator on behalf of a third person. Permitted with foreign stations only where a third-party agreement exists between the two countries. <span class="badge badge-muted">T1F</span></dd>
           </div>
 
-          <div class="glossary-entry" data-term="uls universal licensing system">
+<div class="glossary-entry" data-term="transceiver">
+  <dt id="transceiver" class="card-title">Transceiver</dt>
+  <dd class="text-dim">A device that combines a receiver and a transmitter in one unit, sharing circuitry (like the VFO and display) between receive and transmit. <span class="badge badge-muted">T7A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="transformer turns ratio step-up step-down">
+  <dt id="transformer" class="card-title">Transformer</dt>
+  <dd class="text-dim">Two coils of wire (primary and secondary) wound so their magnetic fields overlap with no direct electrical connection between them, coupled by mutual inductance. Secondary voltage relates to primary voltage by the turns ratio (E<sub>sec</sub>&divide;E<sub>pri</sub> = N<sub>sec</sub>&divide;N<sub>pri</sub>); running one backward inverts that ratio. Because power in equals power out (ignoring losses), the higher-current winding is wound with heavier wire. Also usable for RF impedance matching, since impedance transforms by the square of the turns ratio. <span class="badge badge-muted">G5C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="transistor bipolar junction transistor bjt emitter base collector">
+  <dt id="transistor" class="card-title">Transistor</dt>
+  <dd class="text-dim">A semiconductor component built from three regions of material, able to act as an electronic switch or provide power gain. A bipolar junction transistor (BJT) has electrodes named emitter, base, and collector; a field-effect transistor (FET) instead has gate, drain, and source. <span class="badge badge-muted">T6B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="transponder linear transponder">
+  <dt id="transponder" class="card-title">Transponder</dt>
+  <dd class="text-dim">A satellite (or repeater) device that receives signals on one frequency and retransmits them on another. A linear transponder is a shared resource on amateur satellites: one station's excessively strong uplink signal can desensitize it and block access for every other user riding through it at once. <span class="badge badge-muted">T8B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="transverter">
+  <dt id="transverter" class="card-title">Transverter</dt>
+  <dd class="text-dim">A device that converts the RF input and output of an existing transceiver to operate on another band entirely &mdash; the transceiver still does all the actual mode generation and demodulation; the transverter's only job is the frequency shift in both directions. <span class="badge badge-muted">T7A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="tropospheric ducting temperature inversion">
+            <dt id="tropospheric-ducting" class="card-title">Tropospheric ducting</dt>
+            <dd class="text-dim">A propagation mode where a temperature inversion in the lower atmosphere (the troposphere) creates a "duct" that traps and guides VHF/UHF signals well beyond the normal radio horizon &mdash; regularly good for on the order of 300 miles. <span class="badge badge-muted">T3C</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="two-tone test">
+  <dt id="two-tone-test" class="card-title">Two-tone test</dt>
+  <dd class="text-dim">A standard test of an SSB transmitter's linearity, performed by feeding in two audio tones that are not harmonically related and examining the RF output for unwanted intermodulation products created by the tones mixing in a non-linear amplifier stage. <span class="badge badge-muted">G4B</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="uls universal licensing system">
             <dt id="uls" class="card-title">ULS</dt>
             <dd class="text-dim">The FCC's Universal Licensing System &mdash; the official database of license grants. Your license takes effect once it appears here, not when a document arrives in the mail. <span class="badge badge-muted">T1A</span></dd>
           </div>
 
-          <div class="glossary-entry" data-term="vanity call sign">
+<div class="glossary-entry" data-term="vacuum tube control grid screen grid cathode plate anode">
+  <dt id="vacuum-tube" class="card-title">Vacuum tube</dt>
+  <dd class="text-dim">An electron-tube amplifying device that controls current flow between a heated cathode and a plate (anode) using one or more grids. The control grid sits between cathode and plate and regulates how many electrons get through &mdash; the tube's basic amplifying action, and the direct predecessor to what a transistor's base or gate does in solid-state gear. In multi-grid tubes, a screen grid sits between the control grid and the plate specifically to reduce grid-to-plate capacitance, which would otherwise let the plate's signal feed back into the grid circuit. Largely superseded by transistors, but still found in some high-power RF amplifiers. <span class="badge badge-muted">G6A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="vanity call sign">
             <dt id="vanity-call-sign" class="card-title">Vanity call sign</dt>
             <dd class="text-dim">A call sign requested by the applicant rather than assigned automatically in sequence. Any licensed amateur may apply for one. <span class="badge badge-muted">T1C</span></dd>
           </div>
+
+<div class="glossary-entry" data-term="vara">
+  <dt id="vara" class="card-title">VARA</dt>
+  <dd class="text-dim">A digital protocol, like PACTOR, used to move data (including Winlink email traffic) over an HF or VHF/UHF radio link. <span class="badge badge-muted">G2E</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="ve volunteer examiner">
+  <dt id="ve" class="card-title">VE (Volunteer Examiner)</dt>
+  <dd class="text-dim">A licensed amateur, accredited by a VEC, qualified to administer amateur license exams. Must be at least 18 years old and hold a General class license or higher; a non-US-citizen VE must also hold an FCC-granted General-or-higher license. A General class VE may only administer the Technician exam (Element 2) &mdash; only Amateur Extra VEs can administer General or Extra exams. Administering a Technician exam session requires at least three VEs of General class or higher present. <span class="badge badge-muted">G1D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="vec volunteer examiner coordinator">
+  <dt id="vec" class="card-title">VEC (Volunteer Examiner Coordinator)</dt>
+  <dd class="text-dim">An organization the FCC has authorized to coordinate volunteer license examinations. VECs accredit individual Volunteer Examiners (VEs) and process completed exam session paperwork toward FCC license grants &mdash; the FCC itself doesn't run exam sessions directly. <span class="badge badge-muted">G1D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="vfo variable frequency oscillator">
+  <dt id="vfo" class="card-title">VFO</dt>
+  <dd class="text-dim">Variable Frequency Oscillator &mdash; the oscillator whose specific job is setting a transceiver's actual receive and transmit frequency, tuned continuously by hand via the VFO knob. <span class="badge badge-muted">T7A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="voip voice over internet protocol">
+  <dt id="voip" class="card-title">VoIP</dt>
+  <dd class="text-dim">Voice over Internet Protocol &mdash; the general technology of delivering voice communications over the internet using digital techniques. IRLP and EchoLink are amateur-specific systems built on this kind of technology. <span class="badge badge-muted">T8C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="voltage regulator regulator">
+  <dt id="voltage-regulator" class="card-title">Voltage regulator</dt>
+  <dd class="text-dim">A circuit that controls the amount of voltage coming from a power supply, holding the output steady despite changes in input voltage or load current. <span class="badge badge-muted">T6D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="volunteer monitor program vm">
+  <dt id="volunteer-monitor-program" class="card-title">Volunteer Monitor Program</dt>
+  <dd class="text-dim">A program of amateur volunteers formally enlisted to monitor the amateur airwaves for rules violations and encourage self-regulation and compliance &mdash; distinct from Volunteer Examiners (VEs), who administer license exams. Volunteer Monitors don't test anyone; they listen for on-air problems and report them. <span class="badge badge-muted">G2D</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="vox voice operated switch hands free">
+  <dt id="vox" class="card-title">VOX (Voice-Operated Switch)</dt>
+  <dd class="text-dim">A circuit that switches a transceiver from receive to transmit automatically when it detects your voice in the microphone, and back to receive when you stop talking &mdash; hands-free operation, with no push-to-talk button involved. <span class="badge badge-muted">G2A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="waterfall display">
+  <dt id="waterfall-display" class="card-title">Waterfall display</dt>
+  <dd class="text-dim">A scrolling spectrum display common in digital-mode software: frequency runs along the horizontal axis, signal strength is shown as intensity (brightness or color), and time runs down the vertical axis. One or more extra vertical lines appearing beside a signal on a waterfall is a sign of overmodulation. <span class="badge badge-muted">G8C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="winlink radio email">
+            <dt id="winlink" class="card-title">Winlink</dt>
+            <dd class="text-dim">A radio email system that relays messages to and from internet email addresses using amateur call signs, so a station without internet access can still send and receive email over an RF link. <span class="badge badge-muted">T2C</span></dd>
+          </div>
+
+<div class="glossary-entry" data-term="wspr weak signal propagation reporter">
+  <dt id="wspr" class="card-title">WSPR (Weak Signal Propagation Reporter)</dt>
+  <dd class="text-dim">A narrow-bandwidth digital mode transmitted at very low power specifically as a beacon for assessing HF propagation, rather than for two-way conversation &mdash; stations worldwide run it continuously to map out which paths are actually open at a given moment. <span class="badge badge-muted">G8C</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="zener diode voltage reference">
+  <dt id="zener-diode" class="card-title">Zener diode</dt>
+  <dd class="text-dim">A diode deliberately operated in reverse breakdown to hold a steady reference or bias voltage, rather than to rectify AC like an ordinary diode. Its schematic symbol is a diode bar bent into a small &quot;Z&quot; shape. <span class="badge badge-muted">G7A</span></dd>
+</div>
+
+<div class="glossary-entry" data-term="zero beat">
+  <dt id="zero-beat" class="card-title">Zero beat</dt>
+  <dd class="text-dim">Tuning your transmit frequency to exactly match the frequency of a station you just received, so your reply lands precisely on their frequency rather than offset from it. <span class="badge badge-muted">G2C</span></dd>
+</div>
 
         </dl>
         <p id="no-results" class="text-faint" style="display:none;">No terms match that search.</p>

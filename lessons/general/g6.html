@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>G6 &middot; Circuit Components &mdash; HAM OPS</title>
+  <meta name="description" content="General subelement G6: resistors, capacitors, inductors, diodes, transistors, vacuum tubes and batteries; analog/digital ICs, MMICs, display devices, RF connectors, and ferrite cores." />
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header id="site-header" class="site-header" data-root="../../"></header>
+
+    <main id="main">
+      <div class="container">
+        <p class="hero-kicker" style="margin-top:2rem;">// general &middot; subelement G6</p>
+        <h1>Circuit Components</h1>
+        <p class="text-dim" style="max-width:68ch;">
+          T6 introduced the basic components &mdash; resistor, capacitor, inductor, diode, transistor,
+          rectifier, IC &mdash; at a "what is it and what does it do" level. G6 assumes you have that
+          vocabulary already and pushes into the specifics: <em>which kind</em> of capacitor for which
+          job, <em>why</em> a resistor type fails at RF, and two things Technician never touched at
+          all &mdash; vacuum tubes and the specialized ICs, connectors, and cores that show up in real
+          HF and VHF gear. Where a term was already covered in Technician, this lesson links to it
+          instead of re-explaining it.
+        </p>
+        <nav class="lesson-jump" aria-label="Jump to group">
+          <a href="#g6a">G6A Discrete components</a>
+          <a href="#g6b">G6B ICs, displays &amp; connectors</a>
+        </nav>
+
+        <!-- ============ G6A ============ -->
+        <section class="lesson-section" id="g6a">
+          <p class="lesson-lead">G6A</p>
+          <h2>Resistors, capacitors, inductors, rectifiers, diodes, transistors, vacuum tubes &amp; batteries</h2>
+          <h3>Batteries</h3>
+          <p>
+            Two battery facts the pool tests as concrete numbers, not just concepts: for a standard
+            12-volt lead-acid battery, the <strong>minimum allowable discharge voltage for maximum
+            battery life is 10.5&nbsp;volts</strong> &mdash; run it down further than that regularly and
+            you shorten its life, even though the battery may still "work" below that point. Separately,
+            a battery's <strong>internal resistance</strong> matters for a different reason: low internal
+            resistance is what lets a battery deliver <strong>high discharge current</strong> &mdash; the
+            internal resistance is effectively in series with anything you connect, so a lower value
+            means less voltage gets lost internally when you draw a big current, like on transmit.
+          </p>
+          <h3>Diodes: forward threshold voltage</h3>
+          <p>
+            T6B already covered what a <a class="term" href="../../glossary.html#diode">diode</a> does
+            (current one direction, blocked the other). G6A adds a specific number for two diode
+            materials: a <strong>silicon</strong> junction diode has an approximate forward threshold
+            voltage of <strong>0.7&nbsp;volts</strong>, while a <strong>germanium</strong> diode's is
+            lower, around <strong>0.3&nbsp;volts</strong>. That threshold is the voltage drop across the
+            diode once it's conducting forward &mdash; below it, essentially no current flows forward;
+            once you clear it, current starts flowing.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You're troubleshooting a circuit and measure roughly 0.3&nbsp;V across a forward-biased
+            diode junction that's clearly conducting. Silicon or germanium? Germanium &mdash; its
+            forward threshold voltage runs around 0.3&nbsp;V, well below silicon's roughly 0.7&nbsp;V.
+            If you'd measured closer to 0.7&nbsp;V instead, that would point to a silicon junction.
+          </div>
+          <h3>Capacitors: picking the right type</h3>
+          <p>
+            T6A defined what a <a class="term" href="../../glossary.html#capacitor">capacitor</a> is in
+            general. G6A is about choosing between types for a job: an <strong>electrolytic</strong>
+            capacitor's defining characteristic is <strong>high capacitance for a given physical
+            volume</strong> &mdash; not tight tolerance, and not unusually low leakage; electrolytics
+            trade precision and leakage performance for raw capacitance density, which is exactly why
+            they show up as big power-supply filter caps rather than precision RF-timing components. A
+            <strong>low-voltage ceramic</strong> capacitor's defining characteristic, by contrast, is
+            being <strong>comparatively low cost</strong> &mdash; not the tightest tolerance and not the
+            highest stability of the available options, just cheap and good enough for most general uses.
+          </p>
+          <h3>Resistors at RF</h3>
+          <p>
+            A plain <a class="term" href="../../glossary.html#resistor">resistor</a> opposes current and
+            dissipates heat, as T6A covered. But a <strong>wire-wound</strong> resistor specifically has
+            a problem at radio frequencies: winding resistance wire into a coil to get a given resistance
+            value also, unavoidably, builds in real <strong>inductance</strong> &mdash; and that
+            inductance's <a class="term" href="../../glossary.html#reactance">reactance</a> makes the
+            component's actual RF behavior unpredictable, not the simple, frequency-independent
+            resistance you'd want. It's not a tolerance issue or a heat issue; it's that you've
+            accidentally built a small inductor in series with the resistor you meant to have.
+          </p>
+          <h3>Transistors as switches, and MOSFET construction</h3>
+          <p>
+            T6B introduced the <a class="term" href="../../glossary.html#transistor">bipolar junction
+            transistor</a> and <a class="term" href="../../glossary.html#fet">FET</a> generally. Two
+            more specific facts: when a bipolar transistor is used as a switch (fully on or fully off,
+            rather than as a linear amplifier), its two operating points are <strong>saturation and
+            cutoff</strong> &mdash; not the "active region" in between, which is where it behaves as a
+            linear amplifier instead of a switch. And a <a class="term" href="../../glossary.html#mosfet">
+            MOSFET</a>'s defining construction detail is that its <strong>gate is separated from the
+            channel by a thin insulating layer</strong>, rather than by a reverse-biased junction &mdash;
+            that insulation is why a MOSFET's gate draws essentially no current at all.
+          </p>
+          <h3>Inductors above self-resonance</h3>
+          <p>
+            Every real inductor has some stray capacitance between its windings, which means it has a
+            <strong>self-resonant frequency</strong> where that stray capacitance and its intended
+            inductance cancel out. Operate the inductor <em>above</em> that self-resonant frequency and
+            its behavior flips: it stops acting like an inductor at all and <strong>becomes
+            capacitive</strong> instead &mdash; not simply "more inductive" (reactance doesn't just keep
+            climbing) and not a failure mode; it's a predictable consequence of that internal stray
+            capacitance taking over once frequency climbs high enough.
+          </p>
+          <h3>Vacuum tubes</h3>
+          <p>
+            Solid-state components dominate modern gear, but vacuum tubes still show up, especially in
+            high-power RF amplifiers, and General introduces the vocabulary Technician skipped entirely.
+            A <a class="term" href="../../glossary.html#vacuum-tube">vacuum tube</a>'s
+            <strong>control grid</strong> is the element that regulates the flow of electrons between the
+            cathode and the plate &mdash; the tube's basic amplifying action, playing the same conceptual
+            role a transistor's base or gate plays in solid-state gear. In a tube with more than one grid,
+            a <strong>screen grid</strong> serves a specific added purpose: it <strong>reduces
+            grid-to-plate capacitance</strong> &mdash; not primarily to boost efficiency or lower plate
+            resistance, though those can follow indirectly; its direct job is preventing the plate's
+            signal from feeding back into the control-grid circuit through stray capacitance.
+          </p>
+          <details class="exam-refs" data-group="G6A" data-exam="general">
+            <summary>Covers G6A01&ndash;G6A12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G6B ============ -->
+        <section class="lesson-section" id="g6b">
+          <p class="lesson-lead">G6B</p>
+          <h2>Analog &amp; digital ICs, MMICs, display devices, RF connectors &amp; ferrite</h2>
+          <h3>ICs: analog, digital, and microwave</h3>
+          <p>
+            T6D's <a class="term" href="../../glossary.html#integrated-circuit">integrated circuit</a>
+            definition covers the general idea (several components combined into one package). G6B sorts
+            ICs into families. An integrated-circuit <strong>operational amplifier</strong> is an
+            <strong>analog</strong> device &mdash; it processes continuously-varying signals, not discrete
+            digital logic levels. <strong>CMOS</strong> logic ICs, compared against the older
+            <strong>TTL</strong> family, have one standout advantage: <strong>low power
+            consumption</strong> &mdash; not higher power handling, and not being better suited to RF
+            amplification or power-supply regulation, which aren't things either logic family is built
+            for in the first place.
+          </p>
+          <p>
+            An <a class="term" href="../../glossary.html#mmic">MMIC</a> (Monolithic Microwave Integrated
+            Circuit) is the specialized case: an entire microwave-frequency amplifier or processing stage
+            built onto one chip, rather than assembled from discrete parts &mdash; this is what makes
+            compact, inexpensive microwave-band amateur gear (the SHF bands from T1B) practical at all.
+          </p>
+          <h3>Display devices &amp; LEDs</h3>
+          <p>
+            T6B already established that a <a class="term" href="../../glossary.html#diode">light-emitting
+            diode</a> is a diode that emits light when current flows through it. G6B confirms the bias
+            direction directly: an LED emits light when it's <strong>forward biased</strong> &mdash; not
+            reverse biased, not at some special "tunnel-effect" region, and not at a Zener breakdown
+            voltage (that's a different diode type used for voltage regulation, not light emission).
+          </p>
+          <h3>Ferrite: cores and beads</h3>
+          <p>
+            A <a class="term" href="../../glossary.html#ferrite">ferrite</a> toroidal inductor has three
+            real advantages working together, which is why the pool's answer to "what's an advantage of
+            a ferrite-core toroid" is all of the following at once: <strong>large inductance values can
+            be obtained</strong> in a small package, the core's <strong>magnetic properties can be
+            optimized for a specific frequency range</strong> by choosing the right mix, and (specific to
+            the toroid, donut, shape) <strong>most of the magnetic field stays contained within the
+            core</strong> instead of radiating stray field into nearby components. What actually
+            determines how a given ferrite core performs at a given frequency isn't its size or the ratio
+            of its outer to inner diameter &mdash; it's the <strong>composition, or "mix," of materials</strong>
+            the core is made from; different mixes are formulated for different frequency ranges.
+          </p>
+          <p>
+            A ferrite bead or core slipped over a coaxial cable's shield reduces unwanted
+            <strong>common-mode</strong> current (current flowing the same direction on the outside of
+            the shield, instead of cancelling as intended) by a specific mechanism:
+            <strong>creating an impedance in that current's path</strong> &mdash; not by converting it to
+            differential-mode current, not by generating a cancelling out-of-phase current, and ferrites
+            don't "expel" magnetic fields the way a superconductor would. It's a straightforward added
+            series impedance, positioned specifically where only the unwanted common-mode current flows.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You're getting RF feedback into a microphone cable running near your antenna feed line.
+            Clamping a ferrite core around the mic cable is supposed to help &mdash; by what mechanism?
+            The ferrite adds impedance specifically in the path of common-mode current (RF current
+            picked up identically on both conductors of the cable, flowing back toward your equipment).
+            It doesn't cancel the RF with an opposing signal or convert it to some other current type;
+            it just makes that particular current's path harder to complete, so less of it makes it back
+            to the radio.
+          </div>
+          <h3>RF connectors</h3>
+          <p>
+            Different <a class="term" href="../../glossary.html#rf-connector">RF connectors</a> suit
+            different frequency ranges, and the pool tests specific numbers for each:
+          </p>
+          <div style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; min-width:32rem;">
+              <thead>
+                <tr style="text-align:left; font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-faint);">
+                  <th style="padding:0.4em 0.8em 0.4em 0;">Connector</th>
+                  <th style="padding:0.4em 0.8em;">Typical upper limit / role</th>
+                </tr>
+              </thead>
+              <tbody class="readout" style="font-size:0.88rem;">
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">BNC</td><td style="padding:0.5em 0.8em; font-family:var(--font-sans); color:var(--text-dim);">Quick-disconnect bayonet; low SWR to roughly 4&nbsp;GHz</td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">Type N</td><td style="padding:0.5em 0.8em; font-family:var(--font-sans); color:var(--text-dim);">Moisture-resistant, threaded; usable to roughly 10&nbsp;GHz</td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">SMA</td><td style="padding:0.5em 0.8em; font-family:var(--font-sans); color:var(--text-dim);">Small, threaded; signals up to several GHz</td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">PL-259</td><td style="padding:0.5em 0.8em; font-family:var(--font-sans); color:var(--text-dim);">Common large threaded HF/VHF connector (the "UHF" connector, despite the name)</td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">RCA phono</td><td style="padding:0.5em 0.8em; font-family:var(--font-sans); color:var(--text-dim);">Low-frequency or DC signal connections to a transceiver &mdash; not an RF transmission connector</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <details class="exam-refs" data-group="G6B" data-exam="general">
+            <summary>Covers G6B01&ndash;G6B12 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <div class="panel panel-corners" style="margin-top:1rem; margin-bottom:3rem;">
+          <div class="panel-header"><span>Practice G6</span></div>
+          <div class="cluster">
+            <a class="btn btn-primary" href="../../flashcards.html?exam=general&subelement=G6">G6 flashcards</a>
+            <a class="btn" href="../../quiz.html?exam=general&subelement=G6">G6 practice quiz</a>
+            <a class="btn" href="../../general.html">&larr; back to General subelements</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer" class="site-footer" data-root="../../"></footer>
+  </div>
+
+  <script src="../../js/nav.js"></script>
+  <script src="../../js/data.js"></script>
+  <script src="../../js/storage.js"></script>
+  <script src="../../js/lesson.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => HamLesson.wireDetails(document));
+  </script>
+</body>
+</html>

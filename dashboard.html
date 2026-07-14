@@ -56,7 +56,7 @@
               <span class="card-meta">${s.title}</span>
             </div>
             <div class="meter-row">
-              <div class="${meterClass}"${pct != null ? ` style="--pct:${pct}%"` : ""}><span></span></div>
+              <div class="${meterClass}" role="progressbar" aria-label="${s.id} accuracy" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct == null ? 0 : pct}" aria-valuetext="${pct == null ? "no data" : pct + "% accuracy"}"${pct != null ? ` style="--pct:${pct}%"` : ""}><span></span></div>
               <span class="readout">${pct == null ? "no data" : pct + "%"}</span>
             </div>
             <div class="card-meta">${stats.seenCount} question${stats.seenCount === 1 ? "" : "s"} seen</div>

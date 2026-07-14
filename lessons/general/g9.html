@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>G9 &middot; Antennas and Feed Lines &mdash; HAM OPS</title>
+  <meta name="description" content="General subelement G9: feed line characteristic impedance, attenuation, and real SWR calculation; dipole and monopole antenna theory; directional Yagi antennas with real gain and front-to-back figures; and specialized antenna types like NVIS, log-periodic, and loop antennas." />
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header id="site-header" class="site-header" data-root="../../"></header>
+
+    <main id="main">
+      <div class="container">
+        <p class="hero-kicker" style="margin-top:2rem;">// general &middot; subelement G9</p>
+        <h1>Antennas and Feed Lines</h1>
+        <p class="text-dim" style="max-width:68ch;">
+          T9 covered antennas and feed lines conceptually. G9 does the actual math: real feed line
+          impedance and SWR calculation (G9A), dipole and monopole theory with real feed point
+          numbers (G9B), directional antennas with real gain and front-to-back figures (G9C), and a
+          tour of specialized antenna types built for specific jobs (G9D).
+        </p>
+        <nav class="lesson-jump" aria-label="Jump to group">
+          <a href="#g9a">G9A Feed lines &amp; SWR math</a>
+          <a href="#g9b">G9B Dipole &amp; monopole antennas</a>
+          <a href="#g9c">G9C Directional antennas</a>
+          <a href="#g9d">G9D Specialized antennas</a>
+        </nav>
+
+        <!-- ============ G9A ============ -->
+        <section class="lesson-section" id="g9a">
+          <p class="lesson-lead">G9A</p>
+          <h2>Feed lines: characteristic impedance, attenuation &amp; SWR calculation</h2>
+          <p>
+            T9B named a <a class="term" href="../../glossary.html#feed-line">feed line</a>'s
+            <a class="term" href="../../glossary.html#characteristic-impedance">characteristic
+            impedance</a> without deriving it. For an open, parallel-conductor line (like ladder
+            line or "window line"), that impedance is set by geometry alone: the distance between
+            the centers of the two conductors, and the radius of the conductors themselves &mdash;
+            wider spacing relative to conductor thickness raises the impedance, closer spacing lowers
+            it. Window line's specific geometry lands it at a nominal <strong>450 ohms</strong>, a
+            long way from coax's familiar 50 ohms &mdash; which is exactly why the two feed line types
+            need completely different matching hardware and can't just be swapped in for each other.
+          </p>
+          <h3>Why mismatches happen, and what they cost</h3>
+          <p>
+            Reflected power at an antenna's feed point has one specific cause: a difference between
+            the feed line's characteristic impedance and the antenna's actual feed point impedance.
+            Whatever power that mismatch reflects travels back down the line toward the transmitter
+            instead of radiating &mdash; which is exactly the condition
+            <a class="term" href="../../glossary.html#swr">SWR</a> measures. Preventing standing
+            waves in the first place comes down to that same single requirement: the antenna feed
+            point impedance has to be matched to the feed line's characteristic impedance.
+          </p>
+          <p>
+            <a class="term" href="../../glossary.html#coaxial-cable">Coax attenuation</a> increases
+            with frequency (already familiar from T9B), and it's conventionally expressed in
+            <strong>decibels per 100 feet</strong> &mdash; a manufacturer's spec sheet listing loss
+            "per 100 ft" at a given frequency is giving you exactly that figure.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example: calculating SWR</span>
+            SWR compares a load's actual impedance to the feed line's characteristic impedance,
+            always expressed as the larger number over the smaller: take whichever of
+            (load&nbsp;&divide;&nbsp;line) or (line&nbsp;&divide;&nbsp;load) comes out above 1.
+            Connect a 50-ohm feed line to a <strong>200-ohm</strong> resistive load:
+            200&nbsp;&divide;&nbsp;50&nbsp;=&nbsp;<strong>4</strong>, so the result is
+            <strong>4:1</strong> SWR. Connect that same 50-ohm line to a <strong>10-ohm</strong>
+            resistive load instead: now the line's impedance is the larger number,
+            50&nbsp;&divide;&nbsp;10&nbsp;=&nbsp;<strong>5</strong>, giving <strong>5:1</strong> SWR.
+            Same feed line, two different mismatches, two different ratios &mdash; and either
+            direction of mismatch (load too high or too low relative to the line) makes SWR climb
+            away from the ideal 1:1.
+          </div>
+          <p>
+            One counterintuitive wrinkle, and one common troubleshooting trap:
+          </p>
+          <ul>
+            <li>
+              High SWR makes feed line loss <strong>worse</strong> &mdash; on an already-lossy line,
+              a mismatch increases the loss beyond what a well-matched line of the same length and
+              type would have.
+            </li>
+            <li>
+              But feed line loss <strong>reduces</strong> the SWR you actually measure at the
+              transmitter end of the line, compared to the true SWR sitting at the antenna. The
+              reflected wave has to travel back down the same lossy line a second time, so it arrives
+              back at the transmitter weaker than it left the antenna &mdash; which makes the
+              measured mismatch look better than it really is. A long, lossy run can hide a genuinely
+              bad antenna match from a meter sitting at the shack end of the line.
+            </li>
+          </ul>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            Your antenna feed point shows 5:1 SWR. You insert a matching network (an
+            <a class="term" href="../../glossary.html#antenna-tuner">antenna tuner</a>) right at the
+            transmitter, and it adjusts to present a clean 1:1 SWR to the transmitter itself. What's
+            the SWR out on the actual feed line, between the tuner and the antenna? Still
+            <strong>5:1</strong>, unchanged &mdash; the tuner only fixes what the transmitter "sees"
+            at its own output; it does nothing to the mismatch physically sitting out at the antenna,
+            and the feed line between the tuner and the antenna keeps carrying exactly the same
+            standing waves (and the same extra loss) it had before the tuner was ever connected.
+          </div>
+          <details class="exam-refs" data-group="G9A" data-exam="general">
+            <summary>Covers G9A01&ndash;G9A11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G9B ============ -->
+        <section class="lesson-section" id="g9b">
+          <p class="lesson-lead">G9B</p>
+          <h2>Basic dipole &amp; monopole antennas</h2>
+          <p>
+            T9A already covered a half-wave dipole's basic shape and its broadside
+            <a class="term" href="../../glossary.html#antenna-gain">radiation pattern</a>. G9B fills
+            in the real numbers and the geometry behind that pattern. In free space, a dipole's
+            radiation pattern in the plane containing the wire is a
+            <strong>figure-eight, at right angles to the antenna</strong> &mdash; two lobes, one off
+            each broadside direction, and essentially nothing straight off either end, matching T9A's
+            "radiates broadside" description exactly.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example: dipole &amp; monopole length</span>
+            A half-wave dipole's approximate length in feet is
+            <strong>468&nbsp;&divide;&nbsp;frequency in MHz</strong>. Cut for 14.250&nbsp;MHz:
+            468&nbsp;&divide;&nbsp;14.250&nbsp;&asymp;&nbsp;<strong>33 feet</strong>. Cut for a lower
+            frequency, 3.550&nbsp;MHz: 468&nbsp;&divide;&nbsp;3.550&nbsp;&asymp;&nbsp;<strong>132
+            feet</strong> &mdash; a lot more wire for a lot lower frequency, exactly as T9A's
+            "shorter antenna, higher resonant frequency" rule predicts. A quarter-wave monopole uses
+            almost exactly half that dipole formula, <strong>234&nbsp;&divide;&nbsp;frequency in
+            MHz</strong>: cut for 28.5&nbsp;MHz, that's 234&nbsp;&divide;&nbsp;28.5&nbsp;&asymp;
+            <strong>8 feet</strong>.
+          </div>
+          <p>
+            Height and feed position both move a dipole's feed point impedance around, in opposite
+            directions:
+          </p>
+          <ul>
+            <li>
+              Lowering a horizontal half-wave dipole toward <strong>1/10 wavelength</strong> above
+              ground <strong>steadily decreases</strong> its feed point impedance &mdash; the nearby
+              ground increasingly loads the antenna down the closer it gets.
+            </li>
+            <li>
+              Moving the feed point from the center of a half-wave dipole toward either end
+              <strong>steadily increases</strong> the feed point impedance instead &mdash; center feed
+              sits at the dipole's lowest-impedance point, and impedance climbs steeply as you move
+              toward the high-impedance ends.
+            </li>
+            <li>
+              Antenna height also reshapes the azimuthal pattern, not just its impedance: for a
+              horizontal dipole at elevation angles above about 45&deg;, if the antenna sits lower
+              than 1/2 wavelength above ground, the azimuthal pattern becomes almost
+              <strong>omnidirectional</strong> at those high angles &mdash; the sharp figure-eight
+              pattern is really a lower-elevation-angle phenomenon that a low, close-to-ground dipole
+              doesn't cleanly reproduce straight up.
+            </li>
+          </ul>
+          <p>
+            Polarization has a real, measurable consequence on HF, not just a "match your polarization"
+            rule of thumb: a <strong>horizontally</strong> polarized HF antenna has an advantage over
+            a vertically polarized one in <strong>lower ground losses</strong> &mdash; a vertical
+            antenna's radiation travels close to the (lossy, imperfectly conducting) ground for a
+            longer path than a horizontal antenna's does, so more of a vertical signal's power gets
+            absorbed by the ground itself before it ever leaves the near field.
+          </p>
+          <p>
+            Two specific antenna types round out the group. A <strong>random-wire</strong> HF antenna
+            &mdash; just a wire of no particular resonant length, connected straight to the
+            transmitter with no tuner-side isolation &mdash; has a real practical downside: the
+            station equipment itself may end up carrying <strong>significant RF current</strong>,
+            since without a proper matching network the "ground" side of the antenna system routes
+            back through the radio and its cabling. An elevated <strong>quarter-wave ground-plane
+            vertical</strong> radiates <strong>omnidirectionally in azimuth</strong> (equally in
+            every horizontal direction, the vertical counterpart to a dipole's figure-eight), and a
+            common way to adjust its feed point impedance toward the usual 50 ohms is simply to
+            <strong>slope its radials downward</strong> from the horizontal rather than leaving them
+            flat &mdash; the steeper the downward slope, the lower the feed point impedance drops. For
+            a <em>ground-mounted</em> vertical instead, the radial wires belong right at ground level:
+            on the surface, or buried just a few inches down.
+          </p>
+          <details class="exam-refs" data-group="G9B" data-exam="general">
+            <summary>Covers G9B01&ndash;G9B12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G9C ============ -->
+        <section class="lesson-section" id="g9c">
+          <p class="lesson-lead">G9C</p>
+          <h2>Directional antennas</h2>
+          <p>
+            T9A introduced the Yagi as the amateur beam antenna with the greatest gain. G9C looks at
+            what actually controls that gain, and the vocabulary for describing its directional
+            pattern precisely.
+          </p>
+          <p>
+            A three-element Yagi's <strong>driven element</strong> &mdash; the one actually connected
+            to the feed line &mdash; runs about <strong>1/2 wavelength</strong> long, the same as an
+            ordinary dipole. The other two elements are each tuned slightly off that length in a
+            specific direction: the <strong>reflector</strong> (behind the driven element, away from
+            the favored direction) is <strong>longer</strong> than the driven element, and the
+            <strong>director</strong> (in front, toward the favored direction) is <strong>shorter</strong>
+            &mdash; those length differences are exactly what makes the whole array radiate more
+            strongly in one direction instead of equally in all of them.
+          </p>
+          <p>
+            Several physical parameters can be tuned to improve a Yagi's performance, and they aren't
+            interchangeable: <strong>larger-diameter elements</strong> specifically increase the
+            antenna's <strong>bandwidth</strong> (a fatter element presents a less sharply-tuned
+            reactance across frequency), while the boom length, the number of elements on it, and the
+            spacing between them <strong>all</strong> can be adjusted to optimize forward gain,
+            front-to-back ratio, or SWR bandwidth &mdash; there's no single "the" adjustment; a
+            Yagi's real-world design is a set of tradeoffs across all of these dimensions at once. The
+            single biggest lever for gain specifically is adding more directors and lengthening the
+            boom to hold them: more elements spread over a longer boom is the primary way a Yagi's
+            <strong>gain increases</strong>.
+          </p>
+          <div class="grid grid-2" style="margin:1rem 0;">
+            <div class="panel">
+              <div class="panel-header"><span><dfn id="def-main-lobe">Main lobe</dfn></span></div>
+              <p class="text-dim" style="margin:0;">
+                The direction of maximum radiated field strength from a directive antenna &mdash;
+                literally, "where the beam points."
+              </p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span><a class="term" href="../../glossary.html#front-to-back-ratio">Front-to-back ratio</a></span></div>
+              <p class="text-dim" style="margin:0;">
+                The power radiated in the main lobe compared to the power radiated in the exact
+                opposite direction &mdash; how well the antenna suppresses signal (and interference)
+                coming from behind it.
+              </p>
+            </div>
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example: dBi vs. dBd, and stacking gain</span>
+            An antenna's gain is often quoted two ways: <strong>dBd</strong> (relative to a reference
+            dipole) and <strong>dBi</strong> (relative to a theoretical isotropic radiator). A plain
+            dipole itself already has 2.15&nbsp;dB of gain over isotropic, so for the
+            <em>same</em> physical antenna, its gain expressed in dBi always reads
+            <strong>2.15&nbsp;dB higher</strong> than the same gain expressed in dBd &mdash; nothing
+            about the antenna changed, just which reference point the number is measured against.
+            Stacking gain works differently: take two identical three-element Yagis, horizontally
+            polarized, spaced a half-wavelength apart vertically, and feed them together &mdash; the
+            combined gain comes out only about <strong>3&nbsp;dB higher</strong> than a single Yagi
+            alone, not the full 6&nbsp;dB doubling the power going into two antennas might suggest.
+            The stack isn't perfectly efficient at combining the two antennas' fields, so real-world
+            stacking gain lands well under the theoretical maximum.
+          </div>
+          <p>
+            Two named impedance-matching techniques specific to Yagis round out the group. A
+            <strong>beta match</strong> (or <strong>hairpin match</strong>) is a shorted transmission-line
+            stub placed right at a Yagi's feed point to handle impedance matching. A
+            <strong>gamma match</strong> takes a different approach, and its defining characteristic
+            is that it <strong>doesn't require the driven element to be insulated from the boom</strong>
+            &mdash; unlike some other matching schemes, a gamma match can connect straight to a driven
+            element that's electrically bonded to a grounded metal boom.
+          </p>
+          <details class="exam-refs" data-group="G9C" data-exam="general">
+            <summary>Covers G9C01&ndash;G9C12 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G9D ============ -->
+        <section class="lesson-section" id="g9d">
+          <p class="lesson-lead">G9D</p>
+          <h2>Specialized antenna types &amp; applications</h2>
+          <p>
+            A handful of antennas exist to solve one specific job well, rather than to be
+            general-purpose. Each of the following trades away all-around usefulness for real
+            performance at its one intended task.
+          </p>
+          <div class="grid grid-2" style="margin:1rem 0;">
+            <div class="panel">
+              <div class="panel-header"><span><a class="term" href="../../glossary.html#nvis">NVIS</a></span></div>
+              <p class="text-dim" style="margin:0;">
+                For short-skip daytime contacts on 40 meters, a <strong>horizontal dipole placed
+                between 1/10 and 1/4 wavelength above ground</strong> &mdash; low enough that it
+                fires most of its energy straight up rather than toward the horizon &mdash; is the
+                most effective near-vertical-incidence-skywave antenna, putting a strong signal down
+                into your own regional "skip zone" that a higher antenna would fly right over.
+              </p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span>End-fed half-wave</span></div>
+              <p class="text-dim" style="margin:0;">
+                Feeding a half-wave dipole right at one end (rather than the center) lands on a
+                <strong>very high</strong> feed point impedance &mdash; the same "impedance rises
+                toward the ends" rule from G9B, taken to its extreme at the very tip &mdash; which is
+                why an end-fed half-wave needs a dedicated high-impedance matching unit that a
+                center-fed dipole never needs.
+              </p>
+            </div>
+          </div>
+          <p>
+            A <strong>log-periodic</strong> antenna looks superficially Yagi-like but is built on a
+            different principle: <a class="term" href="../../glossary.html#log-periodic-antenna">element
+            length and spacing vary logarithmically</a> along its boom, rather than being tuned around
+            one specific frequency. That's exactly why its headline advantage is
+            <strong>wide bandwidth</strong>: a log-periodic keeps working reasonably well across a
+            large multiple of frequencies precisely because it doesn't depend on a single resonant
+            length the way a Yagi's driven element does &mdash; the tradeoff is that per-element gain
+            is lower than a comparable Yagi's.
+          </p>
+          <p>
+            A <dfn id="def-halo-antenna">"halo" antenna</dfn> (a folded dipole bent into a loop, common
+            on VHF) radiates <strong>omnidirectionally in the plane of the halo</strong> &mdash; the
+            bend trades away the ordinary dipole figure-eight for all-around coverage in one plane, at
+            the cost of some size and simplicity. An <dfn id="def-electrically-small-loop">electrically
+            small loop</dfn> antenna (less than 1/10 wavelength in circumference &mdash; a specialized
+            receiving antenna, distinct from a full-size resonant loop) has nulls in its pattern
+            <strong>broadside to the loop</strong> &mdash; directly out of its face, rather than in the
+            plane of the wire itself &mdash; which is the opposite null direction from what its small
+            size might suggest.
+          </p>
+          <p>
+            A <dfn id="def-beverage-antenna">Beverage antenna</dfn> is a long, low horizontal wire used
+            for <strong>directional receiving on the MF and low HF bands</strong> &mdash; a receive-only
+            specialist, not built or used for transmitting. <dfn id="def-antenna-trap">Antenna
+            traps</dfn> (parallel LC circuits inserted into an element) exist to
+            <strong>enable multiband operation</strong> from a single physical antenna, switching part
+            of the element in or out of the circuit depending on frequency &mdash; the direct
+            practical cost of that convenience is <strong>poor harmonic rejection</strong> compared to
+            a single-band antenna, since a multiband design that's resonant on several unrelated
+            frequencies is, by the same token, less selective about rejecting any one of them.
+          </p>
+          <p>
+            A <dfn id="def-screwdriver-antenna">"screwdriver" mobile antenna</dfn> adjusts its feed
+            point impedance by <strong>varying its base loading inductance</strong> &mdash; a small
+            motor inside the base physically moves a coil tap or slides a coil in and out, remotely
+            retuning the antenna's electrical length without anyone touching the whip itself. And the
+            common name for a dipole with a single central support (the feed line's support point
+            doubling as the antenna's only mast, with both ends drooping down and away) is an
+            <dfn id="def-inverted-v">Inverted V</dfn> &mdash; a popular, easy-to-erect variation
+            requiring just one support instead of two.
+          </p>
+          <p>
+            Finally, one more antenna-stacking fact that follows directly from G9C's dBi/dBd and
+            stacking-gain material: vertically stacking horizontally polarized Yagi antennas doesn't
+            just add gain &mdash; its main practical advantage is that it <strong>narrows the main
+            lobe in elevation</strong>, concentrating radiated energy at a lower, more useful takeoff
+            angle for long-distance work instead of wasting some of it higher in the sky.
+          </p>
+          <details class="exam-refs" data-group="G9D" data-exam="general">
+            <summary>Covers G9D01&ndash;G9D12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <div class="panel panel-corners" style="margin-top:1rem; margin-bottom:3rem;">
+          <div class="panel-header"><span>Practice G9</span></div>
+          <div class="cluster">
+            <a class="btn btn-primary" href="../../flashcards.html?exam=general&subelement=G9">G9 flashcards</a>
+            <a class="btn" href="../../quiz.html?exam=general&subelement=G9">G9 practice quiz</a>
+            <a class="btn" href="../../general.html">&larr; back to General subelements</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer" class="site-footer" data-root="../../"></footer>
+  </div>
+
+  <script src="../../js/nav.js"></script>
+  <script src="../../js/data.js"></script>
+  <script src="../../js/storage.js"></script>
+  <script src="../../js/lesson.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => HamLesson.wireDetails(document));
+  </script>
+</body>
+</html>

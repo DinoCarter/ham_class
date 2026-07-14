@@ -57,7 +57,7 @@
               <div class="card-title">${s.title}</div>
               <div class="card-desc">${s.groups.map((g) => g.id).join(", ")}</div>
               <div class="meter-row" style="margin-top:0.4rem;">
-                <div class="meter"${pct != null ? ` style="--pct:${pct}%"` : ""}><span></span></div>
+                <div class="meter" role="progressbar" aria-label="${s.id} progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct == null ? 0 : pct}" aria-valuetext="${pct == null ? "not yet attempted" : pct + "% accuracy"}"${pct != null ? ` style="--pct:${pct}%"` : ""}><span></span></div>
                 <span class="readout text-faint">${pct == null ? "&mdash;" : pct + "%"}</span>
               </div>
             </a>

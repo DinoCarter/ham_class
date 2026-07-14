@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>T7 &middot; Practical Circuits &mdash; HAM OPS</title>
+  <meta name="description" content="Technician subelement T7: station equipment building blocks (receivers, transceivers, transverters), troubleshooting overload/overdrive/intermodulation/spurious emissions, SWR and feed line troubleshooting, and basic test instruments and soldering." />
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header id="site-header" class="site-header" data-root="../../"></header>
+
+    <main id="main">
+      <div class="container">
+        <p class="hero-kicker" style="margin-top:2rem;">// technician &middot; subelement T7</p>
+        <h1>Practical Circuits</h1>
+        <p class="text-dim" style="max-width:68ch;">
+          T7 is where the "what's actually in this box" questions live: the building blocks that
+          make up a receiver or transmitter (T7A), what goes wrong at a station and how you track
+          it down (T7B), measuring and troubleshooting the antenna/feed line side of things (T7C),
+          and the basic hand tools &mdash; meters and a soldering iron &mdash; you'll reach for to do
+          any of that (T7D).
+        </p>
+        <nav class="lesson-jump" aria-label="Jump to group">
+          <a href="#t7a">T7A Station equipment</a>
+          <a href="#t7b">T7B Troubleshooting</a>
+          <a href="#t7c">T7C Antenna &amp; feed line</a>
+          <a href="#t7d">T7D Test instruments</a>
+        </nav>
+
+        <!-- ============ T7A ============ -->
+        <section class="lesson-section" id="t7a">
+          <p class="lesson-lead">T7A</p>
+          <h2>Station equipment: the basic building blocks</h2>
+          <p>
+            A <strong>receiver</strong> pulls a signal out of the air; a <strong>transmitter</strong>
+            puts one there; a <a class="term" href="../../glossary.html#transceiver">transceiver</a>
+            is simply a device that combines both in one box, sharing circuitry like the
+            <a class="term" href="../../glossary.html#vfo">VFO</a> and the display between receive
+            and transmit. Two words describe how good a receiver is at its job, and they measure
+            genuinely different things:
+          </p>
+          <ul>
+            <li>
+              <a class="term" href="../../glossary.html#sensitivity">Sensitivity</a> is a receiver's
+              ability to detect the presence of a signal at all &mdash; how weak a signal it can pull
+              out of the noise floor.
+            </li>
+            <li>
+              <a class="term" href="../../glossary.html#selectivity">Selectivity</a> is a receiver's
+              ability to discriminate between multiple signals &mdash; how well it rejects a strong
+              station sitting right next to the one you're trying to copy.
+            </li>
+          </ul>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            Two receivers, side by side. Receiver A pulls a barely-there signal out of the noise
+            that Receiver B can't hear at all &mdash; but when two stations are close together in
+            frequency, Receiver A turns into mush while Receiver B cleanly separates them. Receiver
+            A has better <strong>sensitivity</strong>; Receiver B has better <strong>selectivity</strong>.
+            A radio can be strong in one and mediocre in the other &mdash; they're independent specs,
+            not two names for the same thing.
+          </div>
+          <p>
+            Inside either half of a transceiver, a handful of named stages do the actual work:
+          </p>
+          <div class="grid grid-2" style="margin:1rem 0;">
+            <div class="panel">
+              <div class="panel-header"><span>Receive chain</span></div>
+              <p class="text-dim" style="margin:0;">
+                Antenna &rarr; optional <a class="term" href="../../glossary.html#rf-preamplifier">RF
+                preamplifier</a> (boosts a weak incoming signal before anything else touches it)
+                &rarr; <a class="term" href="../../glossary.html#mixer">mixer</a> &rarr; demodulator
+                &rarr; audio.
+              </p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span>Transmit chain</span></div>
+              <p class="text-dim" style="margin:0;">
+                Microphone/data &rarr; <a class="term" href="../../glossary.html#oscillator">oscillator</a>
+                + mixer create the RF carrier &rarr;
+                <strong><a class="term" href="../../glossary.html#modulation">modulation</a></strong>
+                combines your speech with that carrier &rarr; optional external
+                <strong>RF power amplifier</strong> boosts the output &rarr; antenna.
+              </p>
+            </div>
+          </div>
+          <p>
+            An <a class="term" href="../../glossary.html#oscillator">oscillator</a> is the circuit
+            that generates a signal at one specific frequency &mdash; it's the reference tone
+            everything else gets built from or compared against. The
+            <a class="term" href="../../glossary.html#vfo">Variable Frequency Oscillator (VFO)</a> is
+            the particular oscillator whose job is setting your actual receive and transmit
+            frequency (the same VFO knob from T4B). A
+            <a class="term" href="../../glossary.html#mixer">mixer</a> is what converts a signal from
+            one frequency to another: feed it two signals and it outputs their sum and difference
+            frequencies, which is exactly the trick a receiver uses to slide an incoming signal down
+            to a frequency its filters and demodulator are built for.
+          </p>
+          <p>
+            A <a class="term" href="../../glossary.html#transverter">transverter</a> does something
+            related but different: it converts the RF input and output of an existing transceiver to
+            another band entirely, rather than converting within one receiver's internal stages.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You own a 2-meter all-mode transceiver, and want to get on 10&nbsp;GHz &mdash; a band your
+            radio has no idea exists. Add a transverter built for that band: on transmit, it takes
+            your transceiver's 2-meter output and shifts it up to 10&nbsp;GHz; on receive, it shifts
+            incoming 10&nbsp;GHz signals back down to 2 meters for your transceiver to handle
+            normally. The transceiver still does all the real work &mdash; generating and demodulating
+            SSB, CW, whatever mode you picked &mdash; the transverter's only job is the frequency
+            shift in both directions.
+          </div>
+          <p>
+            A few more concrete, function-level facts round out this group: an
+            <strong>RF power amplifier</strong> is what you add after a transceiver's output to
+            increase transmitted power. The transceiver's
+            <a class="term" href="../../glossary.html#ptt">PTT</a> (push-to-talk) input switches it
+            from receive to transmit <strong>when grounded</strong> &mdash; that's the actual
+            electrical mechanism behind pressing the mic button. And on some VHF power amplifiers
+            with a separate SSB/CW-FM mode switch, that switch's job is simply to
+            <strong>set the amplifier for proper operation in whichever mode you selected</strong>
+            &mdash; SSB needs the amplifier's stages biased to stay linear (preserve the exact shape
+            of a voice waveform), while CW and FM don't, so the amplifier's internal setup differs
+            between them even though the frequency range doesn't change.
+          </p>
+          <details class="exam-refs" data-group="T7A" data-exam="technician">
+            <summary>Covers T7A01&ndash;T7A11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T7B ============ -->
+        <section class="lesson-section" id="t7b">
+          <p class="lesson-lead">T7B</p>
+          <h2>Symptoms, causes &amp; cures of common problems</h2>
+          <p>
+            Four words get thrown around loosely in interference discussions, and the exam wants
+            you to keep them straight, because the fix is different for each:
+          </p>
+          <ul>
+            <li>
+              <a class="term" href="../../glossary.html#fundamental-overload">Overload</a> (or
+              "fundamental overload") happens at <strong>someone else's receiver</strong>: your
+              strong, nearby, perfectly legal signal simply overwhelms a nearby radio's front end,
+              which can't reject a strong out-of-band signal &mdash; so it "hears" you even though
+              you're nowhere near its frequency.
+            </li>
+            <li>
+              <a class="term" href="../../glossary.html#overdrive">Overdrive</a> happens at
+              <strong>your own transmitter</strong>: feeding a stage more audio or drive than it can
+              handle cleanly &mdash; too much microphone gain is the classic case &mdash; makes it
+              distort and splatter outside the bandwidth it should occupy.
+            </li>
+            <li>
+              <a class="term" href="../../glossary.html#intermodulation">Intermodulation</a> ("intermod")
+              is what happens when two or more signals mix together inside a nonlinear stage
+              (an overloaded front end or amplifier) and produce brand-new phantom frequencies that
+              nobody actually transmitted.
+            </li>
+            <li>
+              A <a class="term" href="../../glossary.html#spurious-emission">spurious emission</a> is
+              any unwanted transmitter output outside your intended signal; a
+              <a class="term" href="../../glossary.html#harmonic">harmonic</a> &mdash; an exact
+              integer multiple of your operating frequency &mdash; is the most common specific kind.
+            </li>
+          </ul>
+          <p>
+            All four of those &mdash; fundamental overload, harmonics, and other spurious emissions
+            &mdash; can cause radio-frequency interference. Which one you're dealing with changes
+            where you aim the fix:
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            Your 2-meter (146&nbsp;MHz) transmission is bleeding into a neighbor's FM broadcast radio
+            at 98.5&nbsp;MHz. Is that a harmonic? Check the math: a harmonic has to be an exact whole
+            multiple of 146&nbsp;MHz (146, 292, 438&hellip;), and 98.5 isn't one of those. So this is
+            much more likely plain <strong>fundamental overload</strong> of the broadcast radio's
+            front end by your nearby strong signal &mdash; and the fix follows from that diagnosis:
+            install a filter <strong>at the broadcast radio's own antenna input</strong>, not changes
+            to your transmitter, since your signal isn't actually doing anything wrong.
+          </div>
+          <p>
+            That "fix it at the affected receiver" principle generalizes: to reduce interference
+            <em>your station</em> is causing to a non-amateur receiver, the filter belongs on the
+            affected receiver's antenna input. To reduce interference <em>a nearby commercial FM
+            station</em> is causing to your own 2-meter receiver, a <strong>band-reject
+            (notch) filter</strong> tuned to that FM station's frequency, installed at your
+            receiver, keeps its strong signal from overloading your front end.
+          </p>
+          <p>
+            When a neighbor reports interference, the accepted troubleshooting order is: first,
+            confirm your <em>own</em> station is functioning properly and isn't even interfering with
+            your own radio or TV when it's tuned to the same channel &mdash; before assuming the
+            problem is on their end. If the problem turns out to be something in the neighbor's
+            home causing interference to <em>your</em> station instead, the constructive path is the
+            same in reverse: work with them to identify the offending device, politely explain that
+            FCC rules do restrict interference-causing devices, and make sure your own station still
+            meets good amateur practice throughout. For non-fiber cable-TV interference specifically,
+            the <strong>first</strong> troubleshooting step is mundane: make sure every coax connector
+            in the TV feed line is installed properly &mdash; a loose or poorly-shielded fitting is
+            often the entire problem, before you reach for a filter at all.
+          </p>
+          <p>
+            A separate, very ordinary source of distorted repeater audio reports is nothing exotic:
+            being slightly off frequency, talking too loudly or too close to the microphone, or
+            simply operating from a bad location can each cause it on their own. One less obvious
+            fix: a clip-on <strong>ferrite choke</strong> around the microphone cable can eliminate
+            distorted transmissions caused by your own transmitted RF sneaking back into the
+            audio path through that cable (the cable acts as an unintentional antenna) &mdash; the
+            choke adds impedance at radio frequencies without touching the low-frequency audio
+            signal riding on the same wire.
+          </p>
+          <details class="exam-refs" data-group="T7B" data-exam="technician">
+            <summary>Covers T7B01&ndash;T7B11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T7C ============ -->
+        <section class="lesson-section" id="t7c">
+          <p class="lesson-lead">T7C</p>
+          <h2>Antenna &amp; transmission line troubleshooting</h2>
+          <p>
+            T4A already introduced the
+            <a class="term" href="../../glossary.html#swr">SWR</a> meter as a station accessory; T7C
+            is about what a bad reading actually <em>does</em> to your station, and how to measure
+            and diagnose it. Two dedicated instruments come up: a
+            <a class="term" href="../../glossary.html#dummy-load">dummy load</a> is a
+            <strong>50-ohm non-inductive resistor mounted on a heat sink</strong> that you connect in
+            place of an antenna specifically so test transmissions never actually go out over the
+            air &mdash; the resistor absorbs the RF power and turns it into heat instead of radiating
+            it. An <a class="term" href="../../glossary.html#antenna-analyzer">antenna analyzer</a> is
+            what you use to determine whether an antenna is actually resonant at your desired
+            operating frequency, without needing a full transmitter and SWR meter setup.
+          </p>
+          <p>
+            SWR itself reads as a ratio: <strong>1:1</strong> is a perfect impedance match between
+            antenna and feed line (nothing reflected); <strong>4:1</strong> indicates a real
+            impedance mismatch, with a meaningful fraction of your power bouncing back down the
+            line instead of radiating. A <a class="term" href="../../glossary.html#directional-wattmeter">directional
+            wattmeter</a> is the instrument that actually determines SWR &mdash; it separately
+            measures forward power and reflected power, and computes the ratio from those two
+            numbers.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You measure 4:1 SWR on your antenna and notice your solid-state radio's output power has
+            quietly dropped, too. Coincidence? No &mdash; most solid-state transmitters deliberately
+            reduce output power as SWR climbs past a certain point specifically <strong>to protect
+            the RF output transistors</strong> from the voltage stresses that reflected power causes.
+            And where does the power that doesn't radiate actually go? Power lost in a feed line is
+            converted into <strong>heat</strong> &mdash; the same physics as the dummy load's resistor,
+            just spread out along the length of the cable instead of concentrated in one component.
+          </div>
+          <p>
+            Coaxial cable itself fails for mundane physical reasons more often than electrical ones.
+            <strong>Moisture contamination</strong> is a leading cause of coax failure &mdash; water
+            getting into the cable degrades it over time. That's exactly why a cable's outer jacket
+            needs to be UV-resistant: sunlight can <strong>damage the jacket and let water enter the
+            cable</strong>, which is the real long-term threat, not the UV itself interacting with the
+            RF. Between dielectric types, <strong>foam-dielectric</strong> coax has an advantage over
+            solid-dielectric: less loss per foot, which is why it's the common choice for long feed
+            line runs.
+          </p>
+          <details class="exam-refs" data-group="T7C" data-exam="technician">
+            <summary>Covers T7C01&ndash;T7C11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T7D ============ -->
+        <section class="lesson-section" id="t7d">
+          <p class="lesson-lead">T7D</p>
+          <h2>Basic test instruments &amp; soldering</h2>
+          <p>
+            Three meters, three different jobs, and each has to be connected differently because of
+            what it's actually measuring:
+          </p>
+          <ul>
+            <li>
+              A <strong>voltmeter</strong> measures electric potential (voltage) and connects
+              <strong>in parallel</strong> with a component &mdash; it just "taps in" across two
+              points to measure the difference between them, without needing to interrupt the
+              circuit's current path.
+            </li>
+            <li>
+              An <strong>ammeter</strong> measures electric current, and connects <strong>in
+              series</strong> &mdash; it has to physically become part of the path, since the
+              current you're measuring has to flow through the meter itself.
+            </li>
+            <li>
+              An <strong>ohmmeter</strong> measures resistance by applying a small current from its
+              own internal battery and measuring the resulting voltage &mdash; it's doing Ohm's Law
+              in reverse, solving for resistance instead of assuming it.
+            </li>
+          </ul>
+          <p>
+            A <strong>multimeter</strong> combines all three functions (plus often more) in one
+            instrument with a selector switch, and is what most hams actually own. That internal
+            battery in the resistance function is exactly why two things matter: never attempt to
+            measure voltage while a multimeter is set to its resistance (ohms) function &mdash; the
+            circuit's own voltage fighting the meter's internal battery is what actually damages
+            multimeters &mdash; and always make sure a circuit is <strong>unpowered</strong> before
+            measuring in-circuit resistance, for the same reason.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You clip an ohmmeter across a large, fully discharged capacitor and watch the reading
+            climb steadily over a few seconds instead of settling immediately. What's happening?
+            The ohmmeter's own small internal current is charging the capacitor as it measures: at
+            first, current flows into the capacitor easily (reads as low resistance), and as the
+            capacitor charges up, less current flows for the same applied voltage, so the meter
+            reads a <strong>higher and higher resistance</strong> over time. That climbing reading is
+            actually a normal, diagnostic sign you're looking at a large capacitor, not a fault.
+          </div>
+          <p>
+            Soldering has its own short list of hard rules. Use <strong>rosin-core</strong> solder for
+            electronics &mdash; never <strong>acid-core</strong> solder, which is meant for plumbing
+            and leaves a corrosive residue that eats away at fine wires and circuit board traces over
+            time. A good joint looks bright and shiny; a <strong>cold</strong> solder joint (one that
+            never got hot enough to properly flow and bond) looks <strong>rough or lumpy</strong>
+            instead, and can turn into an unreliable, intermittent, or high-resistance connection
+            later even if it looks fine at a glance today.
+          </p>
+          <details class="exam-refs" data-group="T7D" data-exam="technician">
+            <summary>Covers T7D01&ndash;T7D11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <div class="panel panel-corners" style="margin-top:1rem; margin-bottom:3rem;">
+          <div class="panel-header"><span>Practice T7</span></div>
+          <div class="cluster">
+            <a class="btn btn-primary" href="../../flashcards.html?exam=technician&subelement=T7">T7 flashcards</a>
+            <a class="btn" href="../../quiz.html?exam=technician&subelement=T7">T7 practice quiz</a>
+            <a class="btn" href="../../technician.html">&larr; back to Technician subelements</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer" class="site-footer" data-root="../../"></footer>
+  </div>
+
+  <script src="../../js/nav.js"></script>
+  <script src="../../js/data.js"></script>
+  <script src="../../js/storage.js"></script>
+  <script src="../../js/lesson.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => HamLesson.wireDetails(document));
+  </script>
+</body>
+</html>

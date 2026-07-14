@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>G3 &middot; Radio Wave Propagation &mdash; HAM OPS</title>
+  <meta name="description" content="General subelement G3: sunspots and solar/geomagnetic indices, Maximum and Lowest Usable Frequency, short path vs. long path, critical angle and frequency, HF scatter, and NVIS — the ionospheric physics behind predicting HF propagation." />
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header id="site-header" class="site-header" data-root="../../"></header>
+
+    <main id="main">
+      <div class="container">
+        <p class="hero-kicker" style="margin-top:2rem;">// general &middot; subelement G3</p>
+        <h1>Radio Wave Propagation</h1>
+        <p class="text-dim" style="max-width:68ch;">
+          Technician's T3 established the basics: the ionosphere bends HF signals back to Earth,
+          VHF/UHF mostly doesn't get that help, and a handful of named mechanisms (sporadic E,
+          tropospheric ducting, meteor scatter) explain VHF/UHF's occasional long hauls. G3 goes
+          deeper into the HF side specifically &mdash; not just <em>that</em> the ionosphere bends
+          HF signals, but <em>how much</em>, <em>when</em>, and how to predict it: what drives the
+          ionosphere's day-to-day behavior, and the concrete numbers (MUF, LUF, critical angle) that
+          turn "propagation" from a vibe into something you can reason about before you ever key up.
+        </p>
+        <nav class="lesson-jump" aria-label="Jump to group">
+          <a href="#g3a">G3A Sun &amp; geomagnetic indices</a>
+          <a href="#g3b">G3B MUF, LUF &amp; path</a>
+          <a href="#g3c">G3C Regions, angles &amp; NVIS</a>
+        </nav>
+
+        <!-- ============ G3A ============ -->
+        <section class="lesson-section" id="g3a">
+          <p class="lesson-lead">G3A</p>
+          <h2>Sunspots, solar radiation &amp; geomagnetic indices</h2>
+          <p>
+            The <a class="term" href="../../glossary.html#ionosphere">ionosphere</a> is ionized by
+            solar radiation &mdash; Technician's T3C already established that much. G3A is about what
+            drives the <em>amount</em> of that ionization, and the numbers hams use to track it day
+            to day.
+          </p>
+          <p>
+            The <a class="term" href="../../glossary.html#sunspot-number">sunspot number</a> is the
+            oldest and most familiar indicator: a daily count of visible sunspots, which correlates
+            with how much ionizing ultraviolet radiation the Sun is currently putting out. A higher
+            sunspot number generally means a <strong>greater probability of good propagation at
+            higher frequencies</strong> &mdash; more ionization supports reflecting higher
+            frequencies back to Earth. The count rises and falls on a roughly 11-year solar cycle,
+            and it directly explains a fact worth memorizing: during periods of <strong>low</strong>
+            solar activity, <strong>15, 12, and 10 meters</strong> are the least reliable HF bands
+            for long-distance work &mdash; they're the highest-frequency HF bands, so they're the
+            first to lose ionospheric support when the Sun is quiet. Conversely, at essentially any
+            point in the solar cycle &mdash; not just at the maximum &mdash; 20 meters reliably
+            supports worldwide daytime propagation; it sits low enough in frequency to stay usable
+            even when 15/12/10 meters can't.
+          </p>
+          <p>
+            The <a class="term" href="../../glossary.html#solar-flux-index">solar flux index
+            (SFI)</a> is a companion number, but measured rather than counted: the intensity of
+            solar radio energy specifically at a 10.7&nbsp;cm wavelength, tracked because it's a more
+            direct, instrument-based proxy for ionizing output than eyeballing sunspots.
+          </p>
+          <p>
+            Solar activity doesn't just vary smoothly over the 11-year cycle &mdash; it also varies
+            in <strong>26- to 28-day cycles</strong>, caused by the Sun's own rotation: since
+            different active regions face Earth as the Sun's surface layers rotate around its axis,
+            propagation conditions cycle with that rotation period.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            Two very different kinds of solar event affect propagation on two very different
+            timescales, and the pool tests both numbers directly. A <strong>solar flare's</strong>
+            burst of X-ray and ultraviolet radiation travels at the speed of light, so it takes only
+            about <strong>8 minutes</strong> to reach Earth &mdash; the same 8-minute light-travel time
+            as ordinary sunlight. It causes a
+            <a class="term" href="../../glossary.html#sudden-ionospheric-disturbance">sudden
+            ionospheric disturbance (SID)</a>, which disrupts <em>lower</em> HF frequencies more
+            than higher ones, by over-ionizing the D region during daylight hours. A
+            <a class="term" href="../../glossary.html#coronal-mass-ejection">coronal mass ejection
+            (CME)</a>, by contrast, is physical charged particles &mdash; not light &mdash; and those
+            particles travel far slower, taking roughly <strong>15 hours to several days</strong> to
+            arrive. When they do, they're what typically triggers a
+            <a class="term" href="../../glossary.html#geomagnetic-storm">geomagnetic storm</a>: a
+            temporary disturbance in Earth's geomagnetic field that <strong>degrades HF propagation
+            at high latitudes</strong> specifically. A related, steadier source of the same kind of
+            particles &mdash; solar wind streaming from coronal holes rather than a single sudden
+            eruption &mdash; produces the same basic result: HF communication is disturbed.
+          </div>
+          <p>
+            Geomagnetic disturbance isn't purely bad news. High geomagnetic activity also
+            strengthens the aurora, and an active aurora can reflect VHF signals &mdash; the same
+            <a class="term" href="../../glossary.html#auroral-backscatter">auroral backscatter</a>
+            mechanism Technician's T3C introduced, just triggered more often during geomagnetically
+            active periods.
+          </p>
+          <p>
+            Two numbers quantify geomagnetic disturbance itself, on two different timescales:
+          </p>
+          <div class="grid grid-2" style="margin:1rem 0;">
+            <div class="panel">
+              <div class="panel-header"><span><a class="term" href="../../glossary.html#k-index">K-index</a></span></div>
+              <p class="text-dim" style="margin:0;">Measures the <strong>short-term</strong> stability of Earth's geomagnetic field &mdash; updated every few hours. Higher means more currently disturbed.</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span><a class="term" href="../../glossary.html#a-index">A-index</a></span></div>
+              <p class="text-dim" style="margin:0;">Measures the <strong>long-term</strong> stability of Earth's geomagnetic field &mdash; a single daily figure, averaged from that day's K-index readings.</p>
+            </div>
+          </div>
+          <details class="exam-refs" data-group="G3A" data-exam="general">
+            <summary>Covers G3A01&ndash;G3A14 (14 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G3B ============ -->
+        <section class="lesson-section" id="g3b">
+          <p class="lesson-lead">G3B</p>
+          <h2>MUF, LUF &amp; short-path/long-path</h2>
+          <p>
+            Every HF path between two specific points has a usable frequency <em>window</em>, bounded
+            on both ends:
+          </p>
+          <div class="grid grid-2" style="margin:1rem 0;">
+            <div class="panel">
+              <div class="panel-header"><span><a class="term" href="../../glossary.html#muf">MUF</a> &mdash; Maximum Usable Frequency</span></div>
+              <p class="text-dim" style="margin:0;">The highest frequency that still refracts back to Earth for that specific path. Go higher and the signal punches through the ionosphere into space instead of coming back down.</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span><a class="term" href="../../glossary.html#luf">LUF</a> &mdash; Lowest Usable Frequency</span></div>
+              <p class="text-dim" style="margin:0;">The lowest frequency still practically usable for that same path. Go lower and the D region absorbs the signal before it can reach its destination with usable strength.</p>
+            </div>
+          </div>
+          <p>
+            Frequencies inside that window &mdash; below the MUF and above the LUF &mdash; get
+            refracted back to Earth and make the contact possible. Frequencies below the LUF are
+            attenuated before they arrive. Both numbers depend on the same set of factors: path
+            distance and location, time of day and season, and current solar radiation and
+            ionospheric conditions &mdash; neither one is a fixed number you look up once.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            Picture the usable window as a range that can widen, narrow, or vanish entirely. During
+            the day, sunlight strengthens the D region, which raises the LUF (more low-frequency
+            absorption) while solar ionization also raises the MUF (more high-frequency support) &mdash;
+            the window shifts upward as a whole. If conditions get bad enough that the LUF for a
+            path actually exceeds that path's MUF, the window closes completely: <strong>ordinary
+            skywave propagation isn't possible on any frequency</strong> over that path, no matter
+            what you try. This is also why operating <strong>just below the MUF</strong> gives the
+            least attenuation for long-distance skip &mdash; you're as far as possible from the
+            LUF's heavy D-region absorption, which is worst at the low end of the window.
+          </div>
+          <p>
+            Hop distance also depends on which ionospheric region does the refracting &mdash; a
+            preview of G3C's region-by-region detail. A single hop off the <strong>F2 region</strong>
+            (the highest region) covers roughly <strong>2,500 miles</strong>; a single hop off the
+            lower <strong>E region</strong> covers roughly <strong>1,200 miles</strong> &mdash; about
+            half as far, because the E region sits much closer to the ground, giving the wave a
+            shorter, steeper geometric bounce.
+          </p>
+          <p>
+            Since propagation conditions are genuinely hard to predict from first principles alone,
+            one practical way to check current propagation on a band from your own station is to
+            use a network of automated internet-connected receiving stations to see where your
+            transmissions are actually being heard &mdash; empirical confirmation rather than pure
+            prediction from the K-index or solar flux alone.
+          </p>
+          <p>
+            <a class="term" href="../../glossary.html#short-path-long-path">Short path and long
+            path</a> are the two great-circle routes between any two points on Earth &mdash; the
+            direct way, and the way around the opposite side of the globe. G2D already gave the
+            practical antenna-pointing rule: aim 180&deg; from the short-path heading to attempt long
+            path. Here's the signature that tells you both paths are active on a signal at once: a
+            <strong>slightly delayed echo</strong>, since the long-path leg of the trip covers far
+            more physical distance at the same speed and so arrives measurably later than the same
+            signal's short-path leg.
+          </p>
+          <p>
+            Finally, a seasonal noise fact worth knowing alongside all this: the lower HF bands
+            (like 80 and 40 meters) typically show <strong>high levels of atmospheric noise or
+            static</strong> during summer &mdash; a separate nuisance from propagation prediction
+            itself, but one that affects whether a technically "open" band is actually pleasant to
+            operate on.
+          </p>
+          <details class="exam-refs" data-group="G3B" data-exam="general">
+            <summary>Covers G3B01&ndash;G3B12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G3C ============ -->
+        <section class="lesson-section" id="g3c">
+          <p class="lesson-lead">G3C</p>
+          <h2>Ionospheric regions, critical angle/frequency, scatter &amp; NVIS</h2>
+          <p>
+            Technician's <a class="term" href="../../glossary.html#ionosphere">ionosphere</a> entry
+            already named the layers: D, E, and F, in order of increasing altitude. The
+            <strong>D region</strong> sits closest to the surface of Earth, and it plays a specific,
+            mostly unhelpful role for HF: it's the most absorbent region for signals below
+            10&nbsp;MHz during daylight hours, which is exactly why long-distance communication on
+            40, 60, 80, and 160 meters is noticeably harder during the day &mdash; the D region eats
+            those low frequencies on the way up before they ever reach the higher regions that would
+            actually refract them back down. It's also why those same bands routinely open up for
+            distance at night: without sunlight, the D region weakens dramatically and stops getting
+            in the way.
+          </p>
+          <p>
+            Skip distance depends on which higher region does the actual refracting, and G3B already
+            gave the headline numbers: <strong>F2</strong> region skip runs longer (about 2,500
+            miles per hop) than skip via any other region, precisely <em>because</em> the F2 region
+            is the highest one &mdash; a wave bounced off a higher ceiling before returning to Earth
+            covers more ground per hop, the same geometry that makes a basketball bounced off a
+            high wall travel farther than one bounced off a low one.
+          </p>
+          <p>
+            Two angle-related terms describe the geometric limits of what a given frequency, or a
+            given aiming angle, can do:
+          </p>
+          <div class="grid grid-2" style="margin:1rem 0;">
+            <div class="panel">
+              <div class="panel-header"><span><a class="term" href="../../glossary.html#critical-frequency">Critical frequency</a></span></div>
+              <p class="text-dim" style="margin:0;">At a given incidence angle, the <strong>highest frequency</strong> that still gets refracted back to Earth. Go higher in frequency at that same angle and the wave escapes into space.</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span><a class="term" href="../../glossary.html#critical-angle">Critical angle</a></span></div>
+              <p class="text-dim" style="margin:0;">At a given frequency, the <strong>highest takeoff angle</strong> that still returns to Earth. Aim any steeper (closer to straight up) at that frequency and the wave escapes.</p>
+            </div>
+          </div>
+          <p>
+            Those two limits interact directly with the
+            <a class="term" href="../../glossary.html#skip-zone">skip zone</a> &mdash; the ring-shaped
+            gap between where local ground wave fades out and where the nearest sky-wave hop lands,
+            which normally hears nothing at all. That gap is exactly what
+            <a class="term" href="../../glossary.html#nvis">NVIS (Near Vertical Incidence
+            Skywave)</a> is built to eliminate: NVIS is short-distance MF or HF propagation that
+            deliberately uses <strong>high elevation (takeoff) angles</strong>, close to straight up,
+            at frequencies low enough that the critical angle for that frequency is still near
+            90&deg;. Instead of skipping hundreds of miles away, the signal comes back down close to
+            the transmitter &mdash; filling in exactly the regional coverage gap a skip zone would
+            otherwise leave, which is why NVIS is a favorite technique for regional emergency
+            communications nets.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            An emergency-communications net needs reliable coverage across an entire county, at
+            ranges too far for reliable ground wave but too close for a normal skip hop (which would
+            land the signal hundreds of miles beyond the net's own area, inside its own skip zone
+            from the net's perspective). The fix is NVIS: run a low HF frequency with an antenna
+            configuration that radiates mostly straight up, so the "hop" lands just a short distance
+            away instead of skipping over the whole intended coverage area.
+          </div>
+          <p>
+            Not everything that shows up inside a skip zone is deliberate, though.
+            <a class="term" href="../../glossary.html#hf-scatter">HF scatter</a> is what lets signals
+            be heard <em>inside</em> a transmitting station's skip zone even without NVIS: a small
+            part of the transmitted energy scatters off ionospheric irregularities and off the
+            Earth's surface into paths that weren't cleanly refracted at all, leaking some signal
+            into a zone that should otherwise be silent. Because only a small fraction of the total
+            energy gets scattered that way, HF scatter signals in the skip zone are typically
+            <strong>weak</strong>. And because that scattered energy arrives via several different
+            paths simultaneously rather than one clean reflection, HF scatter signals have a
+            characteristic <strong>fluttering, distorted sound</strong> &mdash; the same
+            multiple-paths-combining idea behind multipath from Technician's T3A, here caused by
+            scattering rather than by distinct reflective surfaces.
+          </p>
+          <details class="exam-refs" data-group="G3C" data-exam="general">
+            <summary>Covers G3C01&ndash;G3C11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <div class="panel panel-corners" style="margin-top:1rem; margin-bottom:3rem;">
+          <div class="panel-header"><span>Practice G3</span></div>
+          <div class="cluster">
+            <a class="btn btn-primary" href="../../flashcards.html?exam=general&subelement=G3">G3 flashcards</a>
+            <a class="btn" href="../../quiz.html?exam=general&subelement=G3">G3 practice quiz</a>
+            <a class="btn" href="../../general.html">&larr; back to General subelements</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer" class="site-footer" data-root="../../"></footer>
+  </div>
+
+  <script src="../../js/nav.js"></script>
+  <script src="../../js/data.js"></script>
+  <script src="../../js/storage.js"></script>
+  <script src="../../js/lesson.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => HamLesson.wireDetails(document));
+  </script>
+</body>
+</html>

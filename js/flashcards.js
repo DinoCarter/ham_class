@@ -27,7 +27,7 @@ const HamFlashcards = (function () {
         mount.innerHTML = `
           <div class="panel panel-corners stack" style="text-align:center;">
             <div class="hero-kicker" style="margin:0;">// deck complete</div>
-            <h2 style="margin:0;">${deck.length} card${deck.length === 1 ? "" : "s"} reviewed</h2>
+            <h2 tabindex="-1" style="margin:0;">${deck.length} card${deck.length === 1 ? "" : "s"} reviewed</h2>
             <p class="text-dim">${firstLookCorrect} / ${firstLookGraded} marked "got it" on first look.</p>
             <div class="cluster" style="justify-content:center;">
               <button class="btn btn-primary" type="button" data-action="restart">Shuffle again</button>
@@ -43,6 +43,9 @@ const HamFlashcards = (function () {
         mount.querySelector('[data-action="picker"]').addEventListener("click", () => {
           mount.dispatchEvent(new CustomEvent("ham:back-to-picker", { bubbles: true }));
         });
+        // Restore focus (see note below) so keyboard/screen-reader users land
+        // on the summary instead of losing their place after the last card.
+        mount.querySelector("h2").focus();
         return;
       }
 
@@ -52,7 +55,7 @@ const HamFlashcards = (function () {
 
       mount.innerHTML = `
         <div class="meter-row" style="margin-bottom:1rem;">
-          <div class="meter"><span style="width:${pct}%"></span></div>
+          <div class="meter" role="progressbar" aria-label="Deck progress" aria-valuemin="1" aria-valuemax="${deck.length}" aria-valuenow="${i + 1}" aria-valuetext="Card ${i + 1} of ${deck.length}"><span style="width:${pct}%"></span></div>
           <span class="readout text-faint">${i + 1} / ${deck.length}</span>
         </div>
         <button type="button" class="panel panel-corners flashcard" data-action="flip" aria-live="polite"
@@ -93,6 +96,13 @@ const HamFlashcards = (function () {
       const missed = mount.querySelector('[data-action="missed"]');
       if (gotIt) gotIt.addEventListener("click", () => grade(true));
       if (missed) missed.addEventListener("click", () => grade(false));
+
+      // Re-rendering replaces the whole subtree, which would otherwise drop
+      // keyboard focus after every flip/grade — restore it to the logical
+      // next stop: the "Got it" button once flipped, otherwise the card
+      // itself so Space/Enter still flips it.
+      const focusTarget = flipped ? gotIt : card;
+      if (focusTarget) focusTarget.focus();
     }
 
     function grade(correct) {

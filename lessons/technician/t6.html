@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>T6 &middot; Electronic and Electrical Components &mdash; HAM OPS</title>
+  <meta name="description" content="Technician subelement T6: resistors, capacitors, inductors, switches, and batteries; diodes and transistors; reading schematic diagrams; and component functions like rectifiers, relays, regulators, and integrated circuits." />
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header id="site-header" class="site-header" data-root="../../"></header>
+
+    <main id="main">
+      <div class="container">
+        <p class="hero-kicker" style="margin-top:2rem;">// technician &middot; subelement T6</p>
+        <h1>Electronic and Electrical Components</h1>
+        <p class="text-dim" style="max-width:68ch;">
+          T6 is the parts-bin subelement: what's actually inside the radio. T6A and T6B cover the
+          individual components &mdash; the passive parts that store or resist energy, and the
+          semiconductors that switch and amplify it. T6C is about reading a schematic diagram well
+          enough to point at a symbol and say what it is. T6D steps back up a level, to what whole
+          little circuits built from those parts actually <em>do</em>. None of this requires outside
+          electronics background &mdash; every term below is explained the first time it's used.
+        </p>
+        <nav class="lesson-jump" aria-label="Jump to group">
+          <a href="#t6a">T6A Passive components</a>
+          <a href="#t6b">T6B Semiconductors</a>
+          <a href="#t6c">T6C Schematic symbols</a>
+          <a href="#t6d">T6D Component functions</a>
+        </nav>
+
+        <!-- ============ T6A ============ -->
+        <section class="lesson-section" id="t6a">
+          <p class="lesson-lead">T6A</p>
+          <h2>Resistors, capacitors, inductors, switches &amp; batteries</h2>
+          <p>
+            These five kinds of parts don't amplify anything or make decisions &mdash; they just
+            resist, store, or route electricity, which is exactly why they show up in almost every
+            circuit ever built.
+          </p>
+          <p>
+            A <a class="term" href="../../glossary.html#resistor">resistor</a> is the simplest of
+            all: it opposes the flow of current in a DC circuit, converting some of the electrical
+            energy passing through it into heat. A
+            <a class="term" href="../../glossary.html#potentiometer">potentiometer</a> is a resistor
+            with a movable third contact (a "wiper") that lets you dial its resistance up or down by
+            turning a knob or sliding a lever &mdash; which is exactly why it's the standard part used
+            for an adjustable volume control: turning the knob changes the resistance, which changes
+            how much of the audio signal gets through.
+          </p>
+          <p>
+            A <a class="term" href="../../glossary.html#capacitor">capacitor</a> stores energy in an
+            <strong>electric field</strong>. Physically, it's just two conductive surfaces (plates)
+            separated by an insulator (called the dielectric) &mdash; no direct electrical path
+            between the plates at all, just an electric field building up across the gap when
+            voltage is applied. An <a class="term" href="../../glossary.html#inductor">inductor</a>
+            is the magnetic counterpart: it stores energy in a <strong>magnetic field</strong>, and is
+            typically built as nothing more than a coil of wire &mdash; current flowing through the
+            coil builds up a magnetic field around it, and that field is where the energy lives.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            Why can't you just use a resistor everywhere you'd use a capacitor or inductor? A
+            resistor only opposes current and dissipates energy as heat &mdash; it doesn't store
+            anything to give back. A capacitor and inductor each store energy temporarily (in an
+            electric or magnetic field) and can release it again, which is what makes them useful for
+            filtering, timing, and tuned circuits (more on that in T6D) in a way a plain resistor
+            never can.
+          </div>
+          <h3>Switches</h3>
+          <p>
+            Switch names describe two numbers: how many separate circuits the switch controls
+            (<strong>poles</strong>), and how many positions each pole can connect to
+            (<strong>throws</strong>). An <dfn id="def-spst">SPST</dfn> (single-pole single-throw)
+            switch just opens or closes one circuit &mdash; a basic on/off switch. An
+            <strong>SPDT</strong> (single-pole double-throw) switch does something more specific: it
+            switches a single circuit between one of <em>two</em> other circuits, like a selector that
+            routes one input to either of two possible destinations. Figure T-2 below (in T6C) has a
+            real example: its labeled component 3 is drawn as a basic single-throw toggle &mdash; an
+            SPST power switch in series with the battery and fuse.
+          </p>
+          <h3>Batteries</h3>
+          <p>
+            Battery chemistries split into rechargeable and non-rechargeable (primary) types. <strong>
+            Nickel-metal hydride (NiMH), lithium-ion (Li-ion), and lead-acid</strong> are all
+            rechargeable chemistries in common ham use &mdash; lead-acid in particular is what's inside
+            most vehicle and backup-power batteries. <strong>Carbon-zinc</strong>, by contrast, is a
+            classic non-rechargeable (single-use) chemistry &mdash; it's chemically similar to an
+            alkaline cell and, once depleted, gets thrown away rather than recharged. (Nickel-cadmium,
+            or NiCd, is also rechargeable, so don't mix it up with carbon-zinc on this point.)
+          </p>
+          <p class="text-dim">
+            A <dfn id="def-fuse-t6">fuse</dfn> also belongs on this parts list &mdash; a thin element
+            designed to melt and open the circuit if too much current flows through it. T6A doesn't
+            have exam questions on fuses this cycle, but T0A covers exactly why that melting behavior
+            matters for safety, and what happens if you install the wrong one.
+          </p>
+          <details class="exam-refs" data-group="T6A" data-exam="technician">
+            <summary>Covers T6A01&ndash;T6A11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T6B ============ -->
+        <section class="lesson-section" id="t6b">
+          <p class="lesson-lead">T6B</p>
+          <h2>Semiconductors: diodes, transistors &amp; gain</h2>
+          <p>
+            A semiconductor is a material (typically silicon) that's deliberately treated so it
+            conducts electricity under some conditions but not others &mdash; that controllable
+            behavior is what makes diodes and transistors possible, and neither one has a mechanical
+            moving part.
+          </p>
+          <p>
+            A <a class="term" href="../../glossary.html#diode">diode</a> is the simplest semiconductor
+            component: it allows current to flow in only <strong>one direction</strong>, blocking it in
+            the other. The direction that lets current through is called forward bias; the blocked
+            direction is reverse bias. Every diode drops a small amount of voltage across itself
+            whenever current flows forward through it (its "forward voltage drop"), and that drop
+            actually differs from one diode type to another &mdash; a lower forward drop isn't a sign
+            of a defective diode, it's just a property of that particular diode's construction. On the
+            physical part itself, the <strong>cathode</strong> lead (the "output" side in forward
+            conduction) is usually marked with a <strong>stripe</strong> printed on the body, and the
+            two leads of any diode are named <strong>anode and cathode</strong> &mdash; current flows
+            from anode to cathode when forward-biased. A
+            <a class="term" href="../../glossary.html#diode">light-emitting diode (LED)</a> is a diode
+            built to emit light specifically when <strong>forward current</strong> flows through it
+            &mdash; no light on reverse bias, and no RF coupling involved at all.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You're looking at an unmarked two-lead component and need to know which end is which
+            without a datasheet. If it's a diode, check the body for a painted stripe near one end
+            &mdash; that's the cathode. No stripe visible usually means you're looking at a different
+            kind of part (or a diode oriented so the mark is hidden), not that the rule doesn't apply.
+          </div>
+          <h3>Transistors</h3>
+          <p>
+            A <a class="term" href="../../glossary.html#transistor">transistor</a> can be built from
+            three regions of semiconductor material, and unlike a diode it can do two jobs a diode
+            can't: act as an electronic switch (turning a larger current on or off using a much
+            smaller control signal, with no moving contacts), and provide power gain (more on gain
+            below). There are two families tested here:
+          </p>
+          <ul>
+            <li>
+              A <strong>bipolar junction transistor (BJT)</strong> has three electrodes named
+              <strong>emitter, base, and collector</strong>. A small current into the base controls a
+              much larger current flowing from collector to emitter.
+            </li>
+            <li>
+              A <a class="term" href="../../glossary.html#fet">field-effect transistor (FET)</a> &mdash;
+              FET is the abbreviation for exactly that &mdash; instead has electrodes named
+              <strong>gate, drain, and source</strong>. Instead of a control <em>current</em> like a
+              BJT's base, a FET is controlled by a <em>voltage</em> applied to its gate.
+            </li>
+          </ul>
+          <p>
+            <a class="term" href="../../glossary.html#gain">Gain</a> is the general term for how much
+            bigger an amplifier's output is than its input &mdash; and the exam pool is explicit that
+            it can be expressed three equivalent ways: as a ratio of output-to-input voltage, of
+            output-to-input current, <em>or</em> of output-to-input power. All three are valid
+            descriptions of "gain," just measuring different things about the same amplified signal.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            An amplifier stage takes in a 1&nbsp;milliwatt signal and puts out 100&nbsp;milliwatts.
+            Its power gain is simply output &divide; input: 100&nbsp;mW &divide; 1&nbsp;mW = a gain of
+            100 (100&times; the power came out compared to what went in). That gain has to come from
+            somewhere &mdash; it's supplied by the transistor's power source (its DC supply voltage),
+            not created out of the input signal itself.
+          </div>
+          <details class="exam-refs" data-group="T6B" data-exam="technician">
+            <summary>Covers T6B01&ndash;T6B12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T6C ============ -->
+        <section class="lesson-section" id="t6c">
+          <p class="lesson-lead">T6C</p>
+          <h2>Circuit diagrams &amp; schematic symbols</h2>
+          <p>
+            A <a class="term" href="../../glossary.html#schematic">schematic</a> is an electrical
+            diagram that represents components with standard symbols rather than drawings of what
+            they physically look like. That distinction is tested directly: a schematic accurately
+            represents how components are <strong>connected</strong> to each other &mdash; it does
+            <strong>not</strong> attempt to show wire lengths or the physical appearance of the parts.
+            A resistor symbol looks the same whether the real part is tiny or huge; what matters on
+            the page is which pins wire to which.
+          </p>
+          <p>
+            This group's whole point is being able to look at three specific figures from the pool
+            and name each labeled part. The images below are the actual official diagrams &mdash; take
+            a minute with each one rather than trying to memorize answers in the abstract.
+          </p>
+
+          <h3>Figure T-1</h3>
+          <div class="panel panel-corners" style="margin:1rem 0;">
+            <div class="panel-header"><span>Figure T-1</span></div>
+            <img src="../../data/source/diagrams/T1.jpg" alt="Figure T-1: a two-terminal input through a resistor (1) into the base of a transistor (2), whose output feeds an indicator lamp (3) wired to a battery (4); the transistor's emitter returns to a ground symbol, as does a second input terminal (5)." style="max-width:100%; border-radius:4px;" />
+            <p class="text-dim" style="margin:0.75rem 0 0; font-size:0.9rem;">
+              Two input terminals feed a resistor into a transistor, which switches an
+              indicator-lamp circuit powered by a battery.
+            </p>
+          </div>
+          <p>
+            Reading it left to right: component <strong>1</strong> is a <strong>resistor</strong> (the
+            zig-zag symbol) sitting between the input jack and the transistor. Component
+            <strong>2</strong> is the <strong>transistor</strong> itself (the circled symbol with the
+            angled arrow lead) &mdash; and its <em>function</em> here is tested directly: it controls
+            the flow of current to whatever's downstream of it, exactly like every transistor in T6B.
+            Component <strong>3</strong>, the rounded dome symbol at the top, is a
+            <strong>lamp</strong> (an indicator light) &mdash; when the transistor switches on, current
+            flows up through the lamp and lights it. Component <strong>4</strong>, drawn as stacked
+            long and short parallel lines, is a <strong>battery</strong> supplying that lamp circuit.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            The exam asks: "What is the function of component 2 in figure T-1?" Component 2 is the
+            transistor. Its job in this circuit isn't to give off light (that's the lamp, component
+            3) or supply energy (that's the battery, component 4) &mdash; it's to <strong>control the
+            flow of current</strong> to the lamp based on the small signal arriving through resistor 1.
+            That's the correct answer, and it's also just what a transistor does in general.
+          </div>
+
+          <h3>Figure T-2</h3>
+          <div class="panel panel-corners" style="margin:1rem 0;">
+            <div class="panel-header"><span>Figure T-2</span></div>
+            <img src="../../data/source/diagrams/T2.jpg" alt="Figure T-2: a battery (1) through a fuse (2) and switch (3) into a transformer (4), whose secondary feeds a diode (5), filter capacitor (6), resistor (7) and LED (8), and a variable resistor (9), ending at an output with a protective diode (10) to ground." style="max-width:100%; border-radius:4px;" />
+            <p class="text-dim" style="margin:0.75rem 0 0; font-size:0.9rem;">
+              A simple regulated power supply: source &rarr; fuse &rarr; switch &rarr; transformer &rarr;
+              rectifier &rarr; filter &rarr; output.
+            </p>
+          </div>
+          <p>
+            This whole figure is a small AC-to-DC power supply, and reading it as one story makes the
+            individual symbols easier to place. On the left, component <strong>1</strong> (the
+            circled stacked-lines symbol, same battery symbol as figure T-1's component 4) is the
+            source, feeding through component <strong>2</strong>, a small rectangle in series &mdash;
+            the standard symbol for a <strong>fuse</strong> &mdash; and then component
+            <strong>3</strong>, drawn as a simple break in the line with a diagonal contact: that's
+            tested directly, and it's a <strong>single-pole single-throw (SPST)</strong> switch, the
+            basic on/off type from T6A.
+          </p>
+          <p>
+            From there the line runs into component <strong>4</strong>, the paired coil symbols
+            &mdash; a <strong>transformer</strong>, also tested directly. Past the transformer's
+            second coil, component <strong>5</strong> (the triangle-and-bar symbol) is a
+            <strong>diode</strong> acting as a rectifier, turning the transformer's AC output into
+            pulsing DC (exactly the rectifier behavior covered in T6D). That feeds component
+            <strong>6</strong>, the parallel-plate symbol &mdash; a <strong>capacitor</strong>, tested
+            directly, here smoothing (filtering) that pulsing DC into steadier DC. Component
+            <strong>7</strong>, a zig-zag, is a plain <strong>resistor</strong> in series with
+            component <strong>8</strong>, a diode symbol with light-emission arrows &mdash; a
+            <strong>light-emitting diode (LED)</strong>, tested directly, used here as a simple "power
+            on" indicator; the resistor limits current through it so it doesn't burn out. Component
+            <strong>9</strong>, a zig-zag with an arrow through it, is tested directly as a
+            <strong>variable resistor</strong> &mdash; likely an output-adjustment trimmer. Finally,
+            component <strong>10</strong>, a diode symbol with a bent tail near ground at the output,
+            is a diode-family component wired for protection/regulation at the output stage.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            "What is component 9 in figure T-2?" Trace the line from the output backward: past the
+            LED indicator branch (8) and its resistor (7), the next component before the output jack
+            is drawn as a resistor symbol with an arrow through it &mdash; the standard symbol for an
+            adjustable resistance. That's a <strong>variable resistor</strong>, matching the exam's
+            correct answer exactly.
+          </div>
+
+          <h3>Figure T-3</h3>
+          <div class="panel panel-corners" style="margin:1rem 0;">
+            <div class="panel-header"><span>Figure T-3</span></div>
+            <img src="../../data/source/diagrams/T3.jpg" alt="Figure T-3: a feed line (1) through a variable capacitor (2) to a junction that splits to a variable inductor (3) to ground, and continues through a second variable capacitor to an antenna (4)." style="max-width:100%; border-radius:4px;" />
+            <p class="text-dim" style="margin:0.75rem 0 0; font-size:0.9rem;">
+              An antenna tuner (matching network): a variable capacitor and variable inductor
+              reshape the line's impedance to match the antenna.
+            </p>
+          </div>
+          <p>
+            Component <strong>1</strong>, the squiggle at the far left, is the transmission line
+            (feed line) coming in from the transmitter. It passes through component
+            <strong>2</strong>, drawn as crossed plates with an arrow &mdash; a variable capacitor
+            &mdash; before reaching a junction. From that junction, component <strong>3</strong>
+            (the coiled symbol with an arrow and feedback loop, heading down to ground) is tested
+            directly: it's a <strong>variable inductor</strong>. The line continues rightward through
+            a second variable capacitor to component <strong>4</strong>, the triangular symbol at the
+            top &mdash; tested directly as an <strong>antenna</strong>. A variable capacitor and
+            variable inductor together, arranged like this, form exactly the kind of resonant (tuned)
+            circuit described in T6D: this whole figure is an antenna tuner, adjusted to match the
+            feed line's impedance to the antenna.
+          </p>
+          <details class="exam-refs" data-group="T6C" data-exam="technician">
+            <summary>Covers T6C01&ndash;T6C12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T6D ============ -->
+        <section class="lesson-section" id="t6d">
+          <p class="lesson-lead">T6D</p>
+          <h2>Component functions</h2>
+          <p>
+            T6A&ndash;C covered what parts <em>are</em>; T6D covers what small collections of them
+            <em>do</em> once wired together into a functional block.
+          </p>
+          <p>
+            A <a class="term" href="../../glossary.html#rectifier">rectifier</a> is a device or
+            circuit (typically built from one or more diodes, like component 5 in figure T-2 above)
+            that changes alternating current into a varying direct-current signal &mdash; it doesn't
+            smooth that DC out by itself, it just makes the current stop reversing direction; a filter
+            capacitor downstream does the smoothing. A
+            <a class="term" href="../../glossary.html#voltage-regulator">regulator</a> is a circuit
+            that controls the amount of voltage coming from a power supply, holding the output steady
+            even as input voltage or load current varies. A <strong>transformer</strong> changes
+            120&nbsp;V AC power to a lower (or higher) AC voltage for other uses &mdash; the wall-power
+            step-down transformer in figure T-2 is a direct example.
+          </p>
+          <p>
+            A <a class="term" href="../../glossary.html#relay">relay</a> is an
+            <strong>electrically-controlled switch</strong>: a small control current energizes a coil,
+            which mechanically pulls a set of contacts open or closed &mdash; letting a weak control
+            signal switch a completely separate, often much higher-power, circuit. A
+            <a class="term" href="../../glossary.html#integrated-circuit">integrated circuit (IC)</a>
+            is a device that combines several semiconductors and other components into one package
+            &mdash; a whole amplifier or logic circuit's worth of transistors, diodes, and resistors,
+            fabricated together and sold as a single part.
+          </p>
+          <p>
+            A <strong>meter</strong> displays an electrical quantity as a numeric value &mdash; voltage,
+            current, power, or SWR, read directly rather than inferred. An
+            <strong>LED</strong> is commonly used as a simple visual indicator (the "power on" light
+            from figure T-2 again). And <strong>shielded wire</strong> exists for a specific reason: to
+            prevent unwanted signals from coupling onto (or off of) the wire it surrounds &mdash; a
+            grounded metal braid or foil around the conductor intercepts stray electric fields before
+            they can induce noise on the signal inside.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            Your microphone cable runs close to a power cord and starts picking up an audible hum.
+            Why would switching to shielded microphone cable help? The shield (a grounded conductive
+            layer wrapped around the signal wire) intercepts the stray electric field radiating from
+            the power cord before it can couple onto the audio conductor inside &mdash; it's the same
+            mechanism T6D03 is testing, just applied to a real symptom.
+          </div>
+          <p>
+            Finally, a <a class="term" href="../../glossary.html#resonant-circuit">resonant (tuned)
+            circuit</a> is simply an inductor and a capacitor wired together, in series or in
+            parallel &mdash; nothing more exotic than that combination is required. It's called
+            "resonant" because at one particular frequency, the inductor's and capacitor's opposing
+            effects on AC current cancel out in a very specific way, making the circuit respond much
+            more strongly at that frequency than at any other &mdash; which is exactly the mechanism
+            behind figure T-3's antenna tuner in T6C.
+          </p>
+          <details class="exam-refs" data-group="T6D" data-exam="technician">
+            <summary>Covers T6D01&ndash;T6D11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <div class="panel panel-corners" style="margin-top:1rem; margin-bottom:3rem;">
+          <div class="panel-header"><span>Practice T6</span></div>
+          <div class="cluster">
+            <a class="btn btn-primary" href="../../flashcards.html?exam=technician&subelement=T6">T6 flashcards</a>
+            <a class="btn" href="../../quiz.html?exam=technician&subelement=T6">T6 practice quiz</a>
+            <a class="btn" href="../../technician.html">&larr; back to Technician subelements</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer" class="site-footer" data-root="../../"></footer>
+  </div>
+
+  <script src="../../js/nav.js"></script>
+  <script src="../../js/data.js"></script>
+  <script src="../../js/storage.js"></script>
+  <script src="../../js/lesson.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => HamLesson.wireDetails(document));
+  </script>
+</body>
+</html>

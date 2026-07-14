@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>T3 &middot; Radio Wave Propagation &mdash; HAM OPS</title>
+  <meta name="description" content="Technician subelement T3: how radio waves actually travel — electromagnetic wave basics, wavelength/frequency, polarization and multipath, and the ionospheric and tropospheric mechanisms behind long-distance VHF/UHF/HF propagation." />
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header id="site-header" class="site-header" data-root="../../"></header>
+
+    <main id="main">
+      <div class="container">
+        <p class="hero-kicker" style="margin-top:2rem;">// technician &middot; subelement T3</p>
+        <h1>Radio Wave Propagation</h1>
+        <p class="text-dim" style="max-width:68ch;">
+          T1 and T2 were about what you're allowed to do and how to do it politely. T3 is
+          physics: what a radio wave actually <em>is</em>, and why it sometimes travels 10 feet
+          and sometimes 10,000 miles. Nothing here is a regulation &mdash; it's the underlying
+          science the pool expects you to understand well enough to predict when a contact will
+          and won't work.
+        </p>
+        <nav class="lesson-jump" aria-label="Jump to group">
+          <a href="#t3a">T3A Signal behavior</a>
+          <a href="#t3b">T3B Wave fundamentals</a>
+          <a href="#t3c">T3C Propagation modes</a>
+        </nav>
+
+        <!-- ============ T3A ============ -->
+        <section class="lesson-section" id="t3a">
+          <p class="lesson-lead">T3A</p>
+          <h2>Why signals behave the way they do</h2>
+          <p>
+            Start with a puzzling everyday observation: on VHF, moving your antenna just a few
+            feet can make a weak signal disappear entirely, or suddenly come in strong. The cause
+            is <a class="term" href="../../glossary.html#multipath">multipath</a> &mdash; your
+            receiver isn't hearing just one copy of the signal, it's hearing the direct path
+            <em>plus</em> reflections off the ground, buildings, hills, even passing vehicles, all
+            arriving at slightly different times. Those copies can add together in phase
+            (reinforcing each other) or arrive out of phase (partially or fully cancelling each
+            other), and which one happens depends on the exact path lengths involved &mdash; which is
+            why moving your antenna by a fraction of a wavelength changes everything. The same
+            mechanism explains two other symptoms directly: <strong>irregular fading</strong> on
+            ionospheric HF signals (multiple sky-wave paths combining unpredictably), and
+            <a class="term" href="../../glossary.html#picket-fencing">picket fencing</a> &mdash; the
+            rapid flutter you hear on a mobile FM signal as a moving vehicle sweeps continuously
+            through alternating zones of reinforcement and cancellation. On digital data links,
+            that same unpredictable path-combining doesn't sound like anything &mdash; it just shows
+            up as a higher bit error rate, since multipath's actual effect is corrupting the
+            signal's timing and amplitude, not amplifying or slowing it in any way you could
+            "correct" by transmitting faster or slower.
+          </p>
+          <p>
+            <a class="term" href="../../glossary.html#polarization">Polarization</a> &mdash; the
+            orientation of the wave's electric field &mdash; matters because transmit and receive
+            antennas generally need to match for the strongest signal. For long-distance VHF/UHF
+            CW and SSB contacts, the convention is <strong>horizontal</strong> polarization (most
+            repeaters, by contrast, use vertical, which is why an HT's vertical "rubber duck"
+            antenna works fine there but poorly for weak-signal horizontal work). Get the
+            polarization of the two stations badly mismatched &mdash; cross-polarized, say vertical
+            talking to horizontal &mdash; and received signal strength drops, sometimes severely,
+            even though everything else about the path is fine.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You're trying to make a weak-signal SSB contact on 2 meters with a station 80 miles
+            away, using a horizontally polarized Yagi. Your neighbor, working a local repeater 5
+            miles off with a vertical antenna, has no trouble at all. Different jobs, different
+            polarization conventions: horizontal for long-distance VHF/UHF SSB and CW, vertical for
+            local FM/repeater work &mdash; matching the convention that the other stations you're
+            trying to reach are actually using.
+          </div>
+          <p>
+            Two mechanical facts about how obstacles and weather interact with signals, at
+            opposite ends of the spectrum: vegetation (trees, foliage) <strong>absorbs</strong> UHF
+            and microwave signals, degrading weak-signal reception noticeably &mdash; a UHF handheld
+            in dense woods performs worse than the same radio in the open, even with an identical
+            path distance. At the very top of the amateur spectrum, precipitation specifically
+            (not wind, not cold, not pressure) is what degrades microwave range, through a
+            mechanism called rain fade &mdash; the water droplets themselves absorb and scatter
+            those short wavelengths. Down at 10 and 6 meters, by contrast, fog and rain have
+            <strong>little effect</strong> &mdash; those wavelengths are long enough that small water
+            droplets barely interact with the signal at all. And one purely geometric point worth
+            remembering when a direct path is blocked by a building or hill: a directional antenna
+            can sometimes still reach a distant repeater by deliberately aiming at a surface that
+            <em>reflects</em> the signal toward it, turning multipath from a nuisance into a tool.
+          </p>
+          <p>
+            Last, a fact that resolves an intuitive worry about HF skywave contacts: since the
+            ionosphere reflects signals in a way that scrambles their polarization
+            (they arrive <strong>elliptically polarized</strong> after the trip), it doesn't matter
+            whether your HF antenna is vertical or horizontal for making the contact &mdash; either
+            works, because by the time the signal comes back down neither the original transmit
+            polarization nor a specific matching receive polarization is preserved.
+          </p>
+          <details class="exam-refs" data-group="T3A" data-exam="technician">
+            <summary>Covers T3A01&ndash;T3A12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T3B ============ -->
+        <section class="lesson-section" id="t3b">
+          <p class="lesson-lead">T3B</p>
+          <h2>What a radio wave actually is</h2>
+          <p>
+            A radio wave has exactly two components: an <strong>electric field</strong> and a
+            <strong>magnetic field</strong>, oscillating together and always at
+            <strong>right angles</strong> to each other (and to the direction the wave is
+            travelling). Polarization, from T3A, is defined specifically as the orientation of the
+            <em>electric</em> field &mdash; the magnetic field is always along for the ride at 90&deg;
+            to it, so there's no separate "magnetic polarization" to track.
+          </p>
+          <p>
+            In free space (a vacuum, and for practical purposes, air), every radio wave travels at
+            the same speed regardless of frequency: the <strong>speed of light</strong>,
+            approximately <strong>300,000,000 meters per second</strong>. Microwaves, UHF, VHF, and
+            HF all travel at that identical velocity &mdash; frequency doesn't speed anything up or
+            slow anything down in free space. What frequency <em>does</em> change is
+            <strong>wavelength</strong>, and the relationship is inverse: as frequency goes up,
+            wavelength gets shorter, because the same velocity has to fit more oscillation cycles
+            into the same one second.
+          </p>
+          <p>
+            That relationship reduces to one formula worth memorizing, derived directly from
+            (speed of light) &divide; frequency, with the units simplified for convenience:
+          </p>
+          <div class="panel panel-corners" style="margin:1rem 0; max-width:36rem;">
+            <div class="panel-header"><span>Wavelength formula</span></div>
+            <p class="readout" style="font-size:1.1rem; margin:0.25rem 0;">
+              wavelength (meters) = 300 &divide; frequency (MHz)
+            </p>
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            Technician's 10-meter band sits around 28&nbsp;MHz. Check the name against the formula:
+            300 &divide; 28 &asymp; 10.7 meters &mdash; close enough to "10 meters" that the band name is
+            just the rounded wavelength, not an arbitrary label. Do the same check on the 2-meter
+            band at 146&nbsp;MHz: 300 &divide; 146 &asymp; 2.05 meters. This is exactly why amateur bands
+            get identified by wavelength <em>in addition to</em> frequency &mdash; "10 meters" and
+            "28 MHz" are two names for the same physical thing.
+          </div>
+          <p>
+            Frequency ranges themselves have standard names, and the pool expects the boundaries
+            precisely, not approximately:
+          </p>
+          <div style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; min-width:26rem;">
+              <thead>
+                <tr style="text-align:left; font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-faint);">
+                  <th style="padding:0.4em 0.8em 0.4em 0;">Name</th>
+                  <th style="padding:0.4em 0;">Range</th>
+                </tr>
+              </thead>
+              <tbody class="readout" style="font-size:0.9rem;">
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">HF (High Frequency)</td><td style="padding:0.5em 0;">3&ndash;30 MHz</td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">VHF (Very High Frequency)</td><td style="padding:0.5em 0;">30&ndash;300 MHz</td></tr>
+                <tr style="border-top:1px solid var(--border);"><td style="padding:0.5em 0.8em 0.5em 0;">UHF (Ultra High Frequency)</td><td style="padding:0.5em 0;">300&ndash;3000 MHz</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-dim" style="margin-top:0.75rem;">
+            Technician's 10-meter band (28&ndash;29.7&nbsp;MHz) is HF; 6 meters and 2 meters are VHF;
+            70 centimeters and up are UHF. Keep this table in mind for T3C &mdash; which propagation
+            mechanisms are available depends heavily on which of these three ranges you're in.
+          </p>
+          <details class="exam-refs" data-group="T3B" data-exam="technician">
+            <summary>Covers T3B01&ndash;T3B12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T3C ============ -->
+        <section class="lesson-section" id="t3c">
+          <p class="lesson-lead">T3C</p>
+          <h2>How signals get from here to there</h2>
+          <p>
+            The single biggest propagation fact to internalize: <strong>HF</strong> gets
+            long-distance help from the <a class="term" href="../../glossary.html#ionosphere">ionosphere</a>
+            routinely; <strong>VHF and UHF</strong> generally don't. The ionosphere is a layered,
+            ionized region of the upper atmosphere (roughly 50&ndash;600&nbsp;km up) that can bend
+            HF waves back down to Earth &mdash; that's what makes working a station a thousand miles
+            away on 10 meters unremarkable, while a UHF simplex signal is usually only heard out to
+            its <a class="term" href="../../glossary.html#radio-horizon">radio horizon</a> (which
+            extends slightly past the visual horizon, because the atmosphere refracts radio waves
+            a small amount as they skim along the curve of the Earth &mdash; but that's a modest
+            bonus, not ionospheric skip). VHF/UHF signals mostly pass straight through the
+            ionosphere into space rather than reflecting off it.
+          </p>
+          <p>
+            That said, VHF/UHF has its own set of occasional long-distance tricks, each with a
+            distinct mechanism and a distinct "signature" you can learn to recognize:
+          </p>
+          <div class="grid grid-2" style="margin:1rem 0;">
+            <div class="panel">
+              <div class="panel-header"><span><a class="term" href="../../glossary.html#sporadic-e">Sporadic E</a></span></div>
+              <p class="text-dim" style="margin:0;">Dense, patchy clouds of ionization in the E layer &mdash; much lower than the F layer &mdash; briefly reflect signals well above what the F layer normally handles. The propagation mode most responsible for surprise strong openings on 10, 6, and 2 meters.</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span><a class="term" href="../../glossary.html#tropospheric-ducting">Tropospheric ducting</a></span></div>
+              <p class="text-dim" style="margin:0;">A temperature inversion in the lower atmosphere traps and guides VHF/UHF signals in a duct, regularly reaching on the order of 300 miles &mdash; well past the normal radio horizon, with no ionosphere involved at all.</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span><a class="term" href="../../glossary.html#meteor-scatter">Meteor scatter</a></span></div>
+              <p class="text-dim" style="margin:0;">Signals bounce off the brief ionized trail a meteor leaves burning up in the atmosphere. The trail lasts a fraction of a second to a few seconds, so contacts use short, fast transmissions timed to that window &mdash; 6 meters is the band best suited to it.</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span><a class="term" href="../../glossary.html#auroral-backscatter">Auroral backscatter</a></span></div>
+              <p class="text-dim" style="margin:0;">Signals reflect off ionization in the aurora itself rather than travelling a direct path. The turbulent, shifting reflector gives received signals a characteristic distorted, raspy sound &mdash; the signature that gives this mode away on the air.</p>
+            </div>
+          </div>
+          <p>
+            One more non-ionospheric, non-tropospheric mechanism worth knowing:
+            <a class="term" href="../../glossary.html#knife-edge-diffraction">knife-edge diffraction</a>
+            &mdash; radio waves bend slightly around the sharp edge of an obstruction (a ridgeline, a
+            building edge), letting a signal reach a receiver with no true line-of-sight path to
+            the transmitter at all.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You're on 6 meters and suddenly start hearing stations 1,200 miles away with strong,
+            clean signals for about twenty minutes, then nothing. What happened? Too far for
+            tropospheric ducting (typically ~300 miles) and too clean/sustained for meteor scatter
+            (which comes in short bursts) &mdash; this pattern, distance, and band are the classic
+            signature of sporadic E.
+          </div>
+          <p>
+            Finally, the F-region skip that makes 10-meter long-distance contacts possible depends
+            heavily on solar activity and time of day: it's generally best <strong>from dawn to
+            shortly after sunset, during periods of high sunspot activity</strong> &mdash; sunlight
+            drives the ionization the F region needs, and once the sun sets that ionization starts
+            to decay. During a sunspot cycle's peak, both <strong>6 and 10 meters</strong> can get
+            F-region long-distance openings; the higher UHF/microwave bands are still too high in
+            frequency for the F region to bend back down, sunspot cycle or not.
+          </p>
+          <details class="exam-refs" data-group="T3C" data-exam="technician">
+            <summary>Covers T3C01&ndash;T3C11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <div class="panel panel-corners" style="margin-top:1rem; margin-bottom:3rem;">
+          <div class="panel-header"><span>Practice T3</span></div>
+          <div class="cluster">
+            <a class="btn btn-primary" href="../../flashcards.html?exam=technician&subelement=T3">T3 flashcards</a>
+            <a class="btn" href="../../quiz.html?exam=technician&subelement=T3">T3 practice quiz</a>
+            <a class="btn" href="../../technician.html">&larr; back to Technician subelements</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer" class="site-footer" data-root="../../"></footer>
+  </div>
+
+  <script src="../../js/nav.js"></script>
+  <script src="../../js/data.js"></script>
+  <script src="../../js/storage.js"></script>
+  <script src="../../js/lesson.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => HamLesson.wireDetails(document));
+  </script>
+</body>
+</html>

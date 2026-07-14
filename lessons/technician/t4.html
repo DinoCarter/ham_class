@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>T4 &middot; Amateur Radio Practices &mdash; HAM OPS</title>
+  <meta name="description" content="Technician subelement T4: wiring and setting up a station — power supplies, SWR/RF power meters, digital-mode interfacing, bonding — plus operating controls like squelch, filters, RIT, and DMR/D-STAR configuration." />
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header id="site-header" class="site-header" data-root="../../"></header>
+
+    <main id="main">
+      <div class="container">
+        <p class="hero-kicker" style="margin-top:2rem;">// technician &middot; subelement T4</p>
+        <h1>Amateur Radio Practices</h1>
+        <p class="text-dim" style="max-width:68ch;">
+          T4 is the hands-on subelement: how a station actually gets wired together (T4A), and
+          how you drive the controls on the front panel once it's built (T4B). Both groups are
+          full of small, concrete facts &mdash; the kind you either know from having done it, or
+          have to learn deliberately before the exam.
+        </p>
+        <nav class="lesson-jump" aria-label="Jump to group">
+          <a href="#t4a">T4A Station setup</a>
+          <a href="#t4b">T4B Operating controls</a>
+        </nav>
+
+        <!-- ============ T4A ============ -->
+        <section class="lesson-section" id="t4a">
+          <p class="lesson-lead">T4A</p>
+          <h2>Setting up a station</h2>
+          <p>
+            A typical 50-watt-output mobile FM transceiver expects a power supply rated
+            <strong>13.8 volts at 12 amperes</strong> &mdash; 13.8&nbsp;V because that's the nominal
+            voltage of a vehicle's charging system (a fully charged 12-volt lead-acid battery
+            actually sits closer to 13.8&nbsp;V under charge), and 12&nbsp;A because RF output power
+            is only part of what the radio draws; the rest goes to inefficiency in the amplifier
+            stage and to the receiver/control circuitry. That current draw is also why DC power
+            wiring uses <strong>short, heavy-gauge</strong> wire: a thin or long run has enough
+            resistance that it drops a meaningful chunk of that voltage before it reaches the
+            radio, especially right when you key up and current spikes &mdash; not because of any
+            RF concern, just plain Ohm's-law voltage drop under load. The negative return for a
+            mobile installation should connect directly at the <strong>vehicle's 12-volt battery
+            chassis ground</strong> &mdash; not to whatever metal happens to be nearby &mdash; so that
+            return current has a low-resistance, predictable path back to the source instead of
+            hunting through the car's body panels.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You want to know how long a 10 amp-hour battery will run a radio that draws an average
+            of 2 amps. Divide: 10&nbsp;Ah &divide; 2&nbsp;A = 5 hours. That's the whole calculation &mdash;
+            battery ampere-hour rating divided by the equipment's <em>average</em> current draw,
+            not its peak transmit current, since most operating time on voice is spent receiving
+            or between transmissions.
+          </div>
+          <p>
+            Two meters, two different jobs. An <strong>RF power meter</strong> belongs
+            <em>in the feed line</em>, between the transmitter and the antenna &mdash; it's measuring
+            the RF actually headed to the antenna, so it has to physically sit in that path. An
+            <a class="term" href="../../glossary.html#swr">SWR</a> meter measures a different
+            thing entirely: how well the antenna system is matched to the transmitter, which
+            determines how much of your power radiates versus reflects back. When picking an
+            accessory SWR meter, the detail that actually matters is whether it's rated for the
+            <strong>frequency and power level</strong> you'll be measuring at &mdash; an SWR meter
+            built for HF power levels won't necessarily read correctly at 2 meters, and one built
+            for QRP won't survive full legal-limit power.
+          </p>
+          <p>
+            <strong>Bonding</strong> is the practice of tying every metal part of a station &mdash;
+            chassis, tower, ground rods &mdash; together electrically so nothing floats at a
+            different RF potential from anything else, cutting down on stray RF and reducing shock
+            and fire risk. The preferred conductor for RF bonding is
+            <strong>flat copper strap</strong>, not round wire &mdash; strap has much more surface
+            area for the same cross-section, and RF current concentrates near a conductor's
+            surface (the "skin effect"), so more surface area means lower impedance exactly where
+            it counts at radio frequencies.
+          </p>
+          <h3>Digital modes and the computer-radio link</h3>
+          <p>
+            Running a mode like FT8 just means connecting your transceiver's audio in and out to
+            your computer's audio in and out, with software (not a separate hardware "FT8
+            converter") doing the encoding and decoding. A full computer-radio digital interface
+            typically carries exactly three signals: <strong>receive audio</strong> (radio &rarr;
+            computer), <strong>transmit audio</strong> (computer &rarr; radio), and
+            <strong>transmitter keying</strong> (so the software can key the radio into transmit
+            without you touching a push-to-talk button). Concretely, that means the computer's
+            "line in" connects to the transceiver's <strong>speaker</strong> connector (receive
+            audio flowing into the computer) &mdash; not to push-to-talk, which is a separate keying
+            line entirely.
+          </p>
+          <p>
+            A digital mode <a class="term" href="../../glossary.html#hotspot">hotspot</a> is a
+            small personal device that bridges a nearby handheld to a digital voice or data
+            network, usually over the internet &mdash; it's how a low-power radio can reach a
+            DMR/D-STAR talkgroup or reflector without a full-size repeater anywhere in range. And
+            an electronic <a class="term" href="../../glossary.html#keyer">keyer</a> is a device
+            that assists sending Morse code manually &mdash; it takes paddle motions from the
+            operator and turns them into correctly timed dits and dahs, rather than requiring every
+            individual element to be tapped out by hand on a straight key.
+          </p>
+          <details class="exam-refs" data-group="T4A" data-exam="technician">
+            <summary>Covers T4A01&ndash;T4A12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T4B ============ -->
+        <section class="lesson-section" id="t4b">
+          <p class="lesson-lead">T4B</p>
+          <h2>Operating controls</h2>
+          <p>
+            You can enter a transceiver's operating frequency two ways: the <strong>keypad</strong>
+            (typing a specific frequency directly) or the <strong>VFO knob</strong> (Variable
+            Frequency Oscillator &mdash; tuning continuously by hand). Both are normal, direct
+            methods of frequency entry; CTCSS/DTMF encoders and Automatic Frequency Control do
+            other jobs entirely and don't set your operating frequency.
+          </p>
+          <p>
+            Two controls get misused in ways that produce distorted audio, for two different
+            reasons: pushing <strong>microphone gain</strong> too high on SSB overdrives the audio
+            stage and distorts your transmitted signal, the voice-mode equivalent of the FM
+            over-deviation problem from T2B. Separately, an FM signal that's received
+            <strong>slightly off frequency</strong> comes out distorted too &mdash; not quieter, not
+            shifted in pitch uniformly, but distorted &mdash; because FM demodulation depends on
+            tracking the carrier's frequency swings accurately, and a receiver tuned even a little
+            off that carrier decodes those swings incorrectly.
+          </p>
+          <p>
+            <strong>Squelch</strong> normally mutes your receiver between transmissions so you
+            don't hear constant hiss. To pull in a weak FM signal that's having trouble holding the
+            squelch open, the fix is to set the squelch threshold low enough that receiver audio
+            is on <strong>all the time</strong> &mdash; effectively opening the gate all the way so
+            nothing gets muted, at the cost of hearing background noise between transmissions. The
+            <strong>scanning</strong> function does something unrelated: it tunes through a range
+            of frequencies automatically, checking each one for activity, so you don't have to step
+            through channels by hand.
+          </p>
+          <p>
+            If a station replying to your SSB CQ sounds slightly too high- or low-pitched, that's
+            a small frequency mismatch between your receiver and their transmitter &mdash; the fix is
+            the <a class="term" href="../../glossary.html#rit">RIT or Clarifier</a> control (Receiver
+            Incremental Tuning), which nudges your <em>receive</em> frequency without moving your
+            transmit frequency, so you can correct the pitch without accidentally drifting off the
+            frequency the other station is listening on.
+          </p>
+          <p>
+            Multimode transceivers offer a choice of receiver filter bandwidths for a concrete
+            reason: matching the filter to the mode reduces noise and interference by excluding
+            everything outside the bandwidth the signal actually needs. Too narrow, and you clip
+            the signal itself; too wide, and you let in noise and adjacent-signal interference
+            unnecessarily. For SSB voice specifically, <strong>2400&nbsp;Hz</strong> gives the best
+            signal-to-noise ratio among the common choices &mdash; narrow enough to exclude a good
+            deal of noise, wide enough to pass the range of frequencies SSB voice actually needs
+            (500&nbsp;Hz and 1000&nbsp;Hz are too narrow for clear voice; 5000&nbsp;Hz passes more
+            noise than necessary).
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You're switching between working weak-signal CW and casual SSB ragchews on the same
+            transceiver. Why not just leave the filter on the widest setting for everything? On
+            CW, a wide SSB-width filter passes far more noise than a narrow CW filter would, for no
+            benefit &mdash; a CW signal only occupies a tiny slice of spectrum. Matching filter
+            bandwidth to mode is exactly this trade-off, repeated for every mode you operate.
+          </div>
+          <p>
+            Two digital-voice-specific facts round out this group, both call-backs to T2B: a DMR
+            radio is switched to a specific talkgroup by <strong>entering that group's
+            identification code</strong> &mdash; not by picking a CTCSS tone or inserting a physical
+            code plug adapter, since the code plug is software already loaded on the radio, not a
+            hardware key. And a D-STAR transceiver specifically must have
+            <strong>your call sign</strong> programmed into it before it will transmit at all,
+            since D-STAR carries identification digitally as part of the signal rather than relying
+            on you to speak it.
+          </p>
+          <details class="exam-refs" data-group="T4B" data-exam="technician">
+            <summary>Covers T4B01&ndash;T4B11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <div class="panel panel-corners" style="margin-top:1rem; margin-bottom:3rem;">
+          <div class="panel-header"><span>Practice T4</span></div>
+          <div class="cluster">
+            <a class="btn btn-primary" href="../../flashcards.html?exam=technician&subelement=T4">T4 flashcards</a>
+            <a class="btn" href="../../quiz.html?exam=technician&subelement=T4">T4 practice quiz</a>
+            <a class="btn" href="../../technician.html">&larr; back to Technician subelements</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer" class="site-footer" data-root="../../"></footer>
+  </div>
+
+  <script src="../../js/nav.js"></script>
+  <script src="../../js/data.js"></script>
+  <script src="../../js/storage.js"></script>
+  <script src="../../js/lesson.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => HamLesson.wireDetails(document));
+  </script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>T9 &middot; Antennas and Feed Lines &mdash; HAM OPS</title>
+  <meta name="description" content="Technician subelement T9: antenna types, polarization, and gain; beam antennas and antenna loading; coaxial feed line types and loss vs. frequency; connectors; SWR concepts; and antenna tuners." />
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header id="site-header" class="site-header" data-root="../../"></header>
+
+    <main id="main">
+      <div class="container">
+        <p class="hero-kicker" style="margin-top:2rem;">// technician &middot; subelement T9</p>
+        <h1>Antennas and Feed Lines</h1>
+        <p class="text-dim" style="max-width:68ch;">
+          T5 covered the electrical theory; T3 covered how a wave travels once it's launched. T9
+          is the hardware in between: the antenna that turns your transmitter's power into a
+          radio wave (and vice versa on receive), and the feed line that carries power between the
+          radio and the antenna. Two groups: T9A is about antennas themselves, T9B is about
+          getting power to them without losing too much of it along the way.
+        </p>
+        <nav class="lesson-jump" aria-label="Jump to group">
+          <a href="#t9a">T9A Antenna types, polarization &amp; gain</a>
+          <a href="#t9b">T9B Feed lines, SWR &amp; tuners</a>
+        </nav>
+
+        <!-- ============ T9A ============ -->
+        <section class="lesson-section" id="t9a">
+          <p class="lesson-lead">T9A</p>
+          <h2>Antenna types, polarization &amp; gain</h2>
+          <p>
+            The simplest practical antenna is a <strong>dipole</strong>: a straight wire split in
+            the middle, fed at that center point, with each half roughly a quarter-wavelength long
+            (a "half-wave dipole" overall). Its radiation pattern isn't uniform &mdash; a half-wave
+            dipole radiates its strongest signal <strong>broadside</strong> to the wire (off to the
+            sides, at right angles to it), and almost nothing straight off the ends. That's worth
+            knowing before you orient one: broadside is where the signal goes.
+          </p>
+          <p>
+            <a class="term" href="../../glossary.html#polarization">Polarization</a> &mdash; introduced
+            back in T3A as a property of the wave &mdash; is, for an antenna, described by the
+            <strong>orientation of the electric field</strong> it radiates, which in practice just
+            means the physical orientation of the antenna element itself: a dipole mounted
+            horizontally radiates a horizontally polarized wave; mounted vertically, it radiates
+            vertically. As T3A covered, matching polarization between two stations matters for
+            signal strength on VHF/UHF line-of-sight paths.
+          </p>
+          <h3>Beams and gain</h3>
+          <p>
+            A plain dipole radiates roughly equally in most horizontal directions. A
+            <a class="term" href="../../glossary.html#beam-antenna">beam antenna</a> (also called a directional antenna) trades that
+            all-around coverage for concentration: it uses multiple elements to focus radiated
+            signal more strongly in one direction, at the cost of radiating less in others &mdash; the
+            <strong>Yagi</strong> is the classic amateur example, and among the antenna types the
+            pool asks about, it's the one that offers the greatest gain.
+          </p>
+          <p>
+            <a class="term" href="../../glossary.html#antenna-gain">Antenna gain</a> is exactly that
+            trade quantified: the increase in signal strength in one particular direction, compared
+            to a reference antenna (commonly a theoretical, perfectly uniform "isotropic" radiator).
+            Gain isn't free extra power from nowhere &mdash; a beam antenna doesn't radiate more total
+            power than it's fed, it just redistributes the same power to favor one direction over
+            the others, the same way a flashlight reflector doesn't add light, it just concentrates
+            the bulb's existing output into a narrower beam.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You switch from an isotropic reference antenna to a Yagi aimed at a distant station,
+            feeding both with the identical transmitter power. The distant station reports your
+            signal is noticeably stronger. Did your transmitter suddenly put out more power? No
+            &mdash; the Yagi's gain means it's concentrating the same total power more tightly toward
+            that one direction, at the expense of the directions you're not aiming at.
+          </div>
+          <p>
+            A related trick for shortening an antenna without changing what it resonates at:
+            <strong>antenna loading</strong> means electrically lengthening an antenna by inserting
+            inductors (coils) into the radiating element &mdash; useful when a physically full-size
+            antenna (say, a full quarter-wave HF whip) won't fit on a vehicle or handheld. Loading
+            trades size for some efficiency, which is directly why a handheld radio's short,
+            flexible "rubber duck" antenna has <strong>lower efficiency</strong> than a full-size
+            quarter-wave antenna on the same band &mdash; it's electrically shortened, and that
+            shortening costs you signal.
+          </p>
+          <p>
+            A few more antenna-length and orientation facts the pool tests directly:
+          </p>
+          <ul>
+            <li>
+              Physically <strong>shortening</strong> a dipole <strong>raises</strong> its resonant
+              frequency, and lengthening it lowers the resonant frequency &mdash; there's simply
+              less wire for the signal to travel across. That's the opposite effect from loading:
+              inserting coils (or adding capacitive loading at the tips) electrically
+              <em>lengthens</em> the antenna without changing its physical size, which
+              <strong>lowers</strong> its resonant frequency instead &mdash; the same lowering
+              effect, whether the loading is inductive or capacitive.
+            </li>
+            <li>
+              A 19-inch vertical antenna is a common sight on 2 meters because that length works
+              out to a resonant <strong>quarter-wave</strong> at 2-meter frequencies (146 MHz),
+              following the same wavelength math from T3B.
+            </li>
+            <li>
+              A <strong>5/8-wavelength</strong> whip (longer than a plain quarter-wave) is popular
+              for VHF/UHF mobile use specifically because it has <strong>more gain</strong> than a
+              1/4-wave antenna &mdash; it concentrates more of its radiation toward the horizon, where
+              distant stations actually are, instead of wasting some of it straight up.
+            </li>
+            <li>
+              Operating a handheld transceiver inside a vehicle without an external antenna loses
+              signal strength mainly because the <strong>vehicle's metal body shields</strong> the
+              antenna &mdash; the car acts like a partial cage around it.
+            </li>
+          </ul>
+          <details class="exam-refs" data-group="T9A" data-exam="technician">
+            <summary>Covers T9A01&ndash;T9A11 (11 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ T9B ============ -->
+        <section class="lesson-section" id="t9b">
+          <p class="lesson-lead">T9B</p>
+          <h2>Feed lines, SWR &amp; antenna tuners</h2>
+          <p>
+            A <a class="term" href="../../glossary.html#feed-line">feed line</a> is simply the cable
+            that carries RF energy between your radio and your antenna. The overwhelming majority of
+            amateur stations use <a class="term" href="../../glossary.html#coaxial-cable">coaxial
+            cable</a> ("coax") &mdash; a center conductor surrounded by
+            insulation, then a braided or foil shield, then an outer jacket &mdash; mainly because
+            it's easy to route, doesn't need to be kept clear of nearby metal the way some other
+            feed lines do, and requires few special installation considerations. Amateur coax is
+            almost always <strong>50 ohms</strong> characteristic impedance, chosen to match the
+            output impedance that most transmitters and antennas are designed around.
+          </p>
+          <p>
+            No feed line is perfectly lossless &mdash; some of the RF energy travelling down it is
+            always absorbed as heat rather than delivered to the antenna. Coax loss gets
+            <strong>worse as frequency increases</strong>: the same cable that's quite efficient
+            feeding an HF antenna loses noticeably more of your power feeding a UHF one. Loss also
+            comes from less obvious sources: <strong>water getting into connectors</strong>, a
+            <strong>high SWR</strong> on the line, and simply having <strong>multiple connectors</strong>
+            in the run (each one a small extra loss point) are all real, independent contributors
+            &mdash; which is also why outdoor coax connectors like PL-259, BNC, and Type N should all
+            be carefully weatherproofed with tape, regardless of which of those three you're using.
+          </p>
+          <p>
+            Not all coax is equal. Between <strong>RG-58</strong> (thin, flexible) and
+            <strong>RG-213</strong> (thicker), the electrical difference that matters is that
+            RG-213 has <strong>less loss at a given frequency</strong> &mdash; the extra bulk is
+            mostly dielectric and shielding that reduces how much signal is absorbed per foot. Carried
+            further, <strong>air-insulated hardline</strong> &mdash; coax that uses air rather than
+            solid plastic as its insulator &mdash; has the lowest loss of the common feed line types,
+            which is why it shows up on long HF/VHF runs where every dB matters, despite being
+            stiffer and more awkward to route than flexible coax.
+          </p>
+          <h3>Connectors</h3>
+          <p>
+            Three connector types come up repeatedly. The <strong>PL-259</strong> ("UHF connector,"
+            confusingly) is a threaded, screw-on connector that's inexpensive and easy to solder,
+            and is the common choice at <strong>HF and VHF</strong> frequencies &mdash; but it isn't
+            weatherproof on its own and isn't the best performer at very high frequencies. The
+            <strong>Type N</strong> connector is the better choice above <strong>400 MHz</strong>,
+            where a PL-259's mechanical design starts introducing more loss and impedance
+            irregularity than a Type N's more precise, weather-resistant design. <strong>BNC</strong>
+            connectors are, by contrast, a small, quick-disconnect <strong>bayonet-type</strong>
+            connector common on handhelds and test gear &mdash; twist-and-lock instead of
+            threaded.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You're building a feed line run to a 70-cm (440 MHz) antenna and deciding between
+            PL-259 and Type N connectors. Which is the better choice? 440 MHz is above the 400 MHz
+            point where PL-259 connectors start performing worse &mdash; so Type N is the better
+            choice here, even though PL-259 would have been perfectly fine on HF or 2 meters.
+          </div>
+          <h3>SWR: is the load matched?</h3>
+          <p>
+            <a class="term" href="../../glossary.html#swr">SWR</a> (standing wave ratio) measures
+            how well a load &mdash; typically the antenna system &mdash; is matched to the
+            transmission line feeding it. As T4 covered from the meter side, a perfect match reads
+            1:1 and means all the power reaching the antenna radiates outward; the worse the match,
+            the more power reflects back down the feed line instead. SWR that suddenly starts
+            changing erratically, with no other change to the station, is a strong sign of a
+            <strong>loose connection</strong> somewhere in the antenna or feed line &mdash; a
+            mechanical fault, not a propagation effect.
+          </p>
+          <p>
+            When your antenna's impedance doesn't naturally match your transceiver's output
+            impedance (and therefore SWR is higher than you'd like), an
+            <a class="term" href="../../glossary.html#antenna-tuner">antenna tuner</a> (also called
+            an antenna coupler) is the fix: its major function is <strong>matching the antenna
+            system's impedance to the transceiver's output impedance</strong>, using adjustable
+            inductors and capacitors to cancel out the mismatch. A tuner doesn't change what the
+            antenna itself is doing out in space, and it doesn't reduce loss that's already
+            happening in the feed line &mdash; it just presents the transmitter with the load
+            impedance it wants to see, so the transmitter itself operates efficiently and safely.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            Your transceiver reports a high SWR on a particular band, but a check confirms every
+            connector is tight and dry. You add an antenna tuner between the radio and the feed
+            line, and the transceiver now reports a clean 1:1 match. Did the tuner fix the mismatch
+            between your antenna and free space? No &mdash; the tuner matched the impedance your
+            <em>transmitter</em> sees at its output to what it expects, which lets the transmitter
+            run efficiently; whatever mismatch exists further out at the antenna itself, and any
+            loss that mismatch causes in the feed line before the tuner, is unchanged.
+          </div>
+          <p class="text-dim">
+            One RF-safety note that pairs directly with T0's exposure material: never work on or
+            reach near a transmitting antenna, and keep people clear of an antenna's near field
+            while transmitting, since RF energy right at the element can be far stronger than the
+            same signal is once it has spread out at a distance.
+          </p>
+          <details class="exam-refs" data-group="T9B" data-exam="technician">
+            <summary>Covers T9B01&ndash;T9B12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <div class="panel panel-corners" style="margin-top:1rem; margin-bottom:3rem;">
+          <div class="panel-header"><span>Practice T9</span></div>
+          <div class="cluster">
+            <a class="btn btn-primary" href="../../flashcards.html?exam=technician&subelement=T9">T9 flashcards</a>
+            <a class="btn" href="../../quiz.html?exam=technician&subelement=T9">T9 practice quiz</a>
+            <a class="btn" href="../../technician.html">&larr; back to Technician subelements</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer" class="site-footer" data-root="../../"></footer>
+  </div>
+
+  <script src="../../js/nav.js"></script>
+  <script src="../../js/data.js"></script>
+  <script src="../../js/storage.js"></script>
+  <script src="../../js/lesson.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => HamLesson.wireDetails(document));
+  </script>
+</body>
+</html>

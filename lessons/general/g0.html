@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>G0 &middot; Electrical and RF Safety &mdash; HAM OPS</title>
+  <meta name="description" content="General subelement G0: RF exposure evaluation and MPE compliance, plus station electrical safety — wiring, fusing, GFCIs, grounding, interlocks, and tower safety at higher power." />
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header id="site-header" class="site-header" data-root="../../"></header>
+
+    <main id="main">
+      <div class="container">
+        <p class="hero-kicker" style="margin-top:2rem;">// general &middot; subelement G0</p>
+        <h1>Electrical and RF Safety</h1>
+        <p class="text-dim" style="max-width:68ch;">
+          T0 covered the fundamentals: how RF exposure works, why a fuse belongs in the hot
+          conductor, why tower climbing has hard rules with no exceptions. None of that changes for
+          General &mdash; it's still true, and G0 leans on it rather than re-deriving it. What's new
+          is the scale: General-class stations tend to run higher power on more complex antenna
+          systems, which is exactly where RF exposure evaluations, proper wiring, and station
+          grounding stop being optional paperwork and start being the thing standing between you and
+          an actual injury.
+        </p>
+        <nav class="lesson-jump" aria-label="Jump to group">
+          <a href="#g0a">G0A RF safety &amp; evaluation</a>
+          <a href="#g0b">G0B Station &amp; tower safety</a>
+        </nav>
+
+        <!-- ============ G0A ============ -->
+        <section class="lesson-section" id="g0a">
+          <p class="lesson-lead">G0A</p>
+          <h2>RF safety principles, rules &amp; guidelines; routine station evaluation</h2>
+          <p>
+            T0C already established the core mechanism: RF energy is
+            <a class="term" href="../../glossary.html#non-ionizing-radiation">non-ionizing</a>, and the
+            hazard is <strong>heating</strong> body tissue (&sect;97.13(c)(1), same mechanism as a
+            microwave oven), not DNA-level damage. G0A is about the practical side: how you actually
+            determine whether your station is within the FCC's
+            <a class="term" href="../../glossary.html#mpe">MPE</a> limits, and what you do about it if
+            it isn't.
+          </p>
+          <p>
+            RF exposure from a transmitted signal depends on more than one factor at once &mdash; its
+            <strong>power density, its frequency, and its duty cycle</strong> all matter together, which
+            is why "what determines RF exposure" is correctly answered "all of these," not any one
+            alone. You have three acceptable ways to verify your station complies:
+          </p>
+          <ul>
+            <li><strong>Calculation</strong> using the method in FCC OET Bulletin 65</li>
+            <li><strong>Calculation</strong> by computer modeling</li>
+            <li><strong>Direct measurement</strong> of field strength with calibrated equipment</li>
+          </ul>
+          <p>
+            (&sect;97.13(c)(1)) &mdash; the rules don't mandate one specific method, and a proper field
+            measurement needs a <strong>calibrated field strength meter with a calibrated antenna</strong>,
+            not a receiver's signal meter or an SWR meter pressed into service for something it wasn't
+            built to do.
+          </p>
+          <p>
+            One term worth pinning down precisely: <strong>time averaging</strong> means your total RF
+            exposure is averaged over a certain period, not measured as an instantaneous peak
+            (&sect;97.13(c)(1)-adjacent guidance) &mdash; T0C's duty-cycle math is exactly this in
+            practice. Because averaging is what matters, duty cycle has a direct, testable effect on
+            allowable power: a <strong>lower</strong> duty cycle permits <strong>greater</strong> peak
+            power levels for the same time-averaged exposure &mdash; the inverse phrasing of T0C's "50%
+            duty cycle doubles the allowable power density" rule, same underlying math either way.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You calculated your station's MPE compliance for continuous FM at your normal antenna
+            distance and found you're right at the limit. You then switch to CW, which has a lower
+            duty cycle than continuous FM. Does that make your exposure situation better or worse at
+            the same power? Better &mdash; a lower duty cycle means less average energy delivered over
+            the averaging period even at identical peak power, which is exactly why a lower duty cycle
+            permits greater power levels to be transmitted for the same MPE compliance. It doesn't
+            exempt you from evaluating at all, though; it just shifts where the line is.
+          </div>
+          <h3>When evaluation shows a problem</h3>
+          <p>
+            If a routine evaluation shows your station's RF energy exceeds permissible limits for
+            possible human exposure, the requirement is direct: <strong>take action to prevent human
+            exposure to the excessive RF fields</strong> (&sect;97.13(c)(2), &sect;1.1307(b)) &mdash; not
+            file paperwork with the FCC, and not get written neighbor permission to operate above the
+            controlled MPE limit. If your station fails the FCC's RF-exposure <em>exemption</em>
+            criteria in the first place (meaning you can't skip evaluation entirely), the required next
+            step is the same: <strong>perform an RF exposure evaluation per FCC OET Bulletin 65</strong>
+            (&sect;97.13(c)(2), &sect;1.1307(1)(b)(3)(i)).
+          </p>
+          <p>
+            Two concrete compliance steps come up together in the pool: perform a
+            <strong>routine RF exposure evaluation</strong>, and <strong>prevent access to any
+            identified high-exposure areas</strong> (&sect;97.13(c)(2)) &mdash; not posting a copy of the
+            rule text in your shack, and not a blanket neighbor-notification requirement. If evaluation
+            shows a neighbor might get more than the allowable exposure from the <strong>main lobe</strong>
+            of a directional antenna, the fix is to make sure that lobe simply can't be aimed at them
+            while they're present &mdash; not switching to a "non-polarized" antenna (not a meaningful
+            category) and not just picking a higher front-to-back ratio, which doesn't guarantee the
+            main lobe stays clear of them. An <strong>indoor</strong> transmitting antenna carries the
+            same underlying obligation as any other: make sure MPE limits aren't exceeded in the
+            occupied space around it &mdash; proximity to your operating position and physical shielding
+            aren't substitutes for that.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            You run a directional beam on 20 meters, and your evaluation shows that when the beam
+            points directly at your neighbor's yard, they'd receive more than the allowable RF exposure
+            while they're out there. What's the required fix? Not a bigger front-to-back-ratio antenna,
+            and not switching antenna types generally &mdash; the specific fix the pool wants is taking
+            precautions that keep the antenna's main lobe from being pointed at them while they're
+            present, whether that's an operating restriction, a rotator interlock, or simply avoiding
+            that heading when you know they're outside.
+          </div>
+          <p class="text-dim">
+            Finally, scope: which stations are actually subject to these RF-exposure rules? <strong>All
+            stations with a time-averaged transmission of more than one milliwatt</strong>
+            (&sect;1.1307(1)(b)(3)(i)(A)) &mdash; amateur stations are <em>not</em> broadly exempt the way
+            one wrong-answer choice suggests, and the trigger isn't a fixed power number like 500&nbsp;W
+            or a fixed antenna height; it's that very low one-milliwatt time-averaged threshold, which
+            in practice means essentially every transmitting amateur station is covered.
+          </p>
+          <details class="exam-refs" data-group="G0A" data-exam="general">
+            <summary>Covers G0A01&ndash;G0A12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G0B ============ -->
+        <section class="lesson-section" id="g0b">
+          <p class="lesson-lead">G0B</p>
+          <h2>Station safety: electrical shock, grounding, fusing, interlocks, wiring &amp; towers</h2>
+          <p>
+            T0A covered the standard 120&nbsp;V household circuit: black hot, white neutral, green/bare
+            ground, and a <a class="term" href="../../glossary.html#fuse-t0">fuse</a> or
+            <a class="term" href="../../glossary.html#circuit-breaker">circuit breaker</a> belongs in
+            series with the hot conductor only. A higher-power General station is more likely to touch a
+            <strong>240&nbsp;V</strong> circuit &mdash; for a linear amplifier's power supply, say &mdash;
+            which has <em>two</em> hot conductors instead of one, plus neutral and ground. The rule
+            generalizes exactly the way you'd expect: in a four-conductor 240&nbsp;V circuit,
+            <strong>only the hot wires</strong> get fuses or breakers &mdash; never the neutral, never
+            the ground, and every hot wire present needs its own protection, not just one of them.
+          </p>
+          <p>
+            The other half of T0A's fuse lesson &mdash; match the protection to the wire, not the other
+            way around &mdash; has real numbers behind it via the
+            <a class="term" href="../../glossary.html#nec">National Electrical Code (NEC)</a>, which is
+            what actually governs electrical safety of a station (not bandwidth, not modulation limits,
+            not RF exposure &mdash; those are separate rules entirely). Two figures the pool tests
+            directly:
+          </p>
+          <div class="grid grid-2" style="margin:1rem 0;">
+            <div class="panel">
+              <div class="panel-header"><span>Wire &rarr; breaker</span></div>
+              <p class="text-dim" style="margin:0;">A 20-ampere circuit breaker requires at least <strong>AWG&nbsp;12</strong> wire, minimum.</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span>Wire &rarr; fuse</span></div>
+              <p class="text-dim" style="margin:0;">AWG&nbsp;14 wire should be protected by no more than a <strong>15-ampere</strong> fuse or breaker.</p>
+            </div>
+          </div>
+          <p class="text-dim" style="max-width:70ch;">
+            Notice the pattern: thinner wire (14 gauge) pairs with a smaller breaker (15&nbsp;A); to run
+            a bigger 20&nbsp;A breaker safely you need thicker wire (12 gauge) underneath it &mdash;
+            exactly T0A's space-heater lesson, now with the actual NEC numbers instead of the illustrative
+            5&nbsp;A/20&nbsp;A example.
+          </p>
+          <h3>GFCIs: a different hazard than a fuse</h3>
+          <p>
+            A <a class="term" href="../../glossary.html#gfci">GFCI</a> (Ground Fault Circuit Interrupter)
+            solves a problem a normal fuse or breaker can't: it disconnects power specifically when it
+            detects <strong>current flowing from a hot wire directly to ground</strong> &mdash; not
+            hot-to-neutral current (that's just the circuit working normally) and not overvoltage on the
+            hot wires (a fuse doesn't care about voltage, only current). The scenario a GFCI is built for
+            is exactly the one a plain fuse misses: current leaking through a person's body to ground
+            can be far too small to blow a 15&nbsp;A fuse, yet still be lethal &mdash; a GFCI is sensitive
+            to that leak itself, not to the total current draw.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            Your station's AC outlet is protected by a standard 15-amp breaker. Does that alone protect
+            you from being shocked if you touch a faulted hot wire and your body becomes a path to
+            ground? Not necessarily &mdash; a fatal shock current through a person can be a small
+            fraction of 15 amps, nowhere near enough to trip an ordinary overcurrent breaker. That's the
+            specific gap a GFCI closes: it trips on the hot-to-ground leak itself, regardless of whether
+            total current ever gets anywhere near the breaker's rating.
+          </div>
+          <h3>Grounding &amp; lightning protection</h3>
+          <p>
+            Building on T0B's bonding rule: a station's lightning protection ground system should be
+            located <strong>outside the building</strong> (not close to the equipment indoors, not next
+            to a power pole, and not run parallel to a water line) &mdash; the whole point is intercepting
+            a surge before it enters the structure. Lightning arrestors on a feed line belong specifically
+            <strong>where the feed line enters the building</strong> (same principle T0A already
+            established for coax lightning arresters). And every ground point at the station &mdash;
+            tower legs, arrestor grounds, everything &mdash; must be <strong>bonded together with all
+            other grounds</strong> (T0B's multiple-grounds-at-different-potentials hazard, restated for
+            General-scale installations).
+          </p>
+          <h3>Interlocks, soldering &amp; generators</h3>
+          <p>
+            A <a class="term" href="../../glossary.html#power-supply-interlock">power supply
+            interlock</a> exists for one specific reason: to make sure dangerous voltages are
+            <strong>removed if the cabinet is opened</strong> &mdash; not a thermal shutdown, not
+            warranty protection, not an overvoltage cutoff. It's the mechanical enforcement of T0A's
+            "capacitors can still hold a lethal charge after you switch the supply off" warning: the
+            interlock forces that discharge (or cuts the source) the moment someone actually opens the
+            case to get at it.
+          </p>
+          <p>
+            A more mundane hazard: lead-tin solder's real danger isn't RF or high voltage at all &mdash;
+            it's that <strong>lead can contaminate food if you don't wash your hands carefully after
+            handling it</strong>. And if you run a backup generator, the operating rule is simple:
+            <strong>run it in a well-ventilated area</strong> &mdash; engine exhaust indoors or in an
+            enclosed space is a carbon-monoxide hazard regardless of how well the generator itself is
+            built or grounded.
+          </p>
+          <h3>Tower work</h3>
+          <p>
+            T0B already established that climbing without a helper or observer is never safe, full stop.
+            General-scale towers add two more habits: before climbing a tower that supports
+            <strong>electrically powered devices</strong> (rotators, tower-mounted preamps, lighting),
+            make sure <strong>all circuits feeding power to the tower are locked out and
+            tagged</strong> &mdash; not just switched off casually, and definitely not left grounded
+            improperly at the base as a substitute. And when using a safety harness specifically, confirm
+            it's <strong>rated for the climber's weight and still within its allowable service life</strong>
+            &mdash; a harness doesn't stay safe indefinitely just because it looks intact; webbing degrades
+            with age and UV exposure even without visible damage.
+          </p>
+          <details class="exam-refs" data-group="G0B" data-exam="general">
+            <summary>Covers G0B01&ndash;G0B13 (13 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <div class="panel panel-corners" style="margin-top:1rem; margin-bottom:3rem;">
+          <div class="panel-header"><span>Practice G0</span></div>
+          <div class="cluster">
+            <a class="btn btn-primary" href="../../flashcards.html?exam=general&subelement=G0">G0 flashcards</a>
+            <a class="btn" href="../../quiz.html?exam=general&subelement=G0">G0 practice quiz</a>
+            <a class="btn" href="../../general.html">&larr; back to General subelements</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer" class="site-footer" data-root="../../"></footer>
+  </div>
+
+  <script src="../../js/nav.js"></script>
+  <script src="../../js/data.js"></script>
+  <script src="../../js/storage.js"></script>
+  <script src="../../js/lesson.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => HamLesson.wireDetails(document));
+  </script>
+</body>
+</html>

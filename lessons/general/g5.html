@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>G5 &middot; Electrical Principles &mdash; HAM OPS</title>
+  <meta name="description" content="General subelement G5: reactance, impedance, and resonance math; the decibel extended to power/RMS calculations and current dividers; sine-wave RMS voltage; resistors, capacitors, and inductors combined in series and parallel; and transformer turns-ratio math." />
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header id="site-header" class="site-header" data-root="../../"></header>
+
+    <main id="main">
+      <div class="container">
+        <p class="hero-kicker" style="margin-top:2rem;">// general &middot; subelement G5</p>
+        <h1>Electrical Principles</h1>
+        <p class="text-dim" style="max-width:68ch;">
+          G5 is where Technician's T5 vocabulary &mdash; reactance, impedance, capacitance,
+          inductance, decibels &mdash; turns into actual arithmetic. Nothing here goes past algebra,
+          but the pool expects you to run the numbers, not just recognize the words. Every formula
+          below comes with a worked example, and every worked-example answer here matches an actual
+          question in the pool unless the text says otherwise.
+        </p>
+        <nav class="lesson-jump" aria-label="Jump to group">
+          <a href="#g5a">G5A Reactance, impedance &amp; resonance</a>
+          <a href="#g5b">G5B Decibels, dividers, power &amp; RMS</a>
+          <a href="#g5c">G5C Series/parallel components &amp; transformers</a>
+        </nav>
+
+        <!-- ============ G5A ============ -->
+        <section class="lesson-section" id="g5a">
+          <p class="lesson-lead">G5A</p>
+          <h2>Reactance, inductance, capacitance, impedance &amp; resonance</h2>
+          <p>
+            <a class="term" href="../../glossary.html#reactance">Reactance</a> &mdash; already
+            defined back in T5C as "the opposition capacitors and inductors present to AC current"
+            &mdash; gets its own symbol and unit here: it's written with the letter
+            <strong>X</strong>, and like plain resistance it's measured in <strong>ohms</strong>.
+            The two components that produce it behave in opposite ways as frequency changes, and the
+            pool tests that opposite behavior directly:
+          </p>
+          <div class="grid grid-2" style="margin:1rem 0;">
+            <div class="panel">
+              <div class="panel-header"><span>Inductive reactance (X<sub>L</sub>)</span></div>
+              <p class="readout" style="margin:0 0 0.4rem;">X<sub>L</sub> = 2&pi;fL</p>
+              <p class="text-dim" style="margin:0;">
+                Rises as frequency rises. An
+                <a class="term" href="../../glossary.html#inductor">inductor</a> resists a
+                <em>faster-changing</em> current more strongly, so higher frequency means more
+                opposition.
+              </p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span>Capacitive reactance (X<sub>C</sub>)</span></div>
+              <p class="readout" style="margin:0 0 0.4rem;">X<sub>C</sub> = 1 &divide; (2&pi;fC)</p>
+              <p class="text-dim" style="margin:0;">
+                Falls as frequency rises. A
+                <a class="term" href="../../glossary.html#capacitor">capacitor</a> charges and
+                discharges more freely as the current reverses faster, so higher frequency means
+                less opposition.
+              </p>
+            </div>
+          </div>
+          <p class="text-faint" style="font-size:0.8rem;">
+            f = frequency (Hz), L = inductance (henrys), C = capacitance (farads). Both formulas
+            share the constant 2&pi;f, which is often written as &omega; (angular frequency) in more
+            advanced texts &mdash; you won't need that shorthand for the exam, just the two formulas
+            above.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example (illustrative &mdash; formula application, not a pool question)</span>
+            A 10&nbsp;&micro;H inductor at 3.5&nbsp;MHz: X<sub>L</sub> = 2&pi; &times; 3,500,000
+            &times; 0.00001 = <strong>about 220 ohms</strong>. The same inductor at twice the
+            frequency (7&nbsp;MHz) would show <strong>twice</strong> the reactance, about 440 ohms
+            &mdash; reactance and frequency move together for an inductor.
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example (illustrative &mdash; formula application, not a pool question)</span>
+            A 100&nbsp;pF capacitor at 14&nbsp;MHz: X<sub>C</sub> = 1 &divide; (2&pi; &times;
+            14,000,000 &times; 0.0000000001) = <strong>about 114 ohms</strong>. Double the
+            frequency to 28 MHz and X<sub>C</sub> is cut in <strong>half</strong>, about 57 ohms
+            &mdash; reactance and frequency move opposite ways for a capacitor.
+          </div>
+          <h3>Impedance and admittance</h3>
+          <p>
+            <a class="term" href="../../glossary.html#impedance">Impedance</a> (symbol <strong>Z</strong>)
+            is resistance and reactance combined, and its formal definition on the exam is simply
+            the <strong>ratio of voltage to current</strong>: Z = E &divide; I, the AC/RF equivalent
+            of Ohm's Law, measured in ohms. Its inverse has its own name and symbol:
+            <a class="term" href="../../glossary.html#admittance">admittance</a> (<strong>Y</strong> = 1 &divide; Z) is exactly
+            what the name suggests &mdash; how easily a circuit <em>admits</em> current, rather than
+            how much it opposes it &mdash; measured in siemens.
+          </p>
+          <p>
+            Impedance matching at radio frequencies isn't limited to one device or trick &mdash; the
+            pool credits <strong>a transformer, a Pi-network, and a length of transmission
+            line</strong> all equally as valid ways to match one impedance to another, since they
+            all accomplish the same underlying goal (maximum power transfer between two circuits
+            that don't natively share the same impedance) through different physical mechanisms.
+          </p>
+          <h3>Resonance: when reactances cancel</h3>
+          <p>
+            Wire an inductor and a capacitor together and their reactances work against each other
+            in a specific way: inductive reactance and capacitive reactance are, mathematically,
+            opposite in sign, so in a series LC circuit they <strong>partially cancel</strong>. At
+            one particular frequency &mdash; the <strong>resonant frequency</strong> &mdash; they
+            cancel <em>completely</em> (X<sub>L</sub> = X<sub>C</sub>), which is the textbook
+            definition of resonance for this pool. In a <strong>series</strong> LC circuit at
+            resonance, with the two reactances gone, all that's left opposing current is whatever
+            small resistance the circuit has &mdash; so impedance drops to a
+            <strong>very low</strong> value right at resonance, the opposite of what you might
+            guess. The frequency where this happens follows its own formula, built from the same L
+            and C that determine X<sub>L</sub> and X<sub>C</sub>:
+          </p>
+          <div class="panel panel-corners" style="margin:1rem 0; max-width:26rem;">
+            <div class="panel-header"><span>Resonant frequency</span></div>
+            <p class="readout" style="font-size:1.1rem; margin:0.25rem 0;">f = 1 &divide; (2&pi;&radic;(LC))</p>
+            <p class="text-faint" style="margin:0.25rem 0 0; font-size:0.8rem;">f = resonant frequency (Hz), L = inductance (henrys), C = capacitance (farads)</p>
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example (illustrative &mdash; formula application, not a pool question)</span>
+            A 10&nbsp;&micro;H inductor and a 100&nbsp;pF capacitor in series: LC = 0.00001
+            &times; 0.0000000001 = 1 &times; 10<sup>&minus;15</sup>. The square root of that is
+            about 3.16 &times; 10<sup>&minus;8</sup>, and f = 1 &divide; (2&pi; &times; 3.16
+            &times; 10<sup>&minus;8</sup>) &asymp; <strong>5.0 MHz</strong>. Check it against the
+            other two formulas: at 5.0 MHz that same 10&nbsp;&micro;H inductor has X<sub>L</sub>
+            &asymp; 314 ohms, and the 100&nbsp;pF capacitor has X<sub>C</sub> &asymp; 318 ohms
+            &mdash; close enough (the small gap is rounding) to confirm they're cancelling right
+            around 5.0 MHz.
+          </div>
+          <details class="exam-refs" data-group="G5A" data-exam="general">
+            <summary>Covers G5A01&ndash;G5A12 (12 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G5B ============ -->
+        <section class="lesson-section" id="g5b">
+          <p class="lesson-lead">G5B</p>
+          <h2>The decibel, current/voltage dividers, power calculations &amp; RMS</h2>
+          <p>
+            T5B's decibel facts still hold at General level: a <strong>doubling</strong> of power is
+            still <strong>+3&nbsp;dB</strong>. General adds the ability to work with dB as a
+            <em>percentage</em> loss or gain, not just a multiplier. A loss of <strong>1 dB</strong>
+            corresponds to a power ratio of 10<sup>&minus;0.1</sup>, which works out to about
+            <strong>79.4%</strong> of the original power remaining &mdash; in other words, a
+            <strong>20.6% power loss</strong>. That's a genuinely useful number: a 1 dB loss sounds
+            tiny, but it's actually about a fifth of your power gone, which is exactly why keeping
+            feed-line and connector losses well under 1 dB matters on a real HF station.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            A lossy feed line and connector combination costs you 1 dB. What fraction of your
+            transmitter power never reaches the antenna? 10<sup>(&minus;1&frasl;10)</sup> = 10<sup>&minus;0.1</sup>
+            &asymp; 0.794, so about 79.4% of your power arrives and
+            <strong>about 20.6%</strong> is lost &mdash; matching the pool's answer of
+            approximately 20.6 percent.
+          </div>
+          <h3>Current dividers: extending T5D's parallel-circuit fact</h3>
+          <p>
+            T5D already established that every branch of a parallel circuit sees the same voltage.
+            General adds the current side of that same picture: in a circuit of parallel resistors,
+            the <strong>total current equals the sum of the currents through each individual
+            branch</strong> &mdash; current entering the parallel combination splits up among the
+            branches (more through a lower-resistance branch, less through a higher-resistance one),
+            then recombines, so adding up every branch's current always accounts for all of it.
+          </p>
+          <h3>DC power, three ways</h3>
+          <p>
+            T5C already gave the basic DC power formula, P = I &times; E. Because Ohm's Law lets you
+            substitute for either I or E, that one formula expands into three equivalent forms, and
+            the pool expects you to pick whichever form fits the numbers you're actually given:
+          </p>
+          <div class="grid grid-3" style="margin:1rem 0;">
+            <div class="panel">
+              <div class="panel-header"><span>Given I and E</span></div>
+              <p class="readout" style="margin:0;">P = I &times; E</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span>Given E and R</span></div>
+              <p class="readout" style="margin:0;">P = E&sup2; &divide; R</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span>Given I and R</span></div>
+              <p class="readout" style="margin:0;">P = I&sup2; &times; R</p>
+            </div>
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example &mdash; given voltage and resistance</span>
+            400 VDC applied to an 800-ohm load. P = E&sup2; &divide; R = 400&sup2; &divide; 800 =
+            160,000 &divide; 800 = <strong>200 watts</strong>.
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example &mdash; given voltage and current</span>
+            A 12 VDC light bulb draws 0.2 amperes. P = I &times; E = 0.2 &times; 12 =
+            <strong>2.4 watts</strong>.
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example &mdash; given current and resistance</span>
+            7.0 milliamperes (0.007 A) flows through a 1,250-ohm resistor. P = I&sup2; &times; R =
+            0.007&sup2; &times; 1,250 = 0.000049 &times; 1,250 = 0.06125 watts, or
+            <strong>about 61 milliwatts</strong>.
+          </div>
+          <h3>RMS: the value that makes AC power math work like DC power math</h3>
+          <p>
+            Every power formula above assumes a steady DC voltage or current. AC voltage is
+            constantly changing &mdash; sweeping from zero up to a peak, back through zero, down to a
+            negative peak, and back &mdash; so "the" voltage of an AC signal isn't a single number
+            unless you define one deliberately. <a class="term" href="../../glossary.html#rms">RMS</a> (root-mean-square)
+            voltage is that definition: it's the specific AC value that
+            <strong>produces the same power dissipation in a resistor as a DC voltage of the same
+            number</strong> would. That's the whole point of RMS &mdash; it lets you plug an AC
+            circuit's voltage straight into the same P = E&sup2;&divide;R formula you'd use for DC,
+            without any extra correction, as long as the E you use is the RMS value.
+          </p>
+          <p>
+            For a plain sine wave specifically (the shape of household AC and an unmodulated RF
+            carrier), RMS relates to the peak value by one fixed ratio:
+          </p>
+          <div class="grid grid-2" style="margin:1rem 0;">
+            <div class="panel">
+              <div class="panel-header"><span>Peak &rarr; RMS</span></div>
+              <p class="readout" style="margin:0;">RMS = peak &times; 0.707</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span>RMS &rarr; peak</span></div>
+              <p class="readout" style="margin:0;">peak = RMS &times; 1.414</p>
+            </div>
+          </div>
+          <p class="text-dim" style="max-width:70ch;">
+            0.707 and 1.414 are reciprocals of each other (1 &divide; 1.414 = 0.707) and both trace
+            back to &radic;2 &asymp; 1.41421 &mdash; a property of the sine shape itself, not
+            something you need to derive on the exam, just recognize and apply. Peak-to-peak is
+            simply double the peak value, since the wave swings equally positive and negative.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example &mdash; RMS to peak-to-peak</span>
+            A sine wave has an RMS voltage of 120 volts (ordinary household AC). Peak = 120 &times;
+            1.414 = 169.7&nbsp;V. Peak-to-peak is double that: 169.7 &times; 2 =
+            <strong>339.4 volts</strong>.
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example &mdash; peak to RMS</span>
+            A sine wave peaks at 17 volts. RMS = 17 &times; 0.707 = <strong>about 12 volts</strong>.
+          </div>
+          <h3>PEP: applying RMS to a transmitter</h3>
+          <p>
+            <a class="term" href="../../glossary.html#pep">PEP</a> (peak envelope power) is the
+            power at the very highest point of a signal's envelope. For an
+            <strong>unmodulated carrier</strong> (a steady RF tone, with no modulation swinging its
+            amplitude around), the envelope never changes, so its peak and its average are the
+            <em>same</em> value &mdash; the PEP-to-average-power ratio for an unmodulated carrier is
+            exactly <strong>1.00</strong>. That means an unmodulated carrier with 1,060 watts of
+            average power also has a PEP of <strong>1,060 watts</strong>, full stop, no conversion
+            needed.
+          </p>
+          <p>
+            Computing PEP from a measured RF voltage combines RMS with the power formula directly.
+            Given a peak-to-peak voltage across a known load (commonly a 50-ohm
+            <a class="term" href="../../glossary.html#dummy-load">dummy load</a> on a test bench),
+            the steps are: halve peak-to-peak to get peak, multiply by 0.707 to get RMS, then square
+            and divide by resistance.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            200 volts peak-to-peak measured across a 50-ohm dummy load. Peak = 200 &divide; 2 =
+            100&nbsp;V. RMS = 100 &times; 0.707 = 70.7&nbsp;V. PEP = RMS&sup2; &divide; R = 70.7&sup2;
+            &divide; 50 = 5,000 &divide; 50 = <strong>100 watts</strong>.
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example</span>
+            500 volts peak-to-peak across the same 50-ohm load. Peak = 250&nbsp;V. RMS = 250
+            &times; 0.707 = 176.8&nbsp;V. PEP = 176.8&sup2; &divide; 50 = 31,255 &divide; 50 &asymp;
+            <strong>625 watts</strong>.
+          </div>
+          <p>
+            The same relationship runs in reverse: given power dissipated in a known load, you can
+            solve back for RMS voltage by rearranging P = E&sup2;&divide;R into E =
+            &radic;(P&nbsp;&times;&nbsp;R).
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example &mdash; solving backward for RMS voltage</span>
+            A 50-ohm dummy load dissipates 1,200 watts. E = &radic;(P &times; R) = &radic;(1,200
+            &times; 50) = &radic;60,000 &asymp; <strong>245 volts</strong> RMS.
+          </div>
+          <details class="exam-refs" data-group="G5B" data-exam="general">
+            <summary>Covers G5B01&ndash;G5B14 (14 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <!-- ============ G5C ============ -->
+        <section class="lesson-section" id="g5c">
+          <p class="lesson-lead">G5C</p>
+          <h2>Resistors, capacitors &amp; inductors in series and parallel; transformers</h2>
+          <p>
+            T5D already covered resistors in series (add directly) and left parallel resistors as a
+            fact about current, not a formula. Here's the formula General actually tests, and the
+            pattern that ties all three component types together:
+          </p>
+          <div class="grid grid-2" style="margin:1rem 0;">
+            <div class="panel">
+              <div class="panel-header"><span>Resistors &amp; inductors: same pattern</span></div>
+              <p class="text-dim" style="margin:0 0 0.5rem;">Series: add directly.</p>
+              <p class="readout" style="margin:0 0 0.5rem;">R<sub>total</sub> = R<sub>1</sub> + R<sub>2</sub> + &hellip;</p>
+              <p class="text-dim" style="margin:0 0 0.5rem;">Parallel: reciprocals add.</p>
+              <p class="readout" style="margin:0;">1&divide;R<sub>total</sub> = 1&divide;R<sub>1</sub> + 1&divide;R<sub>2</sub> + &hellip;</p>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><span>Capacitors: the pattern flips</span></div>
+              <p class="text-dim" style="margin:0 0 0.5rem;">Parallel: add directly.</p>
+              <p class="readout" style="margin:0 0 0.5rem;">C<sub>total</sub> = C<sub>1</sub> + C<sub>2</sub> + &hellip;</p>
+              <p class="text-dim" style="margin:0 0 0.5rem;">Series: reciprocals add.</p>
+              <p class="readout" style="margin:0;">1&divide;C<sub>total</sub> = 1&divide;C<sub>1</sub> + 1&divide;C<sub>2</sub> + &hellip;</p>
+            </div>
+          </div>
+          <p class="text-dim" style="max-width:70ch;">
+            The one thing worth memorizing deliberately: <strong>inductors behave like
+            resistors</strong> (series adds directly, parallel takes reciprocals), while
+            <strong>capacitors behave the opposite way</strong> (parallel adds directly, series
+            takes reciprocals). It's easy to mix these up under exam pressure precisely because
+            capacitors are the odd one out.
+          </p>
+          <div class="example-box">
+            <span class="example-label">Worked example &mdash; three resistors in parallel</span>
+            10, 20, and 50 ohms in parallel: 1&divide;R = 1&divide;10 + 1&divide;20 + 1&divide;50 =
+            0.1 + 0.05 + 0.02 = 0.17. R = 1&divide;0.17 &asymp; <strong>5.9 ohms</strong> &mdash;
+            notably less than the smallest individual resistor, which is always true for resistors
+            in parallel.
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example &mdash; two resistors in parallel (shortcut)</span>
+            100 and 200 ohms in parallel. With exactly two resistors, "product over sum" is a
+            shortcut for the same reciprocal formula: (100 &times; 200) &divide; (100 + 200) =
+            20,000 &divide; 300 &asymp; <strong>67 ohms</strong>.
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example &mdash; capacitors in parallel</span>
+            Two 5.0 nF capacitors and one 750 pF capacitor in parallel. Convert to common units
+            first (750 pF = 0.75 nF): 5.0 + 5.0 + 0.75 = <strong>10.75 nanofarads</strong> &mdash;
+            parallel capacitors just add.
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example &mdash; capacitors in series</span>
+            Three 100 &micro;F capacitors in series: 1&divide;C = 1&divide;100 + 1&divide;100 +
+            1&divide;100 = 3&divide;100. C = 100&divide;3 &asymp;
+            <strong>33.3 microfarads</strong>. Two 20 &micro;F and 50 &micro;F capacitors in series:
+            1&divide;C = 1&divide;20 + 1&divide;50 = 0.05 + 0.02 = 0.07. C = 1&divide;0.07 &asymp;
+            <strong>14.3 microfarads</strong>.
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example &mdash; inductors in parallel and in series</span>
+            Three 10 mH inductors in parallel: 1&divide;L = 3&divide;10, so L = 10&divide;3 &asymp;
+            <strong>3.3 millihenries</strong> &mdash; the same reciprocal pattern as parallel
+            resistors. A 20 mH and a 50 mH inductor in <em>series</em>, by contrast, just add:
+            20 + 50 = <strong>70 millihenries</strong>.
+          </div>
+          <p>
+            One more pair of facts falls straight out of those formulas: to <strong>increase</strong>
+            capacitance, add a capacitor in <strong>parallel</strong> (direct addition, same family
+            as the formula above); to <strong>increase</strong> inductance, add an inductor in
+            <strong>series</strong> (also direct addition). Both are just the "add directly" half of
+            each component's pattern, applied in the direction that makes the total bigger.
+          </p>
+          <h3>Transformers</h3>
+          <p>
+            A <a class="term" href="../../glossary.html#transformer">transformer</a> is two coils of wire (a primary and a
+            secondary) wound so their magnetic fields overlap, with no direct electrical connection
+            between them. Applying AC to the primary creates a changing magnetic field, and that
+            field induces a voltage in the secondary winding through
+            <a class="term" href="../../glossary.html#mutual-inductance">mutual inductance</a> &mdash; one coil's changing
+            field inducing a voltage in a separate, nearby coil, as opposed to plain
+            <a class="term" href="../../glossary.html#inductance">inductance</a>, which is a coil
+            inducing a voltage in itself. How much voltage appears on the secondary depends only on
+            the <strong>ratio of turns</strong> between the two windings:
+          </p>
+          <div class="panel panel-corners" style="margin:1rem 0; max-width:30rem;">
+            <div class="panel-header"><span>Transformer turns ratio</span></div>
+            <p class="readout" style="font-size:1.1rem; margin:0.25rem 0;">E<sub>sec</sub> &divide; E<sub>pri</sub> = N<sub>sec</sub> &divide; N<sub>pri</sub></p>
+            <p class="text-faint" style="margin:0.25rem 0 0; font-size:0.8rem;">E = voltage, N = number of turns, on the secondary (sec) and primary (pri) windings</p>
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example &mdash; step-up transformer</span>
+            A transformer has a 500-turn primary and a 1,500-turn secondary (a 1:3 step-up ratio).
+            Apply 120 VAC to the primary: E<sub>sec</sub> = E<sub>pri</sub> &times;
+            (N<sub>sec</sub>&divide;N<sub>pri</sub>) = 120 &times; (1,500&divide;500) = 120 &times; 3 =
+            <strong>360 volts</strong>.
+          </div>
+          <p>
+            Run a transformer <em>backward</em> &mdash; feed the winding normally used as the
+            secondary, and take output from what's normally the primary &mdash; and the turns ratio
+            simply inverts. A transformer built as a 4:1 <strong>step-down</strong> (voltage divided
+            by 4, primary to secondary) becomes a 4:1 <strong>step-up</strong> if you feed it in
+            reverse: the output voltage is now the input voltage <strong>multiplied by 4</strong>.
+          </p>
+          <p>
+            Because a transformer (ignoring small losses) delivers the same power out as it takes
+            in, P = I &times; E has to balance on both sides &mdash; a winding with higher voltage
+            necessarily carries <strong>lower</strong> current, and a winding with lower voltage
+            carries <strong>higher</strong> current. That's exactly why the primary winding of a
+            step-up transformer is wound with heavier wire than the secondary: the
+            <strong>primary carries more current</strong> (lower voltage, higher current side), and
+            heavier wire is needed to carry that current without excessive resistive heating.
+          </p>
+          <h3>Transformers for impedance matching</h3>
+          <p>
+            Turns ratio doesn't just scale voltage &mdash; it scales impedance too, by the
+            <em>square</em> of the turns ratio, which is what makes a transformer one of G5A's
+            valid impedance-matching devices:
+          </p>
+          <div class="panel panel-corners" style="margin:1rem 0; max-width:30rem;">
+            <div class="panel-header"><span>Impedance transformation</span></div>
+            <p class="readout" style="font-size:1.1rem; margin:0.25rem 0;">turns ratio = &radic;(Z<sub>pri</sub> &divide; Z<sub>sec</sub>)</p>
+          </div>
+          <div class="example-box">
+            <span class="example-label">Worked example &mdash; matching an antenna to coax</span>
+            An antenna's feed point impedance is 600 ohms and it needs to match 50-ohm coaxial
+            cable. Turns ratio = &radic;(600 &divide; 50) = &radic;12 &asymp;
+            <strong>3.5 to 1</strong> &mdash; a transformer built to that ratio presents 50 ohms on
+            its coax side while presenting 600 ohms on its antenna side, so each side sees the
+            impedance it expects.
+          </div>
+          <details class="exam-refs" data-group="G5C" data-exam="general">
+            <summary>Covers G5C01&ndash;G5C14 (14 exam questions)</summary>
+            <div data-questions><p class="text-faint">Loading&hellip;</p></div>
+          </details>
+        </section>
+
+        <div class="panel panel-corners" style="margin-top:1rem; margin-bottom:3rem;">
+          <div class="panel-header"><span>Practice G5</span></div>
+          <div class="cluster">
+            <a class="btn btn-primary" href="../../flashcards.html?exam=general&subelement=G5">G5 flashcards</a>
+            <a class="btn" href="../../quiz.html?exam=general&subelement=G5">G5 practice quiz</a>
+            <a class="btn" href="../../general.html">&larr; back to General subelements</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer" class="site-footer" data-root="../../"></footer>
+  </div>
+
+  <script src="../../js/nav.js"></script>
+  <script src="../../js/data.js"></script>
+  <script src="../../js/storage.js"></script>
+  <script src="../../js/lesson.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => HamLesson.wireDetails(document));
+  </script>
+</body>
+</html>

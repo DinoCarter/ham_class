@@ -132,6 +132,38 @@
             </div>
           </div>
 
+          <p>
+            Four mode words come up constantly from here on, so it's worth pinning them down before
+            looking at a band chart that uses them as labels:
+          </p>
+          <ul>
+            <li>
+              <a class="term" href="../../glossary.html#cw">CW</a> (Continuous Wave) is Morse code:
+              the transmitter's carrier is switched fully on and off in short and long pulses that
+              spell out letters, and nothing else about the signal varies. It's called "continuous"
+              because the carrier itself is a steady, unbroken sine wave while it's on &mdash; unlike
+              antique spark-gap transmitters, which produced decaying pulses instead of a clean wave.
+              Because it packs information into such a narrow sliver of spectrum, CW gets a special
+              privilege: it's legal on <em>any</em> frequency authorized to the control operator,
+              even inside segments that otherwise restrict you to other modes.
+            </li>
+            <li>
+              <a class="term" href="../../glossary.html#phone">Phone</a> just means voice &mdash; talking,
+              like on a telephone. SSB, AM, and FM are all "phone" emissions; Part 97 lumps them
+              together when it allocates a phone segment of a band, and leaves which specific voice
+              mode you use up to you.
+            </li>
+            <li>
+              <a class="term" href="../../glossary.html#image">Image</a> means pictures instead of
+              voice or text &mdash; slow-scan television (SSTV) and facsimile are the amateur examples.
+              Many HF segments are shared between phone and image, which is why you'll see them
+              written together as "phone/image."
+            </li>
+            <li>
+              <strong>Data</strong> covers digital modes that send text or bits directly rather than
+              sound &mdash; RTTY (radioteletype) and newer digital modes like FT8 are examples.
+            </li>
+          </ul>
           <h3>The 10-meter slice, up close</h3>
           <p>
             Within that 0.5&nbsp;MHz, the mode changes partway through. Drag the cursor below (or
@@ -140,10 +172,10 @@
           </p>
           <div id="t1b-explorer"></div>
           <p class="text-dim" style="margin-top:0.75rem; max-width:70ch;">
-            <a class="term" href="../../glossary.html#cw">CW</a> is the exception to all of this: a
-            station may transmit CW on <em>any</em> frequency authorized to the control operator
-            (&sect;97.305(a)) &mdash; so Morse code works across the whole 28.000&ndash;28.500&nbsp;MHz
-            slice, not just the data/RTTY portion. Power in Technician's HF segments is capped at
+            That special CW privilege from &sect;97.305(a) is why the explorer shows CW as legal across
+            the <em>whole</em> 28.000&ndash;28.500&nbsp;MHz slice, not just the data/RTTY portion &mdash;
+            it rides on top of whatever the primary mode restriction of a segment is. Power in
+            Technician's HF segments is capped at
             <strong>200&nbsp;W PEP</strong> (&sect;97.313) &mdash; lower than the 1500&nbsp;W PEP ceiling
             that applies above 30&nbsp;MHz (&sect;97.313(b), with some specific segment exceptions).
           </p>
@@ -222,11 +254,11 @@
               <div class="seg" style="left:100%; width:0%;"></div>
             </div>
             <div class="timeline-point" style="left:0%;"></div>
-            <div class="timeline-label" style="left:0%;">Granted<br>(10&#8209;yr term starts)</div>
+            <div class="timeline-label is-start" style="left:0%;">Granted<br>(10&#8209;yr term starts)</div>
             <div class="timeline-point" style="left:97.5%;"></div>
             <div class="timeline-label" style="left:97.5%;">Renewal window opens<br>(90 days out)</div>
             <div class="timeline-point" style="left:100%;"></div>
-            <div class="timeline-label" style="left:100%;">Expires &rarr; 2&#8209;yr grace period<br>(no operating privileges)</div>
+            <div class="timeline-label is-end" style="left:100%;">Expires &rarr; 2&#8209;yr grace period<br>(no operating privileges)</div>
           </div>
           <p class="text-dim" style="max-width:70ch;">
             The normal license term is <strong>ten years</strong> (&sect;97.25). You can request
@@ -388,13 +420,13 @@
           <div class="timeline" role="img" aria-label="A 23-minute contact: identify at the start (0 minutes), again at the 10-minute mark, again at 20 minutes, and finally at the end at 23 minutes.">
             <div class="timeline-track"><div class="seg" style="left:0%; width:100%; opacity:0.25;"></div></div>
             <div class="timeline-point" style="left:0%;"></div>
-            <div class="timeline-label" style="left:0%;">ID<br>0:00 start</div>
+            <div class="timeline-label is-start" style="left:0%;">ID<br>0:00 start</div>
             <div class="timeline-point" style="left:43%;"></div>
             <div class="timeline-label" style="left:43%;">ID<br>10:00</div>
             <div class="timeline-point" style="left:87%;"></div>
             <div class="timeline-label" style="left:87%;">ID<br>20:00</div>
             <div class="timeline-point" style="left:100%;"></div>
-            <div class="timeline-label" style="left:100%;">ID<br>23:00 end</div>
+            <div class="timeline-label is-end" style="left:100%;">ID<br>23:00 end</div>
           </div>
           <p class="text-dim" style="max-width:70ch;">
             Phone identification must be in <strong>English</strong> (&sect;97.119(b)(2)) &mdash; and you
