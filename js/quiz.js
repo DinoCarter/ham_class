@@ -25,8 +25,9 @@ const HamQuiz = (function () {
     return shuffle(picked);
   }
 
-  function init(mount, { examKey, subelementId, questions, root, isFullExam }) {
+  function init(mount, { examKey, subelementId, questions, root, isFullExam, explanations }) {
     const deck = isFullExam ? drawExam(questions) : shuffle(questions);
+    const explain = explanations || {};
     let i = 0;
     const answers = new Array(deck.length).fill(null);
 
@@ -60,6 +61,7 @@ const HamQuiz = (function () {
               </button>
             `).join("")}
           </div>
+          ${chosen ? explanationBox(q, chosen, root, examKey) : ""}
         </div>
         <div class="cluster" style="justify-content:flex-end; margin-top:1rem;">
           <button class="btn btn-primary" type="button" data-action="next" ${chosen ? "" : "disabled"}>
@@ -84,6 +86,20 @@ const HamQuiz = (function () {
       // restore it to whichever control is the logical next stop.
       const focusTarget = chosen ? nextBtn : mount.querySelector("[data-choice]");
       if (focusTarget) focusTarget.focus();
+    }
+
+    function explanationBox(q, chosen, root, examKey) {
+      const isCorrect = chosen === q.answer;
+      const groupHref = `${root}lessons/${examKey}/${q.subelement.toLowerCase()}.html#${q.group.toLowerCase()}`;
+      const blurb = explain[q.id]
+        || `Full write-up not added here yet &mdash; see the <a href="${groupHref}">${q.group} lesson section</a>${q.citation ? ` (&sect;${q.citation})` : ""} for the explanation.`;
+      const borderColor = isCorrect ? "var(--success)" : "var(--alert)";
+      return `
+        <div class="example-box" style="border-left-color:${borderColor}; margin-top:1rem; margin-bottom:0;">
+          <span class="example-label" style="color:${borderColor};">${isCorrect ? "Why this is right" : "Why the correct answer is right"}</span>
+          <span style="font-size:0.92rem;">${blurb}</span>
+        </div>
+      `;
     }
 
     function choiceStyle(letter, correct, chosen) {

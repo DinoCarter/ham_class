@@ -85,13 +85,16 @@
       async function startQuiz() {
         const examKey = examSelect.value;
         const isFullExam = modeSelect.value === "full";
-        const all = await HamData.getQuestions(examKey);
+        const [all, explanations] = await Promise.all([
+          HamData.getQuestions(examKey),
+          HamData.getExplanations(examKey),
+        ]);
         const subelementId = isFullExam ? "" : subSelect.value;
         const questions = isFullExam ? all : all.filter((q) => q.subelement === subelementId);
 
         picker.style.display = "none";
         session.style.display = "block";
-        HamQuiz.init(session, { examKey, subelementId, questions, root: "", isFullExam });
+        HamQuiz.init(session, { examKey, subelementId, questions, root: "", isFullExam, explanations });
         session.focus();
       }
 

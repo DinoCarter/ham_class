@@ -125,8 +125,8 @@
             into the same one second.
           </p>
           <p>
-            That relationship reduces to one formula worth memorizing, derived directly from
-            (speed of light) &divide; frequency, with the units simplified for convenience:
+            That relationship reduces to one formula, derived directly from (speed of light)
+            &divide; frequency, with the units simplified for convenience:
           </p>
           <div class="panel panel-corners" style="margin:1rem 0; max-width:36rem;">
             <div class="panel-header"><span>Wavelength formula</span></div>
@@ -144,8 +144,17 @@
             "28 MHz" are two names for the same physical thing.
           </div>
           <p>
+            Don't just take the formula's word for it &mdash; drag the slider below and watch the
+            wavelength (and the drawn wave itself) respond. It also folds in the propagation
+            question T3C is about to cover: at each frequency, predict whether a signal skips off
+            the ionosphere or passes through it, then check yourself.
+          </p>
+          <div id="t3b-wave-explorer"></div>
+          <p>
             Frequency ranges themselves have standard names, and the pool expects the boundaries
-            precisely, not approximately:
+            precisely, not approximately &mdash; the "range name" readout above updates live as you
+            drag, so you can feel out where each boundary actually falls instead of just reading
+            it off a table:
           </p>
           <div style="overflow-x:auto;">
             <table style="width:100%; border-collapse:collapse; min-width:26rem;">
@@ -260,7 +269,9 @@
   <script src="../../js/data.js"></script>
   <script src="../../js/storage.js"></script>
   <script src="../../js/lesson.js"></script>
+  <script src="../../js/wave-explorer.js"></script>
   <script>
+    HamWaveExplorer.init(document.getElementById("t3b-wave-explorer"), { minMHz: 3, maxMHz: 3000 });
     document.addEventListener("DOMContentLoaded", () => HamLesson.wireDetails(document));
   </script>
 </body>

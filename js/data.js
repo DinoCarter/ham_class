@@ -15,6 +15,17 @@ const HamData = (function () {
     return json;
   }
 
+  // Explanations are supplementary (not every question has one authored yet),
+  // so a missing file or a 404 degrades to "no explanations" rather than
+  // breaking the quiz.
+  async function loadJSONOptional(path) {
+    try {
+      return await loadJSON(path);
+    } catch (e) {
+      return {};
+    }
+  }
+
   const EXAMS = {
     technician: {
       key: "technician",
@@ -22,6 +33,7 @@ const HamData = (function () {
       element: "Element 2",
       questions: "data/technician.json",
       outline: "data/technician-outline.json",
+      explanations: "data/technician-explanations.json",
     },
     general: {
       key: "general",
@@ -29,6 +41,7 @@ const HamData = (function () {
       element: "Element 3",
       questions: "data/general.json",
       outline: "data/general-outline.json",
+      explanations: "data/general-explanations.json",
     },
   };
 
@@ -38,6 +51,10 @@ const HamData = (function () {
 
   async function getOutline(examKey) {
     return loadJSON(EXAMS[examKey].outline);
+  }
+
+  async function getExplanations(examKey) {
+    return loadJSONOptional(EXAMS[examKey].explanations);
   }
 
   async function getSubelement(examKey, subelementId) {
@@ -51,5 +68,5 @@ const HamData = (function () {
     };
   }
 
-  return { EXAMS, getQuestions, getOutline, getSubelement };
+  return { EXAMS, getQuestions, getOutline, getSubelement, getExplanations };
 })();

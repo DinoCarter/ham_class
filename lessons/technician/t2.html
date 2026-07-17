@@ -114,6 +114,14 @@
             pin down which one &mdash; you have to check all three.
           </div>
           <p>
+            A single repeater only covers the area its own antenna site can reach. A <strong>linked
+            repeater network</strong> extends that by wiring multiple repeaters together (often over
+            the internet or a dedicated RF link) so that whatever one repeater receives, every other
+            repeater in the network retransmits too &mdash; you're not just talking through one
+            repeater anymore, you're talking through all of them at once, which is how a signal from
+            one city can be heard clearly in another with no direct RF path between them at all.
+          </p>
+          <p>
             Two access-tone systems gate whether a repeater (or your own squelch) opens up for a
             signal:
           </p>
@@ -160,6 +168,14 @@
             radio matches).
           </p>
           <p>
+            DMR also has its own gatekeeping mechanism separate from talkgroups: the
+            <strong>color code</strong>. It looks like CTCSS's digital cousin, but it isn't a privacy
+            or grouping feature &mdash; it's an access code (numbered 0&ndash;15) that has to be
+            programmed into your radio to match the repeater before the repeater will accept your
+            transmission at all, the same basic gatekeeping role CTCSS plays for analog FM, just
+            implemented digitally.
+          </p>
+          <p>
             <a class="term" href="../../glossary.html#d-star">D-STAR</a> is a separate digital voice
             protocol with its own quirk worth knowing: because your identification is carried
             digitally as part of the signal itself, a D-STAR radio requires your call sign to be
@@ -167,11 +183,22 @@
             identification step layered on top the way there is on analog FM.
           </p>
           <p>
-            Finally, one everyday courtesy fact that predates all the digital systems: if two
-            stations transmitting on the same simplex frequency start interfering with each other,
-            there's no FCC-enforced "first come, first served" rule at play the way there is
-            between primary and secondary <em>allocations</em> in T1B &mdash; the expected practice
-            is simply that the two stations negotiate who moves.
+            One everyday courtesy fact that predates all the digital systems: if two stations
+            transmitting on the same simplex frequency start interfering with each other, there's no
+            FCC-enforced "first come, first served" rule at play the way there is between primary
+            and secondary <em>allocations</em> in T1B &mdash; the expected practice is simply that the
+            two stations negotiate who moves.
+          </p>
+          <p>
+            That kind of negotiation is exactly what <a class="term" href="../../glossary.html#q-signal">Q
+            signals</a> exist for &mdash; a small set of three-letter shorthand codes, inherited from
+            landline telegraph and CW operating, that pack a whole operational question or statement
+            into three letters so it's faster to send than spelling it out. Two show up on the exam:
+            <strong>QRM</strong> means you're receiving interference from other stations (not from
+            weather or static &mdash; specifically man-made signal interference), and
+            <strong>QSY</strong> means changing frequency. Saying "QSY to 146.52" is a compact way of
+            saying "let's move this conversation to 146.52 MHz" &mdash; the same negotiation this
+            section just described, expressed in the shorthand hams actually use on the air.
           </p>
           <details class="exam-refs" data-group="T2B" data-exam="technician">
             <summary>Covers T2B01&ndash;T2B14 (14 exam questions)</summary>

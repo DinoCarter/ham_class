@@ -353,6 +353,7 @@ main { flex: 1; padding-block: 2rem 4rem; }
   gap: 1rem;
   grid-template-columns: 1fr;
 }
+.grid > * { min-width: 0; }
 @media (min-width: 640px) {
   .grid-2 { grid-template-columns: repeat(2, 1fr); }
 }

@@ -2,7 +2,7 @@
 
 Multi-session build log. Read this first in any new session before continuing work.
 
-## Status: Phase 5 complete — accessibility pass done on the full site
+## Status: Phase 6 complete — Technician depth/interactivity pass (General not started)
 
 Deployed and live at https://dinocarter.github.io/ham_class/ (GitHub Pages,
 deploy-from-`main` — enabled by user).
@@ -492,11 +492,144 @@ science for non-regulatory content, with numeric worked examples
 independently recomputed rather than trusted from a single pass. No
 invented or approximated numbers.
 
+## Phase 6 — Technician depth pass, interactive redesign, quiz explanations (this checkpoint)
+
+You reviewed the live site and flagged three things: technical content
+still reading as "memorize this" rather than explaining the underlying
+mechanism, some interactive/visual elements rendering poorly, and the one
+interactive element that existed (T1's band-frequency slider) not
+actually teaching anything since the ruler was already color-coded —
+dragging a cursor across it and reading back a color you can already see
+tests nothing. You chose: Technician first (checkpoint before General),
+and "fix the existing widget + add a few new ones where they'd teach the
+most" rather than a blanket interactive-everywhere pass. Mid-session you
+also asked for wrong quiz answers to show a short "why" explanation.
+
+**Rendering-bug audit method note**: initial mobile-viewport testing via
+plain `chrome --headless --window-size=W,H --screenshot` gave false
+readings — that flag doesn't reliably override `window.screen`/the layout
+viewport in this Chrome build (confirmed via CDP: `window.screen` stayed
+at the 800×600 headless default regardless of `--window-size`), so pages
+appeared to overflow/clip on "mobile" screenshots that were actually
+laid out at desktop width and just cropped. The user said not to chase
+mobile rendering further this round, so it's undiagnosed either way —
+worth a real device or a proper `Emulation.setDeviceMetricsOverride` CDP
+call before trusting any future mobile screenshot in this repo. One
+defensive CSS fix (`.grid > * { min-width: 0; }` in `css/style.css`) was
+kept regardless — a legitimate, low-risk hardening against a real class
+of CSS Grid overflow bug even though the specific instance that
+prompted it wasn't confirmed. All *desktop* rendering was verified for
+real via headless Chrome with a proper CDP page target (not the plain
+`--screenshot` flag) — screenshotted every Technician lesson page, the
+new widgets in both their initial and revealed/interacted states, and
+the quiz explanation panel in both correct/incorrect states.
+
+- **`js/band-explorer.js` redesigned** from a passive colored ruler into
+  predict-then-reveal: the ruler shows no mode colors up front, the
+  learner drags/keys to a frequency, picks what they think is authorized
+  there from generated option buttons, *then* the correct segment is
+  revealed (colored highlight + explanation + correct/incorrect badge,
+  reusing `badge-success`/`badge-alert`). A small running score (`x/y`)
+  persists across guesses in the session. Moving to a new frequency
+  always resets to a fresh, unrevealed question. Component's config shape
+  (`{minKHz, maxKHz, segments, title, unit}`) is unchanged, so it's still
+  reusable for a General HF-privileges version later. Applied at its
+  existing call site, T1B's 10-meter explorer.
+- **Three new interactive widgets**, all vanilla-JS `init(container,
+  config)` modules matching `band-explorer.js`'s pattern, styled with
+  existing `.panel`/`.readout`/`.badge` CSS (no new CSS system):
+  - `js/wave-explorer.js` (T3B, replacing the old static "formula worth
+    memorizing" box): a log-scale 3 MHz&ndash;3 GHz frequency slider that
+    live-computes wavelength, draws a wave graphic whose visible cycle
+    count scales with frequency, labels the HF/VHF/UHF range and
+    Technician band live, and folds in a T3C tie-in &mdash; predict
+    whether a given frequency skips off the ionosphere or passes through,
+    then reveal.
+  - `js/gain-explorer.js` (T9A): toggle isotropic/dipole/Yagi and see an
+    SVG polar radiation-pattern shape redraw (figure-8 for dipole,
+    concentrated teardrop lobe for Yagi), explicitly framed as
+    illustrative shape, not a to-scale antenna model, plus a
+    predict-then-reveal "which antenna wins for one distant station"
+    check.
+  - `js/circuit-calc.js` (T5D): live Ohm's-law/power calculator — type
+    into any two of voltage/current/resistance, the third fills in as you
+    type, with the currently-computed field highlighted and the active
+    formula rearrangement (I=E÷R / E=I×R / R=E÷I) labeled, so the three
+    formulas read as one relationship instead of three memorized facts.
+    Seeded with T5C's own 12V/2.5A worked-example numbers on load.
+  - All three verified interactively via headless Chrome + CDP (typed
+    into fields, clicked toggle buttons, clicked guess buttons, confirmed
+    correct/incorrect reveal states) rather than just screenshotted at
+    rest.
+- **Quiz "why" explanations** (your mid-session addition): `quiz.js` now
+  shows a short explanation under the answer choices once one is picked,
+  for both correct and incorrect answers, reusing the `.example-box`
+  styling with the border/label color switched to success/alert green or
+  red. Sourced from a new `data/technician-explanations.json` (flat
+  `{questionId: blurb}` map, loaded via a new `HamData.getExplanations()`
+  that degrades to `{}` on a missing file rather than throwing, so the
+  quiz still works with zero explanations present). Falls back to a
+  citation + link into the matching lesson section for any question ID
+  not in the file. **All 409 Technician pool questions now have a
+  hand-written 1&ndash;2 sentence explanation** — written subelement by
+  subelement while doing the content-depth pass below (so each blurb is
+  grounded in the same verified lesson prose, not written blind), and
+  every subelement's ID set was programmatically diffed against
+  `data/technician.json` after writing (zero missing, zero extra,
+  confirmed for T1 through T0 individually and as a full 409-question
+  final pass). `data/general-explanations.json` does not exist yet — the
+  General pass is unstarted, so General quiz pages currently show only
+  the citation/lesson-link fallback.
+- **Content-depth pass across all 10 Technician lessons**: read every
+  group in T1&ndash;T0 against its own subelement's full question list
+  looking for pool questions with no supporting prose at all (not just
+  "could be explained better" &mdash; genuinely untaught vocabulary).
+  Nine of ten subelements were already thorough (a legacy of the T1
+  template + parallel-agent build in Phases 2&ndash;3) and needed only the
+  explanation blurbs, not rewrites. **T2 had three real gaps, fixed**:
+  linked repeater networks (T2B03), DMR color code (T2B12), and the Q
+  signals QRM/QSY (T2B10/11) were tested by the pool but never mentioned
+  in the lesson prose at all &mdash; added a paragraph for each, in the
+  existing explanation-then-worked-example voice, cross-checked against
+  the pool's own correct answers. **T7B01** ("over-deviating") got one
+  clarifying sentence connecting that specific FCC-exam term to the
+  existing "too close to the microphone" explanation, which was already
+  there but didn't use the tested vocabulary word.
+- Verified after every subelement's edits: `node --check` on every
+  touched/new JS file, JSON validity + exact ID-set diff against the pool
+  for every explanations batch, and a div/section/p/ul/li/details/summary
+  (plus table/tr/td/th for the T3B table) tag-balance check on every
+  edited HTML file &mdash; all clean.
+
+## Open items / flagged for your attention
+
+- **General class untouched this phase** &mdash; no content-depth review,
+  no interactive widgets, no `general-explanations.json`. Same treatment
+  as Technician is the natural next phase whenever you want it.
+- **Mobile rendering is genuinely unverified**, not just "not this
+  phase" &mdash; see the audit-method note above. The `min-width:0` grid
+  fix is harmless and worth keeping, but don't treat it as confirmation a
+  real bug existed or was fixed; a real phone or a correct CDP device-
+  metrics-override screenshot is needed to actually know.
+- The three new widgets only got automated interaction testing (headless
+  Chrome + CDP clicking/typing), the same limitation every prior phase
+  has flagged for the rest of the site &mdash; worth your own manual pass,
+  particularly keyboard-only operation of the two new predict-then-reveal
+  widgets (`wave-explorer`, `gain-explorer`) since they're new interaction
+  patterns, not just new content in the existing quiz/flashcard pattern.
+- T9's `band-explorer.js` reuse (mentioned as a goal back in Phase 2 for
+  a General HF-privileges chart) still hasn't happened &mdash; T9A got a
+  new gain-explorer widget instead this round, not a second band
+  explorer. Worth revisiting when General's G1 (frequency privileges) is
+  built.
+
 ## What's next
 
-The full course is built and accessibility-audited; the diagram-SVG idea
-is closed out (staying with the verified raw scans). What's left is
-verification only, not build work: a real screen-reader pass and your own
-manual click-through in a real browser (dev server still running locally
-— no need to restart it). Nothing queued from me until that review turns
-up something specific to fix.
+Technician is content-complete, has four working interactive widgets
+(one redesigned, three new), and every Technician quiz question now
+explains itself when you get it wrong (or right). General class hasn't
+been touched in this phase — same three-part treatment (content-depth
+read-through, a couple of targeted interactive widgets, explanation
+blurbs for all 423 General questions) is the obvious next phase whenever
+you're ready, plus a real mobile pass to replace the inconclusive one
+from this session.
